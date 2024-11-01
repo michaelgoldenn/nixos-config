@@ -23,6 +23,7 @@
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
+    vscode
   ];
 
   # Programs natively supported by home-manager.
