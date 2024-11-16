@@ -29,6 +29,7 @@
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.
   programs = {
+    firefox.enable = true;
     # Better `cat`
     bat.enable = true;
     # Type `<ctrl> + r` to fuzzy search your shell history

@@ -17,6 +17,7 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "flake-parts";
+    textfox.url = "github:adriankarlen/textfox";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
