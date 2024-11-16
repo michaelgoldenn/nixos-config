@@ -2,12 +2,7 @@
 {
   imports =
     with builtins;
-    let
-      files = attrNames (readDir ./.);
-      filtered = filter (fn: fn != "default.nix") files;
-    in
-    builtins.trace "Found files: ${toString filtered}"
     map
       (fn: ./${fn})
-      filtered;
+      (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
 }
