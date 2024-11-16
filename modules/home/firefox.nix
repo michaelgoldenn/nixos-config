@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
-  home-manager.users.michael = {
+  home-manager.users.nixos = {
     dconf.settings = {
       "org/gnome/shell" = {
-        favorite-apps = ["firefox.desktop"]
-      }
+        favorite-apps = ["firefox.desktop"];
+      };
     };
   };
   programs.firefox = {
