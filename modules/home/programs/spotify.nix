@@ -1,4 +1,4 @@
-{ ... }:
+{ flake, pkgs, ... }:
 {
 programs.spicetify =
    let
@@ -15,5 +15,5 @@ programs.spicetify =
      ];
      theme = spicePkgs.themes.catppuccin;
      colorScheme = "mocha";
-   }
+   };
 }
