@@ -6,10 +6,10 @@ in
 {
   dconf.settings = {
     "org/gnome/shell" = {
-      favorite-apps = ["vscode.desktop"];
+      favorite-apps = ["code.desktop"];
     };
   };
   programs.vscode = {
     enable = true;
-  }
+  };
 }
