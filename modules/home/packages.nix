@@ -31,8 +31,6 @@
     vscode
     godot_4
     syncthing
-    gnomeExtensions.solaar-extension
-    solaar
   ];
 
   # Programs natively supported by home-manager.

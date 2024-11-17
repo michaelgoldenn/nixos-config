@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-  # vesktop # If you prefer this
-
-    (discord.override {
-      # withOpenASAR = true; # can do this here too
-      withVencord = true;
-    })
+  dconf.settings = {
+    "org/gnome/shell" = {
+      favorite-apps = ["vesktop.desktop"];
+    };
+  };
+  home.packages = with pkgs; [
+    vesktop
   ];
 }
