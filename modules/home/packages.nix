@@ -23,7 +23,16 @@
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
+
+    #Needed for solaar
+    usbutils
+
+    # Michael's custom stuff
     vscode
+    godot_4
+    syncthing
+    gnomeExtensions.solaar-extension
+    solaar
   ];
 
   # Programs natively supported by home-manager.
