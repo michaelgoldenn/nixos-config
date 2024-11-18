@@ -18,6 +18,7 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "flake-parts";
     textfox.url = "github:adriankarlen/textfox";
+    stylix.url = "github:danth/stylix";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +27,7 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
   };
 
   # Wired using https://nixos-unified.org/autowiring.html

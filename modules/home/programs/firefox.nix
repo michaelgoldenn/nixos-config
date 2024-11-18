@@ -8,8 +8,7 @@ let
     ublock-origin
     sponsorblock
   ];
-
-  # goto about:config to see all settings and names
+  # about:config has all settings and names
   global_settings = {
     "extensions.pocket.enabled" = false;
     "extensions.screenshots.disabled" = true;
@@ -38,10 +37,10 @@ let
     "browser.newtabpage.activity-stream.system.showSponsored" = false;
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts" on new tab page
+    "media.videocontrols.picture-in-picture.video-toggle.has-used" = true; # auto-compress the PIP toggle
   };
 in
 {
-  imports = [ inputs.textfox.homeManagerModules.default ];
   dconf.settings = {
     "org/gnome/shell" = {
       favorite-apps = ["firefox.desktop"];
@@ -86,6 +85,7 @@ in
       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
     };
   };
+  imports = [ inputs.textfox.homeManagerModules.default ];
   textfox = {
     enable = true;
     profile = "textfox";
