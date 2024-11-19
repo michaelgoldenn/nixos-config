@@ -89,8 +89,8 @@
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "michael";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "michael";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -99,6 +99,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # idk if I need this but vimjoyer told me to put it so I did https://youtu.be/qlfm3MEbqYA?t=89
+  hardware.graphics.enable = true;
+  hardware.nvidia.open = true;
+  services.xserver.videoDrivers = ["nvidia"];
 
 
   nixpkgs.config.packageOverrides = pkgs: {
