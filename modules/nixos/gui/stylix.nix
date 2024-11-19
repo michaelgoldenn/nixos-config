@@ -9,7 +9,7 @@ in
   ];
   stylix = {
     enable = true;
-    image = /home/michael/Downloads/thank_you_wallpaper.png;
+    image = ./wallpaper.png;
     polarity = "dark";
     cursor.size = 320;
   };
