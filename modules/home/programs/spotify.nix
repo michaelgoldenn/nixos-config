@@ -23,6 +23,7 @@ in
        showQueueDuration
        autoVolume
        songStats
+       beautifulLyrics
      ];
      #Themes are defined here: https://github.com/Gerg-L/spicetify-nix/blob/master/docs/THEMES.md
      theme = spicePkgs.themes.text;
