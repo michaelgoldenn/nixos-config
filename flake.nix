@@ -28,6 +28,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    #sops-nix (secrets manager)
+    inputs.sops-nix.url = "github:Mic92/sops-nix";
     
   };
 
