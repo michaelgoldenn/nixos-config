@@ -99,10 +99,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # idk if I need this but vimjoyer told me to put it so I did https://youtu.be/qlfm3MEbqYA?t=89
-  hardware.graphics.enable = true;
-  hardware.nvidia.open = true;
-  services.xserver.videoDrivers = ["nvidia"];
+  # graphics drivers babyyyy
+  #services.xserver.videoDrivers = ["nvidia"];
 
 
   nixpkgs.config.packageOverrides = pkgs: {

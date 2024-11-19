@@ -4,6 +4,7 @@ let
   inherit (inputs) self;
 in
 {
+# temp steam stuff, delet later
 /*   imports = [
     flake.inputs.stylix.nixosModules.stylix
   ];
