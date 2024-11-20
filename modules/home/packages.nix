@@ -37,6 +37,8 @@ in
     localsend
     nixd
     unetbootin
+    yt-dlp
+    ffmpeg_7
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];

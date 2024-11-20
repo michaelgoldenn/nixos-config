@@ -1,0 +1,45 @@
+# Check if the URL is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <youtube-url>"
+    exit 1
+fi
+
+# Check if required tools are installed
+for cmd in yt-dlp ffmpeg; do
+    if ! command -v $cmd &> /dev/null; then
+        echo "Error: $cmd is required but not installed."
+        echo "Please install it first:"
+        echo "For yt-dlp: pip install yt-dlp"
+        echo "For ffmpeg: Use your package manager (apt, brew, etc.)"
+        exit 1
+    fi
+done
+
+# Get the URL from command line argument
+URL="$1"
+
+# Create a timestamp-based directory name
+DIRNAME="frames_$(date +%Y%m%d_%H%M%S)"
+
+# Create directory for frames
+mkdir -p "$DIRNAME"
+
+echo "1. Downloading video..."
+# Download the video in mp4 format
+yt-dlp -f "bestvideo[ext=mp4]" -o "video.mp4" "$URL"
+
+if [ ! -f "video.mp4" ]; then
+    echo "Error: Video download failed"
+    exit 1
+fi
+
+echo "2. Extracting frames..."
+# Extract frames using ffmpeg
+ffmpeg -i "video.mp4" -frame_rate 1 "$DIRNAME/frame_%d.jpg"
+
+echo "3. Cleaning up..."
+# Remove the downloaded video
+rm video.mp4
+
+echo "Done! Frames have been extracted to the '$DIRNAME' directory"
+echo "Total frames extracted: $(ls -1 "$DIRNAME" | wc -l)"
