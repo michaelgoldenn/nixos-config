@@ -6,5 +6,8 @@ in
 {
   programs.vscode = {
     enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      #noortheen.nix-ide
+    ];
   };
 }

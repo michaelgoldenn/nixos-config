@@ -31,6 +31,7 @@
     #sops-nix (secrets manager)
     sops-nix.url = "github:Mic92/sops-nix";
     
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
