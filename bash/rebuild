@@ -1,0 +1,9 @@
+set -e
+pushd $(dirname "$0")/..
+git diff -U0 *.nix
+echo "NixOS Rebuilding..."
+nix run
+gen=$(nixos-rebuild list-generations | grep current)
+git add .
+git commit -am "$gen"
+popd
