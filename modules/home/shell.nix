@@ -16,6 +16,7 @@
       syntaxHighlighting.enable = true;
       envExtra = ''
         # Custom zshrc goes here
+        path+=('/etc/nixos/bash/')
       '';
     };
 
