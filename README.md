@@ -8,7 +8,8 @@ umbriel - my MSI laptop
 
 
 TODO:
-- get nixos running on umbriel
-- Finish nixd Setup
-- figure out sops
-- figure out vscode extensions
+- [ ] figure out wallpaper(s)
+- [x] get nixos running on umbriel
+- [ ] Finish nixd Setup
+- [ ] figure out sops
+- [/] figure out vscode extensions

@@ -11,8 +11,8 @@ in
   stylix = {
     enable = true;
     image = pkgs.fetchurl {
-      url = "https://images5.74932ac241946d4c3e5711ea2fe60f16.r2.cloudflarestorage.com/138/1381455.png?response-content-disposition=attachment%3B%20filename%3D%221381455.png%22&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=25a1f3698f61250ae37fa2aae83c3913%2F20241120%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20241120T010028Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=ce3a2c3d3a4eec369ce894c9c54c949963e2c3929b013bfdf37bc8b842e7be7a";
-      sha256 = "sha256-k2ABo3TOhj52vocn0ksNHuOba2F6uoT19WX+w1Rr6ls=";
+      url = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b3be1dae-3caa-4d45-be6c-3de586ba95e2/ddgdrgz-d17ad9e8-ea29-43e0-8d78-3f2cf417904e.jpg/v1/fill/w_1192,h_670,q_70,strp/trekking_by_bisbiswas_ddgdrgz-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAwIiwicGF0aCI6IlwvZlwvYjNiZTFkYWUtM2NhYS00ZDQ1LWJlNmMtM2RlNTg2YmE5NWUyXC9kZGdkcmd6LWQxN2FkOWU4LWVhMjktNDNlMC04ZDc4LTNmMmNmNDE3OTA0ZS5qcGciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.3X7CC676xnkcaCTA7Ir3lXEF2DVXC0MO38c9mXsk0_c";
+      sha256 = "sha256-wy8zgts9tS2at1S8YhodXZ5IR/vpRbpWBJaSv/24nJI=";
     };
     # themes defined here: https://tinted-theming.github.io/base16-gallery/
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/catpucchin-frappe.yaml";
