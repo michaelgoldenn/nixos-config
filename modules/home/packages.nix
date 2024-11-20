@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
+let
+  inherit (flake) config inputs;
+  inherit (inputs) self;
+in
 {
   # Nix packages to install to $HOME
   #
@@ -16,22 +20,26 @@
     nil # Nix language server
     nix-info
     nixpkgs-fmt
+    just
 
     # Dev
     tmate
+    age
 
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
 
-    #Needed for solaar
-    usbutils
-
     # Michael's custom stuff
     vscode
     godot_4
     syncthing
+    localsend
+    nixd
+    unetbootin
   ];
+
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.

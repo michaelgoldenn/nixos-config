@@ -4,10 +4,9 @@ let
   inherit (inputs) self;
 in
 {
-  programs.vscode = {
+/*   programs.steam = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      #noortheen.nix-ide
-    ];
+    gamescopeSession.enable = true;
   };
+  #programs.gamemode.enable = true; */
 }

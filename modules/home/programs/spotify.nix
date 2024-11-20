@@ -25,8 +25,9 @@ in
        songStats
        beautifulLyrics
      ];
+     #Let stylix handle the theming
      #Themes are defined here: https://github.com/Gerg-L/spicetify-nix/blob/master/docs/THEMES.md
-     theme = spicePkgs.themes.text;
+     #theme = spicePkgs.themes.text;
      #colorScheme = "mocha"; #not working rn for some reason, fix later (maybe with stylix?)
    };
 }
