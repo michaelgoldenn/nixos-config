@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
+let
+  inherit (flake) config inputs;
+  inherit (inputs) self;
+in
 {
   # Nix packages to install to $HOME
   #
@@ -31,7 +35,11 @@
     godot_4
     syncthing
     localsend
+    nixd
+    unetbootin
   ];
+
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.
