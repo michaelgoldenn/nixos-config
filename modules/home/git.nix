@@ -10,7 +10,7 @@
     git = {
       enable = true;
       userName = "michaelgoldenn";
-      userEmail = "johndoe@nixos.com";
+      userEmail = "Michael.Golden0278@gmail.com";
       ignores = [ "*~" "*.swp" ];
       aliases = {
         ci = "commit";
