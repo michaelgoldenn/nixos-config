@@ -16,6 +16,7 @@
         down = ["<Shift><Control><Alt>Down"];
         up = ["<Shift><Control><Alt>Up"];
       };
+      "/org/gnome/desktop/peripherals/touchpad".natural-scroll = false;
     };
   };
 }
