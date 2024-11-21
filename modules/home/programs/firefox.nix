@@ -8,7 +8,7 @@ let
     ublock-origin
     sponsorblock
   ];
-  # about:config has all settings and names
+  # go to about:config for the settings and names
   global_settings = {
     "extensions.pocket.enabled" = false;
     "extensions.screenshots.disabled" = true;
@@ -26,6 +26,13 @@ let
     "browser.urlbar.suggest,recentsearches" = false;
     "browser.urlbar.suggest.searches" = false;
     "browser.urlbar.suggest.topsites" = false;
+
+    #disable first run stuff (suggestions, welcome page, etc.)
+    "app.normandy.first_run" = false;
+    "toolkit.telemetry.reportingpolicy.firstRun" = false;
+    "trailhead.firstrun.didSeeAboutWelcome" = false;
+    "browser.aboutConfig.showWarning" = false;
+
 
     "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
     "browser.newtabpage.activity-stream.feeds.snippets" = false;
