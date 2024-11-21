@@ -15,7 +15,7 @@ in
    {
      enable = true;
      #extensions are defined here: https://github.com/Gerg-L/spicetify-nix/blob/master/docs/EXTENSIONS.md
-/*      enabledExtensions = with spicePkgs.extensions; [
+     enabledExtensions = with spicePkgs.extensions; [
        adblock
        hidePodcasts
        #shuffle # shuffle+ (special characters are sanitized out of extension names)
@@ -24,7 +24,7 @@ in
        autoVolume
        songStats
        beautifulLyrics
-     ]; */
+     ];
      #Let stylix handle the theming
      #Themes are defined here: https://github.com/Gerg-L/spicetify-nix/blob/master/docs/THEMES.md
      #theme = spicePkgs.themes.text;
