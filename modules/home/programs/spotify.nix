@@ -15,16 +15,16 @@ in
    {
      enable = true;
      #extensions are defined here: https://github.com/Gerg-L/spicetify-nix/blob/master/docs/EXTENSIONS.md
-     enabledExtensions = with spicePkgs.extensions; [
-/*        adblock
+/*      enabledExtensions = with spicePkgs.extensions; [
+       adblock
        hidePodcasts
        #shuffle # shuffle+ (special characters are sanitized out of extension names)
        history
        showQueueDuration
        autoVolume
        songStats
-       beautifulLyrics */
-     ];
+       beautifulLyrics
+     ]; */
      #Let stylix handle the theming
      #Themes are defined here: https://github.com/Gerg-L/spicetify-nix/blob/master/docs/THEMES.md
      #theme = spicePkgs.themes.text;
