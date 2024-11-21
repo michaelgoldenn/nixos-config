@@ -102,9 +102,9 @@
   # graphics drivers babyyyy
   services.xserver.videoDrivers = ["nvidia"];
     # Enable OpenGL
-  hardware.opengl = {
+/*   hardware.opengl = {
     enable = true;
-  };
+  }; */
   hardware.nvidia = {
 
     # Modesetting is required.
