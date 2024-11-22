@@ -13,5 +13,8 @@ in
       bungcip.better-toml
       tamasfe.even-better-toml
     ];
+    userSettings = {
+      "explorer.confirmDelete" = false;
+    };
   };
 }
