@@ -2,6 +2,18 @@
 let
   inherit (flake) config inputs;
   inherit (inputs) self;
+  nix_settings = {
+    "nix.enableLanguageServer" = true;
+    "nix.serverPath" = "nixd";
+    "nix.formatterPath" = "alejandra";
+    "nix.serverSettings" = {
+      "nixd" = {
+        "formatting" = {
+          "command" = ["alejandra"];
+        };
+      };
+    };
+  };
 in
 {
   programs.vscode = {
@@ -16,6 +28,7 @@ in
     ];
     userSettings = {
       "explorer.confirmDelete" = false;
-    };
+    }
+    // nix_settings;
   };
 }

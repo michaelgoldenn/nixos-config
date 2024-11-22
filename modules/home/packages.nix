@@ -36,6 +36,7 @@ in
     syncthing
     localsend
     nixd
+    alejandra
     unetbootin
     yt-dlp
     ffmpeg_7
