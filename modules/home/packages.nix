@@ -39,7 +39,6 @@ in
     unetbootin
     yt-dlp
     ffmpeg_7
-    steam
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];

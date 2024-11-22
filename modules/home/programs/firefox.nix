@@ -3,12 +3,13 @@ let
   inherit (flake) config inputs;
   inherit (inputs) self;
 
+  # extensions that all profiles should share
   global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     bitwarden
     ublock-origin
     sponsorblock
   ];
-  # go to about:config for the settings and names
+  # settings that all profiles shoudl share (about:config for the settings)
   global_settings = {
     "extensions.pocket.enabled" = false;
     "extensions.screenshots.disabled" = true;
