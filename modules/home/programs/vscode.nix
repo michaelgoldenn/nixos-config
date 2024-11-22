@@ -6,11 +6,12 @@ in
 {
   programs.vscode = {
     enable = true;
+    # wamt to find new vscode extensions? https://github.com/search good luck
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
       # rust
       bungcip.better-toml
-      rust-lang.rust-analyzer
+      tamasfe.even-better-toml
     ];
   };
 }
