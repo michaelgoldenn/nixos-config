@@ -8,6 +8,9 @@ in
     enable = true;
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
+      # rust
+      bungcip.better-toml
+      rust-lang.rust-analyzer
     ];
   };
 }
