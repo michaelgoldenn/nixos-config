@@ -42,5 +42,6 @@ in
     
     */
     polarity = "dark";
+    cursor.size = 16;
   };
 }
