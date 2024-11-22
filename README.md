@@ -10,6 +10,7 @@ umbriel - my MSI laptop
 TODO:
 - [ ] figure out wallpaper(s)
 - [x] get nixos running on umbriel
-- [ ] Finish nixd Setup
+- [x] Finish nixd Setup
 - [ ] figure out sops
-- [ ] figure out vscode extensions
+- [x] figure out vscode extensions
+- [ ] replace bash scrips with something more nix-y
