@@ -25,6 +25,14 @@ in
       # rust
       bungcip.better-toml
       tamasfe.even-better-toml
+      # godot
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "godot-tools";
+        publisher = "geequlim";
+        version = "2.3.0";
+        sha256 = "sha256-iuSec4PoVxyu1KB2jfCYOd98UrqQjH3q24zOR4VCPgs=";
+      }
     ];
     userSettings = {
       "explorer.confirmDelete" = false;
