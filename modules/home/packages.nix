@@ -17,10 +17,11 @@ in
 
     # Nix dev
     cachix
-    nil # Nix language server
+    nixd # Nix language server
     nix-info
     nixpkgs-fmt
     just
+    alejandra
 
     # Dev
     tmate
@@ -37,9 +38,8 @@ in
     # Michael's custom stuff
     syncthing
     localsend
-    nixd
-    alejandra
     unetbootin
+    vlc
     
     #making games
     godot_4
