@@ -14,3 +14,4 @@ TODO:
 - [ ] figure out sops
 - [x] figure out vscode extensions
 - [ ] replace bash scrips with something more nix-y
+- [ ] make shyfox profile https://github.com/Naezr/ShyFox

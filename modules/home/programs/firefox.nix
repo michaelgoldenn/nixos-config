@@ -9,7 +9,7 @@ let
     ublock-origin
     sponsorblock
   ];
-  # settings that all profiles shoudl share (about:config for the settings)
+  # settings that all profiles should share (about:config for the settings)
   global_settings = {
     "extensions.pocket.enabled" = false;
     "extensions.screenshots.disabled" = true;

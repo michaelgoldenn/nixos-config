@@ -30,16 +30,20 @@ in
     # work.
     less
 
+    # cli doodads
+    yt-dlp
+    ffmpeg_7
+
     # Michael's custom stuff
-    vscode
-    godot_4
     syncthing
     localsend
     nixd
     alejandra
     unetbootin
-    yt-dlp
-    ffmpeg_7
+    
+    #making games
+    godot_4
+    blender
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
