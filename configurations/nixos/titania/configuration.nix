@@ -102,7 +102,7 @@
   # graphics drivers babyyyy
   services.xserver.videoDrivers = ["nvidia"];
     # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
   hardware.nvidia = {
