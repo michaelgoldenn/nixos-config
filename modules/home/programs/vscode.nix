@@ -8,7 +8,8 @@ in
     enable = true;
     # wamt to find new vscode extensions? https://github.com/search good luck
     extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
+      # nix
+      jnoortheen.nix-ide
       # rust
       bungcip.better-toml
       tamasfe.even-better-toml
