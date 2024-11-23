@@ -101,6 +101,8 @@
 
   # graphics drivers babyyyy
   services.xserver.videoDrivers = ["nvidia"];
+  #services.xserver.desktopManager.gnome.sessionManagement = true;
+
     # Enable OpenGL
   hardware.graphics = {
     enable = true;
@@ -114,7 +116,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-    powerManagement.enable = true;
+    powerManagement.enable = false;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -136,6 +138,13 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  systemd.sleep.extraConfig = ''
+  AllowSuspend=no
+  AllowHibernation=no
+  AllowHybridSleep=no
+  AllowSuspendThenHibernate=no
+  '';
 
   nixpkgs.config.packageOverrides = pkgs: {
   nur = import (  builtins.fetchTarball {
