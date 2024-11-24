@@ -11,14 +11,17 @@ let
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
+    # general
     "extensions.pocket.enabled" = false;
     "extensions.screenshots.disabled" = true;
     "browser.topsites.contile.enabled" = false;
     "browser.formfill.enable" = false;
-    "browser.search.suggest.enabled" = false;
-    "browser.search.suggest.enabled.private" = false;
+    "browser.engagement.ctrlTab.has-used" = true;
+    "browser.ctrlTab.sortByRecentlyUsed" = true;
+    "browser.startup.page" = 3; # Open previous windows and tabs
+    "identity.fxaccounts.enabled" = false; #disable firefox accounts
 
-    # right now just disable everything in the urlbar, maybe later add some stuff in sparingly?
+    # right now just disable all suggestions in the search bar, maybe later add some stuff in sparingly?
     "browser.urlbar.showSearchSuggestionsFirst" = false;
     "browser.urlbar.suggest.bookmark" = false;
     "browser.urlbar.suggest.engines" = false;
@@ -27,6 +30,8 @@ let
     "browser.urlbar.suggest,recentsearches" = false;
     "browser.urlbar.suggest.searches" = false;
     "browser.urlbar.suggest.topsites" = false;
+    "browser.search.suggest.enabled" = false;
+    "browser.search.suggest.enabled.private" = false;
 
     #disable first run stuff (suggestions, welcome page, etc.)
     "app.normandy.first_run" = false;

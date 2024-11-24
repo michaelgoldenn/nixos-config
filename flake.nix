@@ -32,6 +32,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
     
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
