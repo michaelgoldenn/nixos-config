@@ -4,5 +4,11 @@ let
   inherit (inputs) self;
 in
 {
-  services.flatpak.enable = true;
+  imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
+  services.flatpak = {
+    enable = true; 
+    packages = [
+      "app.bluebubbles.BlueBubbles"
+    ];
+  };
 }
