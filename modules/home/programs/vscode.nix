@@ -23,8 +23,8 @@ in
       # nix
       jnoortheen.nix-ide
       # rust
-      bungcip.better-toml
       tamasfe.even-better-toml
+      rust-lang.rust-analyzer
       # godot
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
