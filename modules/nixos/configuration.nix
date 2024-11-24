@@ -17,4 +17,18 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+  
+  services.flatpak = {
+    enable = true;
+    uninstallUnmanaged = true;
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+    ];
+    packages = [
+    "app.bluebubbles.BlueBubbles"
+    ];
+  }; 
 }

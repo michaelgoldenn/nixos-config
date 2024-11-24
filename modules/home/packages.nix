@@ -40,6 +40,7 @@ in
     localsend
     unetbootin
     vlc
+    obsidian
     
     #making games
     godot_4
