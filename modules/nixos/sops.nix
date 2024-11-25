@@ -6,7 +6,7 @@ in
 {
   imports = [/* inputs.sops-nix.nixosModules.sops */ inputs.sops-nix.nixosModules.default];
 
-  sops = {
+/*   sops = {
     defaultSopsFile = ../../secrets/example.yaml;
     age = {
       keyFile = "/var/lib/sops-nix/key.txt";
@@ -14,5 +14,5 @@ in
       generateKey = false;
     };
     secrets."github/access_token" = { };
-  };
+  }; */
 }
