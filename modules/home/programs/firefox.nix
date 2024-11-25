@@ -74,15 +74,15 @@ in
     };
     # policy list: https://mozilla.github.io/policy-templates/
     # or check out about:policies#documentation
-    policies = {
+/*     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
-      #EnableTrackingProtection = {
-      #  Value= true;
-      #  Locked = true;
-      #  Cryptomining = true;
-      #  Fingerprinting = true;
-      #};
+      EnableTrackingProtection = {
+        Value= true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
       DisablePocket = true;
       DisableFirefoxAccounts = true;
       DisableAccounts = true;
@@ -91,7 +91,7 @@ in
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-    };
+    }; */
   };
   imports = [ inputs.textfox.homeManagerModules.default ];
   textfox = {
