@@ -8,7 +8,7 @@ in
   stylix = {
     enable = true;
     targets = {
-      firefox.profileNames = ["textfox"];
+      firefox.profileNames = ["textfox" "normal"];
     };
   };
 }
