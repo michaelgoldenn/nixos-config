@@ -9,6 +9,7 @@ in
     enable = true;
     targets = {
       firefox.profileNames = ["textfox" "normal"];
+      vscode.enable = false;
     };
   };
 }
