@@ -17,7 +17,7 @@ in
     };
     #image = ../../../bash/videos/random_frame.jpg;
     # themes defined here: https://tinted-theming.github.io/base16-gallery/
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/equilibrium-dark.yaml";
     # for some reason it's breaking when I try to import like that - I'll import manually instead.
 /*     base16Scheme = {
       base00 = "#1e1e2e"; # base
@@ -40,6 +40,9 @@ in
     /* Themes I've tried:
     catpucchin-frappe - comments are kinda hard to read, maybe too light for me?
     
+    DO NOT USE:
+    brogrammer
+    dracula
     */
     polarity = "dark";
     cursor.size = 16;
