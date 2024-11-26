@@ -1,6 +1,12 @@
 { ... }:
 {
   programs = {
+    bash = {
+      enable = true;
+      initExtra = ''
+        # Custom bash profile goes here
+      '';
+    };
     nushell = { 
       enable = true;
       # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
