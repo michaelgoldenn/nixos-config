@@ -14,6 +14,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # HEY MICHAEL remember to change this later - shouldn't be defining user preferences in config.nix as you need to repeat it for each system
+  users.users.michael.shell = pkgs.nushell;
+
   networking.hostName = "umbriel"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
