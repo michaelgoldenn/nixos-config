@@ -21,10 +21,10 @@ in
     # for some reason it's breaking when I try to import like that - I'll import manually instead.
     base16Scheme = {
       base00 = "#FFFFFF"; # base
-      base01 = "#181825"; # mantle
-      base02 = "#313244"; # surface0
-      base03 = "#45475a"; # surface1
-      base04 = "#585b70"; # surface2
+      base01 = "#FFFFFF"; # mantle
+      base02 = "#FFFFFF"; # surface0
+      base03 = "#FFFFFF"; # surface1
+      base04 = "#FFFFFF"; # surface2
       base05 = "#cdd6f4"; # text
       base06 = "#f5e0dc"; # rosewater
       base07 = "#b4befe"; # lavender
