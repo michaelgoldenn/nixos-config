@@ -19,12 +19,12 @@ in
     # themes defined here: https://tinted-theming.github.io/base16-gallery/
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/catpucchin-frappe.yaml";
     # for some reason it's breaking when I try to import like that - I'll import manually instead.
-    base16Scheme = {
-      base00 = "#FFFFFF"; # base
-      base01 = "#FFFFFF"; # mantle
-      base02 = "#FFFFFF"; # surface0
-      base03 = "#FFFFFF"; # surface1
-      base04 = "#FFFFFF"; # surface2
+/*     base16Scheme = {
+      base00 = "#1e1e2e"; # base
+      base01 = "#181825"; # mantle
+      base02 = "#313244"; # surface0
+      base03 = "#45475a"; # surface1
+      base04 = "#585b70"; # surface2
       base05 = "#cdd6f4"; # text
       base06 = "#f5e0dc"; # rosewater
       base07 = "#b4befe"; # lavender
@@ -36,6 +36,24 @@ in
       base0D = "#89b4fa"; # blue
       base0E = "#cba6f7"; # mauve
       base0F = "#f2cdcd"; # flamingo
+    }; */
+    base16Scheme = {
+      base00 = "#000000"; #000000 ----
+      base01 = "#231a40"; #231a40 ---
+      base02 = "#432d59"; #432d59 --
+      base03 = "#593380"; #593380 -
+      base04 = "#00ff00"; #7b43bf +
+      base05 = "#b08ae6"; #b08ae6 ++
+      base06 = "#9045e6"; #9045e6 +++
+      base07 = "#a366ff"; #a366ff ++++
+      base08 = "#a82ee6"; #a82ee6 red
+      base09 = "#bb66cc"; #bb66cc orange
+      base0A = "#f29df2"; #f29df2 yellow
+      base0B = "#4595e6"; #41d9bF green
+      base0C = "#40dfff"; #40dfff aqua/cyan
+      base0D = "#4136d9"; #326ee6 blue
+      base0E = "#7e5ce6"; #7e5ce6 purple
+      base0F = "#a886bf"; #a886bf brown
     };
     /* Themes I've tried:
     catpucchin-frappe - comments are kinda hard to read, maybe too light for me?
