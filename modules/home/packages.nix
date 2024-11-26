@@ -27,6 +27,7 @@ in
     tmate
     age
     rustup
+    gcc
 
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
