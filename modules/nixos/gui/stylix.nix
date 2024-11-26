@@ -20,7 +20,7 @@ in
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/catpucchin-frappe.yaml";
     # for some reason it's breaking when I try to import like that - I'll import manually instead.
     base16Scheme = {
-      base00 = "#1e1e2e"; # base
+      base00 = "#FFFFFF"; # base
       base01 = "#181825"; # mantle
       base02 = "#313244"; # surface0
       base03 = "#45475a"; # surface1
