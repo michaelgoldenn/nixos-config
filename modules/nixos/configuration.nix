@@ -30,5 +30,8 @@ in
     packages = [
     "app.bluebubbles.BlueBubbles"
     ];
-  }; 
+  };
+  environment.systemPackages = with pkgs; [
+    signal-desktop
+  ];
 }
