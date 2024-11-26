@@ -20,25 +20,25 @@ in
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/catpucchin-frappe.yaml";
     # for some reason it's breaking when I try to import like that - I'll import manually instead.
     base16Scheme = {
-        base00 = "#303446"; # base
-        base01 = "#292c3c"; # mantle
-        base02 = "#414559"; # surface0
-        base03 = "#51576d"; # surface1
-        base04 = "#626880"; # surface2
-        base05 = "#c6d0f5"; # text
-        base06 = "#f2d5cf"; # rosewater
-        base07 = "#babbf1"; # lavender
-        base08 = "#e78284"; # red
-        base09 = "#ef9f76"; # peach
-        base0A = "#e5c890"; # yellow
-        base0B = "#a6d189"; # green
-        base0C = "#81c8be"; # teal
-        base0D = "#8caaee"; # blue
-        base0E = "#ca9ee6"; # mauve
-        base0F = "#eebebe"; # flamingo
+      base00 = "#1e1e2e"; # base
+      base01 = "#181825"; # mantle
+      base02 = "#313244"; # surface0
+      base03 = "#45475a"; # surface1
+      base04 = "#585b70"; # surface2
+      base05 = "#cdd6f4"; # text
+      base06 = "#f5e0dc"; # rosewater
+      base07 = "#b4befe"; # lavender
+      base08 = "#f38ba8"; # red
+      base09 = "#fab387"; # peach
+      base0A = "#f9e2af"; # yellow
+      base0B = "#a6e3a1"; # green
+      base0C = "#94e2d5"; # teal
+      base0D = "#89b4fa"; # blue
+      base0E = "#cba6f7"; # mauve
+      base0F = "#f2cdcd"; # flamingo
     };
     /* Themes I've tried:
-    catpucchin-frappe - comments are kinda hard to read
+    catpucchin-frappe - comments are kinda hard to read, maybe too light for me?
     
     */
     polarity = "dark";
