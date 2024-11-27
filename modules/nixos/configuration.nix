@@ -33,5 +33,6 @@ in
   };
   environment.systemPackages = with pkgs; [
     signal-desktop
+    libreoffice
   ];
 }
