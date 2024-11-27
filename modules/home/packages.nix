@@ -44,6 +44,7 @@ in
     unetbootin
     vlc
     obsidian
+    qbittorrent
     
     #making games
     godot_4
