@@ -36,6 +36,7 @@ in
     ];
     userSettings = {
       "explorer.confirmDelete" = false;
+      "editorPath.godot4" = "godot4";
     }
     // nix_settings;
   };
