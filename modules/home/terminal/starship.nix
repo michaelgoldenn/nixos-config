@@ -4,7 +4,11 @@
      starship = { 
       enable = true;
       settings = {
-        presets = [ "no-runtime-versions" ];
+        add_newline = true;
+        character = { 
+          success_symbol = "[➜](bold green)";
+          error_symbol = "[➜](bold red)";
+        };
       };
     };
   };
