@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -152,6 +152,9 @@
                   # amdgpuBusId = "PCI:54:0:0"; For AMD GPU
     }; */
   };
+  services.xserver.displayManager.sessionCommands = ''
+      ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
+  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
