@@ -9,7 +9,7 @@ in
     enable = true;
     targets = {
       firefox.profileNames = ["textfox" "normal"];
-      nushell.enable = true;
+      spicetify.enable = false;
     };
   };
 }

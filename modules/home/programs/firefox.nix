@@ -20,6 +20,7 @@ let
     "browser.ctrlTab.sortByRecentlyUsed" = true;
     "browser.startup.page" = 3; # Open previous windows and tabs
     "identity.fxaccounts.enabled" = false; #disable firefox accounts
+    "extensions.formautofill.creditCards.enabled" = false; # disable credit cards
 
     # right now just disable all suggestions in the search bar, maybe later add some stuff in sparingly?
     "browser.urlbar.showSearchSuggestionsFirst" = false;
