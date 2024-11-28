@@ -44,8 +44,6 @@ in
     unetbootin
     vlc
     obsidian
-    qbittorrent
-    pritunl-client
     
     #making games
     godot_4

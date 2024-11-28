@@ -106,15 +106,13 @@
   vscode
   ];
 
-  # gpu stuff
+  ## gpu stuff
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
   };
-
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-
+  services.xserver.videoDrivers = ["displaylink" "nvidia" ];
   hardware.nvidia = {
 
     # Modesetting is required.
