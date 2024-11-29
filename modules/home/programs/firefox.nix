@@ -4,10 +4,14 @@ let
   inherit (inputs) self;
 
   # extensions that all profiles should share
+  # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
+  # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code
   global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     bitwarden
     ublock-origin
     sponsorblock
+    consent-o-matic
+    unpaywall
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
@@ -75,7 +79,7 @@ in
     };
     # policy list: https://mozilla.github.io/policy-templates/
     # or check out about:policies#documentation
-/*     policies = {
+    policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       EnableTrackingProtection = {
@@ -92,7 +96,7 @@ in
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-    }; */
+    };
   };
   imports = [ inputs.textfox.homeManagerModules.default ];
   textfox = {
