@@ -20,7 +20,7 @@ let
     consent-o-matic
     unpaywall
     clearurls
-    #bypass-paywalls-clean
+    bypass-paywalls-clean
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {

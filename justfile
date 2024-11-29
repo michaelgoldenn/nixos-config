@@ -27,6 +27,10 @@ dev:
   nix develop
 
 # Activate the configuration
+alias r := run
+alias rebuild := run
 [group('Main')]
 run:
-  nix run
+  ./bash/rebuild
+
+
