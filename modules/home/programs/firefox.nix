@@ -12,6 +12,7 @@ let
     sponsorblock
     consent-o-matic
     unpaywall
+    clearurls
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
