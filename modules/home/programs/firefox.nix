@@ -6,6 +6,7 @@ let
 
   # extensions that all profiles should share
   # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
+  # or run        nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
   # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code
   #inherit (nur.repos.rycee) firefox-addons;
   bypass-paywalls-clean = firefox-addons.bypass-paywalls-clean.override rec {
@@ -17,7 +18,7 @@ let
     bitwarden
     ublock-origin
     sponsorblock
-    consent-o-matic
+    istilldontcareaboutcookies
     unpaywall
     clearurls
     bypass-paywalls-clean
