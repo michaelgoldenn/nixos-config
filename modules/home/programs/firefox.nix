@@ -2,10 +2,17 @@
 let
   inherit (flake) config inputs;
   inherit (inputs) self;
+  inherit (pkgs.nur.repos.rycee) firefox-addons;
 
   # extensions that all profiles should share
   # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
   # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code
+  #inherit (nur.repos.rycee) firefox-addons;
+  bypass-paywalls-clean = firefox-addons.bypass-paywalls-clean.override rec {
+    version = "3.9.4.0";
+    url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
+    sha256 = "sha256-LpeM08XTGuiNEsMnln9tW/1svjOi1OhssmMnf+Xae80=";
+  };
   global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     bitwarden
     ublock-origin
@@ -13,6 +20,7 @@ let
     consent-o-matic
     unpaywall
     clearurls
+    #bypass-paywalls-clean
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
@@ -97,6 +105,14 @@ in
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
+      #extension specific settings
+      ExtensionSettings = {
+        #bypass paywalls clean: https://gitflic.ru/project/magnolia1234/bpc_uploads
+        "${bypass-paywalls-clean.addonId}" = {
+          install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${bypass-paywalls-clean.addonId}.xpi";
+          installation_mode = "force_installed";
+        };
+      };
     };
   };
   imports = [ inputs.textfox.homeManagerModules.default ];

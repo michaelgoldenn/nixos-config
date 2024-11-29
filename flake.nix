@@ -19,6 +19,7 @@
     nixvim.inputs.flake-parts.follows = "flake-parts";
     textfox.url = "github:adriankarlen/textfox";
     stylix.url = "github:danth/stylix";
+    nur.url = "github:nix-community/NUR";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
