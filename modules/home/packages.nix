@@ -14,6 +14,7 @@ in
     sd
     tree
     gnumake
+    gnupg
 
     # Nix dev
     cachix
