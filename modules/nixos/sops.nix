@@ -9,7 +9,7 @@ in
 
   # To edit the code, just run `sops /etc/nixos/.sops.yaml`
 
-  imports = [inputs.sops-nix.nixosModules.sops inputs.sops-nix.nixosModules.default];
+  imports = [inputs.sops-nix.nixosModules.sops /* inputs.sops-nix.nixosModules.default */];
   environment.systemPackages =  with pkgs; [ pinentry-curses ];
   sops = {
     defaultSopsFile = ../../secrets/example.yaml;
