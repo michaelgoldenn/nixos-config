@@ -1,6 +1,6 @@
-{ flake, pkgs, ... }:
+{ flake, pkgs, config, ... }:
 let
-  inherit (flake) inputs config;
+  inherit (flake) inputs;
   inherit (inputs) self;
 in
 {
@@ -13,6 +13,11 @@ in
       # Set this to false since we're providing our own key
       generateKey = true;
     };
-    secrets."github/access_token" = { };
+    secrets = {
+      "github/access_token" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+       };
+    };
   };
 }
