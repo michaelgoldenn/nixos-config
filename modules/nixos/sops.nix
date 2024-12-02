@@ -5,7 +5,7 @@ let
 in
 {
   imports = [/* inputs.sops-nix.nixosModules.sops */ inputs.sops-nix.nixosModules.default];
-  environment.systemPackages =  with pkgs; [ pinentry-curses ];
+  environment.systemPackages =  with pkgs; [  pinentry-curses ];
 /*   sops = {
     defaultSopsFile = ../../secrets/example.yaml;
     age = {
