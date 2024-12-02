@@ -31,7 +31,9 @@
             completer: $carapace_completer # check 'carapace_completer' 
           }
         }
-       } 
+       }
+       # automatically try direnv if folder has a .envrc
+       eval "$(direnv hook nu)"
        $env.PATH = ($env.PATH | 
        split row (char esep) |
        prepend /home/myuser/.apps |

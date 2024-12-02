@@ -28,7 +28,7 @@ in
      #Themes are defined here: https://github.com/Gerg-L/spicetify-nix/blob/master/docs/THEMES.md
      #Note: Not letting stylix handle spicetify stuff as I can't get custom themes with stylix atm.
      theme = spicePkgs.themes.text;
-     colorScheme = "mocha";
+     colorScheme = "catppuccin-mocha";
    };
 }
 /* {} */
