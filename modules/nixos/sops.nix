@@ -3,7 +3,10 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
 in
-{
+{ 
+  # to add a new computer, run `mkdir -p ~/.config/sops/age`, then `age-keygen -o ~/.config/sops/age/keys.txt`.
+  # then do `age-keygen -y ~/.config/sops/age/keys.txt` and paste the output into ../../.sops.yaml
+
   imports = [/* inputs.sops-nix.nixosModules.sops */ inputs.sops-nix.nixosModules.default];
   environment.systemPackages =  with pkgs; [ pinentry-curses ];
   sops = {
