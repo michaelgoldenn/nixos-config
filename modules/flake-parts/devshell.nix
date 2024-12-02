@@ -6,6 +6,7 @@
       packages = with pkgs; [
         just
         nixd
+        nur.repos.mic92.hello-nur
       ];
     };
   };
