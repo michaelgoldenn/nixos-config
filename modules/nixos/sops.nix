@@ -4,11 +4,15 @@ let
   inherit (inputs) self;
 in
 { 
-  # to add a new computer, run `mkdir -p ~/.config/sops/age`, then `age-keygen -o ~/.config/sops/age/keys.txt`.
-  # then do `age-keygen -y ~/.config/sops/age/keys.txt` and put the output into ../../.sops.yaml
-  # then I think you need to run `nix-shell -p sops --run "sops updatekeys secrets/secrets.yaml"`
+  ## Adding new host:
+  # 1. Create Key: `mkdir ~/.config/sops/age` then `age-keygen -o ~/.config/sops/age/keys.txt`
+  # 2. Add Key to system: `age-keygen -y ~/.config/sops/age/keys.txt` then put the output into `.sops.yaml`
+  # 3. Push that sucker to github, then on a machine that is already working, run `nix-shell -p sops --run "sops updatekeys secrets/secrets.yaml"`
+  # 4. Push from the other mahcine, pull from new machine, and `just run`
 
-  # To add a new secret, `just sops` (or for nerds) `nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"`and add it where you want
+  ## Adding new secret:
+  # nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
+
 
   imports = [inputs.sops-nix.nixosModules.sops /* inputs.sops-nix.nixosModules.default */];
   environment.systemPackages =  with pkgs; [ pinentry-curses ];
