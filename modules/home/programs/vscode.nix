@@ -18,7 +18,7 @@ in
 {
   programs.vscode = {
     enable = true;
-    # wamt to find new vscode extensions? https://github.com/search good luck
+    # wamt to find new vscode extensions? https://github.com/search?q=language%3ANix+vscode-extensions&type=code good luck
     extensions = with pkgs.vscode-extensions; [
       # nix
       jnoortheen.nix-ide
@@ -36,7 +36,8 @@ in
     ];
     userSettings = {
       "explorer.confirmDelete" = false;
-      "godotTools.editorPath.godot4" = "/etc/profiles/per-user/michael/bin/godot4";
+      "godotTools.editorPath.godot4" = "/run/current-system/etc/profiles/per-user/michael/bin/godot4";
+      "git.autofetch" = true;
     }
     // nix_settings;
   };
