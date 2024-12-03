@@ -26,11 +26,14 @@ check:
 dev:
   nix develop
 
-# Activate the configuration
+# Rebuild and switch to new configuration
 alias r := run
 alias rebuild := run
 [group('Main')]
 run:
   ./bash/rebuild
 
-
+# Open the sops file for adding or editing keys
+[group('dev')]
+sops:
+  nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"

@@ -8,7 +8,7 @@ in
   # then do `age-keygen -y ~/.config/sops/age/keys.txt` and put the output into ../../.sops.yaml
   # then I think you need to run `nix-shell -p sops --run "sops updatekeys secrets/example.yaml"`
 
-  # To add a new secret, just run `nix-shell -p sops --run "sops /etc/nixos/.sops.yaml"`and add it where you want
+  # To add a new secret, `just sops` (or for nerds) `nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"`and add it where you want
 
   imports = [inputs.sops-nix.nixosModules.sops /* inputs.sops-nix.nixosModules.default */];
   environment.systemPackages =  with pkgs; [ pinentry-curses ];
@@ -25,7 +25,7 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
        };
-      "github/support-coop-game" = {
+      "github/godot" = {
         mode = "0440";
         owner = config.users.users.michael.name;
        };
