@@ -36,7 +36,7 @@ in
     ];
     userSettings = {
       "explorer.confirmDelete" = false;
-      "godotTools.editorPath.godot4" = "/run/current-system/etc/profiles/per-user/michael/bin/godot4";
+      "godotTools.editorPath.godot4" = "/run/current-system/etc/profiles/per-user/michael/bin";
       "git.autofetch" = true;
     }
     // nix_settings;
