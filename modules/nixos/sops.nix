@@ -12,6 +12,7 @@ in
 
   ## Adding new secret:
   # nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
+  # then just run
 
 
   imports = [inputs.sops-nix.nixosModules.sops /* inputs.sops-nix.nixosModules.default */];
@@ -30,6 +31,10 @@ in
         owner = config.users.users.michael.name;
        };
       "github/godot" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+       };
+      "github/obsidian" = {
         mode = "0440";
         owner = config.users.users.michael.name;
        };
