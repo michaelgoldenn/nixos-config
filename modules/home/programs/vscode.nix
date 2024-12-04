@@ -25,13 +25,19 @@ in
       # rust
       tamasfe.even-better-toml
       rust-lang.rust-analyzer
-      # godot
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      # godot
       {
         name = "godot-tools";
         publisher = "geequlim";
         version = "2.3.0";
         sha256 = "sha256-iuSec4PoVxyu1KB2jfCYOd98UrqQjH3q24zOR4VCPgs=";
+      }
+      {
+        name = "gdshader-lsp";
+        publisher = "godofavacyn";
+        version = "1.0.7";
+        sha256 = "sha256-NMGIijmTb9DNgEKvQdaIeWt688ztZjgte8m2ZPMg8r4=";
       }
     ];
     userSettings = {
