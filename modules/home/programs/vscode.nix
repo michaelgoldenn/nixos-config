@@ -18,14 +18,15 @@ in
 {
   programs.vscode = {
     enable = true;
-    # wamt to find new vscode extensions? https://github.com/search?q=language%3ANix+vscode-extensions&type=code good luck
+    # want to find new vscode extensions? https://github.com/search?q=language%3ANix+vscode-extensions&type=code good luck
+    # *Maybe* try getting new ones like this: 1. Find extension on marketplace. 2. Get extension
     extensions = with pkgs.vscode-extensions; [
       # nix
       jnoortheen.nix-ide
       # rust
       tamasfe.even-better-toml
       rust-lang.rust-analyzer
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ # or can add new extensions here if easier
       # godot
       {
         name = "godot-tools";
