@@ -19,7 +19,7 @@ in
   programs.vscode = {
     enable = true;
     # want to find new vscode extensions? https://github.com/search?q=language%3ANix+vscode-extensions&type=code good luck
-    # *Maybe* try getting new ones like this: 1. Find extension on marketplace. 2. Get extension
+    # maybe try getting new ones like this: 1. Find extension on marketplace. 2. Click gear -> "Copy Extension ID". 3. Paste it in here
     extensions = with pkgs.vscode-extensions; [
       # nix
       jnoortheen.nix-ide
