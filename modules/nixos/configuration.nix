@@ -36,6 +36,8 @@ in
     libreoffice
   ];
 
+  programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
+
   # import nur
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import inputs.nur {
