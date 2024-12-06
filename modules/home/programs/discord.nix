@@ -30,7 +30,7 @@ in
       # ...
     };
   }; */
-/*   home.packages = with pkgs; [
+  home.packages = with pkgs; [
     vesktop
-  ]; */
+  ];
 }
