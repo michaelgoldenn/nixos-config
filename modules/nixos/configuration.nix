@@ -45,4 +45,15 @@ in
       nurpkgs = pkgs;
     };
   };
+
+  networking.firewall = { 
+    allowedTCPPorts = [
+      # localsend
+      53317
+    ];
+    allowedUDPPorts = [
+      # localsend
+      53317
+    ];
+  };
 }
