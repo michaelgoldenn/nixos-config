@@ -45,6 +45,7 @@ in
     unetbootin
     vlc
     obsidian
+    rare # epic games launcher
     
     #making games
     godot_4
