@@ -36,11 +36,24 @@ in
     libreoffice
   ];
 
+  programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
+
   # import nur
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import inputs.nur {
       inherit pkgs;
       nurpkgs = pkgs;
     };
+  };
+
+  networking.firewall = { 
+    allowedTCPPorts = [
+      # localsend
+      53317
+    ];
+    allowedUDPPorts = [
+      # localsend
+      53317
+    ];
   };
 }
