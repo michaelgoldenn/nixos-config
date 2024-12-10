@@ -78,7 +78,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.michael = lib.mkForce {
+  users.users.michael = {
     isNormalUser = true;
     description = "Michael Golden";
     extraGroups = [ "networkmanager" "wheel" ];
