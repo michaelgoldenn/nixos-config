@@ -18,11 +18,11 @@ in
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
-  users.users.michael = {
+  users.users.michael = lib.mkForce {
     isNormalUser = true;
     description = "michael";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [git];
   };
 
   services.flatpak = {
