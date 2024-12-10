@@ -4,10 +4,10 @@ let
   inherit (inputs) self;
 in
 {
-  dconf.settings = {
+/*   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = ["qemu:///system"];
       uris = ["qemu:///system"];
     };
-  }; 
+  }; */ 
 }
