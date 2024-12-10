@@ -17,7 +17,14 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
-  
+
+  users.users.michael = {
+    isNormalUser = true;
+    description = "michael";
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    packages = with pkgs; [];
+  };
+
   services.flatpak = {
     enable = true;
     uninstallUnmanaged = true;
