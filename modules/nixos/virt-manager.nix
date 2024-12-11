@@ -7,9 +7,12 @@ in
   virtualisation.libvirtd = {
     enable = true;
     qemuOvmf = true;
+    qemu.runAsRoot = true;
   };
   programs.virt-manager.enable = true;
   networking.firewall = {
     allowedTCPPorts = [ 8123 ];
+    checkReversePath = false;
   };
+  networking.bridges.virbr0.interfaces = [ ];
 }
