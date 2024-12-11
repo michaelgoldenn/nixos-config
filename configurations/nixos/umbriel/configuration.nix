@@ -85,10 +85,7 @@
     isNormalUser = true;
     description = "michael";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    packages = with pkgs; [
-    #  thunderbird
-    neofetch
-    ];
+    packages = with pkgs; [];
   };
 
   # Install firefox.
