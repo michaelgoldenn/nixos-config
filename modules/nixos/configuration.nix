@@ -10,6 +10,14 @@ in
   # These users can add Nix caches.
   nix.settings.trusted-users = [ "root" "michael" ];
 
+  # Define users
+  users.users.michael = lib.mkDefault {
+    isNormalUser = true;
+    description = "michael";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [];
+  };
+
   services.openssh.enable = true;
 
   programs.steam = {

@@ -9,5 +9,4 @@ in
     qemuOvmf = true;
   };
   programs.virt-manager.enable = true;
-  
 }
