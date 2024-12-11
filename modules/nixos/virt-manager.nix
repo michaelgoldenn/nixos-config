@@ -9,4 +9,7 @@ in
     qemuOvmf = true;
   };
   programs.virt-manager.enable = true;
+  networking.firewall = {
+    allowedTCPPorts = [ 8123 ];
+  };
 }
