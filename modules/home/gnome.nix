@@ -23,7 +23,15 @@
         sleep-inactive-battery-type = "nothing";
         sleep-inactive-ac-type = "nothing";
       };
-      "org/gnome/desktop/interface".show-battery-percentage = true;
+      "org/gnome/desktop/interface" = {
+        show-battery-percentage = true;
+        enable-hot-corners = false;
+      };
+      "org/gnome/mutter" = {
+        dynamic-workspaces = true;
+        workspaces-only-on-primary = false;
+      };
+      "org/gnome/shell/app-switcher".current-workspace-only = true;
     };
   };
 }
