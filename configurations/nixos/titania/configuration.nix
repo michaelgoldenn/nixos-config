@@ -81,7 +81,7 @@
   users.users.michael = {
     isNormalUser = true;
     description = "Michael Golden";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
     #  thunderbird
 	git

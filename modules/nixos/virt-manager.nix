@@ -4,7 +4,10 @@ let
   inherit (inputs) self;
 in
 {
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemuOvmf = true;
+  };
   programs.virt-manager.enable = true;
   
 }

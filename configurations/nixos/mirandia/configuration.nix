@@ -83,7 +83,7 @@
   users.users.michael = {
     isNormalUser = true;
     description = "Michael";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
       firefox
       kate

@@ -84,7 +84,7 @@
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
     #  thunderbird
     neofetch
