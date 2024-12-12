@@ -15,7 +15,7 @@ in
   networking = {
     bridges = {
       br0 = {
-        interfaces = [ "enp9s0" ]; # Replace with your actual interface name
+        interfaces = [ "enp4s0" ]; # Replace with your actual interface name
       };
     };
     # Optional: If using DHCP
