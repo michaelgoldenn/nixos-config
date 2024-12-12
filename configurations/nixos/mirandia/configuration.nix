@@ -84,7 +84,9 @@
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [];
   };
-
+  # Define primary network
+  networking.primaryInterface = "enp9s0";
+  
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "michael";
