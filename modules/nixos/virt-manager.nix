@@ -2,7 +2,7 @@
 let
   inherit (flake) config inputs;
   inherit (inputs) self;
-  primaryInterface = config.${pkgs.system}.networkingConfig.primaryInterface;
+  primaryInterface = config.networkConfig.primaryInterface;
 in
 {
   virtualisation.libvirtd = {

@@ -14,10 +14,10 @@
 
     # Enables 'nix run' to activate.
     packages.default = self'.packages.activate;
-    
-    # The default network interface for the system
-    networkingConfig = {
-      primaryInterface = "enp3s0";  # default value
-    };
+  };
+
+  # Global network config
+  networkConfig = {
+    primaryInterface = "enp3s0";  # default value
   };
 }
