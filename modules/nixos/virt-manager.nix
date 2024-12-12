@@ -1,8 +1,8 @@
-{ flake, config, lib, pkgs, ... }:
+{ flake, pkgs, ... }:
 let
-  #inherit (flake) config inputs;
-  #inherit (inputs) self;
-  primaryInterface = config.mySystem.networking.primaryInterface;
+  inherit (flake) config inputs;
+  inherit (inputs) self;
+  primaryInterface = config.${pkgs.system}.networkingConfig.primaryInterface;
 in
 {
   virtualisation.libvirtd = {
