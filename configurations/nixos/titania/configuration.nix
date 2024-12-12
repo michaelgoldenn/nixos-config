@@ -26,10 +26,6 @@
     hostName = "titania";
   };
 
-/*   perSystem = { config, ... }: {
-    networkingConfig.primaryInterface = "enp9s0";  # or whatever interface this host uses
-  }; */
-
   # Set your time zone.
   time.timeZone = "America/Detroit";
 

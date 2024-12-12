@@ -2,7 +2,6 @@
 let
   inherit (flake) config inputs;
   inherit (inputs) self;
-  primaryInterface = config.networkConfig.primaryInterface;
 in
 {
   virtualisation.libvirtd = {
@@ -12,12 +11,14 @@ in
   };
   programs.virt-manager.enable = true;
   
+  # Bridge configuration
   networking = {
     bridges = {
       br0 = {
-        interfaces = [ primaryInterface ];
+        interfaces = [ "enp9s0" ]; # Replace with your actual interface name
       };
     };
+    # Optional: If using DHCP
     interfaces.br0.useDHCP = true;
     
     firewall = {
