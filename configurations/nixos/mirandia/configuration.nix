@@ -81,7 +81,7 @@
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" ];
     packages = with pkgs; [];
   };
   

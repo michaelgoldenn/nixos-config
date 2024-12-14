@@ -15,11 +15,14 @@ in
   networking = {
     bridges = {
       br0 = {
-        interfaces = [ "enp9s0" ]; # Replace with your actual interface name
+        interfaces = [ "enp0s20u2c2" ]; # Replace with your actual interface name
       };
     };
     # Optional: If using DHCP
-    interfaces.br0.useDHCP = true;
+    interfaces.br0.ipv4.addresses = [{
+          address = "192.168.1.132";
+          prefixLength = 24;
+        }];
     
     firewall = {
       allowedTCPPorts = [ 8123 ];
