@@ -1,28 +1,51 @@
-{ flake, pkgs, ... }:
+{ flake, lib, config, pkgs, ... }:
 let
-  inherit (flake) config inputs;
+  inherit (flake) inputs;
   inherit (inputs) self;
+
+  hostConfigs = {
+    mirandia = {
+      bridgeInterfaces = [ "enp0s20u2c2" ];
+      ipAddress = "192.168.1.132";
+      needsBridge = true;  # Flag to indicate this host needs bridge config
+    };
+    titania = {
+      needsBridge = false;  # This host doesn't need bridge config
+    };
+    umbriel = {
+      needsBridge = false;  # This host doesn't need bridge config
+    };
+  };
+  # Default configuration in case hostname isn't found
+  defaultConfig = {
+    bridgeInterfaces = [ ];
+    ipAddress = "192.168.1.100";
+    needsBridge = false;
+  };
+
+  # Get current host's config or fall back to default
+  currentHost = hostConfigs.${config.networking.hostName} or defaultConfig;
+
 in
-{
+lib.mkIf currentHost.needsBridge {
   virtualisation.libvirtd = {
     enable = true;
     qemuOvmf = true;
     qemu.runAsRoot = true;
   };
+
   programs.virt-manager.enable = true;
-  
-  # Bridge configuration
   networking = {
     bridges = {
       br0 = {
-        interfaces = [ "enp0s20u2c2" ]; # Replace with your actual interface name
+        interfaces = currentHost.bridgeInterfaces;
       };
     };
-    # Optional: If using DHCP
+
     interfaces.br0.ipv4.addresses = [{
-          address = "192.168.1.132";
-          prefixLength = 24;
-        }];
+      address = currentHost.ipAddress;
+      prefixLength = 24;
+    }];
     
     firewall = {
       allowedTCPPorts = [ 8123 ];

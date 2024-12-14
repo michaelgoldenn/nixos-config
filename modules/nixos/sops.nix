@@ -12,6 +12,7 @@ in
 
   ## Adding new secret:
   # nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
+  # Then add the new key to the bottom of this file
   # Then just rebuild and you should be good
 
 
@@ -26,11 +27,15 @@ in
     };
     secrets = {
       # I should really find if I can automatically set the owner and mode for all of them, instead of each individually
-      "github/nixos" = {
+      "secrets/nixos" = {
         mode = "0440";
         owner = config.users.users.michael.name;
        };
-      "github/godot" = {
+      "secrets/support-coop-game" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+       };
+      "secrets/portal-game" = {
         mode = "0440";
         owner = config.users.users.michael.name;
        };
