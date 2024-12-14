@@ -13,14 +13,6 @@ in
   
   # Bridge configuration
   networking = {
-    bridges = {
-      br0 = {
-        interfaces = [ "enp4s0" ]; # Replace with your actual interface name
-      };
-    };
-    # Optional: If using DHCP
-    interfaces.br0.useDHCP = true;
-    
     firewall = {
       allowedTCPPorts = [ 8123 ];
       checkReversePath = false;

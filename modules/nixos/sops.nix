@@ -12,6 +12,7 @@ in
 
   ## Adding new secret:
   # nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
+  # Then just rebuild and you should be good
 
 
   imports = [inputs.sops-nix.nixosModules.sops /* inputs.sops-nix.nixosModules.default */];
