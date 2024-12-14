@@ -27,15 +27,15 @@ in
     };
     secrets = {
       # I should really find if I can automatically set the owner and mode for all of them, instead of each individually
-      "secrets/nixos" = {
+      "github/nixos" = {
         mode = "0440";
         owner = config.users.users.michael.name;
        };
-      "secrets/support-coop-game" = {
+      "github/support-coop-game" = {
         mode = "0440";
         owner = config.users.users.michael.name;
        };
-      "secrets/portal-game" = {
+      "github/portal-game" = {
         mode = "0440";
         owner = config.users.users.michael.name;
        };
