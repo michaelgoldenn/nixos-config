@@ -12,6 +12,7 @@ in
 
   ## Adding new secret:
   # nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
+    # or `just sops`
   # Then add the new key to the bottom of this file
   # Then just rebuild and you should be good
 

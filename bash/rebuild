@@ -1,6 +1,6 @@
 set -e
 pushd $(dirname "$0")/..
-git diff -U0 *.nix
+git diff *.nix
 git add .
 echo "NixOS Rebuilding..."
 nix run
@@ -8,3 +8,4 @@ gen=$(nixos-rebuild list-generations | grep current)
 hostname=$(hostname)
 git commit -am "$hostname $gen"
 popd
+return 1
