@@ -20,7 +20,7 @@ in
   };
 
   environment.gnome.excludePackages = with pkgs; [
-  gnome-shell
+    gnome-console
   ];
 
   services.openssh.enable = true;
