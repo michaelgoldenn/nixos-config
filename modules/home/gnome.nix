@@ -6,7 +6,7 @@
       ## Interface
       "org/gnome/desktop/interface".clock-format = "12h";
       "org/gnome/shell" = {
-        favorite-apps = ["firefox.desktop" "code.desktop" "vesktop.desktop" "spotify.desktop" "app.bluebubbles.BlueBubbles.desktop" "org.gnome.Console.desktop"];
+        favorite-apps = ["firefox.desktop" "code.desktop" "discord.desktop" "spotify.desktop" "app.bluebubbles.BlueBubbles.desktop" "org.gnome.Console.desktop"];
       };
       "org/gnome/settings-daemon/plugins/media-keys" = {
         media = ["<Shift><Control><Alt>q"]; # opens media player
