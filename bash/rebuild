@@ -8,4 +8,3 @@ gen=$(nixos-rebuild list-generations | grep current)
 hostname=$(hostname)
 git commit -am "$hostname $gen"
 popd
-return 1

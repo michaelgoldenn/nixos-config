@@ -8,13 +8,14 @@
       "org/gnome/shell" = {
         favorite-apps = ["firefox.desktop" "code.desktop" "discord.desktop" "spotify.desktop" "app.bluebubbles.BlueBubbles.desktop" "foot.desktop"];
       };
-      "org/gnome/settings-daemon/plugins/media-keys" = {
-        media = ["<Shift><Control><Alt>q"]; # opens media player
-        next = ["<Shift><Control><Alt>Right"];
-        play = ["<Shift><Control><Alt>space"];
-        previous = ["<Shift><Control><Alt>Left"];
-        down = ["<Shift><Control><Alt>Down"];
-        up = ["<Shift><Control><Alt>Up"];
+"org/gnome/settings-daemon/plugins/media-keys" = {
+        next = ["<Shift><Alt>Right"];
+        pause = ["<Shift><Alt>space"];
+        previous = ["<Shift><Alt>Left"];
+        play = ["<Shift><Alt>space"];
+        down = ["<Shift><Alt>Down"];
+        up = ["<Shift><Alt>Up"];
+        mute = ["<Shift><Alt>m"];
       };
       #"org/gnome/desktop/peripherals/touchpad".natural-scroll = false;
       "org/gnome/desktop/session".idle-delay = 600; # screen off after 10 mins

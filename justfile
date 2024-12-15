@@ -37,3 +37,7 @@ run:
 [group('dev')]
 sops:
   nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
+
+[group('Main')]
+gc:
+  nix-store --gc
