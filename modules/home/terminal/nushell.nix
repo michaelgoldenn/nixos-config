@@ -38,6 +38,11 @@
        split row (char esep) |
        prepend /home/myuser/.apps |
        append /usr/bin/env
+
+       # enable starship
+       use ~/.cache/starship/init.nu
+       $env.STARSHIP_SHELL = "nu"
+
        )
        '';
        shellAliases = {
