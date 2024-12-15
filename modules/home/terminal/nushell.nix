@@ -17,8 +17,10 @@
         cd = "z";
       };
    };  
-    carapace.enable = true;
-    carapace.enableNushellIntegration = true;
+    carapace = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
     zoxide = {
       enable = true;
       enableNushellIntegration = true; 

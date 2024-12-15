@@ -19,6 +19,10 @@ in
     #shell = pkgs.nushell;
   };
 
+  environment.gnome.excludePackages = with pkgs; [
+  gnome-shell
+  ];
+
   services.openssh.enable = true;
 
   programs.steam = {
