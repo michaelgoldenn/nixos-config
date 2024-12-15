@@ -46,7 +46,11 @@
        nano = "hx";
        };
    };  
-   carapace.enable = true;
-   carapace.enableNushellIntegration = true;
+    carapace.enable = true;
+    carapace.enableNushellIntegration = true;
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true; 
+    };
   };
 }
