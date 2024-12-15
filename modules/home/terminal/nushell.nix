@@ -12,10 +12,10 @@
       # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
       #configFile.source = ./.../config.nu;
       shellAliases = {
-       vi = "hx";
-       vim = "hx";
-       nano = "hx";
-       };
+        g = "git";
+        lg = "lazygit";
+        cd = "z";
+      };
    };  
     carapace.enable = true;
     carapace.enableNushellIntegration = true;
