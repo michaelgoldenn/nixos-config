@@ -16,6 +16,7 @@ in
     description = "michael";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
+    #shell = pkgs.nushell;
   };
 
   services.openssh.enable = true;
@@ -25,7 +26,7 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
-  
+
   services.flatpak = {
     enable = true;
     uninstallUnmanaged = true;
@@ -42,6 +43,7 @@ in
   environment.systemPackages = with pkgs; [
     signal-desktop
     libreoffice
+    nushell
   ];
 
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
