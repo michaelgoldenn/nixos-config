@@ -64,10 +64,18 @@ in
     allowedTCPPorts = [
       # localsend
       53317
+
+      # Samba share
+      445
+      139
     ];
     allowedUDPPorts = [
       # localsend
       53317
+
+      # Samba share
+      445
+      139
     ];
   };
 }
