@@ -48,6 +48,7 @@ in
     signal-desktop
     libreoffice
     nushell
+    samba
   ];
 
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
