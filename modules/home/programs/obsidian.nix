@@ -14,8 +14,15 @@ in
       After = ["graphical-session.target"];
     };
     Service = {
-      ExecStartPre = "${pkgs.bash}/bin/bash -c 'systemctl --user set-environment GITHUB_TOKEN=\"$(cat /run/secrets/github/obsidian)\"'";
-      ExecStart = "${pkgs.obsidian}/bin/obsidian";
+      ExecStart = "${pkgs.writeShellScript "obsidian-wrapper" ''
+        TOKEN=$(cat /run/secrets/github/obsidian)
+        export GITHUB_TOKEN=$TOKEN
+        export GH_TOKEN=$TOKEN
+        export GITHUB_ACCESS_TOKEN=$TOKEN
+        export GIT_CREDENTIALS=$TOKEN
+        export GIT_ACCESS_TOKEN=$TOKEN
+        exec ${pkgs.obsidian}/bin/obsidian
+      ''}";
     };
     Install = {
       WantedBy = ["graphical-session.target"];
