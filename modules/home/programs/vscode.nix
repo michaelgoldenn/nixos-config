@@ -2,16 +2,22 @@
 let
   inherit (flake) config inputs;
   inherit (inputs) self;
-  nix_settings = {
-    "nix.enableLanguageServer" = true;
-    "nix.serverPath" = "nixd";
-    "nix.formatterPath" = "alejandra";
-    "nix.serverSettings" = {
-      "nixd" = {
-        "formatting" = {
-          "command" = ["alejandra"];
+  settings = {
+    "nix" = {
+      "enableLanguageServer" = true;
+      "serverPath" = "nixd";
+      "formatterPath" = "alejandra";
+      "serverSettings" = {
+        "nixd" = {
+          "formatting" = {
+            "command" = ["alejandra"];
+          };
         };
       };
+    };
+    "terminal" = {
+      "external.linuxExec" = "foot";
+      "integrated.profile.linux" = "/etc/profiles/per-user/michael/bin/nu";
     };
   };
 in
@@ -47,6 +53,6 @@ in
       "godotTools.editorPath.godot4" = "/run/current-system/etc/profiles/per-user/michael/bin/godot4";
       "git.autofetch" = true;
     }
-    // nix_settings;
+    // settings;
   };
 }
