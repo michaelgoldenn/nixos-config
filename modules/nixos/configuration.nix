@@ -21,6 +21,7 @@ in
 
   environment.gnome.excludePackages = with pkgs; [
     gnome-console
+    gnome-keyring
   ];
 
   services.openssh.enable = true;
