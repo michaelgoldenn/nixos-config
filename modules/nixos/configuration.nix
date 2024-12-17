@@ -53,6 +53,15 @@ in
 
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
 
+  # systemd service to automatically set the github token when running obsidisn
+  systemd.services.obsidian = {
+    environment = {
+      GITHUB_TOKEN = "!cat /run/secrets/github/obsidian";
+      # or
+      GH_TOKEN = "!cat /run/secrets/github/obsidian";
+    };
+  };
+
   # import nur
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import inputs.nur {
