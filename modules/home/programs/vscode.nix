@@ -17,9 +17,9 @@ let
     };
     "terminal" = {
       "external.linuxExec" = "foot";
-      "integrated.profile.linux" = {
-        "Nushell" = {
-          "path" = "/etc/profiles/per-user/michael/bin/nu";
+      "integrated.profiles.linux" = {
+        "nu" = {
+          "path" = "nu";
         };
       };
     };
