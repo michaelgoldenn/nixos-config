@@ -63,27 +63,6 @@ in
     };
   };
 
-  # Create a script to automatically configure git credentials
-systemd.user.services.git-credentials-setup = {
-    description = "Setup Git Credentials with GitHub token";
-    wantedBy = [ "default.target" ];
-    after = [ "sops-nix.service" ];
-    
-    script = ''
-      TOKEN=$(cat /run/secrets/github/obsidian)
-      
-      ${pkgs.git}/bin/git config --global credential.helper libsecret
-      
-      echo "url=https://github.com
-      username=YOUR_GITHUB_USERNAME
-      password=$TOKEN" | ${pkgs.git}/bin/git credential approve
-    '';
-
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-  };
 
   networking.firewall = { 
     allowedTCPPorts = [
