@@ -9,13 +9,13 @@ in
 
     # Add the systemd service
     systemd.user.services.obsidian = {
-      Unit = {
-        Description = "Obsidian";
-        After = ["graphical-session.target"];
-      };
+    Unit = {
+      Description = "Obsidian";
+      After = ["graphical-session.target"];
+    };
     Service = {
       Environment = [
-        "GITHUB_TOKEN=!cat /run/secrets/github/obsidian"
+        "GITHUB_TOKEN=$(cat /run/secrets/github/obsidian)"
       ];
       ExecStart = "${pkgs.obsidian}/bin/obsidian";
     };
