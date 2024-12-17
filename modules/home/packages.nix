@@ -44,7 +44,7 @@ in
     localsend
     unetbootin
     vlc
-    obsidian
+    #obsidian
     rare # epic games launcher
     
     #making games
