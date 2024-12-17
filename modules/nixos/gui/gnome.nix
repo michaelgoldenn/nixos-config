@@ -6,6 +6,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    pkgs.gnome-tweaks
+    gnome-tweaks
+    gnomeExtensions.gsconnect
   ];
 }

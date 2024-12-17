@@ -51,6 +51,7 @@ in
     samba
     git
     libsecret
+    nautilus-python
   ];
 
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
@@ -67,6 +68,13 @@ in
     enable = true;
     terminal = "foot";
   };
+
+  environment = {
+  sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
+  pathsToLink = [
+    "/share/nautilus-python/extensions"
+  ];
+};
 
   networking.firewall = { 
     allowedTCPPorts = [
