@@ -8,15 +8,13 @@ in
     home.packages = [ pkgs.obsidian ];  # or however you're installing it
 
     # Add the systemd service
-    systemd.user.services.obsidian = {
+  systemd.user.services.obsidian = {
     Unit = {
       Description = "Obsidian";
       After = ["graphical-session.target"];
     };
     Service = {
-      Environment = [
-        "GITHUB_TOKEN=$(cat /run/secrets/github/obsidian)"
-      ];
+      ExecStartPre = "${pkgs.bash}/bin/bash -c 'systemctl --user set-environment GITHUB_TOKEN=\"$(cat /run/secrets/github/obsidian)\"'";
       ExecStart = "${pkgs.obsidian}/bin/obsidian";
     };
     Install = {
