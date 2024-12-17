@@ -26,6 +26,7 @@ in
       # rust
       tamasfe.even-better-toml
       rust-lang.rust-analyzer
+      formulahendry.code-runner
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ # or can add new extensions here if easier
       # godot
       {
