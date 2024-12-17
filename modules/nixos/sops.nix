@@ -40,6 +40,10 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
        };
+      "github/obsidian" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
     };
   };
 }
