@@ -54,8 +54,9 @@ in
     libsecret
     nautilus-python
   ];
-
+  
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
+  services.xserver.excludePackages = [ pkgs.xterm ]; # I don't want xterm
 
   # import nur
   nixpkgs.config.packageOverrides = pkgs: {
