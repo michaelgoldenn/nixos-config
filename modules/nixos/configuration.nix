@@ -53,6 +53,8 @@ in
     git
     libsecret
     nautilus-python
+    lshw
+    toybox
   ];
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
