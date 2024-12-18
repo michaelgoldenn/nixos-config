@@ -108,12 +108,6 @@
   AllowSuspendThenHibernate=no
   '';
 
-
-  # Optional: Set up firewall rules to block qBittorrent traffic if VPN is down
-  #networking.firewall.extraCommands = ''
-  #  iptables -A OUTPUT ! -o tun0 -m owner --uid-owner qbittorrent-nox -j REJECT
-  #'';
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
