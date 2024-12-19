@@ -19,6 +19,13 @@ in
     #shell = pkgs.nushell;
   };
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16384; # 16GB swap file
+    }
+  ];
+
   environment.gnome.excludePackages = with pkgs; [
     gnome-console
     gnome-keyring
