@@ -29,6 +29,7 @@ in
     age
     rustup
     gcc
+    rustlings
     #bacon
 
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
