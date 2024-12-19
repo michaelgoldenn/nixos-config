@@ -55,6 +55,7 @@ in
     nautilus-python
     lshw
     toybox
+    nvtop
   ];
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
