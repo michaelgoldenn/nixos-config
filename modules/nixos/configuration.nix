@@ -56,7 +56,9 @@ in
     lshw
     toybox
     nvtop
+    # boy oh boy I sure do love my CLI improvements
     eza
+    fd
   ];
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
