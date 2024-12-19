@@ -56,6 +56,7 @@ in
     lshw
     toybox
     nvtop
+    eza
   ];
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
