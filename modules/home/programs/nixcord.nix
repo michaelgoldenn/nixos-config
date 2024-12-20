@@ -49,7 +49,7 @@ in
         };
         customIdle = {
           enable = true;
-        };
+        }; */
         disableCallIdle.enable = false;
         emoteCloner.enable = true;
         fakeNitro = {
@@ -76,7 +76,7 @@ in
         };
         messageLogger = {
           enable = true;
-        }; */
+        }; 
         noF1 = {
           enable = true;
         };
