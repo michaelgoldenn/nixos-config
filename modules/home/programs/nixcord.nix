@@ -16,8 +16,10 @@ in
       # Vencord options: https://github.com/KaylorBen/nixcord/blob/main/docs/vencord.md
       frameless = true;
 
+      
       # Plugin Options: https://github.com/KaylorBen/nixcord/blob/main/docs/plugins.md
       plugins = {
+        /*
         alwaysExpandRoles.enable = true;
         alwaysTrust = {
           enable = true;
@@ -74,7 +76,7 @@ in
         };
         messageLogger = {
           enable = true;
-        };
+        }; */
         noF1 = {
           enable = true;
         };

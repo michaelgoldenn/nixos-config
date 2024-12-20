@@ -66,10 +66,10 @@ in
     # boy oh boy I sure do love my CLI improvements
     eza
     fd
-    (discord.override {
-      # withOpenASAR = true; # can do this here too
-      withVencord = true;
-    })
+#    (discord.override {
+#      # withOpenASAR = true; # can do this here too
+#      withVencord = true;
+#    })
   ];
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
