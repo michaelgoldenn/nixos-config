@@ -6,7 +6,7 @@ in
 {
   imports = [inputs.nixcord.homeManagerModules.nixcord];
   programs.nixcord = {
-    enable = true;  # also install discord
+    enable = false;  # also installs discord
     quickCss = "";
     config = {
       useQuickCss = true;
