@@ -6,7 +6,7 @@ in
 {
   imports = [inputs.nixcord.homeManagerModules.nixcord];
   programs.nixcord = {
-    enable = true;  # also installs discord
+    enable = false;  # also installs discord
     quickCss = "";
     config = {
       useQuickCss = true;
@@ -19,7 +19,6 @@ in
       
       # Plugin Options: https://github.com/KaylorBen/nixcord/blob/main/docs/plugins.md
       plugins = {
-        /*
         alwaysExpandRoles.enable = true;
         alwaysTrust = {
           enable = true;
@@ -33,7 +32,7 @@ in
           enable = true;
         };
         callTimer = {
-          enable = true;
+          enable = false; # Disabled as it made me crash on every call join
         };
         clearURLs = {
           enable = true;
@@ -49,7 +48,7 @@ in
         };
         customIdle = {
           enable = true;
-        }; */
+        };
         disableCallIdle.enable = false;
         emoteCloner.enable = true;
         fakeNitro = {
