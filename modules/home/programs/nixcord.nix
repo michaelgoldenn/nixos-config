@@ -6,7 +6,7 @@ in
 {
   imports = [inputs.nixcord.homeManagerModules.nixcord];
   programs.nixcord = {
-    enable = true;  # also install discord
+    enable = false;  # also installs discord
     quickCss = "";
     config = {
       useQuickCss = true;
@@ -16,6 +16,7 @@ in
       # Vencord options: https://github.com/KaylorBen/nixcord/blob/main/docs/vencord.md
       frameless = true;
 
+      
       # Plugin Options: https://github.com/KaylorBen/nixcord/blob/main/docs/plugins.md
       plugins = {
         alwaysExpandRoles.enable = true;
@@ -31,7 +32,7 @@ in
           enable = true;
         };
         callTimer = {
-          enable = true;
+          enable = false; # Disabled as it made me crash on every call join
         };
         clearURLs = {
           enable = true;
@@ -74,7 +75,7 @@ in
         };
         messageLogger = {
           enable = true;
-        };
+        }; 
         noF1 = {
           enable = true;
         };

@@ -66,6 +66,7 @@ in
     # boy oh boy I sure do love my CLI improvements
     eza
     fd
+    vesktop # wayland screen share is broken on anything but vesktop :(
   ];
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
