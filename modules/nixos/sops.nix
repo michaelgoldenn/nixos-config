@@ -44,6 +44,10 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
+      "github/infinity-game" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
     };
   };
 }
