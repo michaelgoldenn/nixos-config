@@ -27,7 +27,7 @@ in
   ];
 
   environment.gnome.excludePackages = with pkgs; [
-    gnome-console
+    #gnome-console
     gnome-keyring
   ];
 
@@ -67,7 +67,10 @@ in
     eza
     fd
     vesktop # wayland screen share is broken on anything but vesktop :(
+    piper
+    libratbag
   ];
+  services.ratbagd.enable = true;
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
   #services.xserver.excludePackages = [ pkgs.xterm ]; # I don't want xterm
@@ -85,10 +88,10 @@ in
     };
   };
 
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    terminal = "foot";
-  };
+#  programs.nautilus-open-any-terminal = {
+#    enable = true;
+#    terminal = "foot";
+#  };
 
   environment = {
   sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.nautilus-python}/lib/nautilus/extensions-4";

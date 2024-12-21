@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   programs.foot = {
-    enable = true;
+    enable = false;
     #enableNushellIntegration = true;
     settings = {
       main = {
