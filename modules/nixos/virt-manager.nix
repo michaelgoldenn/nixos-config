@@ -5,7 +5,7 @@ let
 
   hostConfigs = {
     mirandia = {
-      bridgeInterfaces = [ "enp9s0" ];
+      bridgeInterfaces = [ "enp0s20u2c2" ];
       ipAddress = "10.0.0.159"; #"192.168.1.132";
       needsBridge = true;  # Flag to indicate this host needs bridge config
     };
