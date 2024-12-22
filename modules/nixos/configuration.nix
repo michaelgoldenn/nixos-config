@@ -68,7 +68,6 @@ in
     vesktop # wayland screen share is broken on anything but vesktop :(
     piper
     libratbag
-    virtualbox
   ];
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "michael" ];
