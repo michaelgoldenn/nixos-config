@@ -16,7 +16,8 @@ in
     description = "michael";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
-    #shell = pkgs.nushell;
+    shell = pkgs.nushell;
+    programs.gnome-terminal.enable = true;
   };
 
   swapDevices = [
