@@ -11,7 +11,7 @@ in
   nix.settings.trusted-users = [ "root" "michael" ];
 
   # Define users
-  users.users.michael = lib.mkDefault {
+  users.users.michael = {
     isNormalUser = true;
     description = "michael";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -59,10 +59,9 @@ in
     samba
     git
     libsecret
-    nautilus-python
     lshw
     toybox
-    nvtop
+    nvtopPackages.full
     # boy oh boy I sure do love my CLI improvements
     eza
     fd
