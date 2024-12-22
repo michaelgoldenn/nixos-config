@@ -70,6 +70,9 @@ in
     libratbag
     virtualbox
   ];
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "michael" ];
+
   environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
   
