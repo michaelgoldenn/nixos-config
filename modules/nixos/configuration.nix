@@ -11,12 +11,12 @@ in
   nix.settings.trusted-users = [ "root" "michael" ];
 
   # Define users
-  users.users.michael = lib.mkDefault {
+  users.users.michael = {
     isNormalUser = true;
     description = "michael";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
-    #shell = pkgs.nushell;
+    shell = pkgs.nushell;
   };
 
   swapDevices = [
@@ -27,7 +27,7 @@ in
   ];
 
   environment.gnome.excludePackages = with pkgs; [
-    gnome-console
+    #gnome-console
     gnome-keyring
   ];
 
@@ -59,15 +59,18 @@ in
     samba
     git
     libsecret
-    nautilus-python
     lshw
     toybox
-    nvtop
+    nvtopPackages.full
     # boy oh boy I sure do love my CLI improvements
     eza
     fd
     vesktop # wayland screen share is broken on anything but vesktop :(
+    piper
+    libratbag
   ];
+  environment.shells = with pkgs; [ nushell ];
+  services.ratbagd.enable = true;
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
   #services.xserver.excludePackages = [ pkgs.xterm ]; # I don't want xterm
@@ -85,10 +88,10 @@ in
     };
   };
 
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    terminal = "foot";
-  };
+#  programs.nautilus-open-any-terminal = {
+#    enable = true;
+#    terminal = "foot";
+#  };
 
   environment = {
   sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
