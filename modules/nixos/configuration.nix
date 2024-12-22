@@ -68,6 +68,7 @@ in
     vesktop # wayland screen share is broken on anything but vesktop :(
     piper
     libratbag
+    virtualbox
   ];
   environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
