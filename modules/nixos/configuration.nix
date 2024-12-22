@@ -17,7 +17,6 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
     shell = pkgs.nushell;
-    programs.gnome-terminal.enable = true;
   };
 
   swapDevices = [
@@ -71,6 +70,7 @@ in
     piper
     libratbag
   ];
+  environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
