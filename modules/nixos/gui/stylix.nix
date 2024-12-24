@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, lib, pkgs, ... }:
 let
   inherit (flake) config inputs;
   inherit (inputs) self;
@@ -15,7 +15,7 @@ in
       url = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b3be1dae-3caa-4d45-be6c-3de586ba95e2/ddgdrgz-d17ad9e8-ea29-43e0-8d78-3f2cf417904e.jpg/v1/fill/w_1192,h_670,q_70,strp/trekking_by_bisbiswas_ddgdrgz-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAwIiwicGF0aCI6IlwvZlwvYjNiZTFkYWUtM2NhYS00ZDQ1LWJlNmMtM2RlNTg2YmE5NWUyXC9kZGdkcmd6LWQxN2FkOWU4LWVhMjktNDNlMC04ZDc4LTNmMmNmNDE3OTA0ZS5qcGciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.3X7CC676xnkcaCTA7Ir3lXEF2DVXC0MO38c9mXsk0_c";
       sha256 = "sha256-wy8zgts9tS2at1S8YhodXZ5IR/vpRbpWBJaSv/24nJI=";
     };
-    #image = ../../../bash/videos/random_frame.jpg;
+    #image = selectedWallpaper;
     # themes defined here: https://tinted-theming.github.io/base16-gallery/
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     base16Scheme = { # overwriting specific colors
