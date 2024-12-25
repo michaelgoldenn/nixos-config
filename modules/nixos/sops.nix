@@ -48,6 +48,10 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
+      "github/kartoffels-bot" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
     };
   };
 }
