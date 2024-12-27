@@ -69,6 +69,7 @@ in
     piper
     libratbag
     networkmanager-openvpn
+    inputs.ghostty.packages.x86_64-linux.default
   ];
   environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
@@ -79,6 +80,16 @@ in
   systemd.services.nbfc_service = {
     enable = true;
     path = [pkgs.kmod];
+  };
+  
+  # enable networking
+  networking = {
+    networkmanager = {
+      enable = true;
+      plugins = with pkgs; [
+        networkmanager-openvpn
+      ];
+    };
   };
 
   # Select internationalisation properties.
