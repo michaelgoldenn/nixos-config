@@ -48,9 +48,6 @@ in
         location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       }
     ];
-    packages = [
-    "app.bluebubbles.BlueBubbles"
-    ];
   };
   environment.systemPackages = with pkgs; [
     signal-desktop
