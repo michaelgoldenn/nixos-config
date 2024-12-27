@@ -41,7 +41,6 @@ in
     catpucchin-frappe - comments are kinda hard to read
     equilibrium-dark - too contrasty, rust code is all super saturated yellow and red
 
-    
     DO NOT USE:
     brogrammer
     dracula

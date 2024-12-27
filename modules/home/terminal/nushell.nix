@@ -16,6 +16,14 @@
         lg = "lazygit";
         cd = "z";
       };
+      # See the Nushell docs for more options.
+      extraConfig = let
+        conf = builtins.toJSON {
+          show_banner = false;
+        };
+        in ''
+        $env.config = ${conf};
+        '';
    };  
     carapace = {
       enable = true;
