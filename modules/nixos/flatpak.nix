@@ -7,8 +7,8 @@ in
   imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
   services.flatpak = {
     enable = true; 
-   /*  packages = [
+    packages = [
       "app.bluebubbles.BlueBubbles"
-    ]; */
+    ];
   };
 }

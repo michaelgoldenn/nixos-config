@@ -60,7 +60,7 @@ in
     toybox
     nvtopPackages.full
     # boy oh boy I sure do love my CLI improvements
-    eza
+    # eza
     fd
     vesktop # wayland screen share is broken on anything but vesktop :(
     piper
