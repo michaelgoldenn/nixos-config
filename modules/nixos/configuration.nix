@@ -49,6 +49,9 @@ in
       }
     ];
   };
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-27.3.11" # need this for logseq >:( delete later
+  ];
   environment.systemPackages = with pkgs; [
     signal-desktop
     libreoffice
@@ -67,6 +70,7 @@ in
     libratbag
     networkmanager-openvpn
     inputs.ghostty.packages.x86_64-linux.default
+    logseq
   ];
   environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
