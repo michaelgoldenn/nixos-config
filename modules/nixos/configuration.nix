@@ -70,7 +70,7 @@ in
     libratbag
     networkmanager-openvpn
     inputs.ghostty.packages.x86_64-linux.default
-    logseq
+    anytype
   ];
   environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
