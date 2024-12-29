@@ -52,6 +52,10 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
+      "anytype" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
     };
   };
 }
