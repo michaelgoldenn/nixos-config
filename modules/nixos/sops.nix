@@ -22,7 +22,7 @@ in
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     age = {
-      keyFile = "/home/michael/.config/sops/age/keys.txt";
+      keyFile = "~/.config/sops/age/keys.txt";
       # Set this to false since we're providing our own key
       generateKey = true;
     };
