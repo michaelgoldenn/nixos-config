@@ -39,6 +39,7 @@ in {
         tamasfe.even-better-toml
         rust-lang.rust-analyzer
         formulahendry.code-runner
+        github.vscode-github-actions
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # or can add new extensions here if easier
