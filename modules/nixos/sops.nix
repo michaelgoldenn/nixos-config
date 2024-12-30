@@ -48,6 +48,18 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
+      "github/kartoffels-bot" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
+      "anytype" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
+      "ai/openai" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
     };
   };
 }

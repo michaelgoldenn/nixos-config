@@ -1,0 +1,17 @@
+name: Auto Update and Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-and-run:
+    runs-on: self-hosted  # Changed to use self-hosted runner
+    
+    steps:
+      - name: Run git pull and nix run
+        run: |
+          cd /etc/nixos
+          git pull origin main
+          nix run

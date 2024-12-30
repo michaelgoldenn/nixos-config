@@ -14,6 +14,7 @@ let
     url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
     sha256 = "sha256-LpeM08XTGuiNEsMnln9tW/1svjOi1OhssmMnf+Xae80=";
   };
+  
   global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     bitwarden
     ublock-origin
@@ -22,6 +23,7 @@ let
     unpaywall
     clearurls
     bypass-paywalls-clean
+    #untrap-for-youtube
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
@@ -32,9 +34,9 @@ let
     "browser.formfill.enable" = false;
     "browser.engagement.ctrlTab.has-used" = true;
     "browser.ctrlTab.sortByRecentlyUsed" = true;
-    "browser.startup.page" = 3; # Open previous windows and tabs
+    "browser.startup.page" = 3; # Open previous tabs on startup
     "identity.fxaccounts.enabled" = false; #disable firefox accounts
-    "extensions.formautofill.creditCards.enabled" = false; # disable credit cards
+    "extensions.formautofill.creditCards.enabled" = false; # disable credit card prompts
 
     # right now just disable all suggestions in the search bar, maybe later add some stuff in sparingly?
     "browser.urlbar.showSearchSuggestionsFirst" = false;

@@ -21,10 +21,10 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking = {
-    networkmanager.enable = true;
-    hostName = "titania";
-  };
+  #networking = {
+  #  networkmanager.enable = true;
+  #  hostName = "titania";
+  #};
 
   # Set your time zone.
   time.timeZone = "America/Detroit";
@@ -143,6 +143,8 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    networkmanager-openvpn
+    openvpn
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

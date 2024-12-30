@@ -27,7 +27,7 @@ in
   ];
 
   environment.gnome.excludePackages = with pkgs; [
-    #gnome-console
+    gnome-console
     gnome-keyring
   ];
 
@@ -48,10 +48,10 @@ in
         location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       }
     ];
-    packages = [
-    "app.bluebubbles.BlueBubbles"
-    ];
   };
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-27.3.11" # need this for logseq >:( delete later
+  ];
   environment.systemPackages = with pkgs; [
     signal-desktop
     libreoffice
@@ -63,11 +63,14 @@ in
     toybox
     nvtopPackages.full
     # boy oh boy I sure do love my CLI improvements
-    eza
+    # eza
     fd
     vesktop # wayland screen share is broken on anything but vesktop :(
     piper
     libratbag
+    networkmanager-openvpn
+    inputs.ghostty.packages.x86_64-linux.default
+    anytype
   ];
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.guest.enable = true;
@@ -77,11 +80,38 @@ in
   services.ratbagd.enable = true;
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
-  #services.xserver.excludePackages = [ pkgs.xterm ]; # I don't want xterm
+  services.xserver.excludePackages = [ pkgs.xterm ]; # I don't want xterm
 
   systemd.services.nbfc_service = {
     enable = true;
     path = [pkgs.kmod];
+  };
+  
+  # enable networking
+  networking = {
+    networkmanager = {
+      enable = true;
+      plugins = with pkgs; [
+        networkmanager-openvpn
+      ];
+    };
+  };
+
+  # Select internationalisation properties.
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [ "en_US.UTF-8/UTF-8" "nl_NL.UTF-8/UTF-8" ];
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
   };
 
   # import nur

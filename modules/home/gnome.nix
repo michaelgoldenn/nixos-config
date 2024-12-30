@@ -12,6 +12,7 @@
         previous = ["<Ctrl>F9"];
         play = ["<Ctrl>F10"];
         next = ["<Ctrl>F11"];
+        mic-mute = ["<Shift><Control><Alt>m"];
       };
       #"org/gnome/desktop/peripherals/touchpad".natural-scroll = false;
       "org/gnome/desktop/session".idle-delay = 600; # screen off after 10 mins
@@ -25,7 +26,7 @@
         enable-hot-corners = false;
       };
       "org/gnome/mutter" = {
-        dynamic-workspaces = true;
+        dynamic-workspaces = true; # any amount of workspaces, blank ones are removed
         workspaces-only-on-primary = false;
         edge-tiling = true; # Dragging a window near the edge of the screen will resize it
       };
