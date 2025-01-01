@@ -46,7 +46,7 @@ in
     unetbootin
     vlc
     #obsidian
-    rare # epic games launcher'
+    rare # "epic games launcher"
     #rustdesk oh my god this takes so long to build
     
     #making games
