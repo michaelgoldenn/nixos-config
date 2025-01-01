@@ -7,7 +7,7 @@ in
   ## Adding new host:
   # 1. Create Key: `mkdir ~/.config/sops/age` then `age-keygen -o ~/.config/sops/age/keys.txt`
   # 2. Add Key to system: `age-keygen -y ~/.config/sops/age/keys.txt` then put the output into `.sops.yaml`
-  # 3. Push that sucker to github, then on a machine that is already working, run `nix-shell -p sops --run "sops updatekeys secrets/secrets.yaml"`
+  # 3. Push to github, then on a working machine run `nix-shell -p sops --run "sops updatekeys secrets/secrets.yaml"`
   # 4. Push from the other mahcine, pull from new machine, and `just run`
 
   ## Adding new secret:
