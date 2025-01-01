@@ -49,6 +49,7 @@ in
     #obsidian
     rare # "epic games launcher"
     #rustdesk oh my god this takes so long to build
+    prismlauncher
     
     #making games
     godot_4

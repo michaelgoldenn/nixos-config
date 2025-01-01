@@ -71,6 +71,7 @@ in
     networkmanager-openvpn
     inputs.ghostty.packages.x86_64-linux.default
     anytype
+    nix-output-monitor
   ];
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.guest.enable = true;
