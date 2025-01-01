@@ -98,6 +98,7 @@ in
       ];
     };
   };
+  programs.nm-applet.enable = true;
 
   # Select internationalisation properties.
   i18n = {
