@@ -70,6 +70,7 @@ in
     piper
     libratbag
     networkmanager-openvpn
+    openvpn
     inputs.ghostty.packages.x86_64-linux.default
     logseq
     nix-output-monitor
@@ -90,15 +91,14 @@ in
   };
   
   # enable networking
-  networking = {
-    networkmanager = {
-      enable = true;
-      plugins = with pkgs; [
-        networkmanager-openvpn
-      ];
-    };
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openvpn
+    ];
   };
   programs.nm-applet.enable = true;
+  #services.openvpn.enable = true;
 
   # Select internationalisation properties.
   i18n = {
