@@ -128,11 +128,14 @@ in
 #  };
 
   environment = {
-  sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
-  pathsToLink = [
-    "/share/nautilus-python/extensions"
-  ];
-};
+    sessionVariables = {
+      NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
+      FLAKE = "/etc/nixos";
+    };
+    pathsToLink = [
+      "/share/nautilus-python/extensions"
+    ];
+  };
 
   networking.firewall = { 
     allowedTCPPorts = [

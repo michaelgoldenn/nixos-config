@@ -37,6 +37,7 @@ let
     "browser.startup.page" = 3; # Open previous tabs on startup
     "identity.fxaccounts.enabled" = false; #disable firefox accounts
     "extensions.formautofill.creditCards.enabled" = false; # disable credit card prompts
+    "signon.rememberSignons" = false; # Don't remember my passwords
 
     # right now just disable all suggestions in the search bar, maybe later add some stuff in sparingly?
     "browser.urlbar.showSearchSuggestionsFirst" = false;
@@ -55,8 +56,9 @@ let
     "toolkit.telemetry.reportingpolicy.firstRun" = false;
     "trailhead.firstrun.didSeeAboutWelcome" = false;
     "browser.aboutConfig.showWarning" = false;
+    "media.videocontrols.picture-in-picture.video-toggle.has-used" = true; # auto-compress the PIP toggle
 
-
+    # change new tab page
     "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
     "browser.newtabpage.activity-stream.feeds.snippets" = false;
     "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
@@ -67,7 +69,6 @@ let
     "browser.newtabpage.activity-stream.system.showSponsored" = false;
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts" on new tab page
-    "media.videocontrols.picture-in-picture.video-toggle.has-used" = true; # auto-compress the PIP toggle
   };
 in
 {

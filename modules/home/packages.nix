@@ -23,6 +23,7 @@ in
     nixpkgs-fmt
     just
     alejandra
+    nh
 
     # Dev
     tmate
