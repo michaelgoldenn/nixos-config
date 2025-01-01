@@ -70,7 +70,7 @@ in
     libratbag
     networkmanager-openvpn
     inputs.ghostty.packages.x86_64-linux.default
-    anytype
+    logseq
     nix-output-monitor
   ];
   virtualisation.virtualbox.host.enable = true;
