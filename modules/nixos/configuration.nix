@@ -58,6 +58,7 @@ in
     nushell
     samba
     git
+    git-lfs
     libsecret
     lshw
     toybox
