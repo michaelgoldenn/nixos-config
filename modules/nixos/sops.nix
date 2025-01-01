@@ -7,7 +7,7 @@ in
   ## Adding new host:
   # 1. Create Key: `mkdir ~/.config/sops/age` then `age-keygen -o ~/.config/sops/age/keys.txt`
   # 2. Add Key to system: `age-keygen -y ~/.config/sops/age/keys.txt` then put the output into `.sops.yaml`
-  # 3. Push to github, then on a working machine run `nix-shell -p sops --run "sops updatekeys secrets/secrets.yaml"`
+  # 3. Push that sucker to github, then on a machine that is already working, run `nix-shell -p sops --run "sops updatekeys secrets/secrets.yaml"`
   # 4. Push from the other mahcine, pull from new machine, and `just run`
 
   ## Adding new secret:
@@ -22,7 +22,7 @@ in
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     age = {
-      keyFile = "~/.config/sops/age/keys.txt";
+      keyFile = "/home/michael/.config/sops/age/keys.txt";
       # Set this to false since we're providing our own key
       generateKey = true;
     };
@@ -49,14 +49,6 @@ in
         owner = config.users.users.michael.name;
       };
       "github/kartoffels-bot" = {
-        mode = "0440";
-        owner = config.users.users.michael.name;
-      };
-      "anytype" = {
-        mode = "0440";
-        owner = config.users.users.michael.name;
-      };
-      "ai/openai" = {
         mode = "0440";
         owner = config.users.users.michael.name;
       };
