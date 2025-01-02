@@ -1,4 +1,4 @@
-{...}:
+{config, ...}:
 {
   services.openvpn.servers = {
     pia = {
@@ -7,8 +7,8 @@
       # will be available in the nix store for everyone to see.
       # https://nixos.wiki/wiki/Comparison_of_secret_managing_schemes
       authUserPass = {
-        username = "$(cat /run/secrets/pia/username)";
-        password = "$(cat /run/secrets/pia/password)";
+        username = config.sops.secrets."pia/username".path;
+        password = config.sops.secrets."pia/password".path;
       };
       # Most of these options came from the OVPN file from the generator
       config = ''
