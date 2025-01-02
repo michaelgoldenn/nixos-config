@@ -56,6 +56,14 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
+      "pia/username" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
+      "pia/password" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
     };
   };
 }
