@@ -73,6 +73,7 @@ in
     inputs.ghostty.packages.x86_64-linux.default
     logseq
     nix-output-monitor
+    openssl
   ];
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.guest.enable = true;

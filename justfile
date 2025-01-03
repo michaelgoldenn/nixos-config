@@ -33,6 +33,13 @@ alias rebuild := run
 run:
   ./bash/rebuild
 
+# same thing as run, but git pulls and pushes as well
+alias fr := full-rebuild
+alias full-run := full-rebuild
+[group('Main')]
+full-rebuild:
+  ./bash/full-rebuild
+
 # Open the sops file for adding or editing keys
 [group('dev')]
 sops:
