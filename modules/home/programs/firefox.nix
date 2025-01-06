@@ -28,16 +28,18 @@ let
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
     # general
-    "extensions.pocket.enabled" = false;
-    "extensions.screenshots.disabled" = true;
-    "browser.topsites.contile.enabled" = false;
-    "browser.formfill.enable" = false;
     "browser.engagement.ctrlTab.has-used" = true;
     "browser.ctrlTab.sortByRecentlyUsed" = true;
     "browser.startup.page" = 3; # Open previous tabs on startup
-    "identity.fxaccounts.enabled" = false; #disable firefox accounts
+    
+    # extra bits I won't want
+    "extensions.pocket.enabled" = false;
+    "extensions.screenshots.disabled" = true;
+    "browser.formfill.enable" = false;
+    "browser.topsites.contile.enabled" = false;
+    "identity.fxaccounts.enabled" = false; #disable firefox accounts (no need for sync when I have nix ;)
     "extensions.formautofill.creditCards.enabled" = false; # disable credit card prompts
-    "signon.rememberSignons" = false; # Don't remember my passwords
+    "signon.rememberSignons" = false; # Don't ask about passwords
 
     # right now just disable all suggestions in the search bar, maybe later add some stuff in sparingly?
     "browser.urlbar.showSearchSuggestionsFirst" = false;

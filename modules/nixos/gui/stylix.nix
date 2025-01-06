@@ -23,7 +23,7 @@ in
       base00 = "#1e1e2e"; # base
       base01 = "#181825"; # mantle
       base02 = "#313244"; # surface0
-      base03 = "#4e5065"; # surface1: code comments
+      base03 = "#5f6177"; # surface1: code comments (brighened slightly)
       base04 = "#585b70"; # surface2
       base05 = "#cdd6f4"; # text
       base06 = "#f5e0dc"; # rosewater
