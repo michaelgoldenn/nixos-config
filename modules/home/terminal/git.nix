@@ -2,10 +2,9 @@
 {
   programs.git = {
     enable = true;
-    config = {
-      alias = {
-        acp = "!f() { git add . && git commit -m \"$@\" && git push; }; f";
-      };
+    aliases = {
+      # acp - automatically adds ., commits, pulls, then pushes to main.
+      acp = "!f() { git add . && git commit -m \"$@\" && git pull && git push; }; f";
     };
   };
 }
