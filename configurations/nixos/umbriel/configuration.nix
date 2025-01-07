@@ -98,7 +98,6 @@
   #  wget
   git
   vscode
-  unigine-heaven
   ];
   
   environment.sessionVariables = {
