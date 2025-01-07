@@ -74,7 +74,6 @@ in
     logseq
     nix-output-monitor
     openssl
-    open-webui
   ];
   environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
