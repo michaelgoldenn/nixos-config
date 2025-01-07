@@ -4,9 +4,8 @@ let
   inherit (inputs) self;
 in
 {
-    # However you're currently installing Obsidian
-    home.packages = with pkgs; [ obsidian ];  # or however you're installing it
-
-    # Add the systemd service
+    home.packages = with pkgs; [ obsidian libsecret ];
+    # Setup obisdian-git:
+    # https://publish.obsidian.md/git-doc/Authentication
 
 }

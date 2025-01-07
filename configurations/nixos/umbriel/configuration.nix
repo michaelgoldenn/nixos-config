@@ -46,6 +46,18 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable tlp to limit battery
+  services.power-profiles-daemon.enable = false;
+  services.tlp = { # Does not work rn
+    enable = true;
+    settings = {
+      START_CHARGE_THRESH_BAT0=75;
+      STOP_CHARGE_THRESH_BAT0=80;
+      START_CHARGE_THRESH_BAT1=75;
+      STOP_CHARGE_THRESH_BAT1=80;
+    };
+  };
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -88,6 +100,10 @@
   vscode
   unigine-heaven
   ];
+  
+  environment.sessionVariables = {
+    FLAKEREF = "/etc/nixos"; # for nh
+  };
 
   ## gpu stuff
   # Enable OpenGL
