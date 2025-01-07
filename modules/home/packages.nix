@@ -50,7 +50,6 @@ in
     rare # "epic games launcher"
     rustdesk #oh my god this takes so long to build
     prismlauncher
-    open-webui
     
     #making games
     godot_4
