@@ -56,6 +56,10 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
+      "ai/openai" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
       "pia/username" = {
         mode = "0440";
         owner = config.users.users.michael.name;
