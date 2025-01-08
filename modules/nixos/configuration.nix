@@ -85,16 +85,6 @@ in
     enable = true;
     path = [pkgs.kmod];
   };
-  
-  # enable networking
-  networking = {
-    networkmanager = {
-      enable = true;
-      plugins = with pkgs; [
-        networkmanager-openvpn
-      ];
-    };
-  };
 
   # Select internationalisation properties.
   i18n = {

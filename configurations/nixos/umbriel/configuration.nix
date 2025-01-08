@@ -105,11 +105,16 @@
   };
 
   # vpn
-  networking.networkmanager.pia-vpn = {
-    enable = true;
-    usernameFile = "/run/secrets/pia/username";  # Adjust this path
-    # Optional: if you want to store the password in a file too
-    passwordFile = "/run/secrets/pia/password";
+  networking.networkmanager = {
+    enable = true;  # Make sure NetworkManager is enabled
+    plugins = [ pkgs.networkmanager-openvpn ];  # Add OpenVPN plugin
+    pia-vpn = {
+      enable = true;
+      usernameFile = "/run/secrets/pia/username";
+      passwordFile = "/run/secrets/pia/password";
+      # Optionally specify specific servers if you don't want all of them
+      #serverList = [ "us-chicago" ];
+    };
   };
 
   ## gpu stuff
