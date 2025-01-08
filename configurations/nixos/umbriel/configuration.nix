@@ -104,6 +104,14 @@
     FLAKEREF = "/etc/nixos"; # for nh
   };
 
+  # vpn
+  networking.networkmanager.pia-vpn = {
+    enable = true;
+    usernameFile = "/run/secrets/pia/username";  # Adjust this path
+    # Optional: if you want to store the password in a file too
+    passwordFile = "/run/secrets/pia/password";
+  };
+
   ## gpu stuff
   # Enable OpenGL
   hardware.graphics = {
