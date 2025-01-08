@@ -113,7 +113,7 @@
       usernameFile = "/run/secrets/pia/username";
       passwordFile = "/run/secrets/pia/password";
       # Optionally specify specific servers if you don't want all of them
-      #serverList = [ "us-chicago" ];
+      serverList = [ "us-chicago" "swiss" ];
     };
   };
 
