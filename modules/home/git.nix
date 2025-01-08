@@ -14,6 +14,8 @@
       ignores = [ "*~" "*.swp" ];
       aliases = {
         ci = "commit";
+        ac = "!git add -A && git commit -m ";
+        pp = "!git pull & git push";
       };
       extraConfig = {
         # init.defaultBranch = "master";

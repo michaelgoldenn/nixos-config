@@ -51,6 +51,7 @@ let
     "browser.urlbar.suggest.topsites" = false;
     "browser.search.suggest.enabled" = false;
     "browser.search.suggest.enabled.private" = false;
+    "browser.urlbar.suggest.calculator" = true; # I do want the calculator though
 
     #disable first run stuff (suggestions, welcome page, etc.)
     "app.normandy.first_run" = false;
@@ -80,6 +81,25 @@ in
         id = 0;
         name = "textfox";
         isDefault = true;
+        search = {
+          default = "DuckDuckGo";
+          engines = {
+            "Amazon.com".metaData.hidden = true;
+            "Bing".metaData.hidden = true;
+            "eBay".metaData.hidden = true;
+
+
+            "DuckDuckGo" = {
+              urls = [{
+                template = "https://duckduckgo.com";
+                params = [
+                  { name = "q"; value = "{searchTerms}"; }
+                ];
+              }];
+              definedAliases = [ ",d" ];
+            };
+          };
+        };
         extensions = global_extensions;
         settings = global_settings;
       };
