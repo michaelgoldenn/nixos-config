@@ -89,7 +89,7 @@ in
 
     enable = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = ''
         Whether to enable Private Internet Access VPN connections in NetworkManager.
 
