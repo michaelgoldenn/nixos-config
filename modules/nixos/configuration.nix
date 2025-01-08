@@ -126,6 +126,19 @@ in
     ];
   };
 
+  # vpn
+  networking.networkmanager = {
+    enable = true;  # Make sure NetworkManager is enabled
+    plugins = [ pkgs.networkmanager-openvpn ];  # Add OpenVPN plugin
+    pia-vpn = {
+      enable = true;
+      usernameFile = "/run/secrets/pia/username";
+      passwordFile = "/run/secrets/pia/password";
+      # Optionally specify specific servers if you don't want all of them
+      serverList = [ "us-chicago" "swiss" ];
+    };
+  };
+
   networking.firewall = { 
     allowedTCPPorts = [
       # localsend
