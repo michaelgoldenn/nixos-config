@@ -48,3 +48,7 @@ sops:
 [group('Main')]
 gc:
   nix-store --gc
+
+[group('Main')]
+clean:
+  nh clean all -k 20
