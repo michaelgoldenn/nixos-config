@@ -40,6 +40,8 @@ in {
         rust-lang.rust-analyzer
         formulahendry.code-runner
         github.vscode-github-actions
+        # python
+        ms-python.python
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         # or can add new extensions here if easier
