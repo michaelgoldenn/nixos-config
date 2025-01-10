@@ -147,7 +147,12 @@
     openvpn
   ];
 
-  virtualisation.docker.enable = true; # docker service
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      dns = [ "8.8.8.8" "8.8.4.4" ];
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
