@@ -153,6 +153,14 @@
       dns = [ "8.8.8.8" "8.8.4.4" ];
     };
   };
+  systemd.services.docker = {
+    serviceConfig = {
+      ExecStart = [
+        ""  # This empty string is necessary to override the default
+        "${pkgs.docker}/bin/dockerd --group=docker"
+      ];
+    };
+  };
   users.groups.docker.gid = 131;  # Use NixOS's preferred GID
   users.users.michael.extraGroups = [ "docker" ];
 
