@@ -153,6 +153,7 @@
       dns = [ "8.8.8.8" "8.8.4.4" ];
     };
   };
+  users.users.michael.extraGroups = [ "docker" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
