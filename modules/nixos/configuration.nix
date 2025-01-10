@@ -11,6 +11,7 @@ in
   nix.settings.trusted-users = [ "root" "michael" ];
 
   # Define users
+  users.groups.docker.gid = 131;  # Use NixOS's preferred GID
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
