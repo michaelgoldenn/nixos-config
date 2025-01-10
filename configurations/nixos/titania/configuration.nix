@@ -153,6 +153,7 @@
       dns = [ "8.8.8.8" "8.8.4.4" ];
     };
   };
+  users.groups.docker.gid = 131;  # Use NixOS's preferred GID
   users.users.michael.extraGroups = [ "docker" ];
 
   # Some programs need SUID wrappers, can be configured further or are
