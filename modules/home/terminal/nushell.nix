@@ -34,4 +34,7 @@
       enableNushellIntegration = true; 
     };
   };
+  home.sessionVariables = {
+    NIX_BUILD_SHELL = "${pkgs.nushell}/bin/nu";
+  };
 }
