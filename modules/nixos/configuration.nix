@@ -75,6 +75,14 @@ in
     logseq
     nix-output-monitor
     openssl
+
+    # python stuff, testing for project
+    cudaPackages.cudatoolkit
+    cudaPackages.cudnn
+    cudaPackages.libcublas
+    cudaPackages.libcurand
+    cudaPackages.libcusolver
+    cudaPackages.libcusparse
   ];
   environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
