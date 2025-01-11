@@ -1,6 +1,6 @@
 set -e
 git add .
-#rm /home/michael/.mozilla/firefox/textfox/search.json.mozlz4.backup
+rm -f /home/michael/.mozilla/firefox/textfox/search.json.mozlz4.backup
 nh os switch
 hostname=$(hostname)
 gen=$(nixos-rebuild list-generations | grep current)
