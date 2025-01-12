@@ -46,6 +46,7 @@ in
     localsend
     unetbootin
     vlc
+    qbittorrent
     #obsidian
     rare # "epic games launcher"
     rustdesk
