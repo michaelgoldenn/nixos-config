@@ -82,8 +82,10 @@ in
         name = "textfox";
         isDefault = true;
         search = {
-          default = "DuckDuckGo";
+          default = "Whoogle";
           engines = {
+            # hide the other engines
+            "Google".meteData.hiddel = true; # no need when I have whoogle
             "Amazon.com".metaData.hidden = true;
             "Bing".metaData.hidden = true;
             "eBay".metaData.hidden = true;
@@ -97,6 +99,13 @@ in
                 ];
               }];
               definedAliases = [ ",d" ];
+            };
+            "Whoogle" = let whoogle = "0.0.0.0:5000"; in {
+              urls = [{ template = "http://${whoogle}/search?q={searchTerms}"; }];
+              iconUpdateURL = "https://${whoogle}/static/img/favicon/apple-icon-144x144.png";
+              updateInterval = 24 * 60 * 60 * 1000; # every day
+              definedAliases = [ "!wh" ];
+              method = "POST";
             };
           };
         };
