@@ -11,6 +11,7 @@ let
   group = "927"; #string
   port = 5000; #int
   cfg = config.mySystem.services.${app};
+  colors = config.lib.stylix.colors;
   appFolder = "/var/lib/${app}";
   # persistentFolder = "${config.mySystem.persistentFolder}/var/lib/${appFolder}";
 in
@@ -50,8 +51,38 @@ in
         WHOOGLE_CONFIG_COUNTRY = "AU";
         WHOOGLE_CONFIG_VIEW_IMAGE = "1";
         WHOOGLE_CONFIG_DISABLE = "1";
-        # catppuchin. There are more here: https://github.com/benbusby/whoogle-search/wiki/User-Contributed-CSS-Themes
-        WHOOGLE_CONFIG_STYLE = ":root{--whoogle-logo:#4c4f69;--whoogle-page-bg:#eff1f5;--whoogle-element-bg:#bcc0cc;--whoogle-text:#4c4f69;--whoogle-contrast-text:#5c5f77;--whoogle-secondary-text:#6c6f85;--whoogle-result-bg:#ccd0da;--whoogle-result-title:#7287fd;--whoogle-result-url:#dc8a78;--whoogle-result-visited:#e64553;--whoogle-dark-logo:#cdd6f4;--whoogle-dark-page-bg:#1e1e2e;--whoogle-dark-element-bg:#45475a;--whoogle-dark-text:#cdd6f4;--whoogle-dark-contrast-text:#bac2de;--whoogle-dark-secondary-text:#a6adc8;--whoogle-dark-result-bg:#313244;--whoogle-dark-result-title:#b4befe;--whoogle-dark-result-url:#f5e0dc;--whoogle-dark-result-visited:#eba0ac;}#whoogle-w{fill:#89b4fa;}#whoogle-h{fill:#f38ba8;}#whoogle-o-1{fill:#f9e2af;}#whoogle-o-2{fill:#89b4fa;}#whoogle-g{fill:#a6e3a1;}#whoogle-l{fill:#f38ba8;}#whoogle-e{fill:#f9e2af;}";
+        # Automatically uses the colors from stylix
+        WHOOGLE_CONFIG_STYLE = ":root{"
+          + "--whoogle-logo:${colors.base05};"
+          + "--whoogle-page-bg:${colors.base00};"
+          + "--whoogle-element-bg:${colors.base02};"
+          + "--whoogle-text:${colors.base05};"
+          + "--whoogle-contrast-text:${colors.base04};"
+          + "--whoogle-secondary-text:${colors.base03};"
+          + "--whoogle-result-bg:${colors.base01};"
+          + "--whoogle-result-title:${colors.base0D};"
+          + "--whoogle-result-url:${colors.base09};"
+          + "--whoogle-result-visited:${colors.base08};"
+          # Light theme colors (you might want to adjust these)
+          + "--whoogle-dark-logo:${colors.base05};"
+          + "--whoogle-dark-page-bg:${colors.base00};"
+          + "--whoogle-dark-element-bg:${colors.base02};"
+          + "--whoogle-dark-text:${colors.base05};"
+          + "--whoogle-dark-contrast-text:${colors.base04};"
+          + "--whoogle-dark-secondary-text:${colors.base03};"
+          + "--whoogle-dark-result-bg:${colors.base01};"
+          + "--whoogle-dark-result-title:${colors.base0D};"
+          + "--whoogle-dark-result-url:${colors.base09};"
+          + "--whoogle-dark-result-visited:${colors.base08};"
+          + "}"
+          # Whoogle logo colors
+          + "#whoogle-w{fill:${colors.base0D};}"
+          + "#whoogle-h{fill:${colors.base08};}"
+          + "#whoogle-o-1{fill:${colors.base0A};}"
+          + "#whoogle-o-2{fill:${colors.base0D};}"
+          + "#whoogle-g{fill:${colors.base0B};}"
+          + "#whoogle-l{fill:${colors.base08};}"
+          + "#whoogle-e{fill:${colors.base0A};}";
       };
     };
 
