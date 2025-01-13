@@ -111,6 +111,17 @@ in
     };
   };
 
+  # lets me use docker :)
+  virtualisation = {
+    podman = {
+      enable = true;
+      # Optionally enable docker compatibility
+      dockerCompat = true;
+      # For rootless containers
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
   programs.nautilus-open-any-terminal = {
     enable = true;
     terminal = "ghostty";
