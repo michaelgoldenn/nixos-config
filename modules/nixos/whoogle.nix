@@ -27,6 +27,7 @@ in
       image = "${image}";
       user = "${user}:${group}";
       ports = [ (builtins.toString port) ]; # expose port
+      autoStart = true;
       environment = {
         TZ = "${config.time.timeZone}";
         WHOOGLE_ALT_TW = "nitter.${config.networking.domain}";

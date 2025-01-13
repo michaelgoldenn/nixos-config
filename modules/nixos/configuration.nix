@@ -14,7 +14,7 @@ in
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" ];
     packages = with pkgs; [];
     shell = pkgs.nushell;
   };
@@ -115,7 +115,6 @@ in
   virtualisation = {
     podman = {
       enable = true;
-      # Optionally enable docker compatibility
       dockerCompat = true;
       # For rootless containers
       defaultNetwork.settings.dns_enabled = true;
