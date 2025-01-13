@@ -15,7 +15,7 @@ in
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" ];
     packages = with pkgs; [];
     shell = pkgs.nushell;
   };
@@ -65,9 +65,9 @@ in
     toybox
     nvtopPackages.full
     # boy oh boy I sure do love my CLI improvements
-    # eza
     fd
-    vesktop # wayland screen share is broken on anything but vesktop :(
+    comma # just run `, Package` to run a package.
+    #vesktop # wayland screen share is broken on anything but vesktop :(
     piper
     libratbag
     networkmanager-openvpn
@@ -120,10 +120,25 @@ in
     };
   };
 
-#  programs.nautilus-open-any-terminal = {
-#    enable = true;
-#    terminal = "foot";
-#  };
+
+  nix.optimise.automatic = true; # automatically remove old/unused versions
+
+  # lets me use docker :)
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      # For rootless containers
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
+  mySystem.services.whoogle.enable = true;
+
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "ghostty";
+  };
 
   environment = {
     sessionVariables = {
@@ -148,19 +163,24 @@ in
     };
   };
 
+  services.nginx.enable = true;
+  networking = {
+    domain = "localhost";
+  };
+
   networking.firewall = { 
     allowedTCPPorts = [
       # localsend
       53317
-
+      5000 # whoogle
       # Samba share
       445
       139
     ];
     allowedUDPPorts = [
       # localsend
-      53317
-
+      53317 
+      5000 # whoogle
       # Samba share
       445
       139
