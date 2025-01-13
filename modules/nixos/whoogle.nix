@@ -46,6 +46,8 @@ in
         WHOOGLE_CONFIG_COUNTRY = "AU";
         WHOOGLE_CONFIG_VIEW_IMAGE = "1";
         WHOOGLE_CONFIG_DISABLE = "1";
+        # catppuchin. There are more here: https://github.com/benbusby/whoogle-search/wiki/User-Contributed-CSS-Themes
+        WHOOGLE_CONFIG_STYLE = ":root{--whoogle-logo:#4c4f69;--whoogle-page-bg:#eff1f5;--whoogle-element-bg:#bcc0cc;--whoogle-text:#4c4f69;--whoogle-contrast-text:#5c5f77;--whoogle-secondary-text:#6c6f85;--whoogle-result-bg:#ccd0da;--whoogle-result-title:#7287fd;--whoogle-result-url:#dc8a78;--whoogle-result-visited:#e64553;--whoogle-dark-logo:#cdd6f4;--whoogle-dark-page-bg:#1e1e2e;--whoogle-dark-element-bg:#45475a;--whoogle-dark-text:#cdd6f4;--whoogle-dark-contrast-text:#bac2de;--whoogle-dark-secondary-text:#a6adc8;--whoogle-dark-result-bg:#313244;--whoogle-dark-result-title:#b4befe;--whoogle-dark-result-url:#f5e0dc;--whoogle-dark-result-visited:#eba0ac;}#whoogle-w{fill:#89b4fa;}#whoogle-h{fill:#f38ba8;}#whoogle-o-1{fill:#f9e2af;}#whoogle-o-2{fill:#89b4fa;}#whoogle-g{fill:#a6e3a1;}#whoogle-l{fill:#f38ba8;}#whoogle-e{fill:#f9e2af;}";
       };
     };
 

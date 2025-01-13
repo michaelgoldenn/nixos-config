@@ -66,7 +66,7 @@ in
     # boy oh boy I sure do love my CLI improvements
     # eza
     fd
-    #vesktop # wayland screen share is broken on anything but vesktop :(
+    vesktop # wayland screen share is broken on anything but vesktop :(
     piper
     libratbag
     networkmanager-openvpn
