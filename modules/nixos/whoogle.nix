@@ -28,6 +28,7 @@ in
       user = "${user}:${group}";
       ports = [ "5000:5000" ]; # expose port
       environment = {
+        # All variables listed here: https://github.com/benbusby/whoogle-search#environment-variables
         TZ = "${config.time.timeZone}";
         /*
         # Alternate hosts for specific websites
@@ -42,7 +43,7 @@ in
         WHOOGLE_ALT_WIKI = "";
         WHOOGLE_ALT_QUORA = "";
         */
-        WHOOGLE_CONFIG_ALTS = "0";
+        WHOOGLE_CONFIG_ALTS = "0"; # set to `1` to enable alternate social medias
         WHOOGLE_CONFIG_THEME = "system";
         WHOOGLE_CONFIG_URL = "https://whoogle.${config.networking.domain}";
         WHOOGLE_CONFIG_GET_ONLY = "1";
