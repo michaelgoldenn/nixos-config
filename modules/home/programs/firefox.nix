@@ -81,8 +81,12 @@ in
         id = 0;
         name = "textfox";
         isDefault = true;
+        containersForce = true;
         search = {
           default = "Whoogle";
+          force = true;
+
+
           engines = {
             # hide the other engines
             "Google".meteData.hidden = true; # no need when I have whoogle
@@ -116,6 +120,10 @@ in
         id = 1;
         name = "normal";
         isDefault = false;
+        containersForce = true;
+        search = {
+          force = true;
+        };
         extensions = global_extensions;
         settings = global_settings;
       };

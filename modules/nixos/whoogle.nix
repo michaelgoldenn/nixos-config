@@ -29,6 +29,8 @@ in
       ports = [ "5000:5000" ]; # expose port
       environment = {
         TZ = "${config.time.timeZone}";
+        /*
+        # Alternate hosts for specific websites
         WHOOGLE_ALT_TW = "nitter.${config.networking.domain}";
         WHOOGLE_ALT_YT = "invidious.${config.networking.domain}";
         WHOOGLE_ALT_IG = "imginn.com";
@@ -39,6 +41,7 @@ in
         WHOOGLE_ALT_IMDB = "";
         WHOOGLE_ALT_WIKI = "";
         WHOOGLE_ALT_QUORA = "";
+        */
         WHOOGLE_CONFIG_ALTS = "1";
         WHOOGLE_CONFIG_THEME = "system";
         WHOOGLE_CONFIG_URL = "https://whoogle.${config.networking.domain}";
