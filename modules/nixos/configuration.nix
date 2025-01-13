@@ -121,6 +121,8 @@ in
     };
   };
 
+  mySystem.services.whoogle.enable = true;
+
   programs.nautilus-open-any-terminal = {
     enable = true;
     terminal = "ghostty";
