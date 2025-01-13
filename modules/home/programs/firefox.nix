@@ -1,19 +1,19 @@
 { flake, pkgs, ... }:
 let
-  inherit (flake) config inputs;
-  inherit (inputs) self;
+  inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
 
-  # extensions that all profiles should share
-  # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
-  # or run        nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
-  # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code
+  # need to do this one in a special way because it got banned from everywhere for copyright violation lol
   bypass-paywalls-clean = firefox-addons.bypass-paywalls-clean.override rec {
     version = "3.9.6.4";
     url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
     sha256 = "sha256-J/fkD6yQyedCxKqJmsmBwIEj+qglmYUwyiRmLNrzzo8=";
   };
-  
+
+  # extensions that all profiles should share
+  # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
+  # or run        nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
+  # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code  
   global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     bitwarden
     ublock-origin
@@ -40,16 +40,16 @@ let
     "extensions.formautofill.creditCards.enabled" = false; # disable credit card prompts
     "signon.rememberSignons" = false; # Don't ask about passwords
 
-    # right now just disable all suggestions in the search bar, maybe later add some stuff in sparingly?
+    # right now just disable all suggestions in the search bar, later go through and see what I like
     "browser.urlbar.showSearchSuggestionsFirst" = false;
     "browser.urlbar.suggest.bookmark" = false;
     "browser.urlbar.suggest.engines" = false;
     "browser.urlbar.suggest.history" = false;
     "browser.urlbar.suggest.openpage" = false;
-    "browser.urlbar.suggest,recentsearches" = false;
+    "browser.urlbar.suggest.recentsearches" = false;
     "browser.urlbar.suggest.searches" = false;
     "browser.urlbar.suggest.topsites" = false;
-    "browser.search.suggest.enabled" = false;
+    "browser.search.suggest.enabled" = true;
     "browser.search.suggest.enabled.private" = false;
     "browser.urlbar.suggest.calculator" = true; # I do want the calculator though
 
@@ -85,7 +85,7 @@ in
           default = "Whoogle";
           engines = {
             # hide the other engines
-            "Google".meteData.hiddel = true; # no need when I have whoogle
+            "Google".meteData.hidden = true; # no need when I have whoogle
             "Amazon.com".metaData.hidden = true;
             "Bing".metaData.hidden = true;
             "eBay".metaData.hidden = true;
