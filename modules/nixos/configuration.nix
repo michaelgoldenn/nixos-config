@@ -138,6 +138,8 @@ in
       serverList = [ "us-chicago" "swiss" ];
     };
   };
+
+  services.nginx.enable = true;
   networking = {
     domain = "localhost";
   };
@@ -146,6 +148,7 @@ in
     allowedTCPPorts = [
       # localsend
       53317
+      5000 # whoogle
       # Samba share
       445
       139
@@ -153,6 +156,7 @@ in
     allowedUDPPorts = [
       # localsend
       53317 
+      5000 # whoogle
       # Samba share
       445
       139
