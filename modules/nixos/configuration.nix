@@ -111,10 +111,10 @@ in
     };
   };
 
-#  programs.nautilus-open-any-terminal = {
-#    enable = true;
-#    terminal = "foot";
-#  };
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "ghostty";
+  };
 
   environment = {
     sessionVariables = {
@@ -138,20 +138,21 @@ in
       serverList = [ "us-chicago" "swiss" ];
     };
   };
+  networking = {
+    domain = "localhost";
+  };
 
   networking.firewall = { 
     allowedTCPPorts = [
       # localsend
       53317
-
       # Samba share
       445
       139
     ];
     allowedUDPPorts = [
       # localsend
-      53317
-
+      53317 
       # Samba share
       445
       139
