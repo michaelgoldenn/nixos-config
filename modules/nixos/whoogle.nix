@@ -26,7 +26,7 @@ in
     virtualisation.oci-containers.containers.${app} = {
       image = "${image}";
       user = "${user}:${group}";
-      ports = [ (builtins.toString port) ]; # expose port
+      ports = [ "5000:5000" ]; # expose port
       environment = {
         TZ = "${config.time.timeZone}";
         WHOOGLE_ALT_TW = "nitter.${config.networking.domain}";
