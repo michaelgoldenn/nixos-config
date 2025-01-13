@@ -3,8 +3,8 @@ let
   inherit (flake) config inputs;
   inherit (inputs) self;
 in
-{}
-/* {
+# {}
+{
   imports = [inputs.nixcord.homeManagerModules.nixcord];
   programs.nixcord = {
     enable = true;  # also installs discord
@@ -133,4 +133,4 @@ in
       # ...
     };
   };
-} */
+}
