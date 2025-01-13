@@ -12,6 +12,7 @@ let
   port = 5000; #int
   cfg = config.mySystem.services.${app};
   colors = config.lib.stylix.colors;
+  c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
   appFolder = "/var/lib/${app}";
   # persistentFolder = "${config.mySystem.persistentFolder}/var/lib/${appFolder}";
 in
@@ -53,36 +54,34 @@ in
         WHOOGLE_CONFIG_DISABLE = "1";
         # Automatically uses the colors from stylix
         WHOOGLE_CONFIG_STYLE = ":root{"
-          + "--whoogle-logo:${colors.base05};"
-          + "--whoogle-page-bg:${colors.base00};"
-          + "--whoogle-element-bg:${colors.base02};"
-          + "--whoogle-text:${colors.base05};"
-          + "--whoogle-contrast-text:${colors.base04};"
-          + "--whoogle-secondary-text:${colors.base03};"
-          + "--whoogle-result-bg:${colors.base01};"
-          + "--whoogle-result-title:${colors.base0D};"
-          + "--whoogle-result-url:${colors.base09};"
-          + "--whoogle-result-visited:${colors.base08};"
-          # Light theme colors (you might want to adjust these)
-          + "--whoogle-dark-logo:${colors.base05};"
-          + "--whoogle-dark-page-bg:${colors.base00};"
-          + "--whoogle-dark-element-bg:${colors.base02};"
-          + "--whoogle-dark-text:${colors.base05};"
-          + "--whoogle-dark-contrast-text:${colors.base04};"
-          + "--whoogle-dark-secondary-text:${colors.base03};"
-          + "--whoogle-dark-result-bg:${colors.base01};"
-          + "--whoogle-dark-result-title:${colors.base0D};"
-          + "--whoogle-dark-result-url:${colors.base09};"
-          + "--whoogle-dark-result-visited:${colors.base08};"
+          + "--whoogle-logo:${c colors.base05};"
+          + "--whoogle-page-bg:${c colors.base00};"
+          + "--whoogle-element-bg:${c colors.base02};"
+          + "--whoogle-text:${c colors.base05};"
+          + "--whoogle-contrast-text:${c colors.base04};"
+          + "--whoogle-secondary-text:${c colors.base03};"
+          + "--whoogle-result-bg:${c colors.base01};"
+          + "--whoogle-result-title:${c colors.base0D};"
+          + "--whoogle-result-url:${c colors.base09};"
+          + "--whoogle-result-visited:${c colors.base08};"
+          + "--whoogle-dark-logo:${c colors.base05};"
+          + "--whoogle-dark-page-bg:${c colors.base00};"
+          + "--whoogle-dark-element-bg:${c colors.base02};"
+          + "--whoogle-dark-text:${c colors.base05};"
+          + "--whoogle-dark-contrast-text:${c colors.base04};"
+          + "--whoogle-dark-secondary-text:${c colors.base03};"
+          + "--whoogle-dark-result-bg:${c colors.base01};"
+          + "--whoogle-dark-result-title:${c colors.base0D};"
+          + "--whoogle-dark-result-url:${c colors.base09};"
+          + "--whoogle-dark-result-visited:${c colors.base08};"
           + "}"
-          # Whoogle logo colors
-          + "#whoogle-w{fill:${colors.base0D};}"
-          + "#whoogle-h{fill:${colors.base08};}"
-          + "#whoogle-o-1{fill:${colors.base0A};}"
-          + "#whoogle-o-2{fill:${colors.base0D};}"
-          + "#whoogle-g{fill:${colors.base0B};}"
-          + "#whoogle-l{fill:${colors.base08};}"
-          + "#whoogle-e{fill:${colors.base0A};}";
+          + "#whoogle-w{fill:${c colors.base0D};}"
+          + "#whoogle-h{fill:${c colors.base08};}"
+          + "#whoogle-o-1{fill:${c colors.base0A};}"
+          + "#whoogle-o-2{fill:${c colors.base0D};}"
+          + "#whoogle-g{fill:${c colors.base0B};}"
+          + "#whoogle-l{fill:${c colors.base08};}"
+          + "#whoogle-e{fill:${c colors.base0A};}";
       };
     };
 
