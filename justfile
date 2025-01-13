@@ -52,3 +52,7 @@ gc:
 [group('Main')]
 clean:
   nh clean all -k 20
+
+[group('Main')]
+test:
+  nh os test
