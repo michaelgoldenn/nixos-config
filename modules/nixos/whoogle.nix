@@ -50,11 +50,16 @@ in
     };
 
     services.nginx.virtualHosts."${app}.${config.networking.domain}" = {
-      # useACMEHost = config.networking.domain;
-      # forceSSL = true;
+      useACMEHost = config.networking.domain;
+      forceSSL = true;
+      listen = [{ 
+        addr = "127.0.0.1"; 
+        port = 443; 
+      }];
       locations."^~ /" = {
-        proxyPass = "http://${app}:${builtins.toString port}";
-        extraConfig = "resolver 10.88.0.1;";
+        proxyPass = "http://127.0.0.1:${builtins.toString port}";
+        # Remove the resolver line if you're using localhost
+        # extraConfig = "resolver 10.88.0.1;";
       };
     };
   };
