@@ -52,7 +52,7 @@ in
         WHOOGLE_CONFIG_COUNTRY = "AU";
         WHOOGLE_CONFIG_VIEW_IMAGE = "1";
         WHOOGLE_CONFIG_DISABLE = "1";
-        # Automatically uses the colors from stylix
+        # Automatically use the colors from stylix
         WHOOGLE_CONFIG_STYLE = ":root{"
           + "--whoogle-logo:${c colors.base05};"
           + "--whoogle-page-bg:${c colors.base00};"

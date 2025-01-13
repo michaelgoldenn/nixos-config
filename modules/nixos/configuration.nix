@@ -64,8 +64,8 @@ in
     toybox
     nvtopPackages.full
     # boy oh boy I sure do love my CLI improvements
-    # eza
     fd
+    comma # just run `, Package` to run a package.
     #vesktop # wayland screen share is broken on anything but vesktop :(
     piper
     libratbag
@@ -110,6 +110,9 @@ in
       nurpkgs = pkgs;
     };
   };
+
+
+  nix.optimise.automatic = true; # automatically remove old/unused versions
 
   # lets me use docker :)
   virtualisation = {
