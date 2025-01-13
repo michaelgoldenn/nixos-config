@@ -41,6 +41,10 @@
     xkbVariant = "";
   };
 
+  networking = {
+    domain = "localhost";
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

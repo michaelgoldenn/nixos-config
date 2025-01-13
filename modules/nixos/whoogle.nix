@@ -50,7 +50,6 @@ in
     };
 
     services.nginx.virtualHosts."${app}.${config.networking.domain}" = {
-      # Remove or comment out these lines for local testing
       useACMEHost = config.networking.domain;
       forceSSL = true;
       locations."^~ /" = {
@@ -58,28 +57,5 @@ in
         extraConfig = "resolver 10.88.0.1;";
       };
     };
-
-      # I don't need homepage management
-/*     mySystem.services.homepage.home = mkIf cfg.addToHomepage [
-      {
-        Whoogle = {
-          icon = "whooglesearch.png";
-          href = "https://${app}.${config.networking.domain}";  # Changed from mySystem.domain
-          description = "Google frontend";
-          container = "${app}";
-        };
-      }
-    ]; */
-
-    # commented out for now
-/*     mySystem.services.gatus.monitors = [{
-      name = app;
-      group = "services";
-      url = "https://${app}.${config.networking.domain}/healthz";  # Changed from mySystem.domain
-      interval = "1m";
-      conditions = [ "[CONNECTED] == true" "[STATUS] == 200" "[RESPONSE_TIME] < 50" ];
-    }]; */
-
-
   };
 }
