@@ -75,6 +75,7 @@ in
     logseq
     nix-output-monitor
     openssl
+    legendary-gl
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
