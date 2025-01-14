@@ -78,6 +78,8 @@ in
     legendary-gl
     wineWowPackages.stable
 
+    xorg.xhost
+
     # python stuff, testing for project
     cudaPackages.cudatoolkit
     cudaPackages.cudnn
@@ -90,7 +92,10 @@ in
   services.ratbagd.enable = true;
   
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
-  services.xserver.excludePackages = [ pkgs.xterm ]; # I don't want xterm
+  services.xserver = {
+    enable = true;
+    excludePackages = [ pkgs.xterm ]; # I don't want xterm 
+  };
 
   systemd.services.nbfc_service = {
     enable = true;
