@@ -67,7 +67,7 @@ in
     # boy oh boy I sure do love my CLI improvements
     fd
     comma # just run `, Package` to run a package.
-    #vesktop # wayland screen share is broken on anything but vesktop :(
+    vesktop # wayland screen share is broken on anything but vesktop :(
     piper
     libratbag
     networkmanager-openvpn
