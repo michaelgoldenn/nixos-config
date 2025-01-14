@@ -76,6 +76,7 @@ in
     nix-output-monitor
     openssl
     legendary-gl
+    wineWowPackages.stable
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
