@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, config, pkgs, ... }:
 let
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
@@ -9,6 +9,9 @@ let
     url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
     sha256 = "sha256-J/fkD6yQyedCxKqJmsmBwIEj+qglmYUwyiRmLNrzzo8=";
   };
+
+  colors = config.lib.stylix.colors; # import stylix
+  c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
 
   # extensions that all profiles should share
   # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
@@ -161,5 +164,10 @@ in
   textfox = {
     enable = true;
     profile = "textfox";
+    config = {
+      border = {
+        color = "${c colors.base00}";
+      };
+    };
   };
 }
