@@ -49,7 +49,7 @@ in
         WHOOGLE_CONFIG_THEME = "system";
         WHOOGLE_CONFIG_URL = "https://whoogle.${config.networking.domain}";
         WHOOGLE_CONFIG_GET_ONLY = "1";
-        #WHOOGLE_CONFIG_COUNTRY = "AU";
+        WHOOGLE_CONFIG_COUNTRY = "US";
         WHOOGLE_CONFIG_VIEW_IMAGE = "1";
         WHOOGLE_CONFIG_DISABLE = "1";
         # Automatically use the colors from stylix

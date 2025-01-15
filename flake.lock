@@ -1159,11 +1159,11 @@
         "nur": "nur_2"
       },
       "locked": {
-        "lastModified": 1736632544,
-        "narHash": "sha256-NrpRcDMM3mOWjfJsNBQaMqvkotpqrOqGGi57Lt6E+Rw=",
+        "lastModified": 1736915612,
+        "narHash": "sha256-T2PESm3i06NZ5HybxiBl9JcGmBFV2D33bEt7wu9Nixs=",
         "owner": "adriankarlen",
         "repo": "textfox",
-        "rev": "3eab99e6bac8f8aee7aa63ce3ceb8abdc3324cbb",
+        "rev": "8f63550b32d218aed8d2d0f774cec7857a885a78",
         "type": "github"
       },
       "original": {
