@@ -168,6 +168,7 @@ in
     config = {
       border = {
         color = "#ff00ff";
+        width = "3px";
       };
     };
   };
