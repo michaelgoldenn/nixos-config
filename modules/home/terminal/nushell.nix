@@ -22,7 +22,6 @@
           show_banner = false;
           keybindings = [
             {
-              # add abbreviation support with ctrl + space
               name = "abbr";
               modifier = "control";
               keycode = "space";
@@ -33,10 +32,35 @@
               ];
             }
           ];
+          menus = [
+            {
+              name = "abbr_menu";
+              only_buffer_difference = false;
+              marker = "👀 ";
+              type = {
+                layout = "columnar";
+                columns = 1;
+                col_width = 20;
+                col_padding = 2;
+              };
+              style = {
+                text = "green";
+                selected_text = "green_reverse";
+                description_text = "yellow";
+              };
+              source = {
+                __raw = ''{ |buffer, position|
+                  scope aliases
+                  | where name == $buffer
+                  | each { |elt| {value: $elt.expansion }}
+                }'';
+              };
+            }
+          ];
         };
-        in ''
+      in ''
         $env.config = ${conf};
-        '';
+      '';
    };  
     carapace = {
       enable = true;
