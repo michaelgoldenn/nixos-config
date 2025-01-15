@@ -167,7 +167,7 @@ in
     profile = "textfox";
     config = {
       border = {
-        color = "#ff00ff";
+        color = "rgb(255, 0, 255)";
       };
     };
   };
