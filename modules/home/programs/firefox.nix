@@ -166,7 +166,7 @@ in
     profile = "textfox";
     config = {
       border = {
-        color = "${c colors.base00}";
+        color = "${c colors.base08}";
       };
     };
   };
