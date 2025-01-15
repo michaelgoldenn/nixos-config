@@ -165,10 +165,10 @@ in
   textfox = {
     enable = true;
     profile = "textfox";
-    #config = {
-    #  border = {
-    #    color = "var(--color-white, --color-white)";
-    #  };
-    #};
+    config = {
+      border = {
+        color = "#ff00ff";
+      };
+    };
   };
 }
