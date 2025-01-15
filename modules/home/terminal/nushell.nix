@@ -16,26 +16,52 @@
         lg = "lazygit";
         cd = "z";
       };
-      # See the Nushell docs for more options.
-/*       conf = builtins.toJSON {
-          "$env.config" = {
-            show_banner = false;
+      extraConfig = let
+        config = {
+          show_banner = false;
+          keybindings = [
+            {
               name = "abbr";
               modifier = "control";
               keycode = "space";
-              mode = ["emacs"  "vi_normal" "vi_insert"];
+              mode = ["emacs" "vi_normal" "vi_insert"];
               event = [
-              { send = "menu"; name = "abbr_menu";}
-              { edit = "insertchar"; value = " ";}
+                {
+                  send = "menu";
+                  name = "abbr_menu";
+                }
+                {
+                  edit = "insertchar";
+                  value = " ";
+                }
               ];
-
-              # TODO: get the Menus section from the extraConfig into this toJSON struct
-          };
-      }; */
-      extraConfig = ''
-        $env.config = {
-          show_banner: false
-        }
+            }
+          ];
+          menus = [
+            {
+              name = "abbr_menu";
+              only_buffer_difference = false;
+              marker = "👀 ";
+              type = {
+                layout = "columnar";
+                columns = 1;
+                col_width = 20;
+                col_padding = 2;
+              };
+              style = {
+                text = "green";
+                selected_text = "green_reverse";
+                description_text = "yellow";
+              };
+              source = ''|buffer, position|
+                scope aliases
+                | where name == $buffer
+                | each { |elt| {value: $elt.expansion }}'';
+            }
+          ];
+        };
+      in ''
+        $env.config = ${builtins.toJSON config}
       '';
    };  
     carapace = {
