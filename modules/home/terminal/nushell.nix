@@ -20,6 +20,19 @@
       extraConfig = let
         conf = builtins.toJSON {
           show_banner = false;
+          keybindings = [
+            {
+              # add abbreviation support with ctrl + space
+              name = "abbr";
+              modifier = "control";
+              keycode = "space";
+              mode = ["emacs" "vi_normal" "vi_insert"];
+              event = [
+                { send = "menu"; name = "abbr_menu"; }
+                { edit = "insertchar"; value = " "; }
+              ];
+            }
+          ];
         };
         in ''
         $env.config = ${conf};
