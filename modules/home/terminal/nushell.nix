@@ -26,7 +26,7 @@
         $env.config = ($env.config | upsert keybindings [
           {
             name: "abbr"
-            modifier: "control"
+            # modifier: "control"
             keycode: "space"
             mode: ["emacs" "vi_normal" "vi_insert"]
             event: [
