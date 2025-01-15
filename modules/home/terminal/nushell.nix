@@ -17,49 +17,49 @@
         cd = "z";
       };
       # See the Nushell docs for more options.
-      extraConfig = let
-        conf = builtins.toJSON {
-          show_banner = false;
-          keybindings = [
-            {
-              name = "abbr";
-              modifier = "control";
-              keycode = "space";
-              mode = ["emacs" "vi_normal" "vi_insert"];
-              event = [
-                { send = "menu"; name = "abbr_menu"; }
-                { edit = "insertchar"; value = " "; }
-              ];
+      extraConfig = ''
+        $env.config = {
+          show_banner: false
+        }
+
+        # Keybindings
+        $env.config = ($env.config | upsert keybindings [
+          {
+            name: "abbr"
+            modifier: "control"
+            keycode: "space"
+            mode: ["emacs" "vi_normal" "vi_insert"]
+            event: [
+              { send: "menu" name: "abbr_menu" }
+              { edit: "insertchar" value: " " }
+            ]
+          }
+        ])
+
+        # Menus
+        $env.config = ($env.config | upsert menus [
+          {
+            name: "abbr_menu"
+            only_buffer_difference: false
+            marker: "👀 "
+            type: {
+              layout: "columnar"
+              columns: 1
+              col_width: 20
+              col_padding: 2
             }
-          ];
-          menus = [
-            {
-              name = "abbr_menu";
-              only_buffer_difference = false;
-              marker = "👀 ";
-              type = {
-                layout = "columnar";
-                columns = 1;
-                col_width = 20;
-                col_padding = 2;
-              };
-              style = {
-                text = "green";
-                selected_text = "green_reverse";
-                description_text = "yellow";
-              };
-              source = {
-                __raw = ''{ |buffer, position|
-                  scope aliases
-                  | where name == $buffer
-                  | each { |elt| {value: $elt.expansion }}
-                }'';
-              };
+            style: {
+              text: "green"
+              selected_text: "green_reverse"
+              description_text: "yellow"
             }
-          ];
-        };
-      in ''
-        $env.config = ${conf};
+            source: { |buffer, position|
+              scope aliases
+              | where name == $buffer
+              | each { |elt| {value: $elt.expansion }}
+            }
+          }
+        ])
       '';
    };  
     carapace = {
