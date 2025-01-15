@@ -85,6 +85,7 @@ in
         name = "textfox";
         isDefault = true;
         containersForce = true;
+        #userChrome = " --tf-border-color: #ff00ff;";
         search = {
           default = "Whoogle";
           force = true;
@@ -166,7 +167,7 @@ in
     profile = "textfox";
     config = {
       border = {
-        color = "${c colors.base08}";
+        color = "#ff00ff";
       };
     };
   };
