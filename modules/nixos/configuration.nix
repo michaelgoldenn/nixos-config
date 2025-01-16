@@ -77,8 +77,7 @@ in
     openssl
     legendary-gl
     lutris-free
-    winetricks
-    wine
+    wineWowPackages.stable
     #wineWowPackages.stable
 
     xorg.xhost
