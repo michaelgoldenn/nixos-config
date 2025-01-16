@@ -76,7 +76,9 @@ in
     nix-output-monitor
     openssl
     legendary-gl
-    lutris-free
+    lutris-unwrapped
+    vulkan-loader
+    vulkan-tools
     wineWowPackages.stable
     #wineWowPackages.stable
 
