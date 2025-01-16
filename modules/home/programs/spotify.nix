@@ -30,7 +30,7 @@ in
      #Note: Not letting stylix handle spicetify stuff as I can't get custom themes with stylix atm.
      #theme = spicePkgs.themes.text;
      #colorScheme = "catppuccin-mocha";
-     theme = spicePkgs.themes.catppuccin;
-     colorScheme = "mocha";
+     #theme = spicePkgs.themes.catppuccin;
+     #colorScheme = "mocha";
    };
 }
