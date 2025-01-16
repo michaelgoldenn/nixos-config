@@ -76,6 +76,7 @@ in
     nix-output-monitor
     openssl
     legendary-gl
+    lutris-free
     winetricks
     wine
     #wineWowPackages.stable
