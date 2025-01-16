@@ -77,8 +77,8 @@ in
     openssl
     legendary-gl
     lutris-unwrapped
-    vulkan-loader
-    vulkan-tools
+    #vulkan-loader
+    #vulkan-tools
     wineWowPackages.stable
     #wineWowPackages.stable
 
