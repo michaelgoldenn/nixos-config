@@ -99,6 +99,10 @@
     enable = true;
     enable32Bit = true;
   };
+  environment.sessionVariables = {
+    WINEARCH = "win32";
+    WINEPREFIX = "$HOME/.wine32";
+  };
   hardware.nvidia = {
 
     # Modesetting is required.
