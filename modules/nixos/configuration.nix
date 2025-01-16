@@ -76,7 +76,9 @@ in
     nix-output-monitor
     openssl
     legendary-gl
-    wineWowPackages.stable
+    winetricks
+    wine
+    #wineWowPackages.stable
 
     xorg.xhost
 
