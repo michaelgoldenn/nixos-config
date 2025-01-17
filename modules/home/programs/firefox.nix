@@ -1,4 +1,4 @@
-{ flake, config, pkgs, ... }:
+{ flake, lib, config, pkgs, ... }:
 let
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
@@ -10,6 +10,7 @@ let
     sha256 = "sha256-J/fkD6yQyedCxKqJmsmBwIEj+qglmYUwyiRmLNrzzo8=";
   };
 
+  cfg = config.mySystem;
   colors = config.lib.stylix.colors; # import stylix
   c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
 
@@ -90,13 +91,14 @@ in
               background-color: red !important; # will be obvious if it works
           }";
         search = {
-          default = "Whoogle";
+          default = if cfg.services.whoogle.enable then "Whoogle" else "DuckDuckGo";
+          
           force = true;
 
 
           engines = {
             # hide the other engines
-            "Google".meteData.hidden = true; # no need when I have whoogle
+            #"Google".meteData.hidden = true; # no need when I have whoogle
             "Amazon.com".metaData.hidden = true;
             "Bing".metaData.hidden = true;
             "eBay".metaData.hidden = true;
@@ -111,12 +113,14 @@ in
               }];
               definedAliases = [ ",d" ];
             };
-            "Whoogle" = let whoogle = "0.0.0.0:5000"; in {
-              urls = [{ template = "http://${whoogle}/search?q={searchTerms}"; }];
-              iconUpdateURL = "https://${whoogle}/static/img/favicon/apple-icon-144x144.png";
-              updateInterval = 24 * 60 * 60 * 1000; # every day
-              definedAliases = [ "!wh" ];
-              method = "POST";
+            config = lib.mkIf cfg.services.whoogle.enable {
+              "Whoogle" = let whoogle = "0.0.0.0:5000"; in {
+                urls = [{ template = "http://${whoogle}/search?q={searchTerms}"; }];
+                iconUpdateURL = "https://${whoogle}/static/img/favicon/apple-icon-144x144.png";
+                updateInterval = 24 * 60 * 60 * 1000; # every day
+                definedAliases = [ "!wh" ];
+                method = "POST";
+              };
             };
           };
         };

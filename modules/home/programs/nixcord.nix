@@ -33,7 +33,7 @@ in
           enable = true;
         };
         callTimer = {
-          enable = false; # Disabled as it made me crash on every call join
+          enable = true; # Disabled as it made me crash on every call join
         };
         clearURLs = {
           enable = true;

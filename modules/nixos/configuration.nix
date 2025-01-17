@@ -75,13 +75,6 @@ in
     logseq
     nix-output-monitor
     openssl
-    legendary-gl
-    lutris
-    #vulkan-loader
-    #vulkan-tools
-    wineWowPackages.stable
-    #wineWowPackages.stable
-
     xorg.xhost
 
     # python stuff, testing for project
@@ -144,7 +137,13 @@ in
     };
   };
 
-  mySystem.services.whoogle.enable = true;
+  mySystem = {
+    lutris.enable = true;
+    
+    services = {
+      whoogle.enable = true;
+    };
+  };
 
   programs.nautilus-open-any-terminal = {
     enable = true;
