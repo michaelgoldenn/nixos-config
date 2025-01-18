@@ -9,6 +9,7 @@ in
     enable = true; 
     packages = [
       "app.bluebubbles.BlueBubbles"
+      "org.jdownloader.JDownloader"
     ];
   };
 }

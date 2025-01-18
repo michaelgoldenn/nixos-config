@@ -15,6 +15,7 @@ in
 
     environment.systemPackages = with pkgs; [
       lutris
+      ## Packages I may or may not need. I was just throwing the kitchen sink at the Epic Installer and seeing what worked
       wget
       cabextract
       unzip
@@ -28,6 +29,8 @@ in
       vulkan-headers
       vulkan-loader
       vulkan-validation-layers
+      # EA Installer
+      geckodriver
     ];
   };
 }
