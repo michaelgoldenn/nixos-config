@@ -10,19 +10,24 @@ in
     };
 
   config = lib.mkIf cfg.enable {
-
     programs.nix-ld.enable = true;
-    hardware.graphics.enable32Bit = true ;
-    #hardware.pulseaudio.support32Bit = true;
+    hardware.graphics.enable32Bit = true;
+
     environment.systemPackages = with pkgs; [
       lutris
-      heroic-unwrapped
-
+      wget
+      cabextract
+      unzip
+      p7zip
+      winetricks
       wineWowPackages.stable
-
+      wineWowPackages.waylandFull
+      wine64
+      dxvk
+      vulkan-tools
+      vulkan-headers
+      vulkan-loader
+      vulkan-validation-layers
     ];
-    environment.sessionVariables = {
-      WINEARCH = "win64";
-    };
   };
 }
