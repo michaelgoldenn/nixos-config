@@ -1,6 +1,6 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, pkgs, lib, ... }:
+{ flake, pkgs, lib, config, ... }:
 
 let
   inherit (flake) inputs;
@@ -141,8 +141,11 @@ in
     lutris.enable = true;
     
     services = {
-      whoogle.enable = true;
+      whoogle.enable = false;
     };
+  };
+  home-manager.extraSpecialArgs = {
+    inheritedConfig = config.mySystem;
   };
 
   programs.nautilus-open-any-terminal = {

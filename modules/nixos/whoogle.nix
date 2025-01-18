@@ -1,3 +1,6 @@
+## As of Jan 16, 2024, Whoogle is dead.
+## I'm leaving this up in case it ever comes back online. I had it all hooked up to stylix and everything too :(
+
 { lib
 , config
 , pkgs

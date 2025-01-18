@@ -1,4 +1,4 @@
-{ flake, lib, config, pkgs, ... }:
+{ flake, lib, config, inheritedConfig, pkgs, ... }:
 let
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
@@ -10,9 +10,9 @@ let
     sha256 = "sha256-J/fkD6yQyedCxKqJmsmBwIEj+qglmYUwyiRmLNrzzo8=";
   };
 
-  cfg = config.mySystem;
-  colors = config.lib.stylix.colors; # import stylix
-  c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
+  cfg = inheritedConfig;
+  #colors = config.lib.stylix.colors; # import stylix
+  #c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
 
   # extensions that all profiles should share
   # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
