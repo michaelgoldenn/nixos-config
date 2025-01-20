@@ -29,6 +29,7 @@ in
       vulkan-headers
       vulkan-loader
       vulkan-validation-layers
+      vkd3d-proton
       # EA Installer
       geckodriver
 
