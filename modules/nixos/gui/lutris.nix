@@ -10,6 +10,16 @@ in
     };
 
   config = lib.mkIf cfg.enable {
+    # Add these lines
+    hardware.graphics = {
+      enable = true;
+      #driSupport = true;
+      #driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
     programs.nix-ld.enable = true;
     hardware.graphics.enable32Bit = true;
 
