@@ -31,6 +31,10 @@ in
       vulkan-validation-layers
       # EA Installer
       geckodriver
+
+
+      # Not lutris
+      goldberg-emu
     ];
   };
 }
