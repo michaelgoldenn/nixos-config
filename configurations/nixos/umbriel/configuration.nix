@@ -85,6 +85,10 @@
     packages = with pkgs; [];
   };
 
+  mySystem = {
+    vr.enable = lib.mkForce false;
+  };
+
   # Install firefox.
   programs.firefox.enable = true;
 

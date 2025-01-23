@@ -139,13 +139,14 @@ in
 
   mySystem = {
     lutris.enable = true;
-    wivrn.enable = true;
+    vr.enable = true;
     
     services = {
       whoogle.enable = false;
       #steamvr.runtimeOverride.enable = true;
     };
   };
+
   home-manager.extraSpecialArgs = {
     inheritedConfig = config.mySystem;
   };

@@ -113,7 +113,25 @@ in
               }];
               definedAliases = [ ",d" ];
             };
-            config = lib.mkIf cfg.services.whoogle.enable {
+            "Github Nix" = {
+              urls = [
+                {
+                  template = "https://github.com/search";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}+lang:nix";
+                    }
+                    {
+                      name = "type";
+                      value = "code";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = ["@gn"];
+            };
+            config = lib.mkIf cfg.services.whoogle.enable { # rip whoogle, I just finished customizing you when you died :(
               "Whoogle" = let whoogle = "0.0.0.0:5000"; in {
                 urls = [{ template = "http://${whoogle}/search?q={searchTerms}"; }];
                 iconUpdateURL = "https://${whoogle}/static/img/favicon/apple-icon-144x144.png";
