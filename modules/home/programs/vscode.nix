@@ -5,6 +5,7 @@
 }: let
   inherit (flake) config inputs;
   inherit (inputs) self;
+  cfg = config.mySystem;
   settings = {
     "nix" = {
       "enableLanguageServer" = true;
@@ -18,7 +19,7 @@
         };
       };
     };
-    "terminal.external.linuxExec" = "foot";
+    "terminal.external.linuxExec" = "ghostty";
     "terminal.integrated.profiles.linux" = {
       "nu" = {
         "path" = "nu";

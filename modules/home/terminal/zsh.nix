@@ -9,9 +9,8 @@
       '';
     };
 
-    # For macOS's default shell.
     zsh = {
-      enable = true;
+      enable = false;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       envExtra = ''
@@ -23,8 +22,8 @@
     # Type `z <pat>` to cd to some directory
     zoxide.enable = true;
 
-    # Better shell prmot!
-    starship = {
+    # Better shell prompt!
+/*     starship = {
       enable = true;
       settings = {
         username = {
@@ -42,6 +41,6 @@
           disabled = false;
         };
       };
-    };
+    }; */
   };
 }
