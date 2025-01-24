@@ -35,6 +35,7 @@ in {
       [
         # nix
         jnoortheen.nix-ide
+        mkhl.direnv
         # rust
         tamasfe.even-better-toml
         rust-lang.rust-analyzer
