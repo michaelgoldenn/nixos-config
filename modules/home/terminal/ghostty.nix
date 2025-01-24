@@ -5,7 +5,11 @@ let
 in
 {
   options.opt.${app} = {
-    enable = lib.mkEnableOption "${app}";
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to enable ${app}";
+    };
   };
 
   config = lib.mkIf cfg.enable {

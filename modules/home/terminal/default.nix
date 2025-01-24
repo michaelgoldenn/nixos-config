@@ -5,7 +5,11 @@ let
 in
 {
   options.opt.${name} = {
-    enable = lib.mkEnableOption "${name}";
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enables ${name}";
+    };
     
     default_shell = lib.mkOption {
       type = lib.types.enum [ "nushell" "zsh" ];

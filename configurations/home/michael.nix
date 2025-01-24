@@ -13,10 +13,10 @@ in
   
 
   opt = {
-    ghostty.enable = true;
-    terminal = {
-      enable = true;
-      default_shell = "nushell";
-    };
+    # Made these default
+    #terminal = {
+    #  enable = true;
+    #  default_shell = "nushell";
+    #};
   };
 }
