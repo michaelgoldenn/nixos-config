@@ -120,7 +120,7 @@ in
                   params = [
                     {
                       name = "q";
-                      value = "{searchTerms}+lang:nix";
+                      value = "lang:nix+{searchTerms}";
                     }
                     {
                       name = "type";
@@ -193,7 +193,7 @@ in
     config = {
       border = {
         color = "#ff00ff";
-        width = "3px";
+        #width = "3px";
       };
     };
   };

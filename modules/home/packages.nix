@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, pkgs, mySystem, ... }:
 let
   inherit (flake) config inputs;
   inherit (inputs) self;
@@ -70,6 +70,10 @@ in
   };
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
+  #mySystem = {
+  #  ghostty.enable = true;
+  #};
 
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.

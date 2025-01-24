@@ -71,7 +71,7 @@ in
     piper
     libratbag
     networkmanager-openvpn
-    inputs.ghostty.packages.x86_64-linux.default
+    #inputs.ghostty.packages.x86_64-linux.default
     logseq
     nix-output-monitor
     openssl
@@ -140,6 +140,15 @@ in
   mySystem = {
     lutris.enable = true;
     vr.enable = true;
+
+    #ghostty.enable = true;
+
+    #terminal = {
+      #enable = true;
+      #default_shell = "nushell";
+    #};
+    #nushell.enable = true;
+    #zsh.enable = false;
     
     services = {
       whoogle.enable = false;

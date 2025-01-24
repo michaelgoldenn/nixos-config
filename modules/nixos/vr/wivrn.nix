@@ -4,10 +4,9 @@ let
   cfg = config.mySystem.${app};
 in 
 {
-  options.mySystem.${app} =
-    {
-      enable = lib.mkEnableOption "${app}";
-    };
+  options.mySystem.${app} ={
+    enable = lib.mkEnableOption "${app}";
+  };
   config = lib.mkIf cfg.enable {
     hardware.graphics.extraPackages = [
       pkgs.monado-vulkan-layers
