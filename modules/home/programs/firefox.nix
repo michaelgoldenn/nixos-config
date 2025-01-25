@@ -86,11 +86,8 @@ in
         name = "textfox";
         isDefault = true;
         containersForce = true;
-        userChrome = "
-          #nav-bar {
-              background-color: red !important; # will be obvious if it works
-          }";
         search = {
+          # should eventually change this default to something better
           default = if cfg.services.whoogle.enable then "Whoogle" else "DuckDuckGo";
           
           force = true;
@@ -98,7 +95,7 @@ in
 
           engines = {
             # hide the other engines
-            #"Google".meteData.hidden = true; # no need when I have whoogle
+            #"Google".meteData.hidden = true;
             "Amazon.com".metaData.hidden = true;
             "Bing".metaData.hidden = true;
             "eBay".metaData.hidden = true;
@@ -192,8 +189,7 @@ in
     profile = "textfox";
     config = {
       border = {
-        color = "#ff00ff";
-        #width = "3px";
+        color = "--toolbar-bgcolor";
       };
     };
   };
