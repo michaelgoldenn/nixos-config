@@ -17,7 +17,7 @@ in
       lutris
       ## Packages I may or may not need. I was just throwing the kitchen sink at the Epic Installer and seeing what worked
       wget
-      cabextract
+      cabextract 
       unzip
       p7zip
       winetricks

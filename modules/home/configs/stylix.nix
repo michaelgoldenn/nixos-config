@@ -6,7 +6,7 @@ in
 {
   #stylix.targets.xyz.enable = false;
   stylix = {
-    enable = false;
+    enable = true;
     targets = {
       #firefox.profileNames = ["textfox" "normal"];
       firefox.enable = false;

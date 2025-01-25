@@ -9,7 +9,7 @@ in
   ];
   home-manager.backupFileExtension = "backup"; # need this otherwise stylix runs into other configs and breaks Home Manager
   stylix = {
-    enable = false;
+    enable = true;
 
     image = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/zhichaoh/catppuccin-wallpapers/refs/heads/main/landscapes/shaded_landscape.png";
