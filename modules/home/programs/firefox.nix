@@ -11,8 +11,8 @@ let
   };
 
   cfg = inheritedConfig;
-  #colors = config.lib.stylix.colors; # import stylix
-  #c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
+  colors = config.lib.stylix.colors; # import stylix
+  c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
 
   # extensions that all profiles should share
   # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
@@ -188,8 +188,16 @@ in
     enable = true;
     profile = "textfox";
     config = {
+      background = {
+        color = "${c colors.base00}";
+      };
       border = {
-        color = "--toolbar-bgcolor";
+        color = "${c colors.base03}";
+      };
+      font = { 
+        #family = "Fira Code";
+        #size = "15px";
+        accent = "${c colors.base08}";
       };
     };
   };
