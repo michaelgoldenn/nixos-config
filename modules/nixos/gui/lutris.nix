@@ -20,10 +20,12 @@ in
       cabextract 
       unzip
       p7zip
-      #winetricks
-      #wineWowPackages.staging
-      #wineWowPackages.waylandFull
-      #wine64
+      winetricks
+      wineWowPackages.staging
+      wineWowPackages.waylandFull
+      wine
+      bluez
+      vkd3d-proton
       dxvk
       vulkan-tools
       vulkan-headers
