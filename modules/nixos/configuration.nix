@@ -159,9 +159,9 @@ in
             id = "NCTKRTW-F2F3W2K-LJ2OUND-2XYDWMD-RLW6S3Y-BICDFTX-TIDWZAF-5AB2UAP";
             name = "titania";
           };
-          mirandia = {
-            id = "DESKTOP-DEVICE-ID";
-            name = "mirandia";
+          umbriel = {
+            id = "FMEVS7C-3VGJ2GF-OMYA3MW-CHQAZYC-EEHQ5Y4-CLX2FZH-7JB2LRJ-5UCZ3QP";
+            name = "umbriel";
           };
         };
         obsidian_vault = {
