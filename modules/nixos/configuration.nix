@@ -166,7 +166,7 @@ in
         };
         obsidian_vault = {
           enable = true;
-          devices = [ "titania" "mirandia" ];
+          devices = [ "titania" "umbriel" ];
         };
       };
     };
