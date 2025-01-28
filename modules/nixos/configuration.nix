@@ -152,7 +152,23 @@ in
     
     services = {
       whoogle.enable = false;
-      #steamvr.runtimeOverride.enable = true;
+      syncthing = {
+        enable = true;
+        known_devices = {
+          titania = {
+            id = "NCTKRTW-F2F3W2K-LJ2OUND-2XYDWMD-RLW6S3Y-BICDFTX-TIDWZAF-5AB2UAP";
+            name = "titania";
+          };
+          mirandia = {
+            id = "DESKTOP-DEVICE-ID";
+            name = "mirandia";
+          };
+        };
+        obsidian_vault = {
+          enable = true;
+          devices = [ "titania" "mirandia" ];
+        };
+      };
     };
   };
 
