@@ -9,11 +9,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.nix-ld.enable = true;
-    hardware.graphics.enable32Bit = true;
+    #programs.nix-ld.enable = true;
+    hardware.graphics.extraPackages = with pkgs; [
+      rocmPackages.clr
+    ];
 
     environment.systemPackages = with pkgs; [
       lutris
+      vulkan-tools
     ];
   };
 }
