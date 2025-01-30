@@ -35,10 +35,8 @@
     };
     #sops-nix (secrets manager)
     sops-nix.url = "github:Mic92/sops-nix";
-    
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     github-nix-ci.url = "github:juspay/github-nix-ci";
-
     nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     ghostty.url = "github:ghostty-org/ghostty"; # terminal emulator
   };
