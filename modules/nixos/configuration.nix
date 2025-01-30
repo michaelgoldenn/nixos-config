@@ -137,7 +137,7 @@ in
     };
   };
 
-  mySystem = {
+  mySystem = lib.mkDefault {
     lutris.enable = true;
     vr.enable = true;
 
