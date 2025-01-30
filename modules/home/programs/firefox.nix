@@ -128,6 +128,34 @@ in
               ];
               definedAliases = ["@gn"];
             };
+            "Home Manager" = {
+              urls = [
+                {
+                  template = "https://home-manager-options.extranix.com/";
+                  params = [
+                    {
+                      name = "query";
+                      value = "{searchTerms}+&release=master";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = ["@hm"];
+            };
+            "Nix Search" = {
+              urls = [
+                {
+                  template = "https://mynixos.com/search";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = ["@n"];
+            };
             config = lib.mkIf cfg.services.whoogle.enable { # rip whoogle, I just finished customizing you when you died :(
               "Whoogle" = let whoogle = "0.0.0.0:5000"; in {
                 urls = [{ template = "http://${whoogle}/search?q={searchTerms}"; }];

@@ -1154,15 +1154,15 @@
         "nur": "nur_2"
       },
       "locked": {
-        "lastModified": 1737823588,
-        "narHash": "sha256-aAh4yO6wnj1WYK+b9FZFMFRpUfQVFrXV/Vt3qu72uRQ=",
-        "owner": "adriankarlen",
+        "lastModified": 1738055154,
+        "narHash": "sha256-Ohg4vcz/YuzFDhO6KF+clFk7JV/Gp6IzKltbZWI4xgI=",
+        "owner": "michaelgoldenn",
         "repo": "textfox",
-        "rev": "f3cd08029056d89a5e806ca0555d34ed1bf86752",
+        "rev": "10594a9cc25a7dfc982156d61667e94f5662c216",
         "type": "github"
       },
       "original": {
-        "owner": "adriankarlen",
+        "owner": "michaelgoldenn",
         "repo": "textfox",
         "type": "github"
       }

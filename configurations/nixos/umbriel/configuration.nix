@@ -87,6 +87,7 @@
 
   mySystem = {
     vr.enable = lib.mkForce false;
+    lutris.enable = false;
   };
 
   # Install firefox.
