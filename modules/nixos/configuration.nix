@@ -71,11 +71,11 @@ in
     piper
     libratbag
     networkmanager-openvpn
-    #inputs.ghostty.packages.x86_64-linux.default
     logseq
     nix-output-monitor
     openssl
     xorg.xhost
+    lmstudio
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
@@ -140,15 +140,6 @@ in
   mySystem = lib.mkDefault {
     lutris.enable = true;
     vr.enable = true;
-
-    #ghostty.enable = true;
-
-    #terminal = {
-      #enable = true;
-      #default_shell = "nushell";
-    #};
-    #nushell.enable = true;
-    #zsh.enable = false;
     
     services = {
       whoogle.enable = false;

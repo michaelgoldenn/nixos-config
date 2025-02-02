@@ -1,9 +1,10 @@
-{ ... }:
+{ config, ... }:
 {
   dconf = {
     enable = true;
     settings = {
       ## Interface
+      "org.gnome.desktop.default-applications.terminal".exec = config.opt.terminal.default;
       "org/gnome/desktop/interface".clock-format = "12h";
       "org/gnome/shell" = {
         favorite-apps = ["firefox.desktop" "code.desktop" "discord.desktop" "spotify.desktop" "app.bluebubbles.BlueBubbles.desktop" "foot.desktop"];

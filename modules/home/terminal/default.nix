@@ -1,34 +1,49 @@
 {config, lib, pkgs, ...}:
-let
-  name = "terminal";
-  cfg = config.opt.${name};
-in
 {
-  options.opt.${name} = {
+  ## Terminal
+  options.opt."terminal" = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = true;
-      description = "Enables ${name}";
+      description = "Enables the terminal";
     };
     
-    default_shell = lib.mkOption {
+    default = lib.mkOption {
+      type = lib.types.str;
+      default = "ghostty";
+      description = "Default terminal emulator";
+    };
+  };
+  ## Shell
+  options.opt."shell" = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enables the shell";
+    };
+    
+    default = lib.mkOption {
       type = lib.types.enum [ "nushell" "zsh" ];
       default = "nushell";
       description = "Default shell to use";
     };
   };
 
-  # auto-import
-  imports =
+  imports = 
     with builtins;
     map
       (fn: ./${fn})
       (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
-
-  config = lib.mkIf cfg.enable {
+  ## Terminal
+  config = lib.mkIf config.opt.terminal.enable {
+    home.packages = [ (pkgs.${config.opt.terminal.default}) ];
+    environment.sessionVariables.TERMINAL = config.opt.terminal.default;
+  } //
+  ## Shell
+  lib.mkIf config.opt.shell.enable {
     opt = {
-      nushell.enable = cfg.default_shell == "nushell";
-      zsh.enable = cfg.default_shell == "zsh";
+      nushell.enable = config.opt.shell.default == "nushell";
+      zsh.enable = config.opt.shell.default == "zsh";
     };
   };
 }

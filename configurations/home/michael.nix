@@ -13,10 +13,7 @@ in
   
 
   opt = {
-    # Made these default
-    #terminal = {
-    #  enable = true;
-    #  default_shell = "nushell";
-    #};
+    terminal.default = "ghostty";
+    shell.default = "nushell";
   };
 }
