@@ -4,10 +4,13 @@ let
   inherit (pkgs.nur.repos.rycee) firefox-addons;
 
   # need to do this one in a special way because it got banned from everywhere for copyright violation lol
+  # if you ever get an error about this, that means you need to update the version, go here:
+  # https://gitflic.ru/project/magnolia1234/bpc_uploads
+  # and get the newest version, the update the sha256
   bypass-paywalls-clean = firefox-addons.bypass-paywalls-clean.override rec {
-    version = "3.9.6.4";
+    version = "latest";
     url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
-    sha256 = "sha256-J/fkD6yQyedCxKqJmsmBwIEj+qglmYUwyiRmLNrzzo8=";
+    sha256 = "sha256-mXDE02yM78nv3UBkAP9JNFsm+Gz2bFDhENZjiaLRZ4w=";
   };
 
   cfg = inheritedConfig;
@@ -78,6 +81,17 @@ let
   };
 in
 {
+/*   systemd.services.update-bypass-paywalls = {
+    description = "Update bypass-paywalls-clean hash";
+    script = ''
+      VERSION="latest"
+      URL="https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-''${VERSION}.xpi"
+      NEW_HASH=$(nix-prefetch-url "$URL")
+      sed -i "s|sha256 = \".*\"|sha256 = \"sha256-$NEW_HASH\"|" /path/to/your/nix/file
+    '';
+    before = [ "nixos-rebuild.service" ];
+    wantedBy = [ "nixos-rebuild.service" ];
+  }; */
   programs.firefox = {
     enable = true;
     profiles = {

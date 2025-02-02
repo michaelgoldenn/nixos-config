@@ -9,6 +9,7 @@
           let
             type = (readDir ./.).${fn};
           in
-          (type == "directory") || (stringLength fn >= 4 && substring (stringLength fn - 4) 4 fn == ".nix" && fn != "default.nix"))
+          (type == "directory") || (stringLength fn >= 4 && substring (stringLength fn - 4) 4 fn == ".nix" 
+          && fn != "default.nix"))
         (attrNames (readDir ./.)));
 }

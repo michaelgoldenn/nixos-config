@@ -93,6 +93,7 @@ in
     enable = true;
     excludePackages = [ pkgs.xterm ]; # I don't want xterm 
   };
+  
 
   systemd.services.nbfc_service = {
     enable = true;
