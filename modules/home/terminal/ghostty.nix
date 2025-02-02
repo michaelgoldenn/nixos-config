@@ -15,6 +15,12 @@ in
   config = lib.mkIf cfg.enable {
     programs.ghostty = {
       enable = true;
+      settings = {
+        keybind = [ # https://ghostty.org/docs/config/keybind
+          "ctrl+t=new_tab"
+          "ctrl+w=close_surface"
+        ];
+      };
     };
   };
 }
