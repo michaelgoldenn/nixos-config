@@ -56,6 +56,10 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
+      "github/universal-syncher" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
       "ai/anthropic" = {
         mode = "0440";
         owner = config.users.users.michael.name;
