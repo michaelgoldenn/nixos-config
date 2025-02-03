@@ -21,7 +21,7 @@ let
   # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
   # or run        nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
   # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code  
-  global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+  extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     bitwarden
     ublock-origin
     sponsorblock
@@ -181,7 +181,7 @@ in
             };
           };
         };
-        extensions = global_extensions;
+        extensions = extensions;
         settings = global_settings;
       };
       normal = {
@@ -192,7 +192,6 @@ in
         search = {
           force = true;
         };
-        extensions = global_extensions;
         settings = global_settings;
       };
     };
