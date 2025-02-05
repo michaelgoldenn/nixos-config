@@ -4,15 +4,11 @@ let
   inherit (inputs) self;
 in
 {
-  home.packages = with pkgs; [ obsidian libsecret ];
-/*    programs.obsidian = {
+  programs.obsidian = {
+    enable = true;
+    vaults.test-vault = {
       enable = true;
-      vaults = {
-        obsidian-vault = {
-          enable = true;
-          path = "~/Documents/obsidian-vault";
-        };
-      };
+      path = "~/Documents/home-manager-test";
     };
-*/
+  };
 }

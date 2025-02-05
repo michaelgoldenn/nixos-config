@@ -7,6 +7,7 @@
   inherit (inputs) self;
   cfg = config.mySystem;
   settings = {
+    keyboard.dispatch = "keyCode";
     "nix" = {
       "enableLanguageServer" = true;
       "serverPath" = "nixd";
@@ -28,6 +29,7 @@
     "terminal.integrated.defaultProfile.linux" = "nu"; # Optional: to make nu the default
   };
 in {
+  services.gnome.gnome-keyring.enable = true; # needed for store VS Code auth token 
   programs.vscode = {
     enable = true;
     # want to find new vscode extensions? https://github.com/search?q=language%3ANix+vscode-extensions&type=code good luck
