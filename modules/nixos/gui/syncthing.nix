@@ -34,6 +34,14 @@ in
         default = [];
         description = "List of device names to share the Obsidian vault with";
       };
+      versioning = {
+        type = "staggered";
+        fsPath = "/syncthing/backup";
+        params = {
+          cleanInterval = "3600";
+          maxAge = "31536000";
+        };
+      };
     };
   };
 
