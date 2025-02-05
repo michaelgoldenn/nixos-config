@@ -76,6 +76,7 @@ in
     openssl
     xorg.xhost
     lmstudio
+    ollama
     prusa-slicer
 
     # python stuff, testing for project
