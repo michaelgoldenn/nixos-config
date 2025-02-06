@@ -88,6 +88,9 @@
   mySystem = {
     vr.enable = lib.mkForce false;
     lutris.enable = false;
+    services = {
+      open-webui.enable = false;
+    };
   };
 
   # Install firefox.

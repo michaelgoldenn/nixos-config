@@ -7,6 +7,7 @@
   inherit (inputs) self;
   cfg = config.mySystem;
   settings = {
+    keyboard.dispatch = "keyCode";
     "nix" = {
       "enableLanguageServer" = true;
       "serverPath" = "nixd";

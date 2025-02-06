@@ -51,23 +51,14 @@ in
     rare # "epic games launcher"
     rustdesk
     prismlauncher
-    open-webui
+    #open-webui
     
     #making games
     godot_4
     blender
   ];
 
-  systemd.user.services.open-webui = {
-    Unit = {
-      Description = "Open WebUI Service";
-    };
-    Service = {
-      Environment = "OPEN_WEBUI_DATA_PATH=%h/.local/share/open-webui";
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/.local/share/open-webui";
-      ExecStart = "${pkgs.open-webui}/bin/open-webui serve";
-    };
-  };
+
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
