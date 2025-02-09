@@ -27,7 +27,7 @@
         enable-hot-corners = false;
       };
       "org/gnome/mutter" = {
-        dynamic-workspaces = true; # any amount of workspaces, blank ones are removed
+        #dynamic-workspaces = true; # any amount of workspaces, blank ones are removed
         workspaces-only-on-primary = false;
         edge-tiling = true; # Dragging a window near the edge of the screen will resize it
       };
