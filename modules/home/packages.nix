@@ -52,6 +52,7 @@ in
     rustdesk
     prismlauncher
     #open-webui
+    zoom-us
     
     #making games
     godot_4
