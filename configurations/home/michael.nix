@@ -15,5 +15,6 @@ in
   opt = {
     terminal.default = "ghostty";
     shell.default = "nushell";
+    making-games.enable = true;
   };
 }
