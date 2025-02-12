@@ -142,7 +142,7 @@ in
 
   mySystem = lib.mkDefault {
     lutris.enable = true;
-    vr.enable = true;
+    vr.enable = false;
     
     services = {
       whoogle.enable = false;
@@ -159,6 +159,10 @@ in
           };
         };
         obsidian_vault = {
+          enable = true;
+          devices = [ "titania" "umbriel" ];
+        };
+        one_game_a_week = {
           enable = true;
           devices = [ "titania" "umbriel" ];
         };

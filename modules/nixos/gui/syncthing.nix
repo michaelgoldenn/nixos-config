@@ -43,6 +43,27 @@ in
         };
       };
     };
+    one_game_a_week = {
+      enable = lib.mkEnableOption "one-game-a-week";
+      path = lib.mkOption {
+        type = lib.types.str;
+        default = "/home/michael/projects/one-game-a-week";
+        description = "Path to file";
+      };
+      devices = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+        description = "List of device names to share the directory with";
+      };
+      versioning = {
+        type = "staggered";
+        fsPath = "/syncthing/backup";
+        params = {
+          cleanInterval = "3600";
+          maxAge = "31536000";
+        };
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -58,12 +79,17 @@ in
         devices = cfg.known_devices;
         folders = lib.mkMerge [
           (lib.mkIf cfg.obsidian_vault.enable {
-            "ObsidianVault" = {
+            "obsidian-vault" = {
               path = cfg.obsidian_vault.path;
               devices = cfg.obsidian_vault.devices;
             };
           })
-          # Add more folders here as needed
+          (lib.mkIf cfg.obsidian_vault.enable {
+            "one-game-a-week" = {
+              path = cfg.obsidian_vault.path;
+              devices = cfg.obsidian_vault.devices;
+            };
+          })
         ];
       };
     };

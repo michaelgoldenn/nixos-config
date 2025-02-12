@@ -10,7 +10,8 @@ let
   bypass-paywalls-clean = firefox-addons.bypass-paywalls-clean.override rec {
     version = "latest";
     url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
-    sha256 = "sha256-mXDE02yM78nv3UBkAP9JNFsm+Gz2bFDhENZjiaLRZ4w=";
+    # run nix-prefetch-url "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-latest.xpi"
+    sha256 = "1ikwqpjipfl41bdhyy6viawqmn5dlyw0mmi5gca9nj3gd1jwk2jx";
   };
 
   cfg = inheritedConfig;
