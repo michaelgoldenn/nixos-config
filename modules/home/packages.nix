@@ -52,10 +52,6 @@ in
     rustdesk
     prismlauncher
     #open-webui
-    
-    #making games
-    godot_4
-    blender
   ];
 
 
