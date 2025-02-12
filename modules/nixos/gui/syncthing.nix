@@ -86,7 +86,7 @@ in
             };
           })
           (lib.mkIf cfg.one_game_a_week.enable {
-            "one-game-a-week" = {
+            "One game a week" = {
               path = cfg.one_game_a_week.path;
               devices = cfg.one_game_a_week.devices;
             };
