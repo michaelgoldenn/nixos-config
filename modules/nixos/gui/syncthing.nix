@@ -3,6 +3,7 @@ let
   app = "syncthing";
   cfg = config.mySystem.services.${app};
 in
+# goto http://127.0.0.1:8384/# for syncthing
 {
   options.mySystem.services.${app} = {
     enable = lib.mkEnableOption "enables ${app}";
@@ -84,10 +85,10 @@ in
               devices = cfg.obsidian_vault.devices;
             };
           })
-          (lib.mkIf cfg.obsidian_vault.enable {
+          (lib.mkIf cfg.one_game_a_week.enable {
             "one-game-a-week" = {
-              path = cfg.obsidian_vault.path;
-              devices = cfg.obsidian_vault.devices;
+              path = cfg.one_game_a_week.path;
+              devices = cfg.one_game_a_week.devices;
             };
           })
         ];
