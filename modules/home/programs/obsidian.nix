@@ -4,6 +4,9 @@ let
   inherit (inputs) self;
 in
 {
+  home.packages = with pkgs; [
+    obsidian
+  ];
 /*   programs.obsidian = {
     enable = true;
     vaults.test-vault = {
