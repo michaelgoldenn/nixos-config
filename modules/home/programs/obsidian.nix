@@ -4,11 +4,11 @@ let
   inherit (inputs) self;
 in
 {
-  programs.obsidian = {
+/*   programs.obsidian = {
     enable = true;
     vaults.test-vault = {
       enable = true;
       path = "~/Documents/home-manager-test";
     };
-  };
+  }; */
 }
