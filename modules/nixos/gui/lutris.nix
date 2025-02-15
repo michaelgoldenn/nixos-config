@@ -20,6 +20,7 @@ in
       vulkan-loader       # 64-bit Vulkan loader
       vulkan-validation-layers
       pkgsi686Linux.vulkan-loader  # 32-bit Vulkan loader
+      archipelago
       # wine
       wineWowPackages.stable
       # EA Installer
