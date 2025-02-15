@@ -150,7 +150,7 @@ in
         enable = true;
         known_devices = {
           titania = {
-            id = "NCTKRTW-F2F3W2K-LJ2OUND-2XYDWMD-RLW6S3Y-BICDFTX-TIDWZAF-5AB2UAP";
+            id = "Q4GJXVG-6JIJKWO-ALIV3BP-IVN6423-4V3MTCO-RRLP35U-WEDCFHT-MK7T3Q2";
             name = "titania";
           };
           umbriel = {
