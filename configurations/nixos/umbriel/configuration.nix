@@ -87,7 +87,7 @@
 
   mySystem = {
     vr.enable = lib.mkForce false;
-    lutris.enable = false;
+    lutris.enable = true;
     services = {
       open-webui.enable = false;
     };
