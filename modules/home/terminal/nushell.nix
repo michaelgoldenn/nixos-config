@@ -23,7 +23,7 @@ in
         shellAliases = {
           g = "git";
           lg = "lazygit";
-          cd = "z";
+          #cd = "z";
         };
         extraConfig = ''
         let carapace_completer = {|spans|
