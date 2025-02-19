@@ -15,6 +15,7 @@ in
 
     environment.systemPackages = with pkgs; [
       lutris
+      wget # needed for lutris to install epic games store
       r2modman
       vulkan-tools        # For vulkaninfo diagnostic tool
       vulkan-loader       # 64-bit Vulkan loader
