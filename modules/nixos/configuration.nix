@@ -78,6 +78,7 @@ in
     lmstudio
     ollama
     prusa-slicer
+    p7zip-rar
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
