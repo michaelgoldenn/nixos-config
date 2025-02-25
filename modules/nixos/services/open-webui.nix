@@ -9,11 +9,6 @@
   cfg = config.mySystem.services.${app};
   inherit (flake) inputs;
   inherit (inputs) nixpkgs-stable;
-  originalPackage = nixpkgs-stable.legacyPackages.${pkgs.system}.open-webui;
-  wrappedPackage = pkgs.writeShellScriptBin "open-webui" ''
-    export ANTHROPIC_API_KEY="$(cat "${config.sops.secrets."ai/anthropic".path}")"
-    exec "${originalPackage}/bin/open-webui" "$@"
-  '';
 in {
   options.mySystem.services.${app} = {
     enable = lib.mkEnableOption "${app}";
@@ -21,16 +16,23 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [pkgs.open-webui];
+
+    # First, create a template for the environment file
+    sops.templates."open-webui-env" = {
+      content = ''
+        ANONYMIZED_TELEMETRY=False
+        DO_NOT_TRACK=True
+        SCARF_NO_ANALYTICS=True
+        OLLAMA_API_BASE_URL=http://127.0.0.1:11434/api
+        OLLAMA_BASE_URL=http://127.0.0.1:11434
+        ANTHROPIC_API_KEY=${config.sops.placeholder."ai/anthropic"}
+      '';
+    };
+
     services.open-webui = {
       enable = true;
-      package = wrappedPackage;
-      environment = {
-        ANONYMIZED_TELEMETRY = "False";
-        DO_NOT_TRACK = "True";
-        SCARF_NO_ANALYTICS = "True";
-        OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
-        OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-      };
+      package = nixpkgs-stable.legacyPackages.${pkgs.system}.open-webui;
+      environmentFile = config.sops.templates."open-webui-env".path;
     };
   };
 }
