@@ -12,8 +12,8 @@ in
     enable = true;
 
     image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/zhichaoh/catppuccin-wallpapers/refs/heads/main/landscapes/shaded_landscape.png";
-      sha256 = "sha256-EZmkN1HxI00/uS7PYU+/NN4sBzNNP901WJEET1G92to=";
+      url = "https://raw.githubusercontent.com/orangci/walls/refs/heads/main/isekai.jpg";
+      sha256 = "sha256-PoOg8v5+Zkjf8hz7GvH8paCC29BcyHePgeXMghv9Zpo=";
     };
     #image = selectedWallpaper;
     # themes defined here: https://tinted-theming.github.io/base16-gallery/
