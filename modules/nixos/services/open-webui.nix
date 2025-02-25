@@ -9,6 +9,11 @@
   cfg = config.mySystem.services.${app};
   inherit (flake) inputs;
   inherit (inputs) nixpkgs-stable;
+  originalPackage = nixpkgs-stable.legacyPackages.${pkgs.system}.open-webui;
+  wrappedPackage = pkgs.writeShellScriptBin "open-webui" ''
+    export ANTHROPIC_API_KEY="$(cat "${config.sops.secrets."ai/anthropic".path}")"
+    exec "${originalPackage}/bin/open-webui" "$@"
+  '';
 in {
   options.mySystem.services.${app} = {
     enable = lib.mkEnableOption "${app}";
@@ -18,14 +23,13 @@ in {
     environment.systemPackages = [pkgs.open-webui];
     services.open-webui = {
       enable = true;
-      package = nixpkgs-stable.legacyPackages.${pkgs.system}.open-webui;
+      package = wrappedPackage;
       environment = {
         ANONYMIZED_TELEMETRY = "False";
         DO_NOT_TRACK = "True";
         SCARF_NO_ANALYTICS = "True";
         OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
         OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-        ANTHROPIC_API_KEY = config.sops.secrets."ai/anthropic".path;
       };
     };
   };
