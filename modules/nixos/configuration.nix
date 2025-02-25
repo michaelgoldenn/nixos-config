@@ -142,7 +142,7 @@ in
   };
 
   mySystem = lib.mkDefault {
-    lutris.enable = true;
+    lutris.enable = false;
     vr.enable = false;
     
     services = {
