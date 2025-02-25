@@ -25,9 +25,7 @@ in {
         SCARF_NO_ANALYTICS = "True";
         OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
         OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-        ENABLE_OPENAI_API="true";
-        OPENAI_API_BASE_URL="https://api.anthropic.com/v1";
-        OPENAI_API_KEY = config.sops.secrets."ai/anthropic".path;
+        ANTHROPIC_API_KEY = config.sops.secrets."ai/anthropic".path;
       };
     };
   };
