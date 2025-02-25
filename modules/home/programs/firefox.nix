@@ -11,7 +11,7 @@ let
     version = "latest";
     url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
     # run nix-prefetch-url "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-latest.xpi"
-    sha256 = "1ikwqpjipfl41bdhyy6viawqmn5dlyw0mmi5gca9nj3gd1jwk2jx";
+    sha256 = "sha256-H6wqLTtMVm8Jkc0qVJpPCFf+nSa9HxddBuIKKXJ9+wk=";
   };
 
   cfg = inheritedConfig;
