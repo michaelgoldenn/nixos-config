@@ -79,6 +79,7 @@ in
     ollama
     prusa-slicer
     p7zip-rar
+    claude-code
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
@@ -142,7 +143,7 @@ in
   };
 
   mySystem = lib.mkDefault {
-    lutris.enable = true;
+    lutris.enable = false;
     vr.enable = false;
     
     services = {

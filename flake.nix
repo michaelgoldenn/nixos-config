@@ -4,7 +4,8 @@
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=pull/384860/head"; # for specific pull requests
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
