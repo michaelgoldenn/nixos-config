@@ -76,6 +76,14 @@
     #media-session.enable = true;
   };
 
+  mySystem = {
+    lutris.enable = true;
+    vr.enable = true;
+    services = {
+      open-webui.enable = true;
+    };
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
