@@ -102,18 +102,18 @@
   services.xserver.videoDrivers = ["nvidia"];
   #services.xserver.desktopManager.gnome.sessionManagement = true;
 
-  # Enable OpenGL
+  # Enable OpenGL and Vulkan
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-/*     extraPackages = with pkgs; [
+    extraPackages = with pkgs; [
       vulkan-loader
       vulkan-validation-layers
       vulkan-tools
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
       vulkan-loader
-    ]; */
+    ];
   };
   hardware.nvidia = {
     # Modesetting is required.
