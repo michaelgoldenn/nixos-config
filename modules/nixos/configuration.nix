@@ -79,6 +79,7 @@ in
     ollama
     prusa-slicer
     p7zip-rar
+    speedtest-rs
     claude-code
 
     # python stuff, testing for project
