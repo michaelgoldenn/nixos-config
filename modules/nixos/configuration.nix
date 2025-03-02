@@ -160,6 +160,10 @@ in
             id = "FMEVS7C-3VGJ2GF-OMYA3MW-CHQAZYC-EEHQ5Y4-CLX2FZH-7JB2LRJ-5UCZ3QP";
             name = "umbriel";
           };
+          michaels-iphone = {
+            id = "6R3DOKM-TZSDQZO-FIIBTQF-223PLHW-53KS22E-DZTFSQK-4FTYGT3-XSVBFAX";
+            name = "michaels-iphone";
+          };
         };
         obsidian_vault = {
           enable = true;
