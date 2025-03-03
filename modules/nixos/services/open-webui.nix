@@ -17,11 +17,11 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [pkgs.open-webui];
 
-    # Define the sops-nix secret
+/*     # Define the sops-nix secret
     sops.secrets."ai/anthropic" = {
       # Adjust owner to match the user that runs open-webui
       owner = config.services.open-webui.user or "open-webui";
-    };
+    }; */
 
     services.open-webui = {
       enable = true;
