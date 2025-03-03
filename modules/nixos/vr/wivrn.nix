@@ -8,12 +8,12 @@ in
     enable = lib.mkEnableOption "${app}";
   };
   config = lib.mkIf cfg.enable {
-    hardware.graphics.extraPackages = [
+/*     hardware.graphics.extraPackages = [
       pkgs.monado-vulkan-layers
     ];
     environment.systemPackages = [
       pkgs.monado-vulkan-layers
-    ];
+    ]; */
     services.wivrn = {
       enable = true;
       openFirewall = true;
