@@ -184,7 +184,7 @@ in
             };
           };
         };
-        extensions = global_extensions ++ nice_extensions;
+        extensions.packages = global_extensions ++ nice_extensions;
         settings = global_settings;
       };
       normal = {
@@ -195,7 +195,7 @@ in
         search = {
           force = true;
         };
-        extensions = global_extensions;
+        extensions.packages = global_extensions;
         settings = global_settings;
       };
     };
