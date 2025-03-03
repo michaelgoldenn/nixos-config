@@ -27,14 +27,9 @@ in {
         WEBUI_AUTH = "False";
         OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
         OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+        ## NOTE: CHANGE THIS LATER TO USE SOPS
+        ANTHROPIC_API_KEY = "";
       };
-    };
-
-    # Add the secret to the service's environment through systemd
-    systemd.services.open-webui.serviceConfig = {
-      EnvironmentFile = [
-        "${config.sops.secrets."ai/anthropic".path}"
-      ];
     };
   };
 }
