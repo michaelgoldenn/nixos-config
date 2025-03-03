@@ -27,21 +27,14 @@ in {
         WEBUI_AUTH = "False";
         OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
         OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-        # Remove ANTHROPIC_API_KEY from here
       };
     };
-    
+
     # Add the secret to the service's environment through systemd
-    systemd.services.open-webui = {
-      serviceConfig = {
-        # Load the secret into the environment
-        EnvironmentFile = [ 
-          "${config.sops.secrets."ai/anthropic".path}"
-        ];
-      };
-      # Ensure the secret is available before starting the service
-      # requires = [ "sops-nix.service" ];
-      # after = [ "sops-nix.service" ];
+    systemd.services.open-webui.serviceConfig = {
+      EnvironmentFile = [
+        "${config.sops.secrets."ai/anthropic".path}"
+      ];
     };
   };
 }
