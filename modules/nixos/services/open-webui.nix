@@ -17,12 +17,6 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [pkgs.open-webui];
 
-/*     # Define the sops-nix secret
-    sops.secrets."ai/anthropic" = {
-      # Adjust owner to match the user that runs open-webui
-      owner = config.services.open-webui.user or "open-webui";
-    }; */
-
     services.open-webui = {
       enable = true;
       package = nixpkgs-stable.legacyPackages.${pkgs.system}.open-webui;
@@ -45,8 +39,8 @@ in {
         ];
       };
       # Ensure the secret is available before starting the service
-      requires = [ "sops-nix.service" ];
-      after = [ "sops-nix.service" ];
+      # requires = [ "sops-nix.service" ];
+      # after = [ "sops-nix.service" ];
     };
   };
 }
