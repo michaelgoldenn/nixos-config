@@ -167,7 +167,7 @@ in
         };
         obsidian_vault = {
           enable = true;
-          devices = [ "titania" "umbriel" ];
+          devices = [ "titania" "umbriel" "michaels-iphone" ];
         };
         one_game_a_week = {
           enable = true;
