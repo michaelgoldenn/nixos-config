@@ -173,6 +173,10 @@ in
           enable = true;
           devices = [ "titania" "umbriel" ];
         };
+        making-games = {
+          enable = true;
+          devices = [ "titania" "umbriel" ];
+        };
       };
     };
   };
