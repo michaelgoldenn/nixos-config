@@ -50,9 +50,6 @@ in
       }
     ];
   };
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-27.3.11" # need this for logseq >:( delete later
-  ];
   environment.systemPackages = with pkgs; [
     signal-desktop
     libreoffice
@@ -71,7 +68,6 @@ in
     piper
     libratbag
     networkmanager-openvpn
-    logseq
     nix-output-monitor
     openssl
     xorg.xhost
