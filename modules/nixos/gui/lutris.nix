@@ -21,6 +21,7 @@ in
       vulkan-validation-layers
       pkgsi686Linux.vulkan-loader  # 32-bit Vulkan loader
       archipelago
+      celeste-classic
       # wine
       wineWowPackages.stable
       # EA Installer
