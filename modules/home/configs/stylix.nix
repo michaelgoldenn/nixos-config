@@ -11,6 +11,7 @@ in
       firefox.enable = true;
       firefox.profileNames = ["textfox"];
       spicetify.enable = true;
+      vscode.profileNames = ["default"];
     };
   };
 }

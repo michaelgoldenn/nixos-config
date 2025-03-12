@@ -24,7 +24,7 @@ in
        autoVolume
        songStats
        beautifulLyrics
-       oldSidebar
+       #oldSidebar
      ];
      #Themes are defined here: https://github.com/Gerg-L/spicetify-nix/blob/master/docs/THEMES.md
      #Note: Not letting stylix handle spicetify stuff as I can't get custom themes with stylix atm.
