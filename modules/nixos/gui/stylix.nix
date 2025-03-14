@@ -46,6 +46,10 @@ in
     dracula
     */
     polarity = "dark";
-    cursor.size = 16;
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 20;
+    };
   };
 }

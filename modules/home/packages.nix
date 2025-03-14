@@ -1,12 +1,17 @@
-{ flake, pkgs, mySystem, ... }:
+{ flake, pkgs, ... }:
 let
-  inherit (flake) config inputs;
-  inherit (inputs) self;
+  inherit (flake) inputs;
+  inherit (inputs) nixpkgs-stable;
+  
+  # Get packages from nixpkgs-stable using the current system
+  stablePkgs = import nixpkgs-stable { 
+    system = pkgs.stdenv.hostPlatform.system;
+    # Use the same configuration as the main nixpkgs
+    config = pkgs.config;
+  };
 in
 {
   # Nix packages to install to $HOME
-  #
-  # Search for packages here: https://search.nixos.org/packages
   home.packages = with pkgs; [
     # Unix tools
     ripgrep # Better `grep`
@@ -49,18 +54,15 @@ in
     qbittorrent
     #obsidian
     rare # "epic games launcher"
-    rustdesk
+    stablePkgs.rustdesk  # Use rustdesk from stable
     prismlauncher
     #open-webui
     zoom-us
   ];
 
-
-
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   # Programs natively supported by home-manager.
-  # They can be configured in `programs.*` instead of using home.packages.
   programs = {
     # Better `cat`
     bat.enable = true;
