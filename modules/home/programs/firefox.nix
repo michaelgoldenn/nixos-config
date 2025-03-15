@@ -187,8 +187,19 @@ in
         extensions.packages = global_extensions ++ nice_extensions;
         settings = global_settings;
       };
-      normal = {
+      shyfox = {
         id = 1;
+        name = "shyfox";
+        isDefault = false;
+        containersForce = true;
+        search = {
+          force = true;
+        };
+        extensions.packages = global_extensions ++ nice_extensions;
+        settings = global_settings;
+      };
+      normal = {
+        id = 2;
         name = "normal";
         isDefault = false;
         containersForce = true;
