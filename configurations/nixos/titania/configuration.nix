@@ -12,16 +12,16 @@
 
   # Bootloader.
   # default
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # GRUB
+  #boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEfiVariables = true;
-  #boot.loader.grub = {
-  #  enable = true;
-  #  devices = ["nodev"];
-  #  efiSupport = true;
-  #  useOSProber = true;
-  #};
+  # GRUB
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    devices = ["nodev"];
+    efiSupport = true;
+    useOSProber = true;
+  };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
