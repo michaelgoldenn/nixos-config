@@ -35,6 +35,7 @@ in
     age
     rustup
     gcc
+    scons
     rustlings
     #bacon
 
