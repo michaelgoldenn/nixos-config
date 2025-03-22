@@ -77,6 +77,7 @@ in
     p7zip-rar
     speedtest-rs
     claude-code
+    alsa-lib
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
