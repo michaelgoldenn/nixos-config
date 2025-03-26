@@ -105,7 +105,7 @@ in
         containersForce = true;
         search = {
           # should eventually change this default to something better
-          default = if cfg.services.whoogle.enable then "Whoogle" else "DuckDuckGo";
+          default = if cfg.services.whoogle.enable then "Whoogle" else "ddg";
           
           force = true;
 
@@ -113,12 +113,12 @@ in
           engines = {
             # hide the other engines
             #"Google".meteData.hidden = true;
-            "Amazon.com".metaData.hidden = true;
-            "Bing".metaData.hidden = true;
-            "eBay".metaData.hidden = true;
+            "amazondotcom-us".metaData.hidden = true;
+            "bing".metaData.hidden = true;
+            "ebay".metaData.hidden = true;
 
 
-            "DuckDuckGo" = {
+            "ddg" = {
               urls = [{
                 template = "https://duckduckgo.com";
                 params = [
