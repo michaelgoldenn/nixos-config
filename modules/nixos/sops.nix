@@ -60,6 +60,10 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
+      "github/rumm" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
       "ai/anthropic" = {
         mode = "0440";
         owner = config.users.users.michael.name;
