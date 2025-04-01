@@ -1,9 +1,12 @@
-{ flake, pkgs, config, ... }:
-let
+{
+  flake,
+  pkgs,
+  config,
+  ...
+}: let
   inherit (flake) inputs;
   inherit (inputs) self;
-in
-{ 
+in {
   ## Adding new host:
   # 1. Create Key: `mkdir ~/.config/sops/age` then `age-keygen -o ~/.config/sops/age/keys.txt`
   # 2. Add Key to system: `age-keygen -y ~/.config/sops/age/keys.txt` then put the output into `.sops.yaml`
@@ -12,13 +15,17 @@ in
 
   ## Adding new secret:
   # nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
-    # or `just sops`
+  # or `just sops`
   # Then add the new key to the bottom of this file
   # Then just rebuild and you should be good
 
-
-  imports = [inputs.sops-nix.nixosModules.sops /* inputs.sops-nix.nixosModules.default */];
-  environment.systemPackages =  with pkgs; [ pinentry-curses ];
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+    /*
+    inputs.sops-nix.nixosModules.default
+    */
+  ];
+  environment.systemPackages = with pkgs; [pinentry-curses];
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     age = {
@@ -31,15 +38,15 @@ in
       "github/nixos" = {
         mode = "0440";
         owner = config.users.users.michael.name;
-       };
+      };
       "github/support-coop-game" = {
         mode = "0440";
         owner = config.users.users.michael.name;
-       };
+      };
       "github/portal-game" = {
         mode = "0440";
         owner = config.users.users.michael.name;
-       };
+      };
       "github/obsidian" = {
         mode = "0440";
         owner = config.users.users.michael.name;
@@ -66,7 +73,9 @@ in
       };
       "ai/anthropic" = {
         mode = "0440";
-        owner = config.users.users.michael.name;
+        # Use the default NixOS service user/group
+        owner = "root";
+        group = "root";
       };
       "ai/openai" = {
         mode = "0440";
