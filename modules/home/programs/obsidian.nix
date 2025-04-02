@@ -15,6 +15,7 @@ in {
   #config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       obsidian
+      pandoc # for document conversion
     ];
   #};
   /*

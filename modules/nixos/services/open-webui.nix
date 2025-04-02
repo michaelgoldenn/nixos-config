@@ -12,7 +12,7 @@
 
   # Create a wrapped package that reads the secret at runtime
   wrappedOpenWebUI = pkgs.writeShellScriptBin "open-webui" ''
-    export ANTHROPIC_API_KEY=$(sudo cat /run/secrets/ai/anthropic)
+    export ANTHROPIC_API_KEY=$(cat /run/secrets/ai/anthropic)
     exec "${nixpkgs-stable.legacyPackages.${pkgs.system}.open-webui}/bin/open-webui" "$@"
   '';
 in {
