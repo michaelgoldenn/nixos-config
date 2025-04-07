@@ -218,6 +218,8 @@ in
       # Samba share
       445
       139
+      # calibre file share
+      9090
     ];
     allowedUDPPorts = [
       # localsend
@@ -226,6 +228,8 @@ in
       # Samba share
       445
       139
+      # calibre file share
+      9090
     ];
   };
 }
