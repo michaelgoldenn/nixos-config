@@ -1,5 +1,11 @@
-{ flake, lib, config, inheritedConfig, pkgs, ... }:
-let
+{
+  flake,
+  lib,
+  config,
+  inheritedConfig,
+  pkgs,
+  ...
+}: let
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
 
@@ -16,12 +22,15 @@ let
 
   cfg = inheritedConfig;
   colors = config.lib.stylix.colors; # import stylix
-  c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
+  c = color:
+    if (builtins.substring 0 1 color) == "#"
+    then color
+    else "#${color}";
 
   # extensions that all profiles should share
   # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
   # or run        nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
-  # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code  
+  # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code
   global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     bitwarden
     ublock-origin
@@ -34,13 +43,19 @@ let
     bypass-paywalls-clean
     #untrap-for-youtube
   ];
+  shyFox = pkgs.fetchFromGitHub {
+    owner = "danihek";
+    repo = "ShyFox";
+    rev = "master";
+    hash = "sha256-3OEAuNqqUimhWA04qA19InCSsDFWoVWX5A48pF2mNEY=";
+  };
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
     # general
     "browser.engagement.ctrlTab.has-used" = true;
     "browser.ctrlTab.sortByRecentlyUsed" = true;
     "browser.startup.page" = 3; # Open previous tabs on startup
-    
+
     # extra bits I won't want
     "extensions.pocket.enabled" = false;
     "extensions.screenshots.disabled" = true;
@@ -82,9 +97,9 @@ let
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts" on new tab page
   };
-in
-{
-/*   systemd.services.update-bypass-paywalls = {
+in {
+  /*
+     systemd.services.update-bypass-paywalls = {
     description = "Update bypass-paywalls-clean hash";
     script = ''
       VERSION="latest"
@@ -94,7 +109,8 @@ in
     '';
     before = [ "nixos-rebuild.service" ];
     wantedBy = [ "nixos-rebuild.service" ];
-  }; */
+  };
+  */
   programs.firefox = {
     enable = true;
     profiles = {
@@ -105,11 +121,12 @@ in
         containersForce = true;
         search = {
           # should eventually change this default to something better
-          default = if cfg.services.whoogle.enable then "Whoogle" else "ddg";
-          
+          default =
+            if cfg.services.whoogle.enable
+            then "Whoogle"
+            else "ddg";
+
           force = true;
-
-
           engines = {
             # hide the other engines
             #"Google".meteData.hidden = true;
@@ -117,15 +134,19 @@ in
             "bing".metaData.hidden = true;
             "ebay".metaData.hidden = true;
 
-
             "ddg" = {
-              urls = [{
-                template = "https://duckduckgo.com";
-                params = [
-                  { name = "q"; value = "{searchTerms}"; }
-                ];
-              }];
-              definedAliases = [ ",d" ];
+              urls = [
+                {
+                  template = "https://duckduckgo.com";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = [",d"];
             };
             "Github Nix" = {
               urls = [
@@ -173,12 +194,15 @@ in
               ];
               definedAliases = ["@n"];
             };
-            config = lib.mkIf cfg.services.whoogle.enable { # rip whoogle, I just finished customizing you when you died :(
-              "Whoogle" = let whoogle = "0.0.0.0:5000"; in {
-                urls = [{ template = "http://${whoogle}/search?q={searchTerms}"; }];
+            config = lib.mkIf cfg.services.whoogle.enable {
+              # rip whoogle, I just finished customizing you when you died :(
+              "Whoogle" = let
+                whoogle = "0.0.0.0:5000";
+              in {
+                urls = [{template = "http://${whoogle}/search?q={searchTerms}";}];
                 iconUpdateURL = "https://${whoogle}/static/img/favicon/apple-icon-144x144.png";
                 updateInterval = 24 * 60 * 60 * 1000; # every day
-                definedAliases = [ "!wh" ];
+                definedAliases = ["!wh"];
                 method = "POST";
               };
             };
@@ -216,7 +240,7 @@ in
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       EnableTrackingProtection = {
-        Value= true;
+        Value = true;
         Locked = true;
         Cryptomining = true;
         Fingerprinting = true;
@@ -239,7 +263,7 @@ in
       };
     };
   };
-  imports = [ inputs.textfox.homeManagerModules.default ];
+  imports = [inputs.textfox.homeManagerModules.default];
   textfox = {
     enable = true;
     profile = "textfox";
@@ -250,17 +274,17 @@ in
       border = {
         color = "${c colors.base03}";
       };
-      font = { 
+      font = {
         #family = "Fira Code";
         #size = "15px";
         accent = "${c colors.base08}";
       };
       newtabLogo = ''
-    _____           ____          
-   / __(_)_______  / __/___  _  __
-  / /_/ / ___/ _ \/ /_/ __ \| |/_/
- / __/ / /  /  __/ __/ /_/ />  <  
-/_/ /_/_/   \___/_/  \____/_/|_|  
+            _____           ____
+           / __(_)_______  / __/___  _  __
+          / /_/ / ___/ _ \/ /_/ __ \| |/_/
+         / __/ / /  /  __/ __/ /_/ />  <
+        /_/ /_/_/   \___/_/  \____/_/|_|
       '';
     };
   };

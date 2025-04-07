@@ -59,6 +59,7 @@ in
     prismlauncher
     #open-webui
     zoom-us
+    calibre
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
