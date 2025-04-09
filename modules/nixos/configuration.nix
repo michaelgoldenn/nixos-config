@@ -220,6 +220,7 @@ in
       139
       # calibre file share
       9090
+      2222
     ];
     allowedUDPPorts = [
       # localsend
@@ -230,6 +231,7 @@ in
       139
       # calibre file share
       9090
+      2222
     ];
   };
 }
