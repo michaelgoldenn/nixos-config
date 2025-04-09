@@ -29,31 +29,33 @@ in {
           #cd = "z";
         };
         extraConfig = ''
-          carapace_completer = {|spans|
+          def carapace_completer [spans: list] {
             let cmd = if ($spans | length) > 0 { $spans.0 } else { "" }
             let expanded_alias = (scope aliases | where name == $cmd | get -i 0.expansion) | default $cmd
             carapace $expanded_alias nushell $spans | from json
           }
+
           $env.config = {
             show_banner: false,
             completions: {
-            case_sensitive: false # case-sensitive completions
-            quick: true    # set to false to prevent auto-selecting completions
-            partial: true    # set to false to prevent partial filling of the prompt
-            algorithm: "fuzzy"    # prefix or fuzzy
-            external: {
-            # set to false to prevent nushell looking into $env.PATH to find more suggestions
+              case_sensitive: false  # case-sensitive completions
+              quick: true            # set to false to prevent auto-selecting completions
+              partial: true          # set to false to prevent partial filling of the prompt
+              algorithm: "fuzzy"     # prefix or fuzzy
+              external: {
+                # set to false to prevent nushell looking into $env.PATH to find more suggestions
                 enable: true
-            # set to lower can improve completion performance at the cost of omitting some options
+                # set to lower can improve completion performance at the cost of omitting some options
                 max_results: 100
-                completer: $carapace_completer # check 'carapace_completer'
+                completer: $carapace_completer  # use the function we defined above
               }
             }
           }
+
           $env.PATH = ($env.PATH |
-          split row (char esep) |
-          prepend /home/myuser/.apps |
-          append /usr/bin/env
+            split row (char esep) |
+            prepend /home/myuser/.apps |
+            append /usr/bin/env
           )
         '';
       };
