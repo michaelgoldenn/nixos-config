@@ -35,6 +35,7 @@
       "org/gnome/shell".disable-user-extensions = false;
       "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
         all-windows-saverestore-window-positions.extensionUuid
+        fuzzy-app-search.extensionUuid
         gsconnect.extensionUuid
       ];
     };
