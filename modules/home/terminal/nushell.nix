@@ -29,10 +29,8 @@ in {
           #cd = "z";
         };
         extraConfig = ''
-          def carapace_completer [spans: list] {
-            let cmd = if ($spans | length) > 0 { $spans.0 } else { "" }
-            let expanded_alias = (scope aliases | where name == $cmd | get -i 0.expansion) | default $cmd
-            carapace $expanded_alias nushell $spans | from json
+          let carapace_completer = {|spans|
+            carapace $spans.0 nushell $spans | from json
           }
 
           $env.config = {
@@ -45,15 +43,19 @@ in {
               external: {
                 enable: true
                 max_results: 100
-                completer: carapace_completer  # No $ prefix when referencing the function
+                completer: $carapace_completer
               }
             }
           }
 
-          $env.PATH = ($env.PATH |
-            split row (char esep) |
-            prepend /home/myuser/.apps |
-            append /usr/bin/env
+          # Update PATH to include Nix profiles and custom paths
+          $env.PATH = (
+            $env.PATH
+            | split row (char esep)
+            | prepend /home/myuser/.apps
+            | append /usr/bin/env
+            | append ~/.nix-profile/bin    # Nix user profile
+            | append /nix/var/nix/profiles/default/bin  # System Nix profile
           )
         '';
       };
