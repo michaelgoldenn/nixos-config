@@ -1,10 +1,13 @@
-{ pkgs, config, lib, ... }:
-let 
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   app = "nushell";
   cfg = config.opt.${app};
-in 
-{
-  options.opt.${app} ={
+in {
+  options.opt.${app} = {
     enable = lib.mkEnableOption "${app}";
   };
   config = lib.mkIf cfg.enable {
@@ -16,7 +19,7 @@ in
         '';
         enableCompletion = true;
       };
-      nushell = { 
+      nushell = {
         enable = true;
         # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
         #configFile.source = ./config.nu;
@@ -26,39 +29,41 @@ in
           #cd = "z";
         };
         extraConfig = ''
-        let carapace_completer = {|spans|
-        carapace $spans.0 nushell $spans | from json
-        }
-        $env.config = {
-          show_banner: false,
-          completions: {
-          case_sensitive: false # case-sensitive completions
-          quick: true    # set to false to prevent auto-selecting completions
-          partial: true    # set to false to prevent partial filling of the prompt
-          algorithm: "fuzzy"    # prefix or fuzzy
-          external: {
-          # set to false to prevent nushell looking into $env.PATH to find more suggestions
-              enable: true 
-          # set to lower can improve completion performance at the cost of omitting some options
-              max_results: 100 
-              completer: $carapace_completer # check 'carapace_completer' 
+          carapace_completer = {|spans|
+            let cmd = if ($spans | length) > 0 { $spans.0 } else { "" }
+            let expanded_alias = (scope aliases | where name == $cmd | get -i 0.expansion) | default $cmd
+            carapace $expanded_alias nushell $spans | from json
+          }
+          $env.config = {
+            show_banner: false,
+            completions: {
+            case_sensitive: false # case-sensitive completions
+            quick: true    # set to false to prevent auto-selecting completions
+            partial: true    # set to false to prevent partial filling of the prompt
+            algorithm: "fuzzy"    # prefix or fuzzy
+            external: {
+            # set to false to prevent nushell looking into $env.PATH to find more suggestions
+                enable: true
+            # set to lower can improve completion performance at the cost of omitting some options
+                max_results: 100
+                completer: $carapace_completer # check 'carapace_completer'
+              }
             }
           }
-        } 
-        $env.PATH = ($env.PATH | 
-        split row (char esep) |
-        prepend /home/myuser/.apps |
-        append /usr/bin/env
-        )
+          $env.PATH = ($env.PATH |
+          split row (char esep) |
+          prepend /home/myuser/.apps |
+          append /usr/bin/env
+          )
         '';
-    };  
+      };
       carapace = {
         enable = true;
         enableNushellIntegration = true;
       };
       zoxide = {
         enable = true;
-        enableNushellIntegration = true; 
+        enableNushellIntegration = true;
       };
     };
     home.sessionVariables = {
