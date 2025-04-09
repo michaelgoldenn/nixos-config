@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, pkgs, ...}: {
   dconf = {
     enable = true;
     settings = {
@@ -9,7 +8,7 @@
       "org/gnome/shell" = {
         favorite-apps = ["firefox.desktop" "code.desktop" "discord.desktop" "spotify.desktop" "app.bluebubbles.BlueBubbles.desktop" "foot.desktop"];
       };
-"org/gnome/settings-daemon/plugins/media-keys" = {
+      "org/gnome/settings-daemon/plugins/media-keys" = {
         previous = ["<Ctrl>F9"];
         play = ["<Ctrl>F10"];
         next = ["<Ctrl>F11"];
@@ -32,6 +31,12 @@
         edge-tiling = true; # Dragging a window near the edge of the screen will resize it
       };
       "org/gnome/shell/app-switcher".current-workspace-only = true;
+      # Extensions
+      "org/gnome/shell".disable-user-extensions = false;
+      "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
+        all-windows-saverestore-window-positions.extensionUuid
+        gsconnect.extensionUuid
+      ];
     };
   };
 }
