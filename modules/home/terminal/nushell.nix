@@ -26,6 +26,7 @@ in {
         shellAliases = {
           g = "git";
           lg = "lazygit";
+          code = "codium";
           #cd = "z";
         };
         extraConfig = ''

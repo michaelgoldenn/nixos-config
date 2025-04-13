@@ -1,3 +1,4 @@
+# Actually uses VSCodium, just vscode without as much microsoft telemetry
 {
   flake,
   pkgs,
