@@ -73,6 +73,7 @@ in
     speedtest-rs
     claude-code
     alsa-lib
+    unityhub
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
