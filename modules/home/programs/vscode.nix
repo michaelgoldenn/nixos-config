@@ -43,9 +43,9 @@ in {
             jnoortheen.nix-ide
             mkhl.direnv
             # rust
-            tamasfe.even-better-toml
             rust-lang.rust-analyzer
-            formulahendry.code-runner
+            vadimcn.vscode-lldb
+            tamasfe.even-better-toml
             github.vscode-github-actions
             # python
             ms-python.python
