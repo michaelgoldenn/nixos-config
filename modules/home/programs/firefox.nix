@@ -13,11 +13,26 @@
   # if you ever get an error about this, that means you need to update the version, go here:
   # https://gitflic.ru/project/magnolia1234/bpc_uploads
   # and get the newest version, the update the sha256
-  bypass-paywalls-clean = firefox-addons.bypass-paywalls-clean.override rec {
-    version = "latest";
-    url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${version}.xpi";
-    # run nix-prefetch-url "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-latest.xpi"
-    sha256 = "sha256-feTtEQdxOA2sIu7PB4BsljjwoyN8yIZ9pXrQ/AepyMM=";
+  bypass-paywalls-version = "latest";
+  bypass-paywalls-clean = pkgs.firefox-unwrapped.stdenv.mkDerivation {
+    pname = "bypass-paywalls-clean";
+    version = bypass-paywalls-version;
+    src = pkgs.fetchurl {
+      url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${bypass-paywalls-version}.xpi";
+      sha256 = "sha256-VIcHif8gA+11oL5AsADaHA6qfWT8+S0A8msaYE2ivns=";
+    };
+    buildCommand = ''
+      mkdir -p $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+      cp $src $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi
+    '';
+
+    meta = with lib; {
+      description = "Bypass Paywalls Clean";
+      homepage = "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean";
+      license = licenses.unfreeRedistributable;
+      maintainers = [maintainers.yourself];
+      platforms = platforms.all;
+    };
   };
 
   cfg = inheritedConfig;
@@ -105,12 +120,13 @@ in {
       VERSION="latest"
       URL="https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-''${VERSION}.xpi"
       NEW_HASH=$(nix-prefetch-url "$URL")
-      sed -i "s|sha256 = \".*\"|sha256 = \"sha256-$NEW_HASH\"|" /path/to/your/nix/file
+      sed -i "s|sha256 = \".*\"|sha256 = \"sha256-$NEW_HASH\"|" /etc/nixos/configurations/modules/home/programs/firefox.nix
     '';
-    before = [ "nixos-rebuild.service" ];
-    wantedBy = [ "nixos-rebuild.service" ];
+    before = ["nixos-rebuild.service"];
+    wantedBy = ["nixos-rebuild.service"];
   };
   */
+
   programs.firefox = {
     enable = true;
     profiles = {
@@ -256,8 +272,8 @@ in {
       #extension specific settings
       ExtensionSettings = {
         #bypass paywalls clean: https://gitflic.ru/project/magnolia1234/bpc_uploads
-        "${bypass-paywalls-clean.addonId}" = {
-          install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${bypass-paywalls-clean.addonId}.xpi";
+        "magnolia1234@bypass_paywalls_clean" = {
+          install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi";
           installation_mode = "force_installed";
         };
       };
