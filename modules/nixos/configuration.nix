@@ -29,12 +29,6 @@ in
 
   services.openssh.enable = true;
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-
   services.flatpak = {
     enable = true;
     uninstallUnmanaged = true;
