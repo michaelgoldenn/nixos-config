@@ -89,7 +89,7 @@
     lutris.enable = true;
     vr.enable = true;
     services = {
-      open-webui.enable = true;
+      open-webui.enable = false;
     };
   };
 
