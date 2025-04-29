@@ -25,7 +25,7 @@ in {
       #archipelago
       celeste-classic
       # wine
-      #wineWowPackages.stable
+      wineWowPackages.stable
       # EA Installer
       #geckodriver
     ];
