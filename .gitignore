@@ -1,3 +1,4 @@
 result
 .direnv
 bash/videos
+modules/nixos/private.key
