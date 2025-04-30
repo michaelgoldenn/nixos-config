@@ -4,9 +4,8 @@
   in {
     wg0 = {
       # IP address of this machine in the *tunnel network*
-      address = [
-        "10.10.10.7/32"
-      ];
+      address = ["10.10.10.7/32"];
+      dns = ["10.6.24.1" "10.10.10.1"];
 
       # To match firewall allowedUDPPorts (without this wg
       # uses random port numbers).
