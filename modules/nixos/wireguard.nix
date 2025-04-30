@@ -13,7 +13,7 @@
       listenPort = 51820;
 
       # Path to the private key file.
-      privateKeyFile = "/etc/nixos/configuations/modules/nixos/private.key";
+      privateKeyFile = "/etc/nixos/modules/nixos/private.key";
 
       peers = [
         {
