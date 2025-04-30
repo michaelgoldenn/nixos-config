@@ -15,7 +15,7 @@ in
     #  enable = lib.mkEnableOption "${app}";
     #};
     #config = lib.mkIf cfg.enable {
-      imports = [inputs.nixcord.homeManagerModules.nixcord];
+      imports = [inputs.nixcord.homeModules.nixcord];
       programs.nixcord = {
         enable = true; # also installs discord
         quickCss = "";

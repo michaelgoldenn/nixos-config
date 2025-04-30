@@ -5,7 +5,10 @@ let
 in
 {
   # Enable WireGuard
-  networking.firewall.allowedUDPPorts = [51820];
+  networking.firewall = {
+    allowedUDPPorts = [51820];
+    checkReversePath = false;
+  };
   networking.wireguard.enable = true;
   networking.wireguard.interfaces = {
      #"wg0" is the network interface name. You can name the interface arbitrarily.
@@ -19,7 +22,7 @@ in
           # Public key of the server (not a file path).
           publicKey = "50Wn74uprGinf0UmHxayezL4JBBZph/IbipNejyi+ic=";
           # Forward all the traffic via VPN.
-          allowedIPs = [ "0.0.0.0/0" ];
+          allowedIPs = [ "10.6.24.0/24" ];
           # Or forward only particular subnets
           #allowedIPs = [ "10.100.0.1" "11.111.11.0/22" ];
           # Set this to the server IP and port.
