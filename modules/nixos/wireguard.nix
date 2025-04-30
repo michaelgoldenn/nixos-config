@@ -14,7 +14,6 @@
 
       # Path to the private key file.
       privateKeyFile = "/etc/nixos/modules/nixos/private.key";
-
       peers = [
         {
           publicKey = "50Wn74uprGinf0UmHxayezL4JBBZph/IbipNejyi+ic=";
