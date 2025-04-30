@@ -19,7 +19,7 @@ in
           # Public key of the server (not a file path).
           publicKey = "50Wn74uprGinf0UmHxayezL4JBBZph/IbipNejyi+ic=";
           # Forward all the traffic via VPN.
-          allowedIPs = [ "10.6.24.0/24" ];
+          allowedIPs = [ "0.0.0.0/0" ];
           # Or forward only particular subnets
           #allowedIPs = [ "10.100.0.1" "11.111.11.0/22" ];
           # Set this to the server IP and port.
