@@ -19,7 +19,7 @@
     version = bypass-paywalls-version;
     src = pkgs.fetchurl {
       url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${bypass-paywalls-version}.xpi";
-      sha256 = "sha256-VIcHif8gA+11oL5AsADaHA6qfWT8+S0A8msaYE2ivns=";
+      sha256 = "sha256-tCRcPXGCfMKnic6/2nnUimFEqay+i2LzcHhscGy2sho=";
     };
     buildCommand = ''
       mkdir -p $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
