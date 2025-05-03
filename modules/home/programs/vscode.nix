@@ -39,6 +39,8 @@ in {
       default = {
         extensions = with pkgs.vscode-extensions;
           [
+            # general
+            ms-vscode-remote.remote-ssh
             # nix
             jnoortheen.nix-ide
             mkhl.direnv
