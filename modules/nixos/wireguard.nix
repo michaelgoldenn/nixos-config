@@ -1,11 +1,24 @@
-{pkgs, ...}: {
+{pkgs, lib, config, ...}: {
   networking.wg-quick.interfaces = let
     oliver_server_ip = "casptech.net";
     michael_server_ip = "";
+    
+    # Get the hostname of the current machine
+    hostname = config.networking.hostName;
+    
+    # Map hostnames to their respective WireGuard addresses
+    addressMap = {
+      "titania" = "10.10.10.7";
+      "umbriel" = "10.10.10.17";
+      # Add more hostnames and addresses as needed
+    };
+    
+    # Get the address for the current hostname, with a fallback
+    currentAddress = addressMap.${hostname} or "10.10.10.100";
   in {
     oliver-server = {
       # IP address of this machine in the *tunnel network*
-      address = ["10.10.10.7/32"];
+      address = ["${currentAddress}/32"];
       dns = ["10.6.24.1" "10.10.10.1"];
       autostart = false;
       # To match firewall allowedUDPPorts (without this wg
