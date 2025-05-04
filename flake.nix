@@ -41,6 +41,7 @@
     github-nix-ci.url = "github:juspay/github-nix-ci";
     nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     ghostty.url = "github:ghostty-org/ghostty"; # terminal emulator
+    vscode-extensions.url  = "github:nix-community/nix-vscode-extensions"; # Allows downloading VSCodium extensions from the normal MS marketplace
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
