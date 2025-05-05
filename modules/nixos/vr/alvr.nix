@@ -9,5 +9,7 @@
       openFirewall = true;
     };
     programs.adb.enable = true;
+    users.users.michael.extraGroups = ["adbusers"];
+    services.udev.packages = [ pkgs.android-udev-rules ];
   };
 }
