@@ -38,6 +38,7 @@ let
       port=1197
       proto-tcp=no
       ca=${piaCertificateFile}
+      block-ipv6=yes
 
       [ipv4]
       method=auto
