@@ -52,15 +52,23 @@ in {
   networking.nftables = {
     enable = true;
     checkRuleset = false;
-    tables.filter = {
-      family = "ip"; # or "inet" if you want one table for both v4 + v6
-      content = ''
-        chain forward_cam_out {
-          type filter hook forward priority 0;
-          iif "${camIface}" ip daddr != ${camSubnet} drop \
-            comment "Block camera → Internet when you’re ready"
-        }
-      '';
+  tables.filter = {
+    family = "ip";
+    content = ''
+      chain forward_cam_out {
+        type filter hook forward priority 0;
+        # --- Temporarily disabled for monitoring ---
+        iif "${camIface}" ip daddr != ${camSubnet} log prefix "CAM_FWD_OUT: " accept \
+          comment "Log and allow camera → Internet during monitoring"
+
+        # --- Add accept rule (optional, default policy might be accept) ---
+        # Accept traffic coming from the camera interface for now
+        # This might not be strictly necessary if your default forward policy is ACCEPT
+        # but it makes the intent clear.
+        iif "${camIface}" accept comment "Allow camera traffic for monitoring"
+      }
+    '';
     };
   };
+  #networking.ip.forwarding = true;
 }
