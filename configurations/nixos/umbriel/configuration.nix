@@ -1,14 +1,16 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -36,7 +38,7 @@
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
-  
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -51,10 +53,10 @@
   services.tlp = {
     enable = true;
     settings = {
-      START_CHARGE_THRESH_BAT0=75;
-      STOP_CHARGE_THRESH_BAT0=80;
-      START_CHARGE_THRESH_BAT1=75;
-      STOP_CHARGE_THRESH_BAT1=80;
+      START_CHARGE_THRESH_BAT0 = 75;
+      STOP_CHARGE_THRESH_BAT0 = 80;
+      START_CHARGE_THRESH_BAT1 = 75;
+      STOP_CHARGE_THRESH_BAT1 = 80;
     };
   };
 
@@ -81,7 +83,7 @@
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = ["networkmanager" "wheel" "libvirtd"];
     packages = with pkgs; [];
   };
 
@@ -106,8 +108,9 @@
     vulkan-headers
     vulkan-validation-layers
     xorg.libxcb
+    libva-utils
   ];
-  
+
   environment.sessionVariables = {
     FLAKEREF = "/etc/nixos"; # for nh
   };
@@ -116,17 +119,26 @@
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
+    extraPackages = with pkgs; [
+      # 64‑bit VA‑API libs
+      intel-media-driver # modern “iHD” driver (Gen 9 → Arc)
+      intel-vaapi-driver # legacy “i965” driver – still handy for Firefox
+      libvdpau-va-gl # optional VDPAU→VAAPI bridge
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      intel-media-driver # 32‑bit libs for Steam / ALVR
+      intel-vaapi-driver
+    ];
   };
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
-
     # Modesetting is required.
     modesetting.enable = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
     powerManagement.enable = false;
 
@@ -136,15 +148,15 @@
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
 
     # Enable the Nvidia settings menu,
-	  # accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
@@ -156,16 +168,16 @@
       offload = {
         enable = true;
         enableOffloadCmd = true;
-		  };
+      };
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };
   };
+  environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD"; # pick the modern driver
 
   services.xserver.displayManager.sessionCommands = ''
-      ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
+    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
   '';
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
