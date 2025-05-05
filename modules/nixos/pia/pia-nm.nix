@@ -43,6 +43,9 @@ let
       method=auto
       ${lib.optionalString (cfg.passwordFile != null) ''
 
+      [ipv6]
+      method=disabled
+
       [vpn-secrets]
       password=@PASSWORD@
       ''}
