@@ -8,5 +8,6 @@
       enable = true;
       openFirewall = true;
     };
+    programs.adb.enable = true;
   };
 }
