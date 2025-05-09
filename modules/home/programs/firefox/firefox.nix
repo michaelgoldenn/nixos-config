@@ -216,7 +216,13 @@ in {
           search = {
             force = true;
           };
-          extensions.packages = global_extensions ++ nice_extensions;
+          extensions.packages =
+            global_extensions
+            ++ nice_extensions
+            ++ [
+              inputs.firefox-addons.packages."x86_64-linux".sidebery
+              inputs.firefox-addons.packages."x86_64-linux".userchrome-toggle-extended
+            ];
           settings =
             global_settings
             // {
