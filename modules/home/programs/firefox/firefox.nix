@@ -58,12 +58,6 @@
     bypass-paywalls-clean
     #untrap-for-youtube
   ];
-  shyFox = pkgs.fetchFromGitHub {
-    owner = "danihek";
-    repo = "ShyFox";
-    rev = "master";
-    hash = "sha256-3OEAuNqqUimhWA04qA19InCSsDFWoVWX5A48pF2mNEY=";
-  };
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
     # general
@@ -113,20 +107,6 @@
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts" on new tab page
   };
 in {
-  /*
-     systemd.services.update-bypass-paywalls = {
-    description = "Update bypass-paywalls-clean hash";
-    script = ''
-      VERSION="latest"
-      URL="https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-''${VERSION}.xpi"
-      NEW_HASH=$(nix-prefetch-url "$URL")
-      sed -i "s|sha256 = \".*\"|sha256 = \"sha256-$NEW_HASH\"|" /etc/nixos/configurations/modules/home/programs/firefox.nix
-    '';
-    before = ["nixos-rebuild.service"];
-    wantedBy = ["nixos-rebuild.service"];
-  };
-  */
-
   programs.firefox = {
     enable = true;
     profiles = {
@@ -227,17 +207,47 @@ in {
         extensions.packages = global_extensions ++ nice_extensions;
         settings = global_settings;
       };
-      shyfox = {
-        id = 1;
-        name = "shyfox";
-        isDefault = false;
-        containersForce = true;
-        search = {
-          force = true;
-        };
-        extensions.packages = global_extensions ++ nice_extensions;
-        settings = global_settings;
-      };
+      shyfox =
+        {
+          id = 1;
+          name = "shyfox";
+          isDefault = false;
+          containersForce = true;
+          search = {
+            force = true;
+          };
+          extensions.packages = global_extensions ++ nice_extensions;
+          settings =
+            global_settings
+            // {
+              # shyfox specific extensions
+              "sidebar.revamp" = false;
+              "layout.css.has-selector.enabled" = true;
+              "browser.urlbar.suggest.calculator" = true;
+              "browser.urlbar.unitConversion.enabled" = true;
+              "browser.urlbar.trimHttps" = true;
+              "browser.urlbar.trimURLs" = true;
+              "widget.gtk.rounded-bottom-corners.enabled" = true;
+              "widget.gtk.ignore-bogus-leave-notify" = "1";
+            };
+        }
+        // (
+          let
+            theme = pkgs.callPackage ./shyfox_import.nix {};
+          in {
+            userChrome = ''
+              @import "${theme}/lib/shyfox/userChrome.css";
+
+              /* Minor tweaks */
+              :root, #screenshots-component * {
+                --sdbr-wdt: 375px;
+              }
+            '';
+            userContent = ''
+              @import "${theme}/lib/shyfox/userContent.css";
+            '';
+          }
+        );
       normal = {
         id = 2;
         name = "normal";
