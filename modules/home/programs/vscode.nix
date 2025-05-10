@@ -28,6 +28,14 @@
       };
     };
     "terminal.integrated.defaultProfile.linux" = "nu"; # Optional: to make nu the default
+    # make it smooooth
+    "editor.smoothScrolling" = true;
+    "editor.cursorBlinking" = "smooth";
+    "editor.cursorSmoothCaretAnimation" = "on";
+    "workbench.list.smoothScrolling" = true;
+    "terminal.integrated.smoothScrolling" = true;
+    "terminal.integrated.cursorBlinking" = true;
+
   };
 in {
   programs.vscode = {

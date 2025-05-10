@@ -35,6 +35,25 @@
     };
   };
 
+  sidebery_declarative_PR = pkgs.buildFirefoxXpiAddon rec {
+    pname    = "sidebery";
+    version  = "5.3.3-pr2016";
+    addonId  = "{3c078156-979c-498b-8990-85f7987dd929}";
+
+    src = pkgs.fetchFromGitHub {
+      owner  = "mbnuqw";
+      repo   = "sidebery";
+      rev    = "15cb2a292cb927f8f0b580a7af1c5b72ff37c619";
+      hash   = pkgs.lib.fakeSha256;
+    };
+
+    meta = with pkgs.lib; {
+      description = "Sidebery built from PR #2016 (managed-storage support)";
+      homepage    = "https://github.com/mbnuqw/sidebery/pull/2016";
+      license     = licenses.mit;
+    };
+  };
+
   cfg = inheritedConfig;
   colors = config.lib.stylix.colors; # import stylix
   c = color:
