@@ -48,6 +48,7 @@ in {
         extensions = with pkgs.vscode-extensions;
           [
             # general
+            usernamehw.errorlens
             # nix
             jnoortheen.nix-ide
             mkhl.direnv
