@@ -6,10 +6,14 @@
   pkgs,
   ...
 }:
+let
+  inherit (flake) config inputs;
+  inherit (inputs) self;
+in
 {
-  programs.neovim = {
+  imports = [inputs.nixvim.homeManagerModules.nixvim];
+  programs.nixvim = {
     enable = true;
-    viAlias = true;
-    vimAlias = true;
+    
   };
 }
