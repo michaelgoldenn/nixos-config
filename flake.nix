@@ -26,6 +26,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rycee-nurpkgs = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     textfox.url = "github:adriankarlen/textfox";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -41,11 +45,14 @@
     github-nix-ci.url = "github:juspay/github-nix-ci";
     nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     ghostty.url = "github:ghostty-org/ghostty"; # terminal emulator
-    vscode-extensions.url  = "github:nix-community/nix-vscode-extensions"; # Allows downloading VSCodium extensions from the normal MS marketplace
+    vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; # Allows downloading VSCodium extensions from the normal MS marketplace
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
   outputs = inputs:
     inputs.nixos-unified.lib.mkFlake
-      { inherit inputs; root = ./.; };
+    {
+      inherit inputs;
+      root = ./.;
+    };
 }

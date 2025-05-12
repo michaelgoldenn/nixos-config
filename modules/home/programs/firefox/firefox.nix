@@ -8,6 +8,7 @@
 }: let
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
+  inherit (inputs.rycee-nurpkgs.lib."x86_64-linux") buildFirefoxXpiAddon;
 
   # need to do this one in a special way because it got banned from everywhere for copyright violation lol
   # if you ever get an error about this, that means you need to update the version, go here:
@@ -34,26 +35,6 @@
       platforms = platforms.all;
     };
   };
-
-  sidebery_declarative_PR = pkgs.buildFirefoxXpiAddon rec {
-    pname    = "sidebery";
-    version  = "5.3.3-pr2016";
-    addonId  = "{3c078156-979c-498b-8990-85f7987dd929}";
-
-    src = pkgs.fetchFromGitHub {
-      owner  = "mbnuqw";
-      repo   = "sidebery";
-      rev    = "15cb2a292cb927f8f0b580a7af1c5b72ff37c619";
-      hash   = pkgs.lib.fakeSha256;
-    };
-
-    meta = with pkgs.lib; {
-      description = "Sidebery built from PR #2016 (managed-storage support)";
-      homepage    = "https://github.com/mbnuqw/sidebery/pull/2016";
-      license     = licenses.mit;
-    };
-  };
-
   cfg = inheritedConfig;
   colors = config.lib.stylix.colors; # import stylix
   c = color:
@@ -239,6 +220,8 @@ in {
             global_extensions
             ++ nice_extensions
             ++ [
+              # For now, sidebery can't be configured through central policies
+              # so you'll need to import this file into sidebery settings https://github.com/Naezr/ShyFox/blob/main/sidebery-settings.json
               inputs.firefox-addons.packages."x86_64-linux".sidebery
               inputs.firefox-addons.packages."x86_64-linux".userchrome-toggle-extended
             ];
