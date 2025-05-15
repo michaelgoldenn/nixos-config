@@ -68,6 +68,7 @@ in
     claude-code
     alsa-lib
     unityhub
+    cargo-shear
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
