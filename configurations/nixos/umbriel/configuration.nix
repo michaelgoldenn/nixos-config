@@ -49,7 +49,7 @@
   services.printing.enable = true;
 
   # Enable tlp to limit battery
-/*   services.power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
     settings = {
@@ -58,7 +58,7 @@
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
     };
-  }; */
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;

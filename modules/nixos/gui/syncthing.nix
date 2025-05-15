@@ -90,6 +90,27 @@ in
           };
         };
       };
+      mint = {
+        enable = lib.mkEnableOption "mint";
+        path = lib.mkOption {
+          type = lib.types.str;
+          default = "/home/michael/.config/mint";
+          description = "Path to file";
+        };
+        devices = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [];
+          description = "List of device names to share the directory with";
+        };
+        versioning = {
+          type = "staggered";
+          fsPath = "/syncthing/backup";
+          params = {
+            cleanInterval = "3600";
+            maxAge = "31536000";
+          };
+        };
+      };
     };
 
     config = lib.mkIf cfg.enable {

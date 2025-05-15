@@ -164,6 +164,10 @@ in
           enable = true;
           devices = [ "titania" "umbriel" ];
         };
+        mint = {
+          enable = true;
+          devices = [ "titania" "umbriel" ];
+        };
       };
     };
   };
