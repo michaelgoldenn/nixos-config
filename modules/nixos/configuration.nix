@@ -69,7 +69,7 @@ in
     alsa-lib
     unityhub
     cargo-shear
-    jetbrains.idea-ultimate # just putting this here for now, if I like it I should move to its own file
+    jetbrains.idea-community # just putting this here for now, if I like it I should move to its own file
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
