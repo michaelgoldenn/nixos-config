@@ -4,7 +4,7 @@
   ...
 }: let
   runWindows = pkgs.writeShellScriptBin "run-windows" ''
-    exec quickemu --vm "${config.home.homeDirectory}/projects/VMs/windows-11/windows-11.conf" --display spice
+    exec quickemu --vm "${config.home.homeDirectory}/projects/VMs/windows-11/windows-11.conf" --ignore-msrs-always
   '';
 in {
   home.packages = with pkgs; [quickemu spice-gtk runWindows];
