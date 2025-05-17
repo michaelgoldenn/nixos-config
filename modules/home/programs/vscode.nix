@@ -35,7 +35,6 @@
     "workbench.list.smoothScrolling" = true;
     "terminal.integrated.smoothScrolling" = true;
     "terminal.integrated.cursorBlinking" = true;
-
   };
 in {
   programs.vscode = {
@@ -56,17 +55,23 @@ in {
             rust-lang.rust-analyzer
             vadimcn.vscode-lldb
             tamasfe.even-better-toml
-            github.vscode-github-actions
             # python
             ms-python.python
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             # or can add new extensions here if easier
+            # github actions
+            {
+              name = "github-local-actions";
+              publisher = "sanjulaganepola";
+              version = "1.2.5";
+              sha256 = "sha256-gc3iOB/ibu4YBRdeyE6nmG72RbAsV0WIhiD8x2HNCfY=";
+            }
             # godot
             {
               name = "godot-tools";
               publisher = "geequlim";
-              version = "2.3.0";
+              version = "2.5.1";
               sha256 = "sha256-iuSec4PoVxyu1KB2jfCYOd98UrqQjH3q24zOR4VCPgs=";
             }
             {
