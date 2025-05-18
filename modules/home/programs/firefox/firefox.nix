@@ -56,7 +56,30 @@
     unpaywall
     clearurls
     bypass-paywalls-clean
-    #untrap-for-youtube
+
+    # --- The custom zone ---
+    # To get the addon id try downloading the extension first then go to `about:debugging#/runtime/this-firefox`
+    # would be nice if there were a better way but I don't know one
+    
+    (buildFirefoxXpiAddon {
+      # untrap for youtube - not open source :( but the best in it's class
+      # Also I think getting slower and fewer features without purchases? Makes sense, it's not FOSS
+      pname = "untrap-for-youtube";
+      version = "8.3.1";
+      addonId = "{2662ff67-b302-4363-95f3-b050218bd72c}";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3795847/linkedin_feed_blocker-0.0.3.xpi";
+      sha256 = "sha256-iCZ48z4odTV4/nBlAK6dh8qX5CGVRYaqsTU1z3VKRgw=";
+      meta = {};
+    })
+    (buildFirefoxXpiAddon {
+      # I *HATE* how linkedin is just another social media to steal your time
+      pname = "linkedin-feed-blocker";
+      version = "0.0.3";
+      addonId = "{78400a4a-b6fe-4f7d-a831-734229802784}";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3795847/linkedin_feed_blocker-0.0.3.xpi";
+      sha256 = "sha256-iCZ48z4odTV4/nBlAK6dh8qX5CGVRYaqsTU1z3VKRgw=";
+      meta = {};
+    })
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
