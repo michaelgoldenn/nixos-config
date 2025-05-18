@@ -1,21 +1,24 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, pkgs, lib, config, ... }:
-
-let
+{
+  flake,
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   inherit (flake) inputs;
   inherit (inputs) self;
-in
-{
+in {
   # These users can add Nix caches.
-  nix.settings.trusted-users = [ "root" "michael" ];
+  nix.settings.trusted-users = ["root" "michael"];
 
   # Define users
-  users.groups.docker.gid = 131;  # Use NixOS's preferred GID
+  users.groups.docker.gid = 131; # Use NixOS's preferred GID
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    extraGroups = ["networkmanager" "wheel" "podman"];
     packages = with pkgs; [];
     shell = pkgs.nushell;
   };
@@ -79,15 +82,20 @@ in
     cudaPackages.libcusolver
     cudaPackages.libcusparse
   ];
-  environment.shells = with pkgs; [ nushell ];
+  environment.shells = with pkgs; [nushell];
   services.ratbagd.enable = true;
-  
+
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
   services.xserver = {
     enable = true;
-    excludePackages = [ pkgs.xterm ]; # I don't want xterm 
+    excludePackages = [pkgs.xterm]; # I don't want xterm
   };
-  
+
+  # Remap CAPS lock to ESC
+  services.udev.extraHwdb = ''
+    evdev:atkbd:*
+      KEYBOARD_KEY_3a=esc
+  '';
 
   systemd.services.nbfc_service = {
     enable = true;
@@ -97,7 +105,7 @@ in
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = [ "en_US.UTF-8/UTF-8" "nl_NL.UTF-8/UTF-8" ];
+    supportedLocales = ["en_US.UTF-8/UTF-8" "nl_NL.UTF-8/UTF-8"];
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";
@@ -119,7 +127,6 @@ in
     };
   };
 
-
   nix.optimise.automatic = true; # automatically remove old/unused versions
 
   # lets me use docker :)
@@ -135,7 +142,7 @@ in
   mySystem = lib.mkDefault {
     lutris.enable = false;
     vr.enable = false;
-    
+
     services = {
       whoogle.enable = false;
       syncthing = {
@@ -156,19 +163,19 @@ in
         };
         obsidian_vault = {
           enable = true;
-          devices = [ "titania" "umbriel" "michaels-iphone" ];
+          devices = ["titania" "umbriel" "michaels-iphone"];
         };
         one_game_a_week = {
           enable = true;
-          devices = [ "titania" "umbriel" ];
+          devices = ["titania" "umbriel"];
         };
         making-games = {
           enable = true;
-          devices = [ "titania" "umbriel" ];
+          devices = ["titania" "umbriel"];
         };
         mint = {
           enable = true;
-          devices = [ "titania" "umbriel" ];
+          devices = ["titania" "umbriel"];
         };
       };
     };
@@ -195,14 +202,14 @@ in
 
   # vpn
   networking.networkmanager = {
-    enable = true;  # Make sure NetworkManager is enabled
-    plugins = [ pkgs.networkmanager-openvpn ];  # Add OpenVPN plugin
+    enable = true; # Make sure NetworkManager is enabled
+    plugins = [pkgs.networkmanager-openvpn]; # Add OpenVPN plugin
     pia-vpn = {
       enable = true;
       usernameFile = "/run/secrets/pia/username";
       passwordFile = "/run/secrets/pia/password";
       # Optionally specify specific servers if you don't want all of them
-      serverList = [ "us-chicago" "swiss" ];
+      serverList = ["us-chicago" "swiss"];
     };
   };
 
@@ -211,7 +218,7 @@ in
     domain = "localhost";
   };
 
-  networking.firewall = { 
+  networking.firewall = {
     allowedTCPPorts = [
       # localsend
       53317
@@ -225,7 +232,7 @@ in
     ];
     allowedUDPPorts = [
       # localsend
-      53317 
+      53317
       5000 # whoogle
       # Samba share
       445
