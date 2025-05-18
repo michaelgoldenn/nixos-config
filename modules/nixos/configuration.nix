@@ -91,12 +91,6 @@ in {
     excludePackages = [pkgs.xterm]; # I don't want xterm
   };
 
-  # Remap CAPS lock to ESC
-  services.udev.extraHwdb = ''
-    evdev:atkbd:*
-      KEYBOARD_KEY_3a=esc
-  '';
-
   systemd.services.nbfc_service = {
     enable = true;
     path = [pkgs.kmod];

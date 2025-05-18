@@ -87,7 +87,7 @@
 
   mySystem = {
     lutris.enable = true;
-    vr.enable = true;
+    vr.enable = false;
     services = {
       open-webui.enable = false;
     };
