@@ -63,7 +63,6 @@
     
     (buildFirefoxXpiAddon {
       # untrap for youtube - not open source :( but the best in it's class
-      # Also I think getting slower and fewer features without purchases? Makes sense, it's not FOSS
       pname = "untrap-for-youtube";
       version = "8.3.1";
       addonId = "{2662ff67-b302-4363-95f3-b050218bd72c}";
@@ -72,7 +71,7 @@
       meta = {};
     })
     (buildFirefoxXpiAddon {
-      # I *HATE* how linkedin is just another social media to steal your time
+      # I hate how linkedin is just another social media
       pname = "linkedin-feed-blocker";
       version = "0.0.3";
       addonId = "{78400a4a-b6fe-4f7d-a831-734229802784}";
