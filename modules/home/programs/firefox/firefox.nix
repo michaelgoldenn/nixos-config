@@ -67,8 +67,8 @@
       pname = "untrap-for-youtube";
       version = "8.3.1";
       addonId = "{2662ff67-b302-4363-95f3-b050218bd72c}";
-      url = "https://addons.mozilla.org/firefox/downloads/file/3795847/linkedin_feed_blocker-0.0.3.xpi";
-      sha256 = "sha256-iCZ48z4odTV4/nBlAK6dh8qX5CGVRYaqsTU1z3VKRgw=";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4403100/untrap_for_youtube-8.3.1.xpi";
+      sha256 = "sha256-nasAQmU3R/uBzs8jwg6Lb0LU0RqYGBrJwxbnboDGVXU=";
       meta = {};
     })
     (buildFirefoxXpiAddon {
