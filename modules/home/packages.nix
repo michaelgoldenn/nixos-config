@@ -60,6 +60,7 @@ in
     #open-webui
     zoom-us
     calibre
+    ncspot
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
