@@ -56,10 +56,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -84,11 +80,17 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
+  ## ------------------------------------------------------------------------------------------
+  ## This is the area where you define the actual configuration modules you want in the system
+  ## ------------------------------------------------------------------------------------------
   mySystem = {
     lutris.enable = true;
     vr.enable = false;
     video-production.enable = true;
+    DE = {
+      gnome.enable = true;
+      hyprland.enable = false;
+    };
     services = {
       open-webui.enable = false;
     };
@@ -110,7 +112,6 @@
 
   # graphics drivers babyyyy
   services.xserver.videoDrivers = ["nvidia"];
-  #services.xserver.desktopManager.gnome.sessionManagement = true;
 
   # Enable OpenGL and Vulkan
   hardware.graphics = {
