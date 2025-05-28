@@ -89,7 +89,7 @@
     video-production.enable = true;
     DE = {
       gnome.enable = true;
-      hyprland.enable = false;
+      hyprland.enable = true;
     };
     services = {
       open-webui.enable = false;
