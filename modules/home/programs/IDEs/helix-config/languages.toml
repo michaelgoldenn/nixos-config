@@ -2,7 +2,7 @@
 name = "gdscript"
 language-servers = ["gdscript-lsp"]
 
-[[language-server.gdscript-lsp]]
+[language-server.gdscript-lsp]
 command = "nc"
 args = ["127.0.0.1", "6005"]
 language-id = "gdscript"
