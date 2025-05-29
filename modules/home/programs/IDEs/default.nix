@@ -1,4 +1,4 @@
-# A module that automatically imports .nix files and subdirectories in the parent folder
+# A module that automatically imports .nix files in the parent folder (excluding subdirectories)
 {
   imports =
     with builtins;
@@ -9,7 +9,7 @@
           let
             type = (readDir ./.).${fn};
           in
-          (type == "directory") || (stringLength fn >= 4 && substring (stringLength fn - 4) 4 fn == ".nix" 
-          && fn != "default.nix"))
+          type == "regular" && stringLength fn >= 4 && substring (stringLength fn - 4) 4 fn == ".nix" 
+          && fn != "default.nix")
         (attrNames (readDir ./.)));
 }

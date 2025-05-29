@@ -11,5 +11,6 @@
 in {
   programs.helix = {
     enable = true;
+    languages = builtins.fromTOML (builtins.readFile ./helix-config/languages.toml);
   };
 }
