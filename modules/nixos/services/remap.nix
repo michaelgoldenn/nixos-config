@@ -23,7 +23,7 @@ in
       config = {
         modmap = [ ] ++ optionals cfg.capsToEsc [{
           name = "CapsLock -> Escape";
-          remap = { CapsLock = "Escape"; };
+          remap = { KEY_CAPSLOCK = "KEY_ESC"; };
         }];
         keymap = [ ];
       };
