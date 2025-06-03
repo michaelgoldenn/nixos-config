@@ -187,16 +187,15 @@ in {
   };
 
   # rebind caps lock to escape
-  console.useXkbConfig = true;
-  #hardware.keyboard.qmk.enable = true;
-  services.xserver.xkb.options = "caps:escape";
-
+  services.remap = {
+    enable = true;
+    capsToEsc = true;
+  };
 
   environment = {
     sessionVariables = {
       NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
       FLAKE = "/etc/nixos";
-      XKB_DEFAULT_OPTIONS = "caps:escape"; # rebind caps lock to escape
     };
     pathsToLink = [
       "/share/nautilus-python/extensions"

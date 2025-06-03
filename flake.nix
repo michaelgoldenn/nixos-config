@@ -47,6 +47,7 @@
     ghostty.url = "github:ghostty-org/ghostty"; # terminal emulator
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; # Allows downloading VSCodium extensions from the normal MS marketplace
     hyprland.url = "github:hyprwm/Hyprland";
+    xremap-flake.url = "github:xremap/nix-flake";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
