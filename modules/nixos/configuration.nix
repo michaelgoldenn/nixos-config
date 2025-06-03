@@ -74,6 +74,7 @@ in {
     cargo-shear
     jetbrains.idea-community # just putting this here for now, if I like it I should move to its own file
     audacity
+    clockify
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
@@ -96,6 +97,9 @@ in {
     enable = true;
     path = [pkgs.kmod];
   };
+
+  hardware.keyboard.qmk.enable = true;
+  services.xserver.xkb.options = "caps:escape";
 
   # Select internationalisation properties.
   i18n = {
@@ -189,6 +193,7 @@ in {
     sessionVariables = {
       NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
       FLAKE = "/etc/nixos";
+      XKB_DEFAULT_OPTIONS = "caps:escape"; # rebind caps lock to escape
     };
     pathsToLink = [
       "/share/nautilus-python/extensions"
