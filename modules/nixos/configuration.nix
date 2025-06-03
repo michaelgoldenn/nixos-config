@@ -75,6 +75,7 @@ in {
     jetbrains.idea-community # just putting this here for now, if I like it I should move to its own file
     audacity
     clockify
+    nixfmt-rfc-style
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
