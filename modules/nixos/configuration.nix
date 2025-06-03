@@ -98,9 +98,6 @@ in {
     path = [pkgs.kmod];
   };
 
-  hardware.keyboard.qmk.enable = true;
-  services.xserver.xkb.options = "caps:escape";
-
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -188,6 +185,12 @@ in {
     enable = true;
     terminal = "ghostty";
   };
+
+  # rebind caps lock to escape
+  console.useXkbConfig = true;
+  #hardware.keyboard.qmk.enable = true;
+  services.xserver.xkb.options = "caps:escape";
+
 
   environment = {
     sessionVariables = {
