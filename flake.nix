@@ -48,12 +48,13 @@
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; # Allows downloading VSCodium extensions from the normal MS marketplace
     hyprland.url = "github:hyprwm/Hyprland";
     xremap-flake.url = "github:xremap/nix-flake";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
-  outputs = inputs:
-    inputs.nixos-unified.lib.mkFlake
-    {
+  outputs =
+    inputs:
+    inputs.nixos-unified.lib.mkFlake {
       inherit inputs;
       root = ./.;
     };
