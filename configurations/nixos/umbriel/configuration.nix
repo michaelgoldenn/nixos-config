@@ -90,6 +90,10 @@
     services = {
       open-webui.enable = true;
     };
+    DE = {
+      gnome.enable = true;
+      hyprland.enable = false;
+    };
   };
 
   # Install firefox.
