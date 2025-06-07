@@ -1,6 +1,6 @@
 set -e
 git add .
-nh os switch
+nh os switch .
 hostname=$(hostname)
 gen=$(nixos-rebuild list-generations | grep current)
 git commit -am "$hostname $gen"
