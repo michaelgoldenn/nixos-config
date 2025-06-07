@@ -6,7 +6,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -54,7 +55,7 @@
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       CPU_ENERGY_PERF_POLICY_ON_AC = "power";
-      
+
       START_CHARGE_THRESH_BAT0 = 75;
       STOP_CHARGE_THRESH_BAT0 = 80;
       START_CHARGE_THRESH_BAT1 = 75;
@@ -85,8 +86,12 @@
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
-    extraGroups = ["networkmanager" "wheel" "libvirtd"];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+    ];
+    packages = with pkgs; [ ];
   };
 
   mySystem = {
@@ -137,7 +142,7 @@
     ];
   };
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
