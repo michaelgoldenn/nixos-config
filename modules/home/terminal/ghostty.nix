@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   app = "ghostty";
   cfg = config.opt.${app};
@@ -16,7 +21,8 @@ in
     programs.ghostty = {
       enable = true;
       settings = {
-        keybind = [ # https://ghostty.org/docs/config/keybind
+        keybind = [
+          # https://ghostty.org/docs/config/keybind
           "ctrl+t=new_tab"
           "ctrl+w=close_surface"
         ];

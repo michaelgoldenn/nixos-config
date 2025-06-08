@@ -6,20 +6,29 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (flake) inputs;
   inherit (inputs) self;
-in {
+in
+{
   # These users can add Nix caches.
-  nix.settings.trusted-users = ["root" "michael"];
+  nix.settings.trusted-users = [
+    "root"
+    "michael"
+  ];
 
   # Define users
   users.groups.docker.gid = 131; # Use NixOS's preferred GID
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
-    extraGroups = ["networkmanager" "wheel" "podman"];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "podman"
+    ];
+    packages = with pkgs; [ ];
     shell = pkgs.nushell;
   };
 
@@ -85,24 +94,27 @@ in {
     cudaPackages.libcusolver
     cudaPackages.libcusparse
   ];
-  environment.shells = with pkgs; [nushell];
+  environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
 
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
   services.xserver = {
     enable = true;
-    excludePackages = [pkgs.xterm]; # I don't want xterm
+    excludePackages = [ pkgs.xterm ]; # I don't want xterm
   };
 
   systemd.services.nbfc_service = {
     enable = true;
-    path = [pkgs.kmod];
+    path = [ pkgs.kmod ];
   };
 
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    supportedLocales = ["en_US.UTF-8/UTF-8" "nl_NL.UTF-8/UTF-8"];
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "nl_NL.UTF-8/UTF-8"
+    ];
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";
@@ -160,19 +172,32 @@ in {
         };
         obsidian_vault = {
           enable = true;
-          devices = ["titania" "umbriel" "michaels-iphone"];
+          devices = [
+            "titania"
+            "umbriel"
+            "michaels-iphone"
+          ];
         };
         one_game_a_week = {
           enable = true;
-          devices = ["titania" "umbriel"];
+          devices = [
+            "titania"
+            "umbriel"
+          ];
         };
         making-games = {
           enable = true;
-          devices = ["titania" "umbriel"];
+          devices = [
+            "titania"
+            "umbriel"
+          ];
         };
         mint = {
           enable = true;
-          devices = ["titania" "umbriel"];
+          devices = [
+            "titania"
+            "umbriel"
+          ];
         };
       };
     };
@@ -185,6 +210,15 @@ in {
   programs.nautilus-open-any-terminal = {
     enable = true;
     terminal = "ghostty";
+  };
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [
+        "kitty.desktop"
+      ];
+    };
   };
 
   # rebind caps lock to escape
@@ -206,13 +240,16 @@ in {
   # vpn
   networking.networkmanager = {
     enable = true; # Make sure NetworkManager is enabled
-    plugins = [pkgs.networkmanager-openvpn]; # Add OpenVPN plugin
+    plugins = [ pkgs.networkmanager-openvpn ]; # Add OpenVPN plugin
     pia-vpn = {
       enable = true;
       usernameFile = "/run/secrets/pia/username";
       passwordFile = "/run/secrets/pia/password";
       # Optionally specify specific servers if you don't want all of them
-      serverList = ["us-chicago" "swiss"];
+      serverList = [
+        "us-chicago"
+        "swiss"
+      ];
     };
   };
 
