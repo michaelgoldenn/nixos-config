@@ -50,19 +50,38 @@
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "powersave";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "power";
 
+    settings = {
+      ## 1 – Battery-charge
       START_CHARGE_THRESH_BAT0 = 75;
       STOP_CHARGE_THRESH_BAT0 = 80;
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
+
+      ## 2 – CPU: keep clocks low when on battery
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power"; # intel_pstate / amd-pstate
+      CPU_MIN_PERF_ON_BAT = 0; # %
+      CPU_MAX_PERF_ON_BAT = 30; # cap bursty boosts
+
+      ## 3 – PCIe & USB runtime power management
+      PCIE_ASPM_ON_BAT = "powersave";
+      RUNTIME_PM_ON_BAT = "auto";
+      USB_AUTOSUSPEND = 1; # 1 = enable for everything
+      USB_BLACKLIST = "1-1"; # optional: keep the built-in keyboard alive
+
+      ## 4 – Wi-Fi + Bluetooth
+      WIFI_PWR_ON_BAT = 5; # 1–5, higher = more aggressive saving
+      DEVICES_TO_DISABLE_ON_BAT = "bluetooth";
+
+      ## 5 – Disks & audio
+      DISK_APM_LEVEL_ON_BAT = "128 128"; # gentle head-parking for every drive
+      SOUND_POWER_SAVE_ON_BAT = 1; # autosuspend the codec after 1 s
+
+      ## 6 – Make the “battery” profile the default even if AC is detected
+      TLP_DEFAULT_MODE = "BAT"; # requires TLP ≥ 1.5
     };
   };
-
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
