@@ -9,7 +9,7 @@
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
   inherit (inputs.rycee-nurpkgs.lib."x86_64-linux") buildFirefoxXpiAddon;
-
+  /* 
   # need to do this one in a special way because it got banned from everywhere for copyright violation lol
   # if you ever get an error about this, that means you need to update the version, go here:
   # https://gitflic.ru/project/magnolia1234/bpc_uploads
@@ -34,7 +34,7 @@
       maintainers = [maintainers.yourself];
       platforms = platforms.all;
     };
-  };
+  }; */
   cfg = inheritedConfig;
   colors = config.lib.stylix.colors; # import stylix
   c = color:
@@ -55,7 +55,7 @@
     istilldontcareaboutcookies
     unpaywall
     clearurls
-    bypass-paywalls-clean
+    #bypass-paywalls-clean
 
     # --- The custom zone ---
     # To get the addon id try downloading the extension first then go to `about:debugging#/runtime/this-firefox`
@@ -309,14 +309,14 @@ in {
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-      #extension specific settings
+/*       #extension specific settings
       ExtensionSettings = {
         #bypass paywalls clean: https://gitflic.ru/project/magnolia1234/bpc_uploads
         "magnolia1234@bypass_paywalls_clean" = {
           install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi";
           installation_mode = "force_installed";
         };
-      };
+      }; */
     };
   };
   imports = [inputs.textfox.homeManagerModules.default];
