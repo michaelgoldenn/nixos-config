@@ -29,14 +29,9 @@ in
           g = "git";
           lg = "lazygit";
           code = "codium";
+          #cd = "z";
         };
         extraConfig = ''
-          source ${
-            pkgs.runCommand "zoxide.nu" { } ''
-              ${pkgs.zoxide}/bin/zoxide init nushell > $out
-            ''
-          }
-
           let carapace_completer = {|spans|
             carapace $spans.0 nushell $spans | from json
           }
