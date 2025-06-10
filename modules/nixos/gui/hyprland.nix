@@ -17,9 +17,10 @@ in
   config = lib.mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
-      #nvidiaPatches = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       xwayland.enable = true;
     };
+
     environment.systemPackages = [
       pkgs.kitty
     ];
