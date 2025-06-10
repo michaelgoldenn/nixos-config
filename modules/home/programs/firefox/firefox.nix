@@ -5,42 +5,41 @@
   inheritedConfig,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
   inherit (inputs.rycee-nurpkgs.lib."x86_64-linux") buildFirefoxXpiAddon;
-  /* 
-  # need to do this one in a special way because it got banned from everywhere for copyright violation lol
-  # if you ever get an error about this, that means you need to update the version, go here:
-  # https://gitflic.ru/project/magnolia1234/bpc_uploads
-  # and get the newest version, the update the sha256
-  bypass-paywalls-version = "latest";
-  bypass-paywalls-clean = pkgs.firefox-unwrapped.stdenv.mkDerivation {
-    pname = "bypass-paywalls-clean";
-    version = bypass-paywalls-version;
-    src = pkgs.fetchurl {
-      url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${bypass-paywalls-version}.xpi";
-      sha256 = "sha256-dlk0/ZwOJ9f45s0TrVnNqXitTnH/Tb8rOJuPoV0EHXY=";
-    };
-    buildCommand = ''
-      mkdir -p $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
-      cp $src $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi
-    '';
+  /*
+    # need to do this one in a special way because it got banned from everywhere for copyright violation lol
+    # if you ever get an error about this, that means you need to update the version, go here:
+    # https://gitflic.ru/project/magnolia1234/bpc_uploads
+    # and get the newest version, the update the sha256
+    bypass-paywalls-version = "latest";
+    bypass-paywalls-clean = pkgs.firefox-unwrapped.stdenv.mkDerivation {
+      pname = "bypass-paywalls-clean";
+      version = bypass-paywalls-version;
+      src = pkgs.fetchurl {
+        url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${bypass-paywalls-version}.xpi";
+        sha256 = "sha256-dlk0/ZwOJ9f45s0TrVnNqXitTnH/Tb8rOJuPoV0EHXY=";
+      };
+      buildCommand = ''
+        mkdir -p $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+        cp $src $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi
+      '';
 
-    meta = with lib; {
-      description = "Bypass Paywalls Clean";
-      homepage = "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean";
-      license = licenses.unfreeRedistributable;
-      maintainers = [maintainers.yourself];
-      platforms = platforms.all;
+      meta = with lib; {
+        description = "Bypass Paywalls Clean";
+        homepage = "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean";
+        license = licenses.unfreeRedistributable;
+        maintainers = [maintainers.yourself];
+        platforms = platforms.all;
+      };
     };
-  }; */
+  */
   cfg = inheritedConfig;
   colors = config.lib.stylix.colors; # import stylix
-  c = color:
-    if (builtins.substring 0 1 color) == "#"
-    then color
-    else "#${color}";
+  c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
 
   # extensions that all profiles should share
   # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
@@ -60,7 +59,7 @@
     # --- The custom zone ---
     # To get the addon id try downloading the extension first then go to `about:debugging#/runtime/this-firefox`
     # would be nice if there were a better way but I don't know one
-    
+
     (buildFirefoxXpiAddon {
       # untrap for youtube - not open source :( but the best in it's class
       pname = "untrap-for-youtube";
@@ -68,7 +67,7 @@
       addonId = "{2662ff67-b302-4363-95f3-b050218bd72c}";
       url = "https://addons.mozilla.org/firefox/downloads/file/4403100/untrap_for_youtube-8.3.1.xpi";
       sha256 = "sha256-nasAQmU3R/uBzs8jwg6Lb0LU0RqYGBrJwxbnboDGVXU=";
-      meta = {};
+      meta = { };
     })
     (buildFirefoxXpiAddon {
       # I hate how linkedin is just another social media
@@ -77,7 +76,7 @@
       addonId = "{78400a4a-b6fe-4f7d-a831-734229802784}";
       url = "https://addons.mozilla.org/firefox/downloads/file/3795847/linkedin_feed_blocker-0.0.3.xpi";
       sha256 = "sha256-iCZ48z4odTV4/nBlAK6dh8qX5CGVRYaqsTU1z3VKRgw=";
-      meta = {};
+      meta = { };
     })
   ];
   # settings that all profiles should share (about:config for the settings)
@@ -92,7 +91,7 @@
     "extensions.screenshots.disabled" = true;
     "browser.formfill.enable" = false;
     "browser.topsites.contile.enabled" = false;
-    "identity.fxaccounts.enabled" = false; #disable firefox accounts (no need for sync when I have nix ;)
+    "identity.fxaccounts.enabled" = false; # disable firefox accounts (no need for sync when I have nix ;)
     "extensions.formautofill.creditCards.enabled" = false; # disable credit card prompts
     "signon.rememberSignons" = false; # Don't ask about passwords
 
@@ -105,9 +104,9 @@
     "browser.urlbar.suggest.recentsearches" = false;
     "browser.urlbar.suggest.searches" = false;
     "browser.urlbar.suggest.topsites" = false;
+    "browser.urlbar.suggest.calculator" = true; # I do want the calculator though
     "browser.search.suggest.enabled" = true;
     "browser.search.suggest.enabled.private" = false;
-    "browser.urlbar.suggest.calculator" = true; # I do want the calculator though
 
     #disable first run stuff (suggestions, welcome page, etc.)
     "app.normandy.first_run" = false;
@@ -128,7 +127,8 @@
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts" on new tab page
   };
-in {
+in
+{
   programs.firefox = {
     enable = true;
     profiles = {
@@ -139,10 +139,7 @@ in {
         containersForce = true;
         search = {
           # should eventually change this default to something better
-          default =
-            if cfg.services.whoogle.enable
-            then "Whoogle"
-            else "ddg";
+          default = if cfg.services.whoogle.enable then "Whoogle" else "ddg";
 
           force = true;
           engines = {
@@ -164,7 +161,7 @@ in {
                   ];
                 }
               ];
-              definedAliases = [",d"];
+              definedAliases = [ ",d" ];
             };
             "Github Nix" = {
               urls = [
@@ -182,7 +179,7 @@ in {
                   ];
                 }
               ];
-              definedAliases = ["@gn"];
+              definedAliases = [ "@gn" ];
             };
             "Home Manager" = {
               urls = [
@@ -196,7 +193,7 @@ in {
                   ];
                 }
               ];
-              definedAliases = ["@hm"];
+              definedAliases = [ "@hm" ];
             };
             "Nix Search" = {
               urls = [
@@ -210,19 +207,21 @@ in {
                   ];
                 }
               ];
-              definedAliases = ["@n"];
+              definedAliases = [ "@n" ];
             };
             config = lib.mkIf cfg.services.whoogle.enable {
               # rip whoogle, I just finished customizing you when you died :(
-              "Whoogle" = let
-                whoogle = "0.0.0.0:5000";
-              in {
-                urls = [{template = "http://${whoogle}/search?q={searchTerms}";}];
-                iconUpdateURL = "https://${whoogle}/static/img/favicon/apple-icon-144x144.png";
-                updateInterval = 24 * 60 * 60 * 1000; # every day
-                definedAliases = ["!wh"];
-                method = "POST";
-              };
+              "Whoogle" =
+                let
+                  whoogle = "0.0.0.0:5000";
+                in
+                {
+                  urls = [ { template = "http://${whoogle}/search?q={searchTerms}"; } ];
+                  iconUpdateURL = "https://${whoogle}/static/img/favicon/apple-icon-144x144.png";
+                  updateInterval = 24 * 60 * 60 * 1000; # every day
+                  definedAliases = [ "!wh" ];
+                  method = "POST";
+                };
             };
           };
         };
@@ -247,24 +246,23 @@ in {
               inputs.firefox-addons.packages."x86_64-linux".sidebery
               inputs.firefox-addons.packages."x86_64-linux".userchrome-toggle-extended
             ];
-          settings =
-            global_settings
-            // {
-              # shyfox specific extensions
-              "sidebar.revamp" = false;
-              "layout.css.has-selector.enabled" = true;
-              "browser.urlbar.suggest.calculator" = true;
-              "browser.urlbar.unitConversion.enabled" = true;
-              "browser.urlbar.trimHttps" = true;
-              "browser.urlbar.trimURLs" = true;
-              "widget.gtk.rounded-bottom-corners.enabled" = true;
-              "widget.gtk.ignore-bogus-leave-notify" = "1";
-            };
+          settings = global_settings // {
+            # shyfox specific extensions
+            "sidebar.revamp" = false;
+            "layout.css.has-selector.enabled" = true;
+            "browser.urlbar.suggest.calculator" = true;
+            "browser.urlbar.unitConversion.enabled" = true;
+            "browser.urlbar.trimHttps" = true;
+            "browser.urlbar.trimURLs" = true;
+            "widget.gtk.rounded-bottom-corners.enabled" = true;
+            "widget.gtk.ignore-bogus-leave-notify" = "1";
+          };
         }
         // (
           let
-            theme = pkgs.callPackage ./shyfox_import.nix {};
-          in {
+            theme = pkgs.callPackage ./shyfox_import.nix { };
+          in
+          {
             userChrome = ''
               @import "${theme}/lib/shyfox/userChrome.css";
 
@@ -309,17 +307,19 @@ in {
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-/*       #extension specific settings
-      ExtensionSettings = {
-        #bypass paywalls clean: https://gitflic.ru/project/magnolia1234/bpc_uploads
-        "magnolia1234@bypass_paywalls_clean" = {
-          install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi";
-          installation_mode = "force_installed";
-        };
-      }; */
+      /*
+        #extension specific settings
+           ExtensionSettings = {
+             #bypass paywalls clean: https://gitflic.ru/project/magnolia1234/bpc_uploads
+             "magnolia1234@bypass_paywalls_clean" = {
+               install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi";
+               installation_mode = "force_installed";
+             };
+           };
+      */
     };
   };
-  imports = [inputs.textfox.homeManagerModules.default];
+  imports = [ inputs.textfox.homeManagerModules.default ];
   textfox = {
     enable = true;
     profile = "textfox";

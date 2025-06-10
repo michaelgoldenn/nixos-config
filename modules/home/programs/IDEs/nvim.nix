@@ -5,18 +5,20 @@
   inheritedConfig,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (flake) config inputs;
   inherit (inputs) self;
-in {
-  imports = [inputs.nixvim.homeManagerModules.nixvim];
+in
+{
+  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
   programs.nixvim = {
     enable = true;
     plugins = {
       lsp = {
         enable = true;
         servers = {
-          rust-analyzer = {
+          rust_analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
