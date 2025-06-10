@@ -85,6 +85,7 @@ in
     audacity
     clockify
     nixfmt-rfc-style
+    yazi
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
