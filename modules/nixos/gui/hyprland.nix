@@ -4,20 +4,22 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (flake) inputs;
   app = "hyprland";
   cfg = config.mySystem.DE.${app};
-in {
+in
+{
   options.mySystem.DE.${app} = {
     enable = lib.mkEnableOption "${app}";
   };
   config = lib.mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      #nvidiaPatches = true;
+      xwayland.enable = true;
     };
-
     environment.systemPackages = [
       pkgs.kitty
     ];
