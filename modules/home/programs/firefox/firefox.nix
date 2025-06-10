@@ -97,6 +97,7 @@ let
 
     # right now just disable all suggestions in the search bar, later go through and see what I like
     "browser.urlbar.showSearchSuggestionsFirst" = false;
+    "browser.urlbar.suggest.enabled" = false;
     "browser.urlbar.suggest.bookmark" = false;
     "browser.urlbar.suggest.engines" = false;
     "browser.urlbar.suggest.history" = false;

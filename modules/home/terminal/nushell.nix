@@ -38,42 +38,42 @@ in
 
           $env.config = {
             show_banner: false,
-           # completions: {
-           #   case_sensitive: false
-           #   quick: true
-           #   partial: true
-           #   algorithm: "fuzzy"
-           #   external: {
-           #     enable: true
-           #     max_results: 100
-           #     completer: $carapace_completer
-           #   }
-           # }
+           completions: {
+             case_sensitive: false
+             quick: true
+             partial: true
+             algorithm: "fuzzy"
+             external: {
+               enable: true
+               max_results: 100
+               completer: $carapace_completer
+             }
+           }
           }
-          let fish_completer = {|spans|
-            fish --command $"complete '--do-complete=($spans | str join ' ')'"
-            | from tsv --flexible --noheaders --no-infer
-            | rename value description
-            | update value {
-                  if ($in | path exists) {$'"($in | str replace "\"" "\\\"" )"'} else {$in}
-              }
-          }
-          # need to do this workaround for nushell autocompletes
-          def "nu-complete zoxide path" [context: string] {
-            let parts = $context | split row " " | skip 1
-            {
-              options: {
-                sort: false,
-                completion_algorithm: prefix,
-                positional: false,
-                case_sensitive: false,
-              },
-              completions: (zoxide query --list --exclude $env.PWD -- ...$parts | lines),
-            }
-          }
-          def --env --wrapped z [...rest: string@"nu-complete zoxide path"] {
-            __zoxide_z ...$rest
-          }
+          # let fish_completer = {|spans|
+          #   fish --command $"complete '--do-complete=($spans | str join ' ')'"
+          #   | from tsv --flexible --noheaders --no-infer
+          #   | rename value description
+          #   | update value {
+          #         if ($in | path exists) {$'"($in | str replace "\"" "\\\"" )"'} else {$in}
+          #     }
+          # }
+          # # need to do this workaround for nushell autocompletes
+          # def "nu-complete zoxide path" [context: string] {
+          #   let parts = $context | split row " " | skip 1
+          #   {
+          #     options: {
+          #       sort: false,
+          #       completion_algorithm: prefix,
+          #       positional: false,
+          #       case_sensitive: false,
+          #     },
+          #     completions: (zoxide query --list --exclude $env.PWD -- ...$parts | lines),
+          #   }
+          # }
+          # def --env --wrapped z [...rest: string@"nu-complete zoxide path"] {
+          #   __zoxide_z ...$rest
+          # }
 
           # Update PATH to include Nix profiles and custom paths
           $env.PATH = (
@@ -86,10 +86,10 @@ in
           )
         '';
       };
-      # carapace = {
-      #   enable = true;
-      #   enableNushellIntegration = true;
-      # };
+      carapace = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
 
       zoxide = {
         enable = true;
