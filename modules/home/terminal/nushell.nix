@@ -3,10 +3,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   app = "nushell";
   cfg = config.opt.${app};
-in {
+in
+{
   options.opt.${app} = {
     enable = lib.mkEnableOption "${app}";
   };
@@ -36,17 +38,25 @@ in {
 
           $env.config = {
             show_banner: false,
-            completions: {
-              case_sensitive: false
-              quick: true
-              partial: true
-              algorithm: "fuzzy"
-              external: {
-                enable: true
-                max_results: 100
-                completer: $carapace_completer
+           # completions: {
+           #   case_sensitive: false
+           #   quick: true
+           #   partial: true
+           #   algorithm: "fuzzy"
+           #   external: {
+           #     enable: true
+           #     max_results: 100
+           #     completer: $carapace_completer
+           #   }
+           # }
+          }
+          let fish_completer = {|spans|
+            fish --command $"complete '--do-complete=($spans | str join ' ')'"
+            | from tsv --flexible --noheaders --no-infer
+            | rename value description
+            | update value {
+                  if ($in | path exists) {$'"($in | str replace "\"" "\\\"" )"'} else {$in}
               }
-            }
           }
 
           # Update PATH to include Nix profiles and custom paths
@@ -60,10 +70,11 @@ in {
           )
         '';
       };
-      carapace = {
-        enable = true;
-        enableNushellIntegration = true;
-      };
+      # carapace = {
+      #   enable = true;
+      #   enableNushellIntegration = true;
+      # };
+
       zoxide = {
         enable = true;
         enableNushellIntegration = true;
