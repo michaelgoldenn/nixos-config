@@ -19,5 +19,6 @@ in
       settings = { };
       extraConfig = builtins.readFile ./hyprland.conf;
     };
+    programs.wofi.enable = true;
   };
 }
