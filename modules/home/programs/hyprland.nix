@@ -6,15 +6,15 @@
 }:
 let
   app = "hyprland";
-  cfg = config.myHome.programs.${app};
+  cfg = config.opt.${app};
 in
 {
-  options.myHome.programs.${app} = {
+  options.opt.${app} = {
     enable = lib.mkEnableOption "${app}";
   };
 
-  config = lib.mkIf cfg.enable {
-    wayland.windowManager.hyprland = {
+  config = {
+    wayland.windowManager.hyprland = lib.mkIf cfg.enable {
       enable = true;
       settings = { };
       extraConfig = builtins.readFile ./hyprland.conf;
