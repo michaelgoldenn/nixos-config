@@ -86,6 +86,7 @@ in
     clockify
     nixfmt-rfc-style
     yazi
+    cargo-generate
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
