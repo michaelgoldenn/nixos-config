@@ -26,6 +26,7 @@ in {
       gnome-tweaks
       gnomeExtensions.gsconnect
       gnomeExtensions.fuzzy-app-search
+      gnomeExtensions.color-picker
     ];
   };
 }

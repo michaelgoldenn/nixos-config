@@ -11,7 +11,7 @@
 in
   # {}
   {
-    #options.opt.${app} = {
+/*     #options.opt.${app} = {
     #  enable = lib.mkEnableOption "${app}";
     #};
     #config = lib.mkIf cfg.enable {
@@ -142,5 +142,5 @@ in
           # ...
         };
       #};
-    };
+    }; */
   }
