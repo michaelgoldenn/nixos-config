@@ -79,7 +79,7 @@ in
     speedtest-rs
     claude-code
     alsa-lib
-    unityhub
+    #unityhub
     cargo-shear
     jetbrains.idea-community # just putting this here for now, if I like it I should move to its own file
     audacity

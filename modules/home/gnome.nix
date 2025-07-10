@@ -1,4 +1,5 @@
-{config, pkgs, ...}: {
+{ config, pkgs, ... }:
+{
   dconf = {
     enable = true;
     settings = {
@@ -6,13 +7,20 @@
       "org.gnome.desktop.default-applications.terminal".exec = config.opt.terminal.default;
       "org/gnome/desktop/interface".clock-format = "12h";
       "org/gnome/shell" = {
-        favorite-apps = ["firefox.desktop" "code.desktop" "discord.desktop" "spotify.desktop" "app.bluebubbles.BlueBubbles.desktop" "foot.desktop"];
+        favorite-apps = [
+          "firefox.desktop"
+          "code.desktop"
+          "discord.desktop"
+          "spotify.desktop"
+          "app.bluebubbles.BlueBubbles.desktop"
+          "foot.desktop"
+        ];
       };
       "org/gnome/settings-daemon/plugins/media-keys" = {
-        previous = ["<Ctrl>F9"];
-        play = ["<Ctrl>F10"];
-        next = ["<Ctrl>F11"];
-        mic-mute = ["<Shift><Control><Alt>m"];
+        previous = [ "<Ctrl>F9" ];
+        play = [ "<Ctrl>F10" ];
+        next = [ "<Ctrl>F11" ];
+        mic-mute = [ "<Shift><Control><Alt>m" ];
       };
       #"org/gnome/desktop/peripherals/touchpad".natural-scroll = false;
       "org/gnome/desktop/session".idle-delay = 600; # screen off after 10 mins
@@ -35,7 +43,7 @@
       "org/gnome/shell".disable-user-extensions = false;
       "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
         all-windows-saverestore-window-positions.extensionUuid
-        fuzzy-app-search.extensionUuid
+        # fuzzy-app-search.extensionUuid
         gsconnect.extensionUuid
       ];
     };
