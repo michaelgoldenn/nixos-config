@@ -14,8 +14,8 @@ in {
   # 4. Push from the other mahcine, pull from new machine, and `just run`
 
   ## Adding new secret:
-  # nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
-  # or `just sops`
+  # `just sops`
+  # or `nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"`
   # Then add the new key to the bottom of this file
   # Then just rebuild and you should be good
 
@@ -68,6 +68,10 @@ in {
         owner = config.users.users.michael.name;
       };
       "github/rumm" = {
+        mode = "0440";
+        owner = config.users.users.michael.name;
+      };
+      "github/general" = {
         mode = "0440";
         owner = config.users.users.michael.name;
       };

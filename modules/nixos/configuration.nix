@@ -58,6 +58,7 @@ in
     samba
     git
     git-lfs
+    fossil
     libsecret
     lshw
     toybox
@@ -87,6 +88,7 @@ in
     nixfmt-rfc-style
     yazi
     cargo-generate
+    slipstream
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
@@ -98,6 +100,7 @@ in
   ];
   environment.shells = with pkgs; [ nushell ];
   services.ratbagd.enable = true;
+  services.tailscale.enable = true;
 
   programs.nix-ld.enable = true; # I'll run any executable I want, thank you very much
   services.xserver = {
