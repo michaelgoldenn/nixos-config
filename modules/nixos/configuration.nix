@@ -10,6 +10,7 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  ftlman = inputs.ftlman.packages.${pkgs.system}.default;
 in
 {
   # These users can add Nix caches.
@@ -89,6 +90,7 @@ in
     yazi
     cargo-generate
     slipstream
+    ftlman
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit

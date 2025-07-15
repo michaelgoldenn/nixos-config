@@ -49,6 +49,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     xremap-flake.url = "github:xremap/nix-flake";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    ftlman.url = "github:afishhh/ftlman";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html

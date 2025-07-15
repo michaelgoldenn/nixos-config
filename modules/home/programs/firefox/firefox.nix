@@ -10,33 +10,6 @@ let
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
   inherit (inputs.rycee-nurpkgs.lib."x86_64-linux") buildFirefoxXpiAddon;
-  /*
-    # need to do this one in a special way because it got banned from everywhere for copyright violation lol
-    # if you ever get an error about this, that means you need to update the version, go here:
-    # https://gitflic.ru/project/magnolia1234/bpc_uploads
-    # and get the newest version, the update the sha256
-    bypass-paywalls-version = "latest";
-    bypass-paywalls-clean = pkgs.firefox-unwrapped.stdenv.mkDerivation {
-      pname = "bypass-paywalls-clean";
-      version = bypass-paywalls-version;
-      src = pkgs.fetchurl {
-        url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-${bypass-paywalls-version}.xpi";
-        sha256 = "sha256-dlk0/ZwOJ9f45s0TrVnNqXitTnH/Tb8rOJuPoV0EHXY=";
-      };
-      buildCommand = ''
-        mkdir -p $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
-        cp $src $out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi
-      '';
-
-      meta = with lib; {
-        description = "Bypass Paywalls Clean";
-        homepage = "https://gitflic.ru/project/magnolia1234/bypass-paywalls-clean";
-        license = licenses.unfreeRedistributable;
-        maintainers = [maintainers.yourself];
-        platforms = platforms.all;
-      };
-    };
-  */
   cfg = inheritedConfig;
   colors = config.lib.stylix.colors; # import stylix
   c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
@@ -54,7 +27,6 @@ let
     istilldontcareaboutcookies
     unpaywall
     clearurls
-    #bypass-paywalls-clean
 
     # --- The custom zone ---
     # To get the addon id try downloading the extension first then go to `about:debugging#/runtime/this-firefox`
@@ -114,9 +86,9 @@ let
     "toolkit.telemetry.reportingpolicy.firstRun" = false;
     "trailhead.firstrun.didSeeAboutWelcome" = false;
     "browser.aboutConfig.showWarning" = false;
-    "media.videocontrols.picture-in-picture.video-toggle.has-used" = true; # auto-compress the PIP toggle
+    "media.videocontrols.picture-in-picture.video-toggle.has-used" = true; # auto-compress the PIP toggle on videos
 
-    # change new tab page
+    # clean up new tab page
     "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
     "browser.newtabpage.activity-stream.feeds.snippets" = false;
     "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
@@ -128,6 +100,8 @@ let
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts" on new tab page
   };
+  textfox_sidebery_config = builtins.fromJSON (builtins.readFile ./textfox_sidebery_settings.json);
+  shyfox_sidebery_config = builtins.fromJSON (builtins.readFile ./shyfox_sidebery_settings.json);
 in
 {
   programs.firefox = {
@@ -226,7 +200,14 @@ in
             };
           };
         };
-        extensions.packages = global_extensions ++ nice_extensions;
+        extensions = {
+          packages = global_extensions ++ nice_extensions;
+          force = true; # need to do this to set extension settings
+          settings = {
+            # sidebery
+            "{3c078156-979c-498b-8990-85f7987dd929}".settings = textfox_sidebery_config;
+          };
+        };
         settings = global_settings;
       };
       shyfox =
@@ -238,15 +219,22 @@ in
           search = {
             force = true;
           };
-          extensions.packages =
-            global_extensions
-            ++ nice_extensions
-            ++ [
-              # For now, sidebery can't be configured through central policies
-              # so you'll need to import this file into sidebery settings https://github.com/Naezr/ShyFox/blob/main/sidebery-settings.json
-              inputs.firefox-addons.packages."x86_64-linux".sidebery
-              inputs.firefox-addons.packages."x86_64-linux".userchrome-toggle-extended
-            ];
+          extensions = {
+            packages =
+              global_extensions
+              ++ nice_extensions
+              ++ [
+                # For now, sidebery can't be configured through central policies
+                # so you'll need to import this file into sidebery settings https://github.com/Naezr/ShyFox/blob/main/sidebery-settings.json
+                inputs.firefox-addons.packages."x86_64-linux".sidebery
+                inputs.firefox-addons.packages."x86_64-linux".userchrome-toggle-extended
+              ];
+            force = true; # need to do this to set extension settings
+            settings = {
+              # sidebery
+              "{3c078156-979c-498b-8990-85f7987dd929}".settings = shyfox_sidebery_config;
+            };
+          };
           settings = global_settings // {
             # shyfox specific extensions
             "sidebar.revamp" = false;

@@ -71,7 +71,7 @@
       USB_BLACKLIST = "1-1"; # optional: keep the built-in keyboard alive
 
       ## 4 – Wi-Fi + Bluetooth
-      WIFI_PWR_ON_BAT = 5; # 1–5, higher = more aggressive saving
+      WIFI_PWR_ON_BAT = 3; # 1–5, higher = more aggressive saving
       DEVICES_TO_DISABLE_ON_BAT = "bluetooth";
 
       ## 5 – Disks & audio
@@ -79,7 +79,7 @@
       SOUND_POWER_SAVE_ON_BAT = 1; # autosuspend the codec after 1 s
 
       ## 6 – Make the “battery” profile the default even if AC is detected
-      TLP_DEFAULT_MODE = "BAT"; # requires TLP ≥ 1.5
+      #TLP_DEFAULT_MODE = "BAT"; # requires TLP ≥ 1.5
     };
   };
   # Enable sound with pipewire.

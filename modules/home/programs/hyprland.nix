@@ -13,12 +13,16 @@ in
     enable = lib.mkEnableOption "${app}";
   };
 
-  config = {
-    wayland.windowManager.hyprland = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+    wayland.windowManager.hyprland = {
       enable = true;
       settings = { };
       extraConfig = builtins.readFile ./hyprland.conf;
     };
     programs.wofi.enable = true;
+    
+    home.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
   };
 }
