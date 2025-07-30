@@ -83,7 +83,6 @@ in
     alsa-lib
     #unityhub
     cargo-shear
-    audacity
     clockify
     nixfmt-rfc-style
     yazi

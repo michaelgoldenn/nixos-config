@@ -60,6 +60,8 @@ in
     #open-webui
     zoom-us
     calibre
+    krita
+    #audacity
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
