@@ -89,6 +89,8 @@ in
     cargo-generate
     slipstream
     ftlman
+    audacity
+    glsl_analyzer
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit

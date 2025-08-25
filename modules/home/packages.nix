@@ -61,7 +61,8 @@ in
     zoom-us
     calibre
     krita
-    #audacity
+    audacity
+    obs-studio
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
