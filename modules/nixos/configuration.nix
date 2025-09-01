@@ -74,7 +74,7 @@ in
     nix-output-monitor
     openssl
     xorg.xhost
-    lmstudio
+    #lmstudio
     ollama
     prusa-slicer
     p7zip-rar
