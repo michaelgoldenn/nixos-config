@@ -94,7 +94,7 @@ in
   mySystem = {
     lutris.enable = true;
     vr.enable = false;
-    video-production.enable = true;
+    video-production.enable = false;
     DE = {
       gnome.enable = true;
       hyprland.enable = true;
