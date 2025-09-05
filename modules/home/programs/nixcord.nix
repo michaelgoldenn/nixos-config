@@ -60,7 +60,7 @@ in
               enable = true;
             };
             disableCallIdle.enable = false;
-            emoteCloner.enable = true;
+            #emoteCloner.enable = true;
             fakeNitro = {
               enable = true;
             };

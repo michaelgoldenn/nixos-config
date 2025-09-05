@@ -60,6 +60,8 @@ in
             tamasfe.even-better-toml
             # python
             ms-python.python
+            # C
+            ms-vscode.cpptools
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             # or can add new extensions here if easier

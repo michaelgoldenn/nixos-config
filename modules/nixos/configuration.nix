@@ -91,6 +91,8 @@ in
     ftlman
     audacity
     glsl_analyzer
+    clang
+    clang-tools
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
