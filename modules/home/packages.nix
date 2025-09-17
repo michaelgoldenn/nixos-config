@@ -1,78 +1,44 @@
-{ flake, pkgs, ... }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) nixpkgs-stable;
-  
-  # Get packages from nixpkgs-stable using the current system
-  stablePkgs = import nixpkgs-stable { 
-    system = pkgs.stdenv.hostPlatform.system;
-    # Use the same configuration as the main nixpkgs
-    config = pkgs.config;
-  };
-in
+{ pkgs, ... }:
 {
   # Nix packages to install to $HOME
+  #
+  # Search for packages here: https://search.nixos.org/packages
   home.packages = with pkgs; [
+    omnix
+
     # Unix tools
     ripgrep # Better `grep`
     fd
     sd
     tree
     gnumake
-    gnupg
 
     # Nix dev
     cachix
-    nixd # Nix language server
+    nil # Nix language server
     nix-info
     nixpkgs-fmt
-    just
-    alejandra
-    nh
 
-    # Dev
-    tmate
-    age
-    rustup
-    gcc
-    scons
-    rustlings
-    #bacon
 
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
-
-    # cli doodads
-    yt-dlp
-    ffmpeg_7
-
-    # Michael's custom stuff
-    syncthing
-    localsend
-    unetbootin
-    vlc
-    qbittorrent
-    #obsidian
-    rare # "epic games launcher"
-    stablePkgs.rustdesk  # Use rustdesk from stable
-    prismlauncher
-    #open-webui
-    zoom-us
-    calibre
-    krita
-    audacity
-    obs-studio
   ];
 
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-
   # Programs natively supported by home-manager.
+  # They can be configured in `programs.*` instead of using home.packages.
   programs = {
     # Better `cat`
     bat.enable = true;
     # Type `<ctrl> + r` to fuzzy search your shell history
     fzf.enable = true;
     jq.enable = true;
+    # Install btop https://github.com/aristocratos/btop
+    btop.enable = true;
+    # Tmate terminal sharing.
+    tmate = {
+      enable = true;
+      #host = ""; #In case you wish to use a server other than tmate.io
+    };
   };
 }

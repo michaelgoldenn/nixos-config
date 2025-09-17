@@ -1,8 +1,9 @@
-# A module that automatically imports everything else in the parent folder.
+# This is your nixos configuration.
+# For home configuration, see /modules/home/*
+{ flake, ... }:
 {
-  imports =
-    with builtins;
-    map
-      (fn: ./${fn})
-      (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
+  imports = [
+    flake.inputs.self.nixosModules.common
+  ];
+  services.openssh.enable = true;
 }

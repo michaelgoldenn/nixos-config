@@ -1,6 +1,2 @@
 result
 .direnv
-bash/videos
-modules/nixos/private.key
-modules/nixos/oliver-server.private.key
-modules/nixos/michael-server.private.key

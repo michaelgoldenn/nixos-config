@@ -12,9 +12,4 @@ in
     self.nixosModules.gui
     ./configuration.nix
   ];
-
-  # Enable home-manager for "michael" user
-  home-manager.users."michael" = {
-    imports = [ (self + /configurations/home/michael.nix) ];
-  };
 }

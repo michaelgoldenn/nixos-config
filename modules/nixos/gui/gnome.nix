@@ -1,32 +1,11 @@
+{ pkgs, ... }:
 {
-  config,
-  flake,
-  lib,
-  pkgs,
-  ...
-}: let
-  app = "gnome";
-  cfg = config.mySystem.DE.${app};
-in {
-  options.mySystem.DE.${app} = {
-    enable = lib.mkEnableOption "${app}";
+  services.xserver = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
-  config = lib.mkIf cfg.enable {
-    services.xserver = {
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
 
-    environment.gnome.excludePackages = with pkgs; [
-      gnome-console
-      gnome-keyring
-    ];
-
-    environment.systemPackages = with pkgs; [
-      gnome-tweaks
-      gnomeExtensions.gsconnect
-      gnomeExtensions.fuzzy-app-search
-      gnomeExtensions.color-picker
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    pkgs.gnome-tweaks
+  ];
 }
