@@ -113,7 +113,7 @@
     packages = with pkgs; [ ];
   };
 
-  mySystem = {
+/*   mySystem = {
     vr.enable = lib.mkForce true;
     lutris.enable = true;
     services = {
@@ -123,7 +123,7 @@
       gnome.enable = true;
       hyprland.enable = false;
     };
-  };
+  }; */
 
   # Install firefox.
   programs.firefox.enable = true;
