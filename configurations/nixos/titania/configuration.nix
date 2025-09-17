@@ -93,14 +93,15 @@ in
   ## ------------------------------------------------------------------------------------------
   mySystem = {
     lutris.enable = true;
-    vr.enable = false;
+    vr.enable = true;
     video-production.enable = false;
     DE = {
       gnome.enable = true;
-      hyprland.enable = true;
+      hyprland.enable = false;
     };
     services = {
       open-webui.enable = false;
+      syncthing.enable = true;
     };
   };
 
@@ -145,7 +146,7 @@ in
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
@@ -164,12 +165,13 @@ in
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=no
-    AllowHibernation=no
-    AllowHybridSleep=no
-    AllowSuspendThenHibernate=no
-  '';
+  # disabling sleep since it breaks the gpu rn. nvidia sux
+  #systemd.sleep.extraConfig = ''
+  #  AllowSuspend=no
+  #  AllowHibernation=no
+  #  AllowHybridSleep=no
+  #  AllowSuspendThenHibernate=no
+  #'';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
