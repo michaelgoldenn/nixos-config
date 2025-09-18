@@ -16,5 +16,7 @@ in
     email = "Michael.Golden0278@gmail.com";
   };
 
+  cliTools.enable = true;
+
   home.stateVersion = "24.11";
 }
