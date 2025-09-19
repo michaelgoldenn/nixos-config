@@ -111,7 +111,7 @@ in
         isDefault = true;
         containersForce = true;
         search = {
-          # should eventually change this default to something better
+          # should eventually make this an option instead of hardcoded
           default = "ddg";
 
           force = true;
