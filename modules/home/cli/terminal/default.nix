@@ -5,7 +5,7 @@
   ...
 }:
 {
-  ## Terminal
+  ## Define options
   options.terminal = {
     default = lib.mkOption {
       type = lib.types.enum [ "ghostty" ];
@@ -13,7 +13,7 @@
       description = "Default terminal emulator";
     };
   };
-  ## Shell
+  
   options.shell = {
     default = lib.mkOption {
       type = lib.types.enum [
@@ -29,10 +29,15 @@
   imports =
     with builtins;
     map (fn: ./${fn}) (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
-  ## Set Terminal
-  home.packages = [ (pkgs.${config.opt.terminal.default}) ];
-  environment.sessionVariables.TERMINAL = config.opt.terminal.default;
-  ## Set Shell
-  nushell.enable = config.opt.shell == "nushell";
-  zsh.enable = config.opt.shell == "zsh";
+
+  ## Configuration based on options
+  config = {
+    ## Set Terminal
+    home.packages = [ (pkgs.${config.terminal.default}) ];
+    home.sessionVariables.TERMINAL = config.terminal.default;
+    
+    ## Set Shell
+    programs.nushell.enable = config.shell.default == "nushell";
+    programs.zsh.enable = config.shell.default == "zsh";
+  };
 }

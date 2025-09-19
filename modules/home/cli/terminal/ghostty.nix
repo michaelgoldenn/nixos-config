@@ -6,10 +6,10 @@
 }:
 let
   app = "ghostty";
-  cfg = config.opt.${app};
+  cfg = config.${app};
 in
 {
-  options.opt.${app} = {
+  options.${app} = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = true;

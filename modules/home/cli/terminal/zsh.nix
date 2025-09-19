@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   programs = {
     # on macOS, you probably don't need this
@@ -11,7 +11,7 @@
 
     # For macOS's default shell.
     zsh = {
-      enable = true;
+      enable = lib.mkDefault true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       enableCompletion = true;

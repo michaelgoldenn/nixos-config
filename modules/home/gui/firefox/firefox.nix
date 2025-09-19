@@ -2,7 +2,6 @@
   flake,
   lib,
   config,
-  inheritedConfig,
   pkgs,
   ...
 }:
@@ -10,7 +9,6 @@ let
   inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
   inherit (inputs.rycee-nurpkgs.lib."x86_64-linux") buildFirefoxXpiAddon;
-  cfg = inheritedConfig;
   colors = config.lib.stylix.colors; # import stylix
   c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
 
@@ -100,8 +98,8 @@ let
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts" on new tab page
   };
-  textfox_sidebery_config = builtins.fromJSON (builtins.readFile ./textfox_sidebery_settings.json);
-  shyfox_sidebery_config = builtins.fromJSON (builtins.readFile ./shyfox_sidebery_settings.json);
+  textfox_sidebery_config = builtins.fromJSON (builtins.readFile ./textfox-sidebery-settings.json);
+  shyfox_sidebery_config = builtins.fromJSON (builtins.readFile ./shyfox-sidebery-settings.json);
 in
 {
   programs.firefox = {
@@ -114,7 +112,7 @@ in
         containersForce = true;
         search = {
           # should eventually change this default to something better
-          default = if cfg.services.whoogle.enable then "Whoogle" else "ddg";
+          default = "ddg";
 
           force = true;
           engines = {
@@ -184,20 +182,6 @@ in
               ];
               definedAliases = [ "@n" ];
             };
-            config = lib.mkIf cfg.services.whoogle.enable {
-              # rip whoogle, I just finished customizing you when you died :(
-              "Whoogle" =
-                let
-                  whoogle = "0.0.0.0:5000";
-                in
-                {
-                  urls = [ { template = "http://${whoogle}/search?q={searchTerms}"; } ];
-                  iconUpdateURL = "https://${whoogle}/static/img/favicon/apple-icon-144x144.png";
-                  updateInterval = 24 * 60 * 60 * 1000; # every day
-                  definedAliases = [ "!wh" ];
-                  method = "POST";
-                };
-            };
           };
         };
         extensions = {
@@ -249,7 +233,7 @@ in
         }
         // (
           let
-            theme = pkgs.callPackage ./shyfox_import.nix { };
+            theme = pkgs.callPackage ./shyfox-import.nix { };
           in
           {
             userChrome = ''

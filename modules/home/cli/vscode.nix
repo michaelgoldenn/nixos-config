@@ -7,11 +7,6 @@
   ...
 }:
 let
-  options.vscode.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "Installs VSCode with all my personal settings";
-  };
   settings = {
     keyboard.dispatch = "keyCode";
     "nix" = {
@@ -43,6 +38,11 @@ let
   };
 in
 {
+  options.vscode.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Installs VSCode with all my personal settings";
+  };
   config = lib.mkIf config.vscode.enable {
     programs.vscode = {
       enable = true;

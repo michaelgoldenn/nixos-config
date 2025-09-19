@@ -18,7 +18,8 @@ in
 
   cliTools.enable = true;
   vscode.enable = true;
-  shell = "nushell"; # defined in modules/home/cli/terminal/default.nix
+  shell.default = "nushell"; # defined in modules/home/cli/terminal/default.nix
+  theme.name = "catppuccin-mocha";
 
   home.stateVersion = "24.11";
 }
