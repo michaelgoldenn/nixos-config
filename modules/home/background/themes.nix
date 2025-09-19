@@ -10,6 +10,4 @@ in
       description = "Theme to use across the system";
     };
   };
-
-  config = {};
 }

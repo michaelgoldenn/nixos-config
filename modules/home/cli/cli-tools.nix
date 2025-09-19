@@ -16,6 +16,7 @@
     home.packages = with pkgs; [
       ripgrep # better grep
       cookiecutter # makes files from templates (python eww, pls RIIR)
+      nh # nix-helper. https://github.com/nix-community/nh
     ];
 
     programs = {
