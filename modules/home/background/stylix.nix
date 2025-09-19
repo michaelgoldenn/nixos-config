@@ -40,7 +40,7 @@ let
 in
 {
   imports = [
-    flake.inputs.stylix.homeManagerModules.stylix
+    flake.inputs.stylix.homeModules.stylix
   ];
   config = {
     stylix = {
