@@ -24,15 +24,15 @@ let
   };
   # Grab the theme option from the home manager options
   # TODO: Make this work for multiple users
-  selectedTheme = themes.${config.home-manager.users.michael.theme.name};  
+  selectedTheme = themes.${config.home-manager.users.michael.theme.name};
 in
 {
   imports = [
     flake.inputs.stylix.nixosModules.stylix
   ];
-  
+
   home-manager.backupFileExtension = "backup";
-  
+
   stylix = {
     enable = true;
     base16Scheme = selectedTheme;

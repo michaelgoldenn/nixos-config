@@ -1,9 +1,8 @@
 ## Just the place for all the little nice-to-have CLI tools
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 {
   options.cliTools.enable = lib.mkOption {

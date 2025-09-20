@@ -16,6 +16,9 @@
         description = "Your email for use in Git config";
       };
     };
+
+    # just including some other things in this file for convenience
+    capsToEsc = lib.mkEnableOption;
   };
   config = {
     home.username = config.me.username;

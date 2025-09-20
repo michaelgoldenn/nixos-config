@@ -1,10 +1,9 @@
 # Actually uses VSCodium, just vscode without as much microsoft telemetry (but no MS official addons D:)
-{
-  config,
-  flake,
-  pkgs,
-  lib,
-  ...
+{ config
+, flake
+, pkgs
+, lib
+, ...
 }:
 let
   settings = {

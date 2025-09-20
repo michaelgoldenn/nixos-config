@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 {
   ## Define options
@@ -13,7 +12,7 @@
       description = "Default terminal emulator";
     };
   };
-  
+
   options.shell = {
     default = lib.mkOption {
       type = lib.types.enum [
@@ -35,7 +34,7 @@
     ## Set Terminal
     home.packages = [ (pkgs.${config.terminal.default}) ];
     home.sessionVariables.TERMINAL = config.terminal.default;
-    
+
     ## Set Shell
     programs.nushell.enable = config.shell.default == "nushell";
     programs.zsh.enable = config.shell.default == "zsh";

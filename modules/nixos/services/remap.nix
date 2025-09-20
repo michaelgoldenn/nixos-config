@@ -1,32 +1,12 @@
 { config, pkgs, lib, flake, ... }:
-with lib;
-with types;
-let 
-  inherit (flake) inputs;
-  cfg = config.services.remap;
-in
 {
-  imports = [ inputs.xremap-flake.nixosModules.default ];
-
-  options.services.remap = {
-    enable = mkEnableOption "remap service";
-    capsToEsc = mkOption {
-      type = types.bool;
-      default = true;
-    };
-  };
-
-  config = mkIf cfg.enable {
-    services.xremap = {
-      serviceMode = "system";
-      watch = true;
-      config = {
-        modmap = [ ] ++ optionals cfg.capsToEsc [{
-          name = "CapsLock -> Escape";
-          remap = { KEY_CAPSLOCK = "KEY_ESC"; };
-        }];
-        keymap = [ ];
-      };
-    };
+  imports = [ flake.inputs.xremap-flake.homeManagerModules.default ];
+  services.xremap = {
+    serviceMode = "system";
+    watch = true;
+    config.modmap = [{
+      name = "Global";
+      remap = { "CapsLock" = "Esc"; };
+    }];
   };
 }

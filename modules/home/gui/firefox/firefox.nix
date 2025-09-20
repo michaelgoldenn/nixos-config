@@ -1,12 +1,11 @@
-{
-  flake,
-  lib,
-  config,
-  pkgs,
-  ...
+{ flake
+, lib
+, config
+, pkgs
+, ...
 }:
 let
-  inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
+  inherit (flake) inputs;# this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
   inherit (inputs.rycee-nurpkgs.lib."x86_64-linux") buildFirefoxXpiAddon;
   colors = config.lib.stylix.colors; # import stylix

@@ -1,8 +1,8 @@
-{...}:
+{ ... }:
 {
-  programs.starship = { 
+  programs.starship = {
     enable = true;
-     settings = {
+    settings = {
       bun = {
         format = "via [$symbol]($style)";
       };

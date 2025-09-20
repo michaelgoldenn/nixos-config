@@ -8,9 +8,9 @@
   };
 
   config = lib.mkIf config.{{cookiecutter.module_name}}.enable {
-    home.packages = with pkgs; [
-    ];
-    programs = {
-    };
-  };
+  home.packages = with pkgs;
+  [
+  ];
+  programs = { };
+};
 }

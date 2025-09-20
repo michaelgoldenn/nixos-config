@@ -1,9 +1,8 @@
 ## A Vim-Like editor written in Rust
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 {
   options.helix.enable = lib.mkOption {
@@ -18,10 +17,8 @@
     programs = {
       helix = {
         enable = true;
-        languages = builtins.fromTOML (builtins.readFile ./languages.toml) // {
-        };
-        settings = builtins.fromTOML (builtins.readFile ./config.toml) // {
-        };
+        languages = builtins.fromTOML (builtins.readFile ./languages.toml) // { };
+        settings = builtins.fromTOML (builtins.readFile ./config.toml) // { };
       };
     };
   };
