@@ -36,7 +36,7 @@
     home.sessionVariables.TERMINAL = config.terminal.default;
 
     ## Set Shell
-    programs.nushell.enable = config.shell.default == "nushell";
-    programs.zsh.enable = config.shell.default == "zsh";
+    nushell.enable = config.shell.default == "nushell";
+    zsh.enable = config.shell.default == "zsh";
   };
 }

@@ -1,5 +1,14 @@
-{ lib, ... }:
+{ lib, config, ... }:
+let
+  app = "zsh";
+  cfg = config.${app};
+in 
 {
+  options.${app} = {
+    enable = lib.mkEnableOption "${app}";
+  };
+  config = lib.mkIf cfg.enable {
+    
   programs = {
     # on macOS, you probably don't need this
     bash = {
@@ -29,4 +38,5 @@
       '';
     };
   };
+};
 }

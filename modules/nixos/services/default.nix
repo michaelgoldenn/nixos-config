@@ -1,5 +1,5 @@
 {
   imports = [
-    ./remap.nix
+    ./xremap.nix
   ];
 }
