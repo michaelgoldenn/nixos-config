@@ -42,7 +42,7 @@ in
         size = 20;
       };
       image = pkgs.fetchurl {
-        url = "https://github.com/orangci/walls/blob/master/isekai.jpg?raw=true";
+        url = "https://raw.githubusercontent.com/orangci/walls/refs/heads/master/isekai.jpg";
         sha256 = "sha256-PoOg8v5+Zkjf8hz7GvH8paCC29BcyHePgeXMghv9Zpo=";
       };
       targets = {

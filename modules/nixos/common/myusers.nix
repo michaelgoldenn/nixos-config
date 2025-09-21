@@ -32,7 +32,7 @@ in
         } // lib.optionalAttrs pkgs.stdenv.isLinux {
         isNormalUser = true;
         ## TODO: Change this so the extra groups are configured in the home files rather than here.
-        extraGroups = [ "wheel" ];
+        extraGroups = [ "wheel" "nixos" ];
       }
     );
 
