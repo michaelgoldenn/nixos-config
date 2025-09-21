@@ -1,6 +1,8 @@
 { flake, lib, pkgs, config, ... }:
 let
   # Define themes here
+  # also need to be defined in modules/home/background/themes.nix
+  # TODO: Right now they need to be defined in two seperate files, fix that to make ti more convenient
   themes = {
     catppuccin-mocha = {
       scheme = "Catppuccin Mocha";
@@ -21,6 +23,7 @@ let
       base0E = "#cba6f7"; # mauve
       base0F = "#f2cdcd"; # flamingo
     };
+    catppuchin-latte = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
   };
   # Grab the theme option from the home manager options
   # TODO: Make this work for multiple users

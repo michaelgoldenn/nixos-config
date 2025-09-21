@@ -5,7 +5,7 @@ in
 {
   options.theme = {
     name = mkOption {
-      type = types.enum [ "catppuccin-mocha" "catppuccin-frappe" "equilibrium-dark" ];
+      type = types.enum [ "catppuccin-mocha" "catppuccin-latte" ];
       default = "catppuccin-mocha";
       description = "Theme to use across the system";
     };
