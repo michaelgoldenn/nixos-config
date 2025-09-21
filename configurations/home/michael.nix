@@ -20,6 +20,7 @@ in
   vscode.enable = true;
   shell.default = "nushell"; # defined in modules/home/cli/terminal/default.nix
   theme.name = "catppuccin-mocha";
+  theme.polarity = "dark";
 
   home.stateVersion = "24.11";
 }

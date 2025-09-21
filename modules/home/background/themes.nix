@@ -9,5 +9,10 @@ in
       default = "catppuccin-mocha";
       description = "Theme to use across the system";
     };
+    polarity = mkOption {
+      type = types.enum [ "dark" "light" ];
+      default = "dark";
+      description = "Whether to use light or dark mode";
+    };
   };
 }
