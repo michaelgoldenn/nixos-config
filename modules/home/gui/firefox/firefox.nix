@@ -65,6 +65,7 @@ let
     "identity.fxaccounts.enabled" = false; # disable firefox accounts (no need for sync when I have nix ;)
     "extensions.formautofill.creditCards.enabled" = false; # disable credit card prompts
     "signon.rememberSignons" = false; # Don't ask about passwords
+    "datareporting.healthreport.uploadEnabled" = false; # don't want to send interaction data (I'm fine with sending usage pings though)
 
     # right now just disable all suggestions in the search bar, later go through and see what I like
     "browser.urlbar.showSearchSuggestionsFirst" = false;
@@ -83,6 +84,7 @@ let
     #disable first run stuff (suggestions, welcome page, etc.)
     "app.normandy.first_run" = false;
     "toolkit.telemetry.reportingpolicy.firstRun" = false;
+    "browser.aboutwelcome.enabled" = false;
     "trailhead.firstrun.didSeeAboutWelcome" = false;
     "browser.aboutConfig.showWarning" = false;
     "media.videocontrols.picture-in-picture.video-toggle.has-used" = true; # auto-compress the PIP toggle on videos
