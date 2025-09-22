@@ -6,6 +6,7 @@
   imports = [
     flake.inputs.stylix.nixosModules.stylix
   ];
+  home-manager.backupFileExtension = "backup"; # need this otherwise stylix runs into other configs and breaks Home Manager
   stylix = {
     enable = true;
     # need to enter color scheme for it to work properly, will get overwritten by home-manager stylix config
