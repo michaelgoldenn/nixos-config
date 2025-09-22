@@ -1,11 +1,12 @@
-{ flake
-, lib
-, config
-, pkgs
-, ...
+{
+  flake,
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 let
-  inherit (flake) inputs;# this line might look weird. I'm using nixos-unified's autowiring
+  inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
   inherit (inputs.rycee-nurpkgs.lib."x86_64-linux") buildFirefoxXpiAddon;
   colors = config.lib.stylix.colors; # import stylix
@@ -54,6 +55,7 @@ let
     "browser.engagement.ctrlTab.has-used" = true;
     "browser.ctrlTab.sortByRecentlyUsed" = true;
     "browser.startup.page" = 3; # Open previous tabs on startup
+    "extensions.autoDisableScopes" = 0; # makes extensions automatically enabled
 
     # extra bits I won't want
     "extensions.pocket.enabled" = false;
@@ -193,61 +195,60 @@ in
         };
         settings = global_settings;
       };
-      shyfox =
+      shyfox = {
+        id = 1;
+        name = "shyfox";
+        isDefault = false;
+        containersForce = true;
+        search = {
+          force = true;
+        };
+        extensions = {
+          packages =
+            global_extensions
+            ++ nice_extensions
+            ++ [
+              # For now, sidebery can't be configured through central policies
+              # so you'll need to import this file into sidebery settings https://github.com/Naezr/ShyFox/blob/main/sidebery-settings.json
+              inputs.firefox-addons.packages."x86_64-linux".sidebery
+              inputs.firefox-addons.packages."x86_64-linux".userchrome-toggle-extended
+            ];
+          force = true; # need to do this to set extension settings
+          settings = {
+            # sidebery
+            "{3c078156-979c-498b-8990-85f7987dd929}".settings = shyfox_sidebery_config;
+          };
+        };
+        settings = global_settings // {
+          # shyfox specific extensions
+          "sidebar.revamp" = false;
+          "layout.css.has-selector.enabled" = true;
+          "browser.urlbar.suggest.calculator" = true;
+          "browser.urlbar.unitConversion.enabled" = true;
+          "browser.urlbar.trimHttps" = true;
+          "browser.urlbar.trimURLs" = true;
+          "widget.gtk.rounded-bottom-corners.enabled" = true;
+          "widget.gtk.ignore-bogus-leave-notify" = "1";
+        };
+      }
+      // (
+        let
+          theme = pkgs.callPackage ./shyfox-import.nix { };
+        in
         {
-          id = 1;
-          name = "shyfox";
-          isDefault = false;
-          containersForce = true;
-          search = {
-            force = true;
-          };
-          extensions = {
-            packages =
-              global_extensions
-              ++ nice_extensions
-              ++ [
-                # For now, sidebery can't be configured through central policies
-                # so you'll need to import this file into sidebery settings https://github.com/Naezr/ShyFox/blob/main/sidebery-settings.json
-                inputs.firefox-addons.packages."x86_64-linux".sidebery
-                inputs.firefox-addons.packages."x86_64-linux".userchrome-toggle-extended
-              ];
-            force = true; # need to do this to set extension settings
-            settings = {
-              # sidebery
-              "{3c078156-979c-498b-8990-85f7987dd929}".settings = shyfox_sidebery_config;
-            };
-          };
-          settings = global_settings // {
-            # shyfox specific extensions
-            "sidebar.revamp" = false;
-            "layout.css.has-selector.enabled" = true;
-            "browser.urlbar.suggest.calculator" = true;
-            "browser.urlbar.unitConversion.enabled" = true;
-            "browser.urlbar.trimHttps" = true;
-            "browser.urlbar.trimURLs" = true;
-            "widget.gtk.rounded-bottom-corners.enabled" = true;
-            "widget.gtk.ignore-bogus-leave-notify" = "1";
-          };
-        }
-        // (
-          let
-            theme = pkgs.callPackage ./shyfox-import.nix { };
-          in
-          {
-            userChrome = ''
-              @import "${theme}/lib/shyfox/userChrome.css";
+          userChrome = ''
+            @import "${theme}/lib/shyfox/userChrome.css";
 
-              /* Minor tweaks */
-              :root, #screenshots-component * {
-                --sdbr-wdt: 375px;
-              }
-            '';
-            userContent = ''
-              @import "${theme}/lib/shyfox/userContent.css";
-            '';
-          }
-        );
+            /* Minor tweaks */
+            :root, #screenshots-component * {
+              --sdbr-wdt: 375px;
+            }
+          '';
+          userContent = ''
+            @import "${theme}/lib/shyfox/userContent.css";
+          '';
+        }
+      );
       normal = {
         id = 2;
         name = "normal";
