@@ -27,4 +27,4 @@ dev:
 # Activate the configuration
 [group('Main')]
 run:
-  nix run
+  nh os switch ./
