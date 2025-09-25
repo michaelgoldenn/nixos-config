@@ -93,6 +93,9 @@ in
     glsl_analyzer
     clang
     clang-tools
+    freetype
+    winetricks
+    protontricks
 
     # python stuff, testing for project
     cudaPackages.cudatoolkit
