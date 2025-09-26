@@ -63,7 +63,7 @@ in
               vadimcn.vscode-lldb
               tamasfe.even-better-toml
               # python
-              ms-python.python
+              # ms-python.python # <- does not work, microsoft locks down their extensions to not work in codium >:(
               # C
               ms-vscode.cpptools
             ]

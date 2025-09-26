@@ -6,5 +6,17 @@
     clang-tools
     (lib.lowPrio gcc)
     lldb
+
+    # rust
+    rust-analyzer
+    bacon # not needed for language functionality, but nice for dev
+
+    # python
+    ty
+    ruff
+    (python3.withPackages (ps: with ps; [
+      jedi-language-server
+      python-lsp-server  # This provides 'pylsp'
+    ]))
   ];
 }
