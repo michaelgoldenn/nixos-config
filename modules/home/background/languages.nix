@@ -18,5 +18,9 @@
       jedi-language-server
       python-lsp-server  # This provides 'pylsp'
     ]))
+
+    # configuration languages
+    vscode-json-languageserver # json
+    taplo # toml
   ];
 }
