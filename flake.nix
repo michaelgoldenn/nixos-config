@@ -20,7 +20,7 @@
     vertex.url = "github:juspay/vertex";
     textfox.url = "github:adriankarlen/textfox";
     stylix = {
-      url = "github:nix-community/stylix";
+      url = "github:michaelgoldenn/stylix/obsidian";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
