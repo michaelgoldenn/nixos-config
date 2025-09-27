@@ -20,6 +20,6 @@
 
   config = {
     ## Enable the right sub-directory
-    gnome.enable = lib.mkIf (config.desktopEnvironment.default == "gnome") true;
+    gnome.enable = config.desktopEnvironment.default == "gnome";
   };
 }
