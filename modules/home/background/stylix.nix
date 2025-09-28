@@ -12,7 +12,7 @@ let
       base00 = "#1e1e2e"; # base
       base01 = "#181825"; # mantle
       base02 = "#313244"; # surface0
-      base03 = "#5f6177"; # surface1
+      base03 = "#65677d"; # surface1
       base04 = "#585b70"; # surface2
       base05 = "#cdd6f4"; # text
       base06 = "#f5e0dc"; # rosewater
