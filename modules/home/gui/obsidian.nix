@@ -15,6 +15,13 @@
   config = lib.mkIf config.obsidian.enable {
     programs.obsidian = {
       enable = true;
+      vaults = {
+        main-vault = {
+          enable = true;
+          target = "Documents/obsidian-vault";
+        };
+      };
     };
+    # stylix.targets.obsidian.vaultNames = [ "main-vault" ]; # add main vault to stylix
   };
 }
