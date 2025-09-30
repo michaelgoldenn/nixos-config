@@ -1,12 +1,11 @@
-{
-  flake,
-  lib,
-  config,
-  pkgs,
-  ...
+{ flake
+, lib
+, config
+, pkgs
+, ...
 }:
 let
-  inherit (flake) inputs; # this line might look weird. I'm using nixos-unified's autowiring
+  inherit (flake) inputs;# this line might look weird. I'm using nixos-unified's autowiring
   inherit (pkgs.nur.repos.rycee) firefox-addons;
   inherit (inputs.rycee-nurpkgs.lib."x86_64-linux") buildFirefoxXpiAddon;
   colors = config.lib.stylix.colors; # import stylix
@@ -208,8 +207,8 @@ in
         extensions = {
           packages =
             global_extensions
-            ++ nice_extensions
-            ++ [
+              ++ nice_extensions
+              ++ [
               # For now, sidebery can't be configured through central policies
               # so you'll need to import this file into sidebery settings https://github.com/Naezr/ShyFox/blob/main/sidebery-settings.json
               inputs.firefox-addons.packages."x86_64-linux".sidebery

@@ -1,9 +1,8 @@
-{
-  lib,
-  config,
-  flake,
-  pkgs,
-  ...
+{ lib
+, config
+, flake
+, pkgs
+, ...
 }:
 let
   themes = {
@@ -29,7 +28,7 @@ let
     catppuccin-latte = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
   };
   selectedTheme = themes.${config.theme.name};
-in 
+in
 {
   config = {
     stylix = {

@@ -8,8 +8,8 @@
   };
 
   config = lib.mkIf config.localsend.enable {
-  home.packages = with pkgs; [
-    localsend
-  ];
-};
+    home.packages = with pkgs; [
+      localsend
+    ];
+  };
 }

@@ -1,4 +1,4 @@
-{lib, pkgs, ...}: {
+{ lib, pkgs, ... }: {
   home.packages = with pkgs; [
     # c
     # set gcc to low priority to avoid conflicts with clang
@@ -16,7 +16,7 @@
     ruff
     (python3.withPackages (ps: with ps; [
       jedi-language-server
-      python-lsp-server  # This provides 'pylsp'
+      python-lsp-server # This provides 'pylsp'
     ]))
 
     # configuration languages

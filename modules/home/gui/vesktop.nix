@@ -8,8 +8,8 @@
   };
 
   config = lib.mkIf config.vesktop.enable {
-  programs.vesktop = {
-    enable = true;
+    programs.vesktop = {
+      enable = true;
+    };
   };
-};
 }

@@ -7,8 +7,8 @@
     description = "A teminal-based file explorer";
   };
   config = lib.mkIf config.yazi.enable {
-  programs.yazi = {
-    enable = true;
+    programs.yazi = {
+      enable = true;
+    };
   };
-};
 }
