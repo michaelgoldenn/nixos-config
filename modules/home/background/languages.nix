@@ -1,5 +1,8 @@
 { lib, pkgs, ... }: {
   home.packages = with pkgs; [
+    # nix
+    nixd
+    nil
     # c
     # set gcc to low priority to avoid conflicts with clang
     (lib.hiPrio clang)
