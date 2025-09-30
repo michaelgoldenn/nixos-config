@@ -5,7 +5,6 @@
   imports = [
     inputs.nixos-unified.flakeModules.default
     inputs.nixos-unified.flakeModules.autoWire
-    ./tags.nix
   ];
   perSystem = { self', pkgs, ... }: {
     # For 'nix fmt'
