@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ flake, pkgs, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -19,8 +19,10 @@ in
   cliTools.enable = true;
   vscode.enable = true;
   shell.default = "nushell"; # defined in modules/home/cli/terminal/default.nix
+  # styling
   theme.name = "catppuccin-mocha";
   theme.polarity = "dark";
+  theme.monoFont = "mapleMono";
 
   home.stateVersion = "24.11";
 }

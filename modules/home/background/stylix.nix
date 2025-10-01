@@ -1,8 +1,9 @@
-{ lib
-, config
-, flake
-, pkgs
-, ...
+{
+  lib,
+  config,
+  flake,
+  pkgs,
+  ...
 }:
 let
   themes = {
@@ -27,7 +28,31 @@ let
     };
     catppuccin-latte = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
   };
+  fonts = {
+    # non-mono fonts
+    dejavu = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Sans";
+    };
+
+    # mono fonts
+    dejavuMono = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Sans Mono";
+    };
+    jetbrainsMono = {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "JetBrainsMono Nerd Font";
+    };
+    mapleMono = { # https://github.com/subframe7536/Maple-font
+      package = pkgs.maple-mono.NF-unhinted;
+      name = "MapleMonoNF";
+    };
+  };
   selectedTheme = themes.${config.theme.name};
+  selectedMonoFont = fonts.${config.theme.monoFont};
+  selectedNormalFont = fonts.${config.theme.normalFont};
+
 in
 {
   config = {
@@ -35,12 +60,13 @@ in
       enable = true;
       base16Scheme = selectedTheme;
       polarity = config.theme.polarity;
+      image = config.theme.image;
       cursor = {
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Classic";
         size = 20;
       };
-      image = config.theme.image;
+      fonts.monospace = selectedMonoFont;
       targets = {
         firefox.enable = true;
         firefox.profileNames = [ "textfox" ];
