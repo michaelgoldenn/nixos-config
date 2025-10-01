@@ -79,6 +79,7 @@ let
     "browser.urlbar.suggest.calculator" = true; # I do want the calculator though
     "browser.search.suggest.enabled" = true;
     "browser.search.suggest.enabled.private" = false;
+    "browser.urlbar.quicksuggest.enabled" = false; # this shows ads when you type in your search bar lol
 
     #disable first run stuff (suggestions, welcome page, etc.)
     "app.normandy.first_run" = false;
@@ -98,7 +99,7 @@ let
     "browser.newtabpage.activity-stream.showSponsored" = false;
     "browser.newtabpage.activity-stream.system.showSponsored" = false;
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-    "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts" on new tab page
+    "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts"
   };
   textfox_sidebery_config = builtins.fromJSON (builtins.readFile ./textfox-sidebery-settings.json);
   shyfox_sidebery_config = builtins.fromJSON (builtins.readFile ./shyfox-sidebery-settings.json);
@@ -118,12 +119,12 @@ in
 
           force = true;
           engines = {
-            # hide the other engines
-            #"Google".meteData.hidden = true;
+            # hide engines I don't want
             "amazondotcom-us".metaData.hidden = true;
             "bing".metaData.hidden = true;
             "ebay".metaData.hidden = true;
-
+            # custom definitions for search engines
+            google.definedAliases = ["@g"];
             "ddg" = {
               urls = [
                 {
@@ -136,7 +137,25 @@ in
                   ];
                 }
               ];
-              definedAliases = [ ",d" ];
+              definedAliases = [ "@d" ];
+            };
+            "Github Search" = {
+              urls = [
+                {
+                  template = "https://github.com/search";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                    {
+                      name = "type";
+                      value = "code";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = [ "@gh" ];
             };
             "Github Nix" = {
               urls = [
