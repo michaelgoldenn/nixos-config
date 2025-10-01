@@ -5,12 +5,10 @@
 }:
 {
   ## Define options
-  options.desktopEnvironment = {
-    default = lib.mkOption {
+  options.desktopEnvironment = lib.mkOption {
       type = lib.types.enum [ "gnome" "cosmic" ];
       default = "gnome";
       description = "Desktop Environment";
-    };
   };
   # import everything in sub-folder
   imports =
@@ -19,6 +17,7 @@
 
   config = {
     ## Enable the right sub-directory
-    gnome.enable = config.desktopEnvironment.default == "gnome";
+    gnome.enable = config.desktopEnvironment == "gnome";
+    cosmic.enable = config.desktopEnvironment == "cosmic";
   };
 }
