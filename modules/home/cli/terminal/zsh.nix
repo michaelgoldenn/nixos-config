@@ -18,7 +18,6 @@ in
         '';
       };
 
-      # For macOS's default shell.
       zsh = {
         enable = lib.mkDefault true;
         autosuggestion.enable = true;

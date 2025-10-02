@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   ## Define options
@@ -14,6 +15,13 @@
   };
 
   options.shell = {
+    # which shells should be installed
+    shells = lib.mkOption {
+      description = "The list of shells that should be installed";
+      type = lib.types.listOf lib.types.str;
+      default = [ "nushell" ];
+    };
+    # the default shell
     default = lib.mkOption {
       type = lib.types.enum [
         "nushell"
@@ -36,7 +44,8 @@
     home.sessionVariables.TERMINAL = config.terminal.default;
 
     ## Set Shell
-    nushell.enable = config.shell.default == "nushell";
-    zsh.enable = config.shell.default == "zsh";
+    # apparently can't set default in home-manager??? Need to look into this more
+    nushell.enable = builtins.elem "nushell" config.shell.shells;
+    zsh.enable = builtins.elem "zsh" config.shell.shells;
   };
 }

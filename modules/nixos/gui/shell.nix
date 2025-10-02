@@ -1,11 +1,10 @@
 ## Sets the default shell based on what's set in home-manager.
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 {
-  # Assumes the value used in home-manager is a valid package in nixpkgs.
-  # If that isn't the case, it'll break adn you'll probably have to use a bunch of `if`s to get the package
-  users.users.michael = {
-    shell = pkgs.${config.home-manager.users.michael.shell.default};
-  };
+  # Since we can't set default shell in home-manager, manually set each user's shell to the default in home-manager
+  # It'll require a restart when you change the default, but it should work fine other than that
+  users.users = lib.mapAttrs (username: hmConfig: {
+    shell = pkgs.${hmConfig.shell.default};
+  }) config.home-manager.users;
+
 }
-
-
