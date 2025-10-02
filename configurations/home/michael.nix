@@ -19,6 +19,7 @@ in
   cliTools.enable = true;
   vscode.enable = true;
   shell.default = "nushell"; # defined in modules/home/cli/terminal/default.nix
+  gaming.enable = true;
   # styling
   theme.name = "catppuccin-mocha";
   theme.polarity = "dark";
