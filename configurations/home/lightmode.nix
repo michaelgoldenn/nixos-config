@@ -19,6 +19,8 @@ in
   cliTools.enable = true;
   vscode.enable = true;
   shell.default = "nushell"; # defined in modules/home/cli/terminal/default.nix
+  gaming.enable = true;
+  kdeconnect.enable = true;
   theme = {
     name = "catppuccin-latte";
     polarity = "light";
