@@ -6,7 +6,7 @@
 {
   ## Define options
   options.desktopEnvironment = lib.mkOption {
-      type = lib.types.enum [ "gnome" "cosmic" ];
+      type = lib.types.enum [ "gnome" "cosmic" "hyprland" ];
       default = "gnome";
       description = "Desktop Environment";
   };
@@ -19,5 +19,6 @@
     ## Enable the right sub-directory
     gnome.enable = config.desktopEnvironment == "gnome";
     cosmic.enable = config.desktopEnvironment == "cosmic";
+    hyprland.enable = config.desktopEnvironment == "hyprland";
   };
 }

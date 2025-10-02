@@ -203,6 +203,19 @@ in
               ];
               definedAliases = [ "@n" ];
             };
+            "Nix Wiki" = {
+              urls = [
+                {
+                  template = "https://wiki.nixos.org/w/";
+                  params = [
+                    {
+                      name = "";
+                      value = "index.php?search={searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
           };
         };
         extensions = {
