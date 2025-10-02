@@ -45,7 +45,7 @@
         all-windows-saverestore-window-positions.extensionUuid
         # fuzzy-app-search.extensionUuid
         gsconnect.extensionUuid
-        color-picker.extensionUuid
+        # color-picker.extensionUuid
       ];
     };
   };
