@@ -28,3 +28,8 @@ dev:
 [group('Main')]
 run:
   nh os switch ./
+
+# Open the sops file for adding or editing keys
+[group('dev')]
+sops:
+  nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
