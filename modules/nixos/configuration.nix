@@ -87,6 +87,7 @@ in
     nixfmt-rfc-style
     yazi
     cargo-generate
+    lldb
     slipstream
     ftlman
     audacity
