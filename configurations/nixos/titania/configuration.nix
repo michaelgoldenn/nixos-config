@@ -120,6 +120,7 @@ in
   # Enable OpenGL and Vulkan
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
   };
   hardware.nvidia = {
     # Modesetting is required.
