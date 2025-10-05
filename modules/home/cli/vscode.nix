@@ -1,9 +1,10 @@
 # Actually uses VSCodium, just vscode without as much microsoft telemetry (but no MS official addons D:)
-{ config
-, flake
-, pkgs
-, lib
-, ...
+{
+  config,
+  flake,
+  pkgs,
+  lib,
+  ...
 }:
 let
   settings = {
@@ -46,6 +47,7 @@ in
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
+      mutableExtensionsDir = false;
       # want to find new vscode extensions? https://github.com/search?q=language%3ANix+vscode-extensions&type=code good luck
       # maybe try getting new ones like this: 1. Find extension on marketplace. 2. Click gear -> "Copy Extension ID". 3. Paste it in here
       profiles = {

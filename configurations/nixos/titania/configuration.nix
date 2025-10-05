@@ -88,7 +88,8 @@ in
     #media-session.enable = true;
   };
   # Auto-updates
-  system.autoUpgrade = {
+  /*
+   system.autoUpgrade = {
     enable = true;
     flake = inputs.self.outPath;
     flags = [
@@ -98,7 +99,7 @@ in
     ];
     dates = "02:00";
     randomizedDelaySec = "45min";
-  };
+  }; */
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
