@@ -1,8 +1,17 @@
 [editor]
-# === Blank spaces ===
-#trim-final-newlines = true
-#trim-trailing-whitespace = true
+# Minimum severity to show a diagnostic after the end of a line
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "error" # Show inline diagnostics when the cursor is on the line
+other-lines = "disable" # Don't expand diagnostics unless the cursor is on the line
+
 
 [keys.normal]
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
