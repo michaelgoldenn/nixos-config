@@ -328,6 +328,7 @@ in
   imports = [ inputs.textfox.homeManagerModules.default ];
   textfox = {
     enable = true;
+    useLegacyExtensions = false;
     profile = "textfox";
     config = {
       background = {
