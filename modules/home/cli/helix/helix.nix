@@ -1,8 +1,9 @@
 ## A Vim-Like editor written in Rust
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   options.helix.enable = lib.mkOption {

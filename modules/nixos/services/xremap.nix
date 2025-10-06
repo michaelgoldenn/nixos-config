@@ -7,9 +7,13 @@
     serviceMode = "system";
     watch = true;
 
-    config.modmap = [{
-      name = "Global";
-      remap = { "CapsLock" = "Esc"; };
-    }];
+    config.modmap = [
+      {
+        name = "Global";
+        remap = {
+          "CapsLock" = "Esc";
+        };
+      }
+    ];
   };
 }

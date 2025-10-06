@@ -18,8 +18,7 @@
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
     };
-    services = {
-    };
+    services = { };
     environment.systemPackages = with pkgs; [
     ];
   };

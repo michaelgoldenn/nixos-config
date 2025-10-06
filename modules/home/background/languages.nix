@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   home.packages = with pkgs; [
     # nix
     nixd
@@ -17,10 +18,12 @@
     # python
     ty
     ruff
-    (python3.withPackages (ps: with ps; [
-      jedi-language-server
-      python-lsp-server # This provides 'pylsp'
-    ]))
+    (python3.withPackages (
+      ps: with ps; [
+        jedi-language-server
+        python-lsp-server # This provides 'pylsp'
+      ]
+    ))
 
     # configuration languages
     vscode-json-languageserver # json

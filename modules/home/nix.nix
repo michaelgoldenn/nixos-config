@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   # To use the `nix` from `inputs.nixpkgs` on templates using the standalone `home-manager` template
 

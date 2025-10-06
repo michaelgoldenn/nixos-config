@@ -1,9 +1,21 @@
 # List of users for darwin or nixos system and their top-level configuration.
-{ flake, pkgs, lib, config, ... }:
+{
+  flake,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (flake.inputs) self;
-  mapListToAttrs = m: f:
-    lib.listToAttrs (map (name: { inherit name; value = f name; }) m);
+  mapListToAttrs =
+    m: f:
+    lib.listToAttrs (
+      map (name: {
+        inherit name;
+        value = f name;
+      }) m
+    );
 in
 {
   options = {
@@ -25,14 +37,18 @@ in
   config = {
     # For home-manager to work.
     # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
-    users.users = mapListToAttrs config.myusers (name:
-      lib.optionalAttrs pkgs.stdenv.isDarwin
-        {
-          home = "/Users/${name}";
-        } // lib.optionalAttrs pkgs.stdenv.isLinux {
+    users.users = mapListToAttrs config.myusers (
+      name:
+      lib.optionalAttrs pkgs.stdenv.isDarwin {
+        home = "/Users/${name}";
+      }
+      // lib.optionalAttrs pkgs.stdenv.isLinux {
         isNormalUser = true;
         ## TODO: Change this so the extra groups are configured in the home files rather than here.
-        extraGroups = [ "wheel" "nixos" ];
+        extraGroups = [
+          "wheel"
+          "nixos"
+        ];
       }
     );
 
@@ -44,6 +60,7 @@ in
     # All users can add Nix caches.
     nix.settings.trusted-users = [
       "root"
-    ] ++ config.myusers;
+    ]
+    ++ config.myusers;
   };
 }

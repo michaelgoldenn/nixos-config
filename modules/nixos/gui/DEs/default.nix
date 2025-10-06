@@ -1,14 +1,19 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   ## Define options
   options.desktopEnvironment = lib.mkOption {
-      type = lib.types.enum [ "gnome" "cosmic" "hyprland" ];
-      default = "gnome";
-      description = "Desktop Environment";
+    type = lib.types.enum [
+      "gnome"
+      "cosmic"
+      "hyprland"
+    ];
+    default = "gnome";
+    description = "Desktop Environment";
   };
   # import everything in sub-folder
   imports =

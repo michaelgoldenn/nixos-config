@@ -1,8 +1,9 @@
 ## Enables Obsidian.md
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   options.obsidian.enable = lib.mkOption {

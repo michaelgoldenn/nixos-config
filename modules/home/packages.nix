@@ -12,11 +12,11 @@
     tree
     gnumake
 
-    # Nix dev
+    # Nix dev (nix formatter to use is defined in toplevel.nix (for some reason))
     cachix
     nix-info
-    nixpkgs-fmt
-
+    nixfmt-rfc-style
+    nixfmt-tree
 
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.

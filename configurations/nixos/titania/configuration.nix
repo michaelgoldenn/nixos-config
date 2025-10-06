@@ -1,9 +1,10 @@
 # system-level configuration for titania machine
-{ config
-, pkgs
-, lib
-, flake
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  flake,
+  ...
 }:
 let
   inherit (flake) inputs;
@@ -76,7 +77,7 @@ in
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
-    # Nvidia power management. Can cause sleep/suspend to not wake up. 
+    # Nvidia power management. Can cause sleep/suspend to not wake up.
     # But disabling can lead to weird artifacts. For titania both happen so I just don't let it suspend
     powerManagement.enable = true;
     # Fine-grained power management. Turns off GPU when not in use.
@@ -97,11 +98,13 @@ in
   ];
 
   # need to define syncthing here for each machine
-  /*   syncthing = {
-    enable = true;
-    deviceId = "Q4GJXVG-6JIJKWO-ALIV3BP-IVN6423-4V3MTCO-RRLP35U-WEDCFHT-MK7T3Q2";
-    deviceName = config.networking.hostName;
-  }; */
+  /*
+    syncthing = {
+      enable = true;
+      deviceId = "Q4GJXVG-6JIJKWO-ALIV3BP-IVN6423-4V3MTCO-RRLP35U-WEDCFHT-MK7T3Q2";
+      deviceName = config.networking.hostName;
+    };
+  */
 
   # DO NOT touch this unless you fully understand the implications.
   # It's not updating your system, do `nix flake update` for that.

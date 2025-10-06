@@ -1,5 +1,10 @@
 ## An app to send to other compters on the local network
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.localsend.enable = lib.mkOption {
     type = lib.types.bool;

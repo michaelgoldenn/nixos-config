@@ -44,7 +44,8 @@ let
       package = pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font";
     };
-    mapleMono = { # https://github.com/subframe7536/Maple-font
+    mapleMono = {
+      # https://github.com/subframe7536/Maple-font
       package = pkgs.maple-mono.NF-unhinted;
       name = "MapleMonoNF";
     };

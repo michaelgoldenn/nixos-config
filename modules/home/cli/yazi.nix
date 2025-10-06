@@ -1,5 +1,10 @@
 ## A teminal-based file explorer
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.yazi.enable = lib.mkOption {
     type = lib.types.bool;
