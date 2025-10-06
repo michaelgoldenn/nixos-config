@@ -16,15 +16,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "umbriel"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "umbriel";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  #networking.networkmanager.enable = true;
+  # need to define syncthing here for each machine
+  syncthing = {
+    enable = true;
+    deviceId = "L33OKJG-V4LKJ2S-3Q2XCZX-Y4XH5AR-3QNYTUZ-IMHEHUB-YHBAFFO-GZZK3AD";
+    deviceName = config.networking.hostName;
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -97,23 +96,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  /*   mySystem = {
-    vr.enable = lib.mkForce true;
-    lutris.enable = true;
-    services = {
-      open-webui.enable = true;
-    };
-    DE = {
-      gnome.enable = true;
-      hyprland.enable = false;
-    };
-  }; */
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

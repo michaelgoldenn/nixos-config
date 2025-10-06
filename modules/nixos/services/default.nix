@@ -1,7 +1,8 @@
 {
   imports = [
-    ./xremap.nix
     ./kdeconnect.nix
     ./pia
+    ./syncthing.nix
+    ./xremap.nix
   ];
 }
