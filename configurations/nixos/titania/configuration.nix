@@ -98,13 +98,11 @@ in
   ];
 
   # need to define syncthing here for each machine
-  /*
-    syncthing = {
-      enable = true;
-      deviceId = "Q4GJXVG-6JIJKWO-ALIV3BP-IVN6423-4V3MTCO-RRLP35U-WEDCFHT-MK7T3Q2";
-      deviceName = config.networking.hostName;
-    };
-  */
+  syncthing = {
+    enable = true;
+    deviceId = "V2RH23M-O6KH6M4-QE3LHTR-SZXNO4G-ZVDL4C7-Y4R55XF-DFQY3XO-YBNGVA5";
+    deviceName = config.networking.hostName;
+  };
 
   # DO NOT touch this unless you fully understand the implications.
   # It's not updating your system, do `nix flake update` for that.
