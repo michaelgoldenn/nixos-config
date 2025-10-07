@@ -138,8 +138,11 @@ in
   config = mkIf cfg.enable {
     services.syncthing = {
       enable = true;
-      user = cfg.user;
-      group = cfg.group;
+      # should change these to not be hard-coded in the future
+      user = "michael";
+      group = "users";
+      dataDir = "/home/youruser/.local/share/syncthing";
+      configDir = "/home/michael/.config/syncthing";
 
       settings = {
         devices = deviceConfigs;
