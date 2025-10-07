@@ -33,6 +33,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     xremap-flake.url = "github:xremap/nix-flake";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 

@@ -21,8 +21,8 @@
 
   syncthing = {
     enable = true;
-    deviceName = "umbriel";  # Must match the key in syncthingDevices
-    
+    deviceName = "umbriel"; # Must match the key in syncthingDevices
+
     folders = {
       obsidian-vault = {
         path = "/home/michael/Documents/obsidian-vault";

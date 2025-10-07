@@ -19,6 +19,7 @@
       nh # nix-helper. https://github.com/nix-community/nh
       fd # better find
       tldr # like `man` but gives common examples
+      just
     ];
 
     programs = {

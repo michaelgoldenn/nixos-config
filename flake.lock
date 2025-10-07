@@ -1103,6 +1103,7 @@
         "nixvim": "nixvim",
         "nur": "nur",
         "rycee-nurpkgs": "rycee-nurpkgs",
+        "sops-nix": "sops-nix",
         "stylix": "stylix",
         "textfox": "textfox",
         "vertex": "vertex",
@@ -1129,6 +1130,26 @@
         "owner": "rycee",
         "repo": "nur-expressions",
         "type": "gitlab"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759635238,
+        "narHash": "sha256-UvzKi02LMFP74csFfwLPAZ0mrE7k6EiYaKecplyX9Qk=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "6e5a38e08a2c31ae687504196a230ae00ea95133",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "stylix": {

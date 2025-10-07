@@ -4,5 +4,6 @@
     ./pia
     ./syncthing.nix
     ./xremap.nix
+    ./sops.nix
   ];
 }

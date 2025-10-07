@@ -99,8 +99,8 @@ in
 
   syncthing = {
     enable = true;
-    deviceName = "titania";  # Must match the key in syncthingDevices
-    
+    deviceName = "titania"; # Must match the key in syncthingDevices
+
     folders = {
       obsidian-vault = {
         path = "/home/michael/Documents/obsidian-vault";
