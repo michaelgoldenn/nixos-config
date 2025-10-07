@@ -102,7 +102,7 @@ in
     deviceName = "titania";  # Must match the key in syncthingDevices
     
     folders = {
-      "Obsidian Vault" = {
+      obsidian-vault = {
         path = "/home/michael/Documents/obsidian-vault";
         devices = [ "umbriel" ];
       };
