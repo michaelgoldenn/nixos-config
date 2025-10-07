@@ -19,11 +19,16 @@
 
   networking.hostName = "umbriel";
 
-  # need to define syncthing here for each machine
-  syncthing = {
+  services.syncthing = {
     enable = true;
-    deviceId = "L33OKJG-V4LKJ2S-3Q2XCZX-Y4XH5AR-3QNYTUZ-IMHEHUB-YHBAFFO-GZZK3AD";
-    deviceName = config.networking.hostName;
+    deviceName = "umbriel";  # Must match the key in syncthingDevices
+    
+    folders = {
+      "Obsidian Vault" = {
+        path = "/home/michael/Documents/obsidian-vault";
+        devices = [ "titania" ];
+      };
+    };
   };
 
   # Set your time zone.

@@ -31,16 +31,5 @@ in
   theme.polarity = "dark";
   theme.monoFont = "mapleMono";
 
-  # syncthing
-  syncthing = {
-    enable = true;
-    folders = {
-      "Obsidian Vault" = {
-        path = "${config.home.homeDirectory}/Documents/obsidian-vault";
-        devices = [ ]; # blank = all devices
-      };
-    };
-  };
-
   home.stateVersion = "24.11";
 }

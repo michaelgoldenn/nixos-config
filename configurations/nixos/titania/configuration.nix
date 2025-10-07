@@ -97,11 +97,16 @@ in
     openvpn
   ];
 
-  # need to define syncthing here for each machine
   syncthing = {
     enable = true;
-    deviceId = "V2RH23M-O6KH6M4-QE3LHTR-SZXNO4G-ZVDL4C7-Y4R55XF-DFQY3XO-YBNGVA5";
-    deviceName = config.networking.hostName;
+    deviceName = "titania";  # Must match the key in syncthingDevices
+    
+    folders = {
+      "Obsidian Vault" = {
+        path = "/home/michael/Documents/obsidian-vault";
+        devices = [ "umbriel" ];
+      };
+    };
   };
 
   # DO NOT touch this unless you fully understand the implications.
