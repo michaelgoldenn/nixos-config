@@ -138,6 +138,7 @@ in
   config = mkIf cfg.enable {
     services.syncthing = {
       enable = true;
+      openDefaultPorts = true;
       # should change these to not be hard-coded in the future
       user = "michael";
       group = "users";
@@ -146,9 +147,7 @@ in
 
       settings = {
         devices = deviceConfigs;
-
         folders = folderConfigs;
-
         options = {
           urAccepted = -1; # Disable usage reporting prompt
         };
