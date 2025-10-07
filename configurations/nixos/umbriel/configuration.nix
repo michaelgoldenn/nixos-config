@@ -19,12 +19,12 @@
 
   networking.hostName = "umbriel";
 
-  services.syncthing = {
+  syncthing = {
     enable = true;
     deviceName = "umbriel";  # Must match the key in syncthingDevices
     
     folders = {
-      "Obsidian Vault" = {
+      obsidian-vault = {
         path = "/home/michael/Documents/obsidian-vault";
         devices = [ "titania" ];
       };

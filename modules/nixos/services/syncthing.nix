@@ -46,8 +46,6 @@ let
     devices = folderCfg.devices;
     ignorePerms = folderCfg.ignorePerms;
     type = folderCfg.type;
-    rescanIntervalS = folderCfg.rescanIntervalS;
-    fsWatcherEnabled = folderCfg.fsWatcherEnabled;
     versioning = folderCfg.versioning;
   }) cfg.folders;
 
