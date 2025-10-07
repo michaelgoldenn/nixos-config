@@ -12,7 +12,7 @@ let
 
   # Centralized device registry
   syncthingDevices = {
-    umbriel = "ABC1234-DEF5678-GHI9012-JKL3456-MNO7890-PQR1234-STU5678-VWX9012";
+    umbriel = "3CKQH2N-OIHJTFG-PFAH54U-DCI375A-SIELGRI-FPYYQHJ-A6V5IGU-24LKRQH";
     titania = "LR4WOIU-CK4DT3L-YUMS2YE-PHGXEPA-7KT27RY-ZGVAFPO-4WBYINJ-R5QSBAF";
     # Add more devices here as needed
     # oberon = "XYZ9876-...";
