@@ -13,7 +13,7 @@ let
   # Centralized device registry
   syncthingDevices = {
     umbriel = "D77PVFP-46PY65M-PUSFXRF-5DLFYSR-4GB4PCF-FRQWLHX-VERPPGI-O4KYAQ5";
-    titania = "LR4WOIU-CK4DT3L-YUMS2YE-PHGXEPA-7KT27RY-ZGVAFPO-4WBYINJ-R5QSBAF";
+    titania = "AY7KSET-AGDDFCU-25GZLT5-Y63PFI4-6RK2A5V-UFFWPMY-MOUIW5F-UJRYUAI";
     # Add more devices here as needed
   };
 
