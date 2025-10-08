@@ -34,11 +34,6 @@ let
     }) allDevices
   );
 
-  # Get this machine's device ID from the registry
-  thisDeviceId =
-    syncthingDevices.${cfg.deviceName}
-      or (throw "Device '${cfg.deviceName}' not found in syncthingDevices registry");
-
   # Create folder configs
   folderConfigs = mapAttrs (folderName: folderCfg: {
     path = folderCfg.path;
