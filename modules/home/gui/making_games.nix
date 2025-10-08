@@ -13,6 +13,7 @@
       obsidian
       blender
       aseprite
+      godot
     ];
   };
 }
