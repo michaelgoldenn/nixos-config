@@ -8,7 +8,7 @@
 {
   options.making_games.enable = lib.mkEnableOption "making_games";
 
-  config = lib.mkIf config.obsidian.enable {
+  config = lib.mkIf config.making_games.enable {
     home.packages = with pkgs; [
       obsidian
       blender

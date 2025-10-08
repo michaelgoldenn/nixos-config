@@ -25,6 +25,7 @@ in
   vscode.enable = true;
   shell.default = "nushell"; # defined in modules/home/cli/terminal/default.nix
   gaming.enable = true;
+  spotify.enable = true;
   making_games.enable = true;
   kdeconnect.enable = true;
 
