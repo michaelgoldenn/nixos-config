@@ -20,6 +20,7 @@
       fd # better find
       tldr # like `man` but gives common examples
       just
+      toybox
     ];
 
     programs = {
