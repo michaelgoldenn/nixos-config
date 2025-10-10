@@ -6,15 +6,19 @@ end-of-line-diagnostics = "hint"
 cursor-line = "error" # Show inline diagnostics when the cursor is on the line
 other-lines = "disable" # Don't expand diagnostics unless the cursor is on the line
 
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
 
+[editor.file-picker]
+hidden = false
+
+
+## Custom Keybinds
 [keys.normal]
 # ctrl+j / ctrl+k to move current selection up or down
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 # "*" will select current word
 "*" = ["move_char_right", "move_prev_word_start", "move_next_word_start", "search_selection"]
-
-[editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
