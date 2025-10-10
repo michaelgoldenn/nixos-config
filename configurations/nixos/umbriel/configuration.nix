@@ -26,7 +26,10 @@
     folders = {
       obsidian-vault = {
         path = "/home/michael/Documents/obsidian-vault";
-        devices = [ "titania" ];
+        devices = [
+          "titania"
+          "ophelia"
+        ];
       };
     };
   };

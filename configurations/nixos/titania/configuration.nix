@@ -104,6 +104,13 @@ in
     folders = {
       obsidian-vault = {
         path = "/home/michael/Documents/obsidian-vault";
+        devices = [
+          "umbriel"
+          "ophelia"
+        ];
+      };
+      making-games = {
+        path = "/home/michael/projects/making_games/";
         devices = [ "umbriel" ];
       };
     };
