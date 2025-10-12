@@ -14,6 +14,27 @@ in
     ./hardware-configuration.nix
   ];
 
+  # Michael's Custom Definitions - new configuration stuff I've added
+  syncthing = {
+    enable = true;
+    deviceName = "titania"; # Must match the key in syncthingDevices
+
+    folders = {
+      obsidian-vault = {
+        path = "/home/michael/Documents/obsidian-vault";
+        devices = [
+          "umbriel"
+          "ophelia"
+        ];
+      };
+      making-games = {
+        path = "/home/michael/projects/making_games/";
+        devices = [ "umbriel" ];
+      };
+    };
+  };
+  gui.enable = true;
+
   # GRUB
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
@@ -96,25 +117,6 @@ in
     networkmanager-openvpn
     openvpn
   ];
-
-  syncthing = {
-    enable = true;
-    deviceName = "titania"; # Must match the key in syncthingDevices
-
-    folders = {
-      obsidian-vault = {
-        path = "/home/michael/Documents/obsidian-vault";
-        devices = [
-          "umbriel"
-          "ophelia"
-        ];
-      };
-      making-games = {
-        path = "/home/michael/projects/making_games/";
-        devices = [ "umbriel" ];
-      };
-    };
-  };
 
   # DO NOT touch this unless you fully understand the implications.
   # It's not updating your system, do `nix flake update` for that.

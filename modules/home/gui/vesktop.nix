@@ -1,11 +1,7 @@
-## A Discord client with many extensions
+## vesktop
 { config, lib, ... }:
 {
-  options.vesktop.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "A Discord client with many extensions";
-  };
+  options.vesktop.enable = lib.mkEnableOption "vesktop";
 
   config = lib.mkIf config.vesktop.enable {
     programs.vesktop = {

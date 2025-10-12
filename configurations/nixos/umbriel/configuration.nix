@@ -13,12 +13,7 @@
     ./hardware-configuration.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "umbriel";
-
+  # Michael's Custom Definitions - new configuration stuff I've added
   syncthing = {
     enable = true;
     deviceName = "umbriel"; # Must match the key in syncthingDevices
@@ -33,6 +28,15 @@
       };
     };
   };
+  gui.enable = true;
+
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "umbriel";
+
 
   # Set your time zone.
   time.timeZone = "America/New_York";

@@ -6,24 +6,45 @@
 }:
 {
   ## Define options
-  options.desktopEnvironment = lib.mkOption {
-    type = lib.types.enum [
-      "gnome"
-      "cosmic"
-      "hyprland"
-    ];
-    default = "gnome";
-    description = "Desktop Environment";
+  options.gui = {
+    enable = lib.mkEnableOption "gui";
+    desktopEnvironment = lib.mkOption {
+      type = lib.types.enum [
+        "gnome"
+        "cosmic"
+        "hyprland"
+      ];
+      default = "gnome";
+      description = "Desktop Environment";
+    };
   };
+
   # import everything in sub-folder
   imports =
     with builtins;
     map (fn: ./${fn}) (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
 
-  config = {
-    ## Enable the right sub-directory
-    gnome.enable = config.desktopEnvironment == "gnome";
-    cosmic.enable = config.desktopEnvironment == "cosmic";
-    hyprland.enable = config.desktopEnvironment == "hyprland";
-  };
+  config = lib.mkMerge [
+    # Only create specialisations when GUI is enabled
+    (lib.mkIf config.gui.enable {
+      specialisation = {
+        gnome.configuration = {
+          gui.desktopEnvironment = "gnome";
+        };
+        cosmic.configuration = {
+          gui.desktopEnvironment = "cosmic";
+        };
+        hyprland.configuration = {
+          gui.desktopEnvironment = "hyprland";
+        };
+      };
+    })
+
+    # Only enable desktop environments when GUI is enabled
+    (lib.mkIf config.gui.enable {
+      gnome.enable = config.gui.desktopEnvironment == "gnome";
+      cosmic.enable = config.gui.desktopEnvironment == "cosmic";
+      hyprland.enable = config.gui.desktopEnvironment == "hyprland";
+    })
+  ];
 }

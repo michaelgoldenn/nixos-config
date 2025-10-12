@@ -1,4 +1,4 @@
-## A Vim-Like editor written in Rust
+## A Vim-Like editor
 {
   config,
   lib,
@@ -6,11 +6,7 @@
   ...
 }:
 {
-  options.helix.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "A Vim-Like editor written in Rust";
-  };
+  options.helix.enable = lib.mkEnableOption "helix";
 
   config = lib.mkIf config.helix.enable {
     home.packages = with pkgs; [

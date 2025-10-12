@@ -24,11 +24,14 @@ in
   cliTools.enable = true;
   vscode.enable = true;
   shell.default = "nushell"; # defined in modules/home/cli/terminal/default.nix
+  helix.enable = true;
   gaming.enable = true;
   nixcord.enable = true;
+  vesktop.enable = false;
   spotify.enable = true;
   making_games.enable = true;
   kdeconnect.enable = true;
+  obsidian.enable = true;
 
   # styling
   theme.name = "catppuccin-mocha";

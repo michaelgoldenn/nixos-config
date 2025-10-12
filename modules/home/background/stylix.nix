@@ -56,6 +56,7 @@ let
 
 in
 {
+  # currently don't have an option for stylix, should probably add one.
   config = {
     stylix = {
       enable = true;

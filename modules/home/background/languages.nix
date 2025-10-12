@@ -1,5 +1,6 @@
 { lib, pkgs, ... }:
 {
+  # just add these no matter what, I can't imagine a situation where I wouldn't want these
   home.packages = with pkgs; [
     # nix
     nixd

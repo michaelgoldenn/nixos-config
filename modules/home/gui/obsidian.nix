@@ -6,11 +6,7 @@
   ...
 }:
 {
-  options.obsidian.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "Enables Obsidian.md";
-  };
+  options.obsidian.enable = lib.mkEnableOption "Obsidian.md";
 
   config = lib.mkIf config.obsidian.enable {
     home.packages = [ pkgs.obsidian ];
