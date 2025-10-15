@@ -9,9 +9,9 @@
   imports = [
     flake.inputs.spicetify-nix.homeManagerModules.default
   ];
-  
+
   options.spotify.enable = lib.mkEnableOption "spotify";
-  
+
   config = lib.mkIf config.spotify.enable {
     programs.spicetify =
       let

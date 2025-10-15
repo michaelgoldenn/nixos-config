@@ -30,13 +30,11 @@
   };
   gui.enable = true;
 
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "umbriel";
-
 
   # Set your time zone.
   time.timeZone = "America/New_York";
