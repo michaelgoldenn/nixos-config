@@ -64,6 +64,7 @@ in
               rust-lang.rust-analyzer
               vadimcn.vscode-lldb
               tamasfe.even-better-toml
+              mkhl.direnv
               # python
               # ms-python.python # <- does not work, microsoft locks down their extensions to not work in codium >:(
               # C
