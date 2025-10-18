@@ -32,6 +32,7 @@ in
   making_games.enable = true;
   kdeconnect.enable = true;
   obsidian.enable = true;
+  printing_3d.enable = true; # 3d printing things
 
   # styling
   theme.name = "catppuccin-mocha";
