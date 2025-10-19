@@ -33,7 +33,8 @@ in
   kdeconnect.enable = true;
   obsidian.enable = true;
   printing_3d.enable = true; # 3d printing things
-
+  pentesting.enable = true;
+  
   # styling
   theme.name = "catppuccin-mocha";
   theme.polarity = "dark";
