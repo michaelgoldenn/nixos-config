@@ -4,6 +4,7 @@
 
   services.xremap = {
     # Ideally this would be user-level and have each user configure if they want it themself, but I couldn't figure that out
+    enable = true;
     serviceMode = "system";
     watch = true;
 
