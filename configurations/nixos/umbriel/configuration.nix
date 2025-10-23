@@ -26,6 +26,11 @@
           "ophelia"
         ];
       };
+      making-games = {
+        path = "/home/michael/projects/making-games/";
+        devices = [ "titania" ];
+      };
+
     };
   };
   gui.enable = true;

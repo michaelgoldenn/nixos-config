@@ -28,7 +28,7 @@ in
         ];
       };
       making-games = {
-        path = "/home/michael/projects/making_games/";
+        path = "/home/michael/projects/making-games/";
         devices = [ "umbriel" ];
       };
     };
