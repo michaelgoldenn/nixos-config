@@ -26,6 +26,9 @@
       ]
     ))
 
+    # verilog
+    sv-lang
+
     # configuration languages
     vscode-json-languageserver # json
     taplo # toml
