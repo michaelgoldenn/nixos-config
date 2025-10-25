@@ -5,5 +5,6 @@
     ./syncthing.nix
     ./xremap.nix
     ./sops.nix
+    ./wireguard.nix
   ];
 }
