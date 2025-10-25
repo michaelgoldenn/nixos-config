@@ -34,6 +34,7 @@ in
   obsidian.enable = true;
   printing_3d.enable = true; # 3d printing things
   pentesting.enable = true;
+  video_editing.enable = true;
   
   # styling
   theme.name = "catppuccin-mocha";
