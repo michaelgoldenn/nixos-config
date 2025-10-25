@@ -26,8 +26,8 @@
       ]
     ))
 
-    # verilog
-    sv-lang
+    # verilog (currently broken)
+    # sv-lang
 
     # configuration languages
     vscode-json-languageserver # json
