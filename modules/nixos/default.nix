@@ -7,4 +7,5 @@
     ./services
   ];
   services.openssh.enable = true;
+  programs.nix-ld.enable = true; # enable nix ld for all PCs.
 }
