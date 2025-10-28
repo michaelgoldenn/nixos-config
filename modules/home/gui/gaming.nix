@@ -11,6 +11,7 @@
   config = lib.mkIf config.gaming.enable {
     home.packages = with pkgs; [
       steam
+      steam-run
       r2modman
       lutris
       prismlauncher # minecraft
