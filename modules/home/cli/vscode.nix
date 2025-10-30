@@ -27,7 +27,7 @@ let
         "path" = "nu";
       };
     };
-    "terminal.integrated.defaultProfile.linux" = "nu"; # Optional: to make nu the default
+    "terminal.integrated.defaultProfile.linux" = "nu"; # Should make this follow the configured shell
     # make it smooooth
     "editor.smoothScrolling" = true;
     "editor.cursorBlinking" = "smooth";
@@ -97,6 +97,7 @@ in
             "explorer.confirmDelete" = false;
             "godotTools.editorPath.godot4" = "/run/current-system/etc/profiles/per-user/michael/bin/godot4";
             "git.autofetch" = true;
+            "chat.disableAiFeatures" = true;
           }
           // settings;
         };
