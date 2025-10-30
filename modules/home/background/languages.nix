@@ -34,6 +34,6 @@
     taplo # toml
 
     #lua
-    lua-lua-language-server
+    lua-language-server
   ];
 }
