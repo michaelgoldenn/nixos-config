@@ -32,5 +32,8 @@
     # configuration languages
     vscode-json-languageserver # json
     taplo # toml
+
+    #lua
+    lua-lua-language-server
   ];
 }
