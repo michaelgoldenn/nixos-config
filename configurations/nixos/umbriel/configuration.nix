@@ -34,6 +34,7 @@
     };
   };
   gui.enable = true;
+  suspend = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

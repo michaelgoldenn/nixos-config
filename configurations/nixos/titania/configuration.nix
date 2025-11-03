@@ -34,6 +34,7 @@ in
     };
   };
   gui.enable = true;
+  suspend.enable = false;
 
   # GRUB
   boot.loader.efi.canTouchEfiVariables = true;
