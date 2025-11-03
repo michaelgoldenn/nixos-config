@@ -2,13 +2,8 @@
 {
   config,
   pkgs,
-  lib,
-  flake,
   ...
 }:
-let
-  inherit (flake) inputs;
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -35,15 +30,7 @@ in
   };
   gui.enable = true;
   suspend.enable = false;
-
-  # GRUB
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
-    enable = true;
-    devices = [ "nodev" ];
-    efiSupport = true;
-    useOSProber = true;
-  };
+  grub.enable = true;
 
   # Enable networking
   networking = {

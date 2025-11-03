@@ -12,7 +12,6 @@
           "code.desktop"
           "discord.desktop"
           "spotify.desktop"
-          "app.bluebubbles.BlueBubbles.desktop"
           "foot.desktop"
         ];
       };

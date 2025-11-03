@@ -21,6 +21,7 @@
     nixvim.inputs.flake-parts.follows = "flake-parts";
     vertex.url = "github:juspay/vertex";
     textfox.url = "github:adriankarlen/textfox";
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";

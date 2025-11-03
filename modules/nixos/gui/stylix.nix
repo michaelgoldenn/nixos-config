@@ -11,5 +11,8 @@
     enable = true;
     # need to enter color scheme for it to work properly, will get overwritten by home-manager stylix config
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    targets = {
+      grub.enable = false;
+    };
   };
 }

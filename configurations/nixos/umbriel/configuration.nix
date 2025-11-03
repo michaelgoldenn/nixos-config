@@ -35,10 +35,7 @@
   };
   gui.enable = true;
   suspend = true;
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  grub.enable = true;
 
   networking.hostName = "umbriel";
 

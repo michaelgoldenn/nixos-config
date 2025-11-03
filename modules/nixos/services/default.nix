@@ -1,11 +1,12 @@
 {
   imports = [
+    ./grub.nix
     ./kdeconnect.nix
     ./pia
-    ./syncthing.nix
-    ./xremap.nix
     ./sops.nix
     ./suspend.nix
+    ./syncthing.nix
     ./wireguard.nix
+    ./xremap.nix
   ];
 }
