@@ -11,6 +11,7 @@
     desktopEnvironment = lib.mkOption {
       type = lib.types.enum [
         "gnome"
+        "kde"
         "cosmic"
         "hyprland"
       ];
@@ -37,6 +38,9 @@
         hyprland.configuration = {
           gui.desktopEnvironment = "hyprland";
         };
+        kde.configuration = {
+          gui.desktopEnvironment = "kde";
+        };
       };
     })
 
@@ -45,6 +49,7 @@
       gnome.enable = config.gui.desktopEnvironment == "gnome";
       cosmic.enable = config.gui.desktopEnvironment == "cosmic";
       hyprland.enable = config.gui.desktopEnvironment == "hyprland";
+      kde.enable = config.gui.desktopEnvironment == "kde";
     })
   ];
 }
