@@ -34,7 +34,7 @@
     };
   };
   gui.enable = true;
-  suspend = true;
+  suspend.enable = true;
   grub.enable = true;
 
   networking.hostName = "umbriel";

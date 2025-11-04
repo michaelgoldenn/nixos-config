@@ -5,13 +5,13 @@
   ...
 }:
 {
-  options.suspend = lib.mkOption {
+  options.suspend.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
     description = "Allows computer to suspend (deep sleep) after a certain period of time";
   };
 
-  config = lib.mkIf (!config.suspend) {
+  config = lib.mkIf (!config.suspend.enable) {
     # Disable systemd suspend/sleep targets
     systemd.targets.sleep.enable = false;
     systemd.targets.suspend.enable = false;
