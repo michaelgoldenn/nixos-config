@@ -3,9 +3,9 @@
 
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/master";
-    nixpkgs.url = "github:nixos/nixpkgs?ref=pull/455370/head";
+    # nixpkgs.url = "github:nixos/nixpkgs?ref=pull/455370/head";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";

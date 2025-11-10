@@ -12,7 +12,7 @@
   imports = [ flake.inputs.minegrub-theme.nixosModules.default ];
 
   config = lib.mkIf config.grub.enable {
-    boot.loader.grub = lib.mkForce {
+    boot.loader.grub = {
       enable = true;
       device = "nodev";
       efiSupport = true;
