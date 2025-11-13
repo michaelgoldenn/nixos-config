@@ -1,5 +1,6 @@
 {
   imports = [
+    ./cache.nix
     ./grub.nix
     ./kdeconnect.nix
     ./pia
