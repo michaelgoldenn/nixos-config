@@ -36,6 +36,7 @@
   gui.enable = true;
   suspend.enable = true;
   grub.enable = true;
+  xremap.enable = true;
 
   networking.hostName = "umbriel";
 

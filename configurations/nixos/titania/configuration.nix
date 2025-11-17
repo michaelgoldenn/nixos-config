@@ -31,6 +31,7 @@
   gui.enable = true;
   suspend.enable = false;
   grub.enable = true;
+  xremap.enable = true;
 
   # Enable networking
   networking = {
