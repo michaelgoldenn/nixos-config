@@ -27,7 +27,6 @@ in
   helix.enable = true;
   kdeconnect.enable = true;
   business.enable = true;
-  productivity.enable = true;
 
   # styling
   theme.name = "catppuccin-mocha";

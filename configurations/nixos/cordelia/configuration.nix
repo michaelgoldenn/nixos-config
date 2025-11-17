@@ -1,11 +1,21 @@
-{ config, modulesPath, pkgs, lib, ... }:
 {
-  imports = [ ./hardware-configuration.nix (modulesPath + "/virtualisation/proxmox-lxc.nix") ];
+  config,
+  modulesPath,
+  pkgs,
+  lib,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    (modulesPath + "/virtualisation/proxmox-lxc.nix")
+  ];
   home-manager.users = {
     server = import ../../home/server.nix;
-    # michael is intentionally omitted
   };
-  nix.settings = { sandbox = false; };  
+  nix.settings = {
+    sandbox = false;
+  };
   networking.hostName = "cordelia";
   nixpkgs.config.allowUnfree = true;
   proxmoxLXC = {
@@ -18,11 +28,11 @@
     enable = true;
     openFirewall = true;
     settings = {
-        PermitRootLogin = "yes";
-        PasswordAuthentication = true;
+      PermitRootLogin = "yes";
+      PasswordAuthentication = true;
     };
   };
-    time.timeZone = "America/New_York";
+  time.timeZone = "America/New_York";
 
   # Cache DNS lookups to improve performance
   services.resolved = {
