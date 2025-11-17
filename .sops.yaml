@@ -6,6 +6,7 @@ keys:
   - &titania age18vqntryv5q60dgp659p8xwu83wrnx6hx2l9wql0ule3r2p0av4vskyxz57
   - &umbriel age1dsftwteuk56fvjz44d2lafccz0h6lesr4d6vkhgrjh8fmkjryurszm79qd
   - &mirandia age1eseh0c6fxs4kky94fwayadkyhzn8r2p6nnq6m3mcp57paxmut3nqvjejkr
+  - &cordelia age1atazd9eu0canqakelpdktamlq4yzx5xfcvkz95yxlkyszce55cjqdmh9d4
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -13,3 +14,4 @@ creation_rules:
       - *titania
       - *umbriel
       - *mirandia
+      - *cordelia
