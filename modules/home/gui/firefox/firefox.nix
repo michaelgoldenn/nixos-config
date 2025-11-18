@@ -102,6 +102,9 @@ let
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts"
   };
+
+  # sidebery configs. If you want to replace the current config with a new one, it is located in:
+  # ~/.mozilla/firefox/<profile_name>/browser-extension-data/{3c078156-979c-498b-8990-85f7987dd929}/storage.js
   textfox_sidebery_config = builtins.fromJSON (builtins.readFile ./textfox-sidebery-settings.json);
   shyfox_sidebery_config = builtins.fromJSON (builtins.readFile ./shyfox-sidebery-settings.json);
 in
