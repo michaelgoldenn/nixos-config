@@ -18,13 +18,17 @@
       obsidian-vault = {
         path = "/home/michael/Documents/obsidian-vault";
         devices = [
+          "cordelia"
           "umbriel"
           "ophelia"
         ];
       };
       making-games = {
         path = "/home/michael/projects/making-games/";
-        devices = [ "umbriel" ];
+        devices = [
+          "cordelia"
+          "umbriel"
+        ];
       };
     };
   };

@@ -1,6 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# For the umbriel system
 {
   config,
   pkgs,
@@ -22,13 +20,17 @@
       obsidian-vault = {
         path = "/home/michael/Documents/obsidian-vault";
         devices = [
+          "cordelia"
           "titania"
           "ophelia"
         ];
       };
       making-games = {
         path = "/home/michael/projects/making-games/";
-        devices = [ "titania" ];
+        devices = [
+          "cordelia"
+          "titania"
+        ];
       };
 
     };
