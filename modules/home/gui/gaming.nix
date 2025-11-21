@@ -20,6 +20,7 @@ in
       ftlman
       lutris
       prismlauncher # minecraft
+      ludusavi # game backups
     ];
   };
 }
