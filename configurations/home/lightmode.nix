@@ -30,5 +30,6 @@ in
     };
   };
 
+  nixpkgs.config.allowUnfree = true; # need to set this everywhere I can to avoid the unfree warnings
   home.stateVersion = "24.11";
 }

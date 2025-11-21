@@ -56,6 +56,9 @@ let
 
 in
 {
+  imports = [
+    flake.inputs.stylix.homeModules.stylix
+  ];
   # currently don't have an option for stylix, should probably add one.
   config = {
     stylix = {
