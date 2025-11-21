@@ -16,8 +16,8 @@
         themeLinks = [
           "https://raw.githubusercontent.com/link/to/some/theme.css"
         ];
-        # Vencord options: https://github.com/KaylorBen/nixcord/blob/main/docs/vencord.md
-        frameless = true;
+        # Vencord options: https://github.com/KaylorBen/nixcord
+        # frameless = true;
 
         # Plugin Options: https://github.com/KaylorBen/nixcord/blob/main/modules/plugins.nix
         plugins = {
@@ -36,7 +36,7 @@
           callTimer = {
             enable = true; # Disabled as it made me crash on every call join
           };
-          clearURLs = {
+          clearUrLs = {
             enable = true;
           };
           copyEmojiMarkdown = {
@@ -90,7 +90,7 @@
             enable = true;
           };
           noUnblockToJump.enable = true;
-          onePingPerDM = {
+          onePingPerDm = {
             enable = true;
           };
           openInApp = {
@@ -98,7 +98,7 @@
           };
           replyTimestamp.enable = true;
           revealAllSpoilers.enable = true;
-          reviewDB = {
+          reviewDb = {
             enable = true;
           };
           sendTimestamps = {
@@ -117,7 +117,7 @@
           userMessagesPronouns = {
             enable = true;
           };
-          USRBG = {
+          usrbg = {
             enable = true;
           };
           validReply.enable = true;
