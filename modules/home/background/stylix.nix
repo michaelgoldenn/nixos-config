@@ -4,8 +4,10 @@
   flake,
   pkgs,
   ...
-}:
+}@args:
 let
+  # have to do the strange `args` shenanigans to check if we're building in hm or nixos, was getting problems before
+  isNixOS = args ? osConfig;
   themes = {
     catppuccin-mocha = {
       scheme = "Catppuccin Mocha";
@@ -56,14 +58,15 @@ let
 
 in
 {
-  imports = [
+  # only import stylix if we're building in home-manager mode.
+  imports = lib.optionals (!isNixOS) [
     flake.inputs.stylix.homeModules.stylix
   ];
   # currently don't have an option for stylix, should probably add one.
   config = {
     stylix = {
       enable = true;
-      base16Scheme = selectedTheme;
+      base16Scheme = lib.mkForce selectedTheme;
       polarity = config.theme.polarity;
       image = config.theme.image;
       cursor = {
