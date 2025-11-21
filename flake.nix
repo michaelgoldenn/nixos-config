@@ -22,6 +22,7 @@
     vertex.url = "github:juspay/vertex";
     textfox.url = "github:adriankarlen/textfox";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
+    ftlman.url = "github:afishhh/ftlman";
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";

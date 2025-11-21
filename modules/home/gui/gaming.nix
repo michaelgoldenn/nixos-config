@@ -3,8 +3,12 @@
   config,
   lib,
   pkgs,
+  flake,
   ...
 }:
+let
+  ftlman = flake.inputs.ftlman.packages.${pkgs.system}.default;
+in
 {
   options.gaming.enable = lib.mkEnableOption "gaming";
 
@@ -13,6 +17,7 @@
       steam
       steam-run
       r2modman
+      ftlman
       lutris
       prismlauncher # minecraft
     ];
