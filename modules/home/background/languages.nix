@@ -35,5 +35,10 @@
 
     #lua
     lua-language-server
+
+    # web dev
+    superhtml
+    vscode-css-languageserver
+    typescript-language-server
   ];
 }
