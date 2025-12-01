@@ -12,6 +12,8 @@
     home.packages = with pkgs; [
       davinci-resolve
       audacity
+      vlc
+      ardour # daw
     ];
   };
 }
