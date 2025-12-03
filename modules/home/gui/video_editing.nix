@@ -10,6 +10,7 @@
 
   config = lib.mkIf config.video_editing.enable {
     home.packages = with pkgs; [
+      obs-studio
       davinci-resolve
       audacity
       vlc
