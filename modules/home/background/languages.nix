@@ -36,6 +36,9 @@
     #lua
     lua-language-server
 
+    # shader languages
+    glsl_analyzer
+
     # web dev
     superhtml
     vscode-css-languageserver
