@@ -14,13 +14,15 @@ in
 
   config = lib.mkIf config.gaming.enable {
     home.packages = with pkgs; [
-      steam
+      # steam
+      steam-millennium
       steam-run
       r2modman
       ftlman
       lutris
       prismlauncher # minecraft
       ludusavi # game backups
+      qbittorrent
     ];
   };
 }

@@ -23,6 +23,7 @@
     textfox.url = "github:adriankarlen/textfox";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     ftlman.url = "github:afishhh/ftlman";
+    millennium.url = "git+https://github.com/michaelgoldenn/Millennium";
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
