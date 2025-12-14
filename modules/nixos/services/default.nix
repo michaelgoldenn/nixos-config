@@ -8,6 +8,7 @@
     ./sops.nix
     ./suspend.nix
     ./syncthing.nix
+    ./webserver.nix
     ./wireguard.nix
     ./xremap.nix
   ];

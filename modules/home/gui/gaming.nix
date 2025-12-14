@@ -4,6 +4,7 @@
   lib,
   pkgs,
   flake,
+  osConfig,
   ...
 }:
 let
@@ -12,7 +13,7 @@ in
 {
   options.gaming.enable = lib.mkEnableOption "gaming";
 
-  config = lib.mkIf config.gaming.enable {
+  config = lib.mkIf (osConfig.gui.enable && config.gaming.enable) {
     home.packages = with pkgs; [
       # steam
       steam-millennium

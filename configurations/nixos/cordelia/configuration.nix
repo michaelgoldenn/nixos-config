@@ -34,6 +34,7 @@
       };
     };
   };
+  webserver.enable = true;
 
   nix.settings = {
     sandbox = false;
