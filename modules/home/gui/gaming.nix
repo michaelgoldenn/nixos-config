@@ -22,6 +22,7 @@ in
       ftlman
       lutris
       prismlauncher # minecraft
+      vintagestory
       ludusavi # game backups
       qbittorrent
     ];
