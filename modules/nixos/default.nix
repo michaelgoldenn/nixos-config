@@ -9,6 +9,12 @@
   nixpkgs.overlays = [
     flake.inputs.millennium.overlays.default
   ];
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      MaxAuthTries = 3;
+      LoginGraceTime = 20;
+    };
+  };
   programs.nix-ld.enable = true; # enable nix ld for all PCs.
 }
