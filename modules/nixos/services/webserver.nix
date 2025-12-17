@@ -38,6 +38,7 @@
           ingress = {
             "michael-golden.org" = "http://localhost:8080";
             "www.michael-golden.org" = "http://localhost:8080";
+            "ssh.michael-golden.org" = "ssh://localhost:22"; # For SSH
           };
         };
       };
