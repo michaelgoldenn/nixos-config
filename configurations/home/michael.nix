@@ -41,6 +41,7 @@ in
     video_editing.enable = true;
     business.enable = true;
     calibre.enable = true;
+    productivity.enable = true;
 
     # styling
     theme.name = "catppuccin-mocha";
