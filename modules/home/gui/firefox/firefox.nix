@@ -13,7 +13,7 @@ let
   c = color: if (builtins.substring 0 1 color) == "#" then color else "#${color}";
 
   # extensions that all profiles should share
-  # try searching here: https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/addons.json
+  # try searching here: https://github.com/nix-community/nur-combined/blob/main/repos/rycee/pkgs/firefox-addons/addons.json
   # or run        nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
   # if not there, just search github: https://github.com/search?q=language%3ANix+firefox-addons+&type=code
   global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
@@ -27,8 +27,10 @@ let
     clearurls
 
     # --- The custom zone ---
+    # to get the url right-click the "add to firefox" button and copy the url
     # To get the addon id try downloading the extension first then go to `about:debugging#/runtime/this-firefox`
     # would be nice if there were a better way but I don't know one
+    # to get the version just copy it from the
 
     (buildFirefoxXpiAddon {
       # untrap for youtube - not open source :( but the best in it's class
@@ -46,6 +48,15 @@ let
       addonId = "{78400a4a-b6fe-4f7d-a831-734229802784}";
       url = "https://addons.mozilla.org/firefox/downloads/file/3795847/linkedin_feed_blocker-0.0.3.xpi";
       sha256 = "sha256-iCZ48z4odTV4/nBlAK6dh8qX5CGVRYaqsTU1z3VKRgw=";
+      meta = { };
+    })
+    (buildFirefoxXpiAddon {
+      # autofills job-related stuff
+      pname = "simplify-jobs";
+      version = "2.2.14";
+      addonId = "{c3dee1e3-4298-4bb6-810a-3ff1ded5c5f6}";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4644850/simplify_jobs-2.2.14.xpi";
+      sha256 = "sha256-Om01/FHiLA18o470Ly0F830m36LiVO9yjYx7taUXDfs=";
       meta = { };
     })
   ];
