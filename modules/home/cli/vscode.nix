@@ -84,7 +84,7 @@ in
                 name = "godot-tools";
                 publisher = "geequlim";
                 version = "2.5.1";
-                sha256 = "sha256-iuSec4PoVxyu1KB2jfCYOd98UrqQjH3q24zOR4VCPgs=";
+                sha256 = "sha256-kAzRSNZw1zaECblJv7NzXnE2JXSy9hzdT2cGX+uwleY=";
               }
               {
                 name = "gdshader-lsp";
