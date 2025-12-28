@@ -36,7 +36,7 @@
           callTimer = {
             enable = true; # Disabled as it made me crash on every call join
           };
-          clearUrLs = {
+          ClearURLs = {
             enable = true;
           };
           copyEmojiMarkdown = {
@@ -90,7 +90,7 @@
             enable = true;
           };
           noUnblockToJump.enable = true;
-          onePingPerDm = {
+          OnePingPerDM = {
             enable = true;
           };
           openInApp = {
@@ -98,7 +98,7 @@
           };
           replyTimestamp.enable = true;
           revealAllSpoilers.enable = true;
-          reviewDb = {
+          ReviewDB = {
             enable = true;
           };
           sendTimestamps = {
@@ -117,7 +117,7 @@
           userMessagesPronouns = {
             enable = true;
           };
-          usrbg = {
+          USRBG = {
             enable = true;
           };
           validReply.enable = true;
