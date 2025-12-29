@@ -55,6 +55,9 @@ let
 
         [vpn-secrets]
         password=@PASSWORD@
+
+        [ipv6]
+        method=disabled
       ''}
     '';
 
