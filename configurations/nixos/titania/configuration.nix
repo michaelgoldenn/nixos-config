@@ -36,6 +36,7 @@
   suspend.enable = false;
   grub.enable = true;
   xremap.enable = true;
+  vr.enable = true;
 
   # Enable networking
   networking = {
