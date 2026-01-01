@@ -16,6 +16,7 @@
       enable = true;
       device = "nodev";
       efiSupport = true;
+      useOSProber = true;
       minegrub-theme = {
         enable = true;
         splash = "100% Flakes!";
