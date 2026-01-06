@@ -21,6 +21,7 @@ in
       r2modman
       ftlman
       lutris
+      heroic
       prismlauncher # minecraft
       vintagestory
       ludusavi # game backups
