@@ -93,23 +93,6 @@ in
         mode = "0440";
         owner = config.users.users.michael.name;
       };
-      "wireguard/titania-pub-key" = {
-        mode = "0440";
-        owner = config.users.users.michael.name;
-      };
-      "wireguard/titania-priv-key" = {
-        mode = "0440";
-        owner = config.users.users.michael.name;
-      };
-      "wireguard/umbriel-pub-key" = {
-        mode = "0440";
-        owner = config.users.users.michael.name;
-      };
-      "wireguard/umbriel-priv-key" = {
-        mode = "0440";
-        owner = config.users.users.michael.name;
-      };
-
     };
   };
 }

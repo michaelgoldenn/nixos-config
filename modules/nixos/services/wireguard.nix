@@ -5,6 +5,24 @@
   ...
 }:
 {
+  sops.secrets = {
+    "wireguard/titania-pub-key" = {
+      mode = "0440";
+      owner = config.users.users.michael.name;
+    };
+    "wireguard/titania-priv-key" = {
+      mode = "0440";
+      owner = config.users.users.michael.name;
+    };
+    "wireguard/umbriel-pub-key" = {
+      mode = "0440";
+      owner = config.users.users.michael.name;
+    };
+    "wireguard/umbriel-priv-key" = {
+      mode = "0440";
+      owner = config.users.users.michael.name;
+    };
+  };
   networking.wg-quick.interfaces =
     let
       # Map hostnames to their respective WireGuard addresses
@@ -15,16 +33,11 @@
         "umbriel" = "10.10.10.17";
       };
       privateKeyFiles = {
-        "titania" = "/run/secrets/wireguard/titania-priv-key";
-        "umbriel" = "/run/secrets/wireguard/umbriel-priv-key";
-      };
-      publicKeyFiles = {
-        "titania" = "/run/secrets/wireguard/titania-pub-key";
-        "umbriel" = "/run/secrets/wireguard/umbriel-pub-key";
+        "titania" = config.sops.secrets."wireguard/titania-priv-key".path;
+        "umbriel" = config.sops.secrets."wireguard/umbriel-priv-key".path;
       };
       currentAddress = addressMap.${hostname} or "10.10.10.100";
       currentPrivKey = privateKeyFiles.${hostname} or "";
-      currentPubKey = publicKeyFiles.${hostname} or "";
     in
     {
       oliver-server = {
@@ -40,7 +53,7 @@
         privateKeyFile = currentPrivKey;
         peers = [
           {
-            publicKey = currentPubKey;
+            publicKey = "50Wn74uprGinf0UmHxayezL4JBBZph/IbipNejyi+ic=";
             allowedIPs = [ "10.6.24.0/24" ];
             endpoint = "${oliver_server_ip}:51820";
             persistentKeepalive = 25;
