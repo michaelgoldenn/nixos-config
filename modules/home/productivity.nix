@@ -11,6 +11,7 @@
   config = lib.mkIf config.productivity.enable {
     home.packages = with pkgs; [
       kimai
+      anki
     ];
   };
 }
