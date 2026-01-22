@@ -3,9 +3,10 @@
 
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/master";
-    # nixpkgs.url = "github:nixos/nixpkgs?ref=pull/455370/head";
+    # nixpkgs.url = "github:nixos/nixpkgs?ref=pull/479409/head";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
@@ -23,7 +24,7 @@
     textfox.url = "github:adriankarlen/textfox";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     ftlman.url = "github:afishhh/ftlman";
-    millennium.url = "git+https://github.com/michaelgoldenn/Millennium";
+    millennium.url = "git+https://github.com/SteamClientHomebrew/Millennium?dir=packages/nix";
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
