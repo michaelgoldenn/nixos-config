@@ -10,8 +10,16 @@
 
   config = lib.mkIf config.productivity.enable {
     home.packages = with pkgs; [
-      kimai
       anki
     ];
+    # Activitywatch, the time tracker
+    services.activitywatch = {
+      enable = true;
+      watchers = {
+        aw-watcher-window-wayland = {
+          package = pkgs.aw-watcher-window-wayland;
+        };
+      };
+    };
   };
 }

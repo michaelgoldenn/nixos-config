@@ -19,6 +19,7 @@ let
   global_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     bitwarden
     ublock-origin
+    aw-watcher-web
   ];
   nice_extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     sponsorblock
