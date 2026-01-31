@@ -192,8 +192,8 @@
   };
   environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD"; # pick the modern driver
 
-  services.xserver.displayManager.sessionCommands = ''
-    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
-  '';
+  # services.xserver.displayManager.sessionCommands = ''
+  #   ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
+  # '';
   system.stateVersion = "24.05"; # Did you read the comment?
 }
