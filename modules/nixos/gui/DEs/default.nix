@@ -32,9 +32,9 @@
         gnome.configuration = {
           gui.desktopEnvironment = "gnome";
         };
-        cosmic.configuration = {
-          gui.desktopEnvironment = "cosmic";
-        };
+        # cosmic.configuration = {
+        #   gui.desktopEnvironment = "cosmic";
+        # };
         hyprland.configuration = {
           gui.desktopEnvironment = "hyprland";
         };
