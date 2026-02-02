@@ -60,6 +60,15 @@ let
       sha256 = "sha256-Om01/FHiLA18o470Ly0F830m36LiVO9yjYx7taUXDfs=";
       meta = { };
     })
+    (buildFirefoxXpiAddon {
+      # ToS;DR - a tl;dr but for terms of service.
+      pname = "Terms of Service; Didn’t Read";
+      version = "5.1.1";
+      addonId = "{5d0b323e-2e88-4064-8242-7b89e4c372b7}";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4464742/terms_of_service_didnt_read-5.1.1.xpi";
+      sha256 = "sha256-resAl04BF3VIv8Blvh0pwMfimS1mhM7SxVXKiNxF8kM=";
+      meta = { };
+    })
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
