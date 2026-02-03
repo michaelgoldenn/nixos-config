@@ -16,8 +16,13 @@
     services.activitywatch = {
       enable = true;
       watchers = {
-        aw-watcher-window-wayland = {
-          package = pkgs.aw-watcher-window-wayland;
+        awatcher = {
+          package = pkgs.awatcher;
+          settings = {
+            poll-time-window-seconds = 1;
+            poll-time-idle-seconds = 4;
+            idle-timeout-seconds = 180;
+          };
         };
       };
     };
