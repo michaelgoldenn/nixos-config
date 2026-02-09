@@ -66,8 +66,19 @@
     variant = "";
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
   # lets you use printers
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      cups-filters
+      cups-browsed
+    ];
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;

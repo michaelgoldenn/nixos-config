@@ -48,6 +48,7 @@ in
         extraGroups = [
           "wheel"
           "nixos"
+          "dialout" # for allowing communication to serial ports
         ];
       }
     );
