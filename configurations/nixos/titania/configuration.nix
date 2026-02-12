@@ -30,6 +30,12 @@
           "umbriel"
         ];
       };
+      ftl-multiverse = {
+        path = "/home/michael/.local/share/FasterThanLight";
+        devices = [
+          "umbriel"
+        ];
+      };
     };
   };
   gui.enable = true;
