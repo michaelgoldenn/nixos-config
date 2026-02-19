@@ -48,16 +48,21 @@ let
       port=1197
       proto-tcp=no
       ca=${piaCertificateFile}
+      tun-ipv6=no
 
       [ipv4]
       method=auto
-      ${lib.optionalString (cfg.passwordFile != null) ''
+      never-default=false
 
+      [ipv6]
+      method=disabled
+      addr-gen-mode=stable-privacy
+      ip6-privacy=2
+      never-default=true
+
+      ${lib.optionalString (cfg.passwordFile != null) ''
         [vpn-secrets]
         password=@PASSWORD@
-
-        [ipv6]
-        method=disabled
       ''}
     '';
 
@@ -156,6 +161,9 @@ in
 
   config = mkIf cfg.enable {
 
+    networking.firewall.extraCommands = ''
+      ip6tables -I OUTPUT -m state --state NEW -j DROP
+    '';
     assertions = [
       # Only the username is required; NetworkManager will prompt for the
       # password if it is unset, and store it in the OS keyring.
