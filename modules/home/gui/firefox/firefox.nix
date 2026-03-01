@@ -26,6 +26,7 @@ let
     istilldontcareaboutcookies
     unpaywall
     clearurls
+    web-clipper-obsidian
 
     # --- The custom zone ---
     # to get the url right-click the "add to firefox" button and copy the url
