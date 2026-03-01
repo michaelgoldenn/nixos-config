@@ -21,6 +21,7 @@
       tldr # like `man` but gives common examples
       just
       toybox
+      peazip # 7z file extractor
     ];
 
     programs = {
