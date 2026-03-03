@@ -35,6 +35,15 @@ let
     # to get the version just copy it from the
 
     (buildFirefoxXpiAddon {
+      # webserial for firefox, useful for things like flashing esp32 boards
+      pname = "webserial-for-firefox";
+      version = "0.5.0";
+      addonId = "{746d26e0-6afe-462f-a269-f071566c2700}";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4666470/webserial_for_firefox-0.5.0.xpi";
+      sha256 = "sha256-AKq2RqPw6LtIuajhpyU7NGVLkPS1ToVTqqNPVQ5iJP4=";
+      meta = { };
+    })
+    (buildFirefoxXpiAddon {
       # untrap for youtube - not open source :( but the best in it's class
       pname = "untrap-for-youtube";
       version = "8.3.1";
