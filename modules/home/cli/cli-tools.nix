@@ -22,6 +22,7 @@
       just
       toybox
       peazip # 7z file extractor
+      appimage-run # lets you run appimages
     ];
 
     programs = {
