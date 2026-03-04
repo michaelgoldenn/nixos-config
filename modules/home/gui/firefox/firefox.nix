@@ -35,6 +35,15 @@ let
     # to get the version just copy it from the
 
     (buildFirefoxXpiAddon {
+      # Shows a popup and notifications when the current site may have an article on the Consumer Rights Wiki.
+      pname = "consumer-rights-wiki";
+      version = "1.0.8";
+      addonId = "{f9e227ec-dff7-4c7f-92ad-c3ed5c4370e1}";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4709432/consumer_rights_wiki-1.0.8.xpi";
+      sha256 = "sha256-bVRgITSdheBGhH1clpOQVIaUmTOm+sEjyrJe7ra7ei4=";
+      meta = { };
+    })
+    (buildFirefoxXpiAddon {
       # webserial for firefox, useful for things like flashing esp32 boards
       pname = "webserial-for-firefox";
       version = "0.5.0";
