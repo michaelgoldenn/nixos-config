@@ -43,6 +43,7 @@ in
     business.enable = true;
     calibre.enable = true;
     productivity.enable = true;
+    general.enable = true;
 
     # styling
     theme.name = "catppuccin-mocha";
