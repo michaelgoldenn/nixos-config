@@ -96,6 +96,8 @@ let
     "browser.ctrlTab.sortByRecentlyUsed" = true;
     "browser.startup.page" = 3; # Open previous tabs on startup
     "extensions.autoDisableScopes" = 0; # makes extensions automatically enabled
+    ## TODO: Set this to only run on computers that don't support hardware AV1 (right now none of them do)
+    "media.av1.enabled" = false;
 
     # extra bits I won't want
     "extensions.pocket.enabled" = false;
@@ -383,7 +385,7 @@ in
   imports = [ inputs.textfox.homeManagerModules.default ];
   textfox = {
     enable = true;
-    profile = "textfox";
+    profiles = [ "textfox" ];
     config = {
       background = {
         color = "${c colors.base00}";
