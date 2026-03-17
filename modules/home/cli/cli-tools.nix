@@ -23,6 +23,7 @@
       toybox
       peazip # 7z file extractor
       appimage-run # lets you run appimages
+      ffmpeg
     ];
 
     programs = {
