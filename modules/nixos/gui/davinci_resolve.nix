@@ -71,6 +71,8 @@ let
         with pkgs;
         [
           alsa-lib
+          alsa-plugins
+          alsa-utils
           aprutil
           bzip2
           dbus
@@ -117,6 +119,7 @@ let
           libxcb-wm
           xkeyboard-config
           zlib
+          ffmpeg
         ]
         ++ [ davinci-patched ];
 
@@ -128,6 +131,14 @@ let
 
       extraBwrapArgs = [
         ''--bind "$HOME"/.local/share/DaVinciResolve/Extras ${davinci-patched}/Extras''
+        "--ro-bind ${pkgs.writeText "asoundrc" ''
+          pcm.!default {
+            type pulse
+          }
+          ctl.!default {
+            type pulse
+          }
+        ''} /etc/asound.conf"
       ];
 
       runScript = "${lib.getExe pkgs.bash} ${pkgs.writeText "davinci-wrapper" ''
@@ -136,6 +147,7 @@ let
         export QT_PLUGIN_PATH="${davinci-patched}/libs/plugins:$QT_PLUGIN_PATH"
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib32:${davinci-patched}/libs
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/opengl-driver/lib:/usr/lib:/usr/lib32:${davinci-patched}/libs
+        export LD_LIBRARY_PATH=${pkgs.ffmpeg}/lib:$LD_LIBRARY_PATH
 
         export ALSA_PLUGIN_DIR="${pkgs.alsa-plugins}/lib/alsa-lib"
 

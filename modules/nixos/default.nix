@@ -1,6 +1,6 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, ... }:
+{ flake, pkgs, ... }:
 {
   imports = [
     flake.inputs.self.nixosModules.common
@@ -17,4 +17,12 @@
     };
   };
   programs.nix-ld.enable = true; # enable nix ld for all PCs.
+
+  # Allow SSH through the Cloudflare tunnel from any network
+  environment.systemPackages = [ pkgs.cloudflared ];
+  programs.ssh.extraConfig = ''
+    Host ssh.michael-golden.org
+      ProxyCommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
+      User server
+  '';
 }

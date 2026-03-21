@@ -85,7 +85,8 @@
           noReplyMention = {
             enable = true;
           };
-          normalizeMessageLinks.enable = true;
+          # apparently it's only available in like equicord or something like that? might want to look into it
+          # normalizeMessageLinks.enable = true;
           noTypingAnimation = {
             enable = true;
           };

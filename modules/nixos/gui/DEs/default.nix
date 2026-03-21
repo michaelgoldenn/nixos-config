@@ -35,9 +35,9 @@
         # cosmic.configuration = {
         #   gui.desktopEnvironment = "cosmic";
         # };
-        hyprland.configuration = {
-          gui.desktopEnvironment = "hyprland";
-        };
+        # hyprland.configuration = {
+        #   gui.desktopEnvironment = "hyprland";
+        # };
         kde.configuration = {
           gui.desktopEnvironment = "kde";
         };

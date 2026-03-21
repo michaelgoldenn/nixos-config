@@ -45,9 +45,6 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   # systemd.services."getty@tty1".enable = false;
   # systemd.services."autovt@tty1".enable = false;
@@ -146,6 +143,8 @@
       intel-vaapi-driver
     ];
   };
+  # allows NVENC hardware encoding
+  boot.kernelModules = [ "nvidia_uvm" ];
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
@@ -185,6 +184,8 @@
         enable = true;
         enableOffloadCmd = true;
       };
+      # forces the dedicated GPU to drive the entire display when it's used - can fix some issues sometimes with the GPU not being used properly
+      # sync.enable = true;
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";

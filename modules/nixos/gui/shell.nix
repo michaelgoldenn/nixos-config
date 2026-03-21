@@ -12,4 +12,6 @@
     shell = pkgs.${hmConfig.shell.default};
   }) config.home-manager.users;
 
+  # programs.zsh.enable = true;
+
 }
