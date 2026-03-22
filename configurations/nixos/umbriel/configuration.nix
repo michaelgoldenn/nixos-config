@@ -32,7 +32,12 @@
           "titania"
         ];
       };
-
+      the-tunnel = {
+        path = "/home/michael/the-tunnel";
+        devices = [
+          "umbriel"
+        ];
+      };
     };
   };
   gui.enable = true;
