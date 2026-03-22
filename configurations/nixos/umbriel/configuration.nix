@@ -32,6 +32,12 @@
           "titania"
         ];
       };
+      ftl-multiverse = {
+        path = "/home/michael/.local/share/FasterThanLight";
+        devices = [
+          "titania"
+        ];
+      };
       the-tunnel = {
         path = "/home/michael/the-tunnel";
         devices = [
