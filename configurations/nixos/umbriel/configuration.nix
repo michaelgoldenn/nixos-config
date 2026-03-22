@@ -44,6 +44,12 @@
           "umbriel"
         ];
       };
+      obs-config = {
+        path = "/home/michael/.config/obs-studio";
+        devices = [
+          "titania"
+        ];
+      };
     };
   };
   gui.enable = true;

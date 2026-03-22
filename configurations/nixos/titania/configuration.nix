@@ -42,6 +42,12 @@
           "umbriel"
         ];
       };
+      obs-config = {
+        path = "/home/michael/.config/obs-studio";
+        devices = [
+          "umbriel"
+        ];
+      };
     };
   };
   gui.enable = true;
