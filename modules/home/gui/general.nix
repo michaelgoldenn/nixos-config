@@ -11,6 +11,7 @@
   config = lib.mkIf config.general.enable {
     home.packages = with pkgs; [
       mission-center
+      proton-vpn
     ];
   };
 }

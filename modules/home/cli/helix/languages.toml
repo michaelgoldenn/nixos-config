@@ -26,3 +26,6 @@ expressionAdjustmentHints.hideOutsideUnsafe = false
 expressionAdjustmentHints.mode = "prefer_prefix"
 lifetimeElisionHints.enable = "skip_trivial"
 typeHints.hideClosureInitialization = false
+
+[language-server.rust-analyzer.config]
+server.extraEnv = { "RA_MEMORY_LIMIT" = "4096" }  # MB

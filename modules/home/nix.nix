@@ -13,4 +13,10 @@
   home.packages = [
     config.nix.package
   ];
+
+  # remove this later
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-38.8.4"
+  ];
+
 }

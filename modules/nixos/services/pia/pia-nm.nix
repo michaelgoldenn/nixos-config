@@ -55,7 +55,7 @@ let
       never-default=false
 
       [ipv6]
-      method=disabled
+      method=ignore
       addr-gen-mode=stable-privacy
       ip6-privacy=2
       never-default=true
@@ -161,9 +161,30 @@ in
 
   config = mkIf cfg.enable {
 
-    networking.firewall.extraCommands = ''
-      ip6tables -I OUTPUT -m state --state NEW -j DROP
-    '';
+    # networking.networkmanager.dispatcherScripts = [
+    #   {
+    #     source = pkgs.writeShellScript "pia-ipv6-block" ''
+    #       INTERFACE="$1"
+    #       ACTION="$2"
+
+    #       case "$INTERFACE" in
+    #         tun*)
+    #           case "$ACTION" in
+    #             up)
+    #               ${pkgs.iptables}/bin/ip6tables -I OUTPUT -j DROP
+    #               ${pkgs.iptables}/bin/ip6tables -I FORWARD -j DROP
+    #               ;;
+    #             down)
+    #               ${pkgs.iptables}/bin/ip6tables -D OUTPUT -j DROP || true
+    #               ${pkgs.iptables}/bin/ip6tables -D FORWARD -j DROP || true
+    #               ;;
+    #           esac
+    #           ;;
+    #       esac
+    #     '';
+    #     type = "basic";
+    #   }
+    # ];
     assertions = [
       # Only the username is required; NetworkManager will prompt for the
       # password if it is unset, and store it in the OS keyring.

@@ -13,7 +13,7 @@ in
 {
   options.gaming.enable = lib.mkEnableOption "gaming";
 
-  config = lib.mkIf (osConfig.gui.enable && config.gaming.enable) {
+  config = lib.mkIf (osConfig != null && osConfig.gui.enable && config.gaming.enable) {
     home.packages = with pkgs; [
       # steam
       millennium-steam

@@ -18,6 +18,11 @@
   };
   programs.nix-ld.enable = true; # enable nix ld for all PCs.
 
+  # remove this later
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-38.8.4"
+  ];
+
   # Allow SSH through the Cloudflare tunnel from any network
   environment.systemPackages = [ pkgs.cloudflared ];
   programs.ssh.extraConfig = ''
