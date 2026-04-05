@@ -15,7 +15,7 @@
     services.wivrn = {
       enable = true;
       openFirewall = true;
-      defaultRuntime = true;
+      # defaultRuntime = true;
       autoStart = true;
 
       # Define the package using the specific PR
