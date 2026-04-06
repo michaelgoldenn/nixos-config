@@ -12,10 +12,7 @@ language-id = "gdscript"
 [[language]]
 name = "nix"
 auto-format = true
-
-[language-server.nixfmt]
-command = "nixfmt"
-
+formatter = { command = "nixfmt" }
 
 [language-server.rust-analyzer.config.inlayHints]
 closingBraceHints.minLines = 10
