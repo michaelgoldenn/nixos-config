@@ -1,5 +1,12 @@
-{ config, pkgs, ... }:
 {
+  flake,
+  ...
+}:
+{
+  imports = [
+    flake.inputs.direnv-instant.homeModules.direnv-instant
+  ];
+  programs.direnv-instant.enable = true;
   # https://nixos.asia/en/direnv
   programs.direnv = {
     enable = true;
