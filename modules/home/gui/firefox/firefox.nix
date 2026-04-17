@@ -88,6 +88,14 @@ let
       sha256 = "sha256-resAl04BF3VIv8Blvh0pwMfimS1mhM7SxVXKiNxF8kM=";
       meta = { };
     })
+    (buildFirefoxXpiAddon {
+      pname = "bypass-paywalls-clean";
+      version = "3.9.4.0";
+      addonId = "magnolia1234@bypass_paywalls_clean";
+      url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-4.3.4.7.xpi&inline=false&commit=3fd5f494ea96ad59902766e2dcf39195392452db";
+      sha256 = "sha256-Nnl7KJaRQ/TrMmkVpLY7dCPtTR+qLF9SCcLGElQg+u8=";
+      meta = { };
+    })
   ];
   # settings that all profiles should share (about:config for the settings)
   global_settings = {
@@ -370,16 +378,12 @@ in
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-      /*
-        #extension specific settings
-           ExtensionSettings = {
-             #bypass paywalls clean: https://gitflic.ru/project/magnolia1234/bpc_uploads
-             "magnolia1234@bypass_paywalls_clean" = {
-               install_url = "file://${bypass-paywalls-clean}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/magnolia1234@bypass_paywalls_clean.xpi";
-               installation_mode = "force_installed";
-             };
-           };
-      */
+      ExtensionSettings = {
+        "magnolia1234@bypass_paywalls_clean" = {
+          installation_mode = "force_installed";
+          install_url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-3.9.4.0.xpi";
+        };
+      };
     };
   };
   imports = [ inputs.textfox.homeManagerModules.default ];
