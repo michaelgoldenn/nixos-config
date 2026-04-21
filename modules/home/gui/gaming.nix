@@ -21,7 +21,10 @@ in
       r2modman
       ftlman
       lutris
-      # heroic
+      wine
+      winetricks
+      heroic
+      protonup-qt
       prismlauncher # minecraft
       vintagestory
       ludusavi # game backups
