@@ -24,7 +24,7 @@
           mic-mute = [ "<Shift><Control><Alt>m" ];
         };
         #"org/gnome/desktop/peripherals/touchpad".natural-scroll = false;
-        "org/gnome/desktop/session".idle-delay = 600; # screen off after 10 mins
+        "org/gnome/desktop/session".idle-delay = 1500; # screen off after 25 mins
         "org/gnome/settings-daemon/plugins/power" = {
           power-button-action = "interactive";
           sleep-inactive-battery-type = "nothing";
