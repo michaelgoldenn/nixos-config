@@ -35,6 +35,15 @@ let
     # to get the version just copy it from the
 
     (buildFirefoxXpiAddon {
+      # checks websites against the FMHY list, especially useful for avoiding fake verions of websites
+      pname = "fmhy-safeguard";
+      version = "1.3.5";
+      addonId = "{5d554479-7cc4-487f-bd25-d8fc67a42602}";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4684016/fmhy_safeguard-1.3.5.xpi";
+      sha256 = "sha256-CD3mBO/xTmuyXZUSN/cgSY11n0a/xImhQD5eU1ZFHcM=";
+      meta = { };
+    })
+    (buildFirefoxXpiAddon {
       # Shows a popup and notifications when the current site may have an article on the Consumer Rights Wiki.
       pname = "consumer-rights-wiki";
       version = "1.0.8";
