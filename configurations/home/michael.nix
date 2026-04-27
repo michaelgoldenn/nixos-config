@@ -27,7 +27,13 @@ in
 
     cliTools.enable = true;
     vscode.enable = true;
-    shell.default = "nushell"; # defined in modules/home/cli/terminal/default.nix
+    shell = {
+      shells = [
+        "zsh"
+        "nushell"
+      ];
+      default = "nushell";
+    };
     helix.enable = true;
     gaming.enable = true;
     nixcord.enable = true;
