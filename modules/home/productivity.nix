@@ -16,12 +16,19 @@
     services.activitywatch = {
       enable = true;
       watchers = {
-        awatcher = {
-          package = pkgs.awatcher;
+        aw-watcher-afk = {
+          package = pkgs.activitywatch;
           settings = {
-            poll-time-window-seconds = 6;
-            poll-time-idle-seconds = 10;
-            idle-timeout-seconds = 180;
+            timeout = 300;
+            poll_time = 2;
+          };
+        };
+
+        aw-watcher-window = {
+          package = pkgs.activitywatch;
+          settings = {
+            poll_time = 1;
+            exclude_title = true;
           };
         };
       };
