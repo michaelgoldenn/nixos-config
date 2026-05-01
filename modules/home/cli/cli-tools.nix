@@ -34,6 +34,34 @@
         extraConfig = "update_ms = 500";
       };
       zoxide.enable = true; # <3 zoxide my beloved
+      zellij = {
+        enable = true;
+
+        layouts = {
+          rust-dev = {
+            layout = {
+              _children = [
+                { pane = { }; }
+                {
+                  pane = {
+                    _props = {
+                      split_direction = "vertical";
+                    };
+                    _children = [
+                      { pane = { }; }
+                      {
+                        pane = {
+                          command = "htop";
+                        };
+                      }
+                    ];
+                  };
+                }
+              ];
+            };
+          };
+        };
+      };
     };
   };
 }
