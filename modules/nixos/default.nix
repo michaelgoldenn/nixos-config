@@ -8,6 +8,12 @@
   ];
   nixpkgs.overlays = [
     flake.inputs.millennium.overlays.default
+    # remove this later, needed to rebuild lutris as of April 2026
+    (_: prev: {
+      openldap = prev.openldap.overrideAttrs {
+        doCheck = !prev.stdenv.hostPlatform.isi686;
+      };
+    })
   ];
   services.openssh = {
     enable = true;
