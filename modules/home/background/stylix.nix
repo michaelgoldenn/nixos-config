@@ -9,6 +9,8 @@ let
   # have to do the strange `args` shenanigans to check if we're building in hm or nixos, was getting problems before
   isNixOS = args ? osConfig;
   themes = {
+    # theme gallery: https://tinted-theming.github.io/tinted-gallery/
+    # go to ./themes.nix to add a new theme here
     catppuccin-mocha = {
       scheme = "Catppuccin Mocha";
       base00 = "#1e1e2e"; # base
@@ -29,6 +31,7 @@ let
       base0F = "#f2cdcd"; # flamingo
     };
     catppuccin-latte = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
+    gruvbox-material-dark-medium = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
   };
   fonts = {
     # non-mono fonts
@@ -76,8 +79,14 @@ in
       };
       fonts.monospace = selectedMonoFont;
       targets = {
-        firefox.enable = true;
-        firefox.profileNames = [ "textfox" ];
+        firefox = {
+          enable = true;
+          colorTheme.enable = true;
+          profileNames = [
+            "textfox"
+            "normal"
+          ];
+        };
         spicetify.enable = false;
         vscode.profileNames = [ "default" ];
       };

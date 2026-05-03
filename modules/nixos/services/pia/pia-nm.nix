@@ -93,7 +93,7 @@ let
       };
     };
 
-  etcFiles = lib.fold (x: acc: lib.recursiveUpdate (serverEntryToEtcFile x) acc) { } filteredServers;
+  etcFiles = lib.foldr (x: acc: lib.recursiveUpdate (serverEntryToEtcFile x) acc) { } filteredServers;
 
   # "setupSecrets" is a sops-nix activation script. If it exists we must order
   # ourself after it so the secret files are ready before we start.

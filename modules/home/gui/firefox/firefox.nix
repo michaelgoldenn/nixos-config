@@ -1,6 +1,5 @@
 {
   flake,
-  lib,
   config,
   pkgs,
   ...
@@ -112,7 +111,8 @@ let
     "browser.engagement.ctrlTab.has-used" = true;
     "browser.ctrlTab.sortByRecentlyUsed" = true;
     "browser.startup.page" = 3; # Open previous tabs on startup
-    "extensions.autoDisableScopes" = 0; # makes extensions automatically enabled
+    "extensions.autoDisableScopes" = 0; # makes extensions automatically enabled (doesn't actually work)
+    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
     ## TODO: Set this to only run on computers that don't support hardware AV1 (right now none of them do)
     "media.av1.enabled" = false;
 
@@ -181,6 +181,8 @@ in
   };
   programs.firefox = {
     enable = true;
+    # configPath = "${config.xdg.configHome}/mozilla/firefox";
+    configPath = ".mozilla/firefox";
     profiles = {
       textfox = {
         id = 0;
@@ -364,7 +366,10 @@ in
         search = {
           force = true;
         };
-        extensions.packages = global_extensions;
+        extensions = {
+          force = true;
+          packages = global_extensions;
+        };
         settings = global_settings;
       };
     };

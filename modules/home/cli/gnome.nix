@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  # TODO: Make it so it only installs if using gnome
+  # TODO: Make it so it only runs this when using gnome
   config = {
     dconf = {
       enable = true;
@@ -48,11 +48,15 @@
           gsconnect.extensionUuid
           focused-window-d-bus.extensionUuid
           # color-picker.extensionUuid
+          caffeine.extensionUuid
+          space-bar.extensionUuid
         ];
       };
     };
     home.packages = with pkgs.gnomeExtensions; [
       focused-window-d-bus
+      caffeine
+      space-bar
     ];
   };
 }

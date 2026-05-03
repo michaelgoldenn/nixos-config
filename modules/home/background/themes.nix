@@ -8,6 +8,7 @@ in
       type = types.enum [
         "catppuccin-mocha"
         "catppuccin-latte"
+        "gruvbox-material-dark-medium"
       ];
       default = "catppuccin-mocha";
       description = "Theme to use across the system";

@@ -41,7 +41,7 @@
       the-tunnel = {
         path = "/home/michael/the-tunnel";
         devices = [
-          "umbriel"
+          "titania"
         ];
       };
       obs-config = {
@@ -136,7 +136,7 @@
     vulkan-tools
     vulkan-headers
     vulkan-validation-layers
-    xorg.libxcb
+    libxcb
     libva-utils
   ];
 
