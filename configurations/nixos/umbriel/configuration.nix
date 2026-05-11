@@ -59,6 +59,13 @@
 
   networking.hostName = "umbriel";
 
+  # allows things like "homeassistant.local" to work
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
