@@ -45,7 +45,7 @@
                 {
                   pane = {
                     _props = {
-                      split_direction = "vertical";
+                      split_direction = "horizontal";
                     };
                     _children = [
                       { pane = { }; }
