@@ -15,8 +15,8 @@ in
 
   config = lib.mkIf (osConfig != null && osConfig.gui.enable && config.gaming.enable) {
     home.packages = with pkgs; [
-      # steam
-      millennium-steam
+      steam
+      # millennium-steam
       steam-run
       r2modman
       ftlman

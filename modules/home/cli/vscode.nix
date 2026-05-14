@@ -44,7 +44,7 @@ in
     description = "Installs VSCode with all my personal settings";
   };
   config = lib.mkIf config.vscode.enable {
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
       package = pkgs.vscodium;
       mutableExtensionsDir = false;
