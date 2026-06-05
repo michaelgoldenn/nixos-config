@@ -24,6 +24,7 @@
       peazip # 7z file extractor
       appimage-run # lets you run appimages
       ffmpeg
+      hydra-check # lets you check if something's broken in hydra
     ];
 
     programs = {
