@@ -11,7 +11,9 @@
   services.xserver.enable = true;
   # this is for calibre but it's a home-manager option and this needs to be in nixos:
   networking.firewall = {
-    allowedTCPPorts = [ 9090 ];
-    allowedUDPPorts = [ 9090 ];
+    allowedTCPPorts = [
+      9090
+    ];
+    allowedUDPPorts = [ 54982 ];
   };
 }
