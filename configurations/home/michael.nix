@@ -34,6 +34,7 @@ in
       ];
       default = "nushell";
     };
+    chromium.enable = true;
     helix.enable = true;
     gaming.enable = true;
     nixcord.enable = true;
