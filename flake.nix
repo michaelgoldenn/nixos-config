@@ -20,7 +20,7 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "flake-parts";
-    direnv-instant.url = "github:Mic92/direnv-instant";
+    # direnv-instant.url = "github:Mic92/direnv-instant";
     vertex.url = "github:juspay/vertex";
     textfox.url = "github:adriankarlen/textfox";
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
