@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   home.shellAliases = {
     g = "git";
@@ -24,6 +24,9 @@
       };
     };
     lazygit.enable = true;
-  };
 
+    jujutsu = {
+      enable = true;
+    };
+  };
 }
