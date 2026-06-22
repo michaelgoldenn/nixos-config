@@ -1,0 +1,95 @@
+{
+  lib,
+  config,
+  flake,
+  pkgs,
+  ...
+}@args:
+let
+  # have to do the strange `args` shenanigans to check if we're building in hm or nixos, was getting problems before
+  isNixOS = args ? osConfig;
+  themes = {
+    # theme gallery: https://tinted-theming.github.io/tinted-gallery/
+    # go to ./themes.nix to add a new theme here
+    catppuccin-mocha = {
+      scheme = "Catppuccin Mocha";
+      base00 = "#1e1e2e"; # base
+      base01 = "#181825"; # mantle
+      base02 = "#313244"; # surface0
+      base03 = "#65677d"; # surface1
+      base04 = "#585b70"; # surface2
+      base05 = "#cdd6f4"; # text
+      base06 = "#f5e0dc"; # rosewater
+      base07 = "#b4befe"; # lavender
+      base08 = "#f38ba8"; # red
+      base09 = "#fab387"; # peach
+      base0A = "#f9e2af"; # yellow
+      base0B = "#a6e3a1"; # green
+      base0C = "#94e2d5"; # teal
+      base0D = "#89b4fa"; # blue
+      base0E = "#cba6f7"; # mauve
+      base0F = "#f2cdcd"; # flamingo
+    };
+    catppuccin-latte = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
+    gruvbox-material-dark-medium = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+  };
+  fonts = {
+    # non-mono fonts
+    dejavu = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Sans";
+    };
+
+    # mono fonts
+    dejavuMono = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Sans Mono";
+    };
+    jetbrainsMono = {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "JetBrainsMono Nerd Font";
+    };
+    mapleMono = {
+      # https://github.com/subframe7536/Maple-font
+      package = pkgs.maple-mono.NF-unhinted;
+      name = "MapleMonoNF";
+    };
+  };
+  selectedTheme = themes.${config.theme.name};
+  selectedMonoFont = fonts.${config.theme.monoFont};
+  selectedNormalFont = fonts.${config.theme.normalFont};
+
+in
+{
+  # only import stylix if we're building in home-manager mode.
+  imports = lib.optionals (!isNixOS) [
+    flake.inputs.stylix.homeModules.stylix
+  ];
+  # currently don't have an option for stylix, should probably add one.
+  config = {
+    stylix = {
+      enable = true;
+      base16Scheme = lib.mkForce selectedTheme;
+      polarity = config.theme.polarity;
+      image = config.theme.image;
+      cursor = {
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 20;
+      };
+      fonts.monospace = selectedMonoFont;
+      targets = {
+        firefox = {
+          enable = true;
+          colorTheme.enable = true;
+          profileNames = [
+            "textfox"
+            "normal"
+          ];
+        };
+        spicetify.enable = false;
+        vscode.profileNames = [ "default" ];
+      };
+    };
+  };
+}

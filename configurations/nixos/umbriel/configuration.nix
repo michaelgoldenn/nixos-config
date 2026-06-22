@@ -1,6 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# For the umbriel system
 {
   config,
   pkgs,
@@ -13,29 +11,67 @@
     ./hardware-configuration.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Michael's Custom Definitions - new configuration stuff I've added
+  syncthing = {
+    enable = true;
+    deviceName = "umbriel"; # Must match the key in syncthingDevices
 
-  networking.hostName = "umbriel"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    folders = {
+      obsidian-vault = {
+        path = "/home/michael/Documents/obsidian-vault";
+        devices = [
+          "cordelia"
+          "titania"
+          "ophelia"
+        ];
+      };
+      making-games = {
+        path = "/home/michael/projects/making-games/";
+        devices = [
+          "cordelia"
+          "titania"
+        ];
+      };
+      ftl-multiverse = {
+        path = "/home/michael/.local/share/FasterThanLight";
+        devices = [
+          "titania"
+        ];
+      };
+      the-tunnel = {
+        path = "/home/michael/the-tunnel";
+        devices = [
+          "titania"
+        ];
+      };
+      obs-config = {
+        path = "/home/michael/.config/obs-studio";
+        devices = [
+          "titania"
+        ];
+      };
+    };
+  };
+  gui.enable = true;
+  suspend.enable = true;
+  grub.enable = true;
+  xremap.enable = true;
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.hostName = "umbriel";
 
-  # Enable networking
-  #networking.networkmanager.enable = true;
+  # allows things like "homeassistant.local" to work
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  # systemd.services."getty@tty1".enable = false;
+  # systemd.services."autovt@tty1".enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -98,36 +134,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.michael = {
-    isNormalUser = true;
-    description = "michael";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "libvirtd"
-    ];
-    packages = with pkgs; [ ];
-  };
-
-  mySystem = {
-    vr.enable = lib.mkForce true;
-    lutris.enable = true;
-    services = {
-      open-webui.enable = true;
-    };
-    DE = {
-      gnome.enable = true;
-      hyprland.enable = false;
-    };
-  };
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -137,7 +143,7 @@
     vulkan-tools
     vulkan-headers
     vulkan-validation-layers
-    xorg.libxcb
+    libxcb
     libva-utils
   ];
 
@@ -149,6 +155,7 @@
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       # 64‑bit VA‑API libs
       intel-media-driver # modern “iHD” driver (Gen 9 → Arc)
@@ -160,6 +167,8 @@
       intel-vaapi-driver
     ];
   };
+  # allows NVENC hardware encoding
+  boot.kernelModules = [ "nvidia_uvm" ];
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
@@ -199,6 +208,8 @@
         enable = true;
         enableOffloadCmd = true;
       };
+      # forces the dedicated GPU to drive the entire display when it's used - can fix some issues sometimes with the GPU not being used properly
+      # sync.enable = true;
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
@@ -206,8 +217,8 @@
   };
   environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD"; # pick the modern driver
 
-  services.xserver.displayManager.sessionCommands = ''
-    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
-  '';
+  # services.xserver.displayManager.sessionCommands = ''
+  #   ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
+  # '';
   system.stateVersion = "24.05"; # Did you read the comment?
 }

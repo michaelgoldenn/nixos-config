@@ -1,5 +1,3 @@
-# Like GNU `make`, but `just` rustier.
-# https://just.systems/
 # run `just` from this directory to see available commands
 
 # Default command when 'just' is run without arguments
@@ -26,33 +24,12 @@ check:
 dev:
   nix develop
 
-# Rebuild and switch to new configuration
-alias r := run
-alias rebuild := run
+# Activate the configuration
 [group('Main')]
 run:
-  ./bash/rebuild
-
-# same thing as run, but git pulls and pushes as well
-alias fr := full-rebuild
-alias full-run := full-rebuild
-[group('Main')]
-full-rebuild:
-  ./bash/full-rebuild
+  nh os switch ./
 
 # Open the sops file for adding or editing keys
 [group('dev')]
 sops:
-  nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"
-
-[group('Main')]
-gc:
-  nix-store --gc
-
-[group('Main')]
-clean:
-  nh clean all -k 20
-
-[group('Main')]
-test:
-  nh os test
+  nix-shell -p sops --run "sops /etc/nixos/modules/secrets/secrets.yaml"

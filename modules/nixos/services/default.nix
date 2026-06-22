@@ -1,8 +1,15 @@
-# A module that automatically imports everything else in the parent folder.
 {
-  imports =
-    with builtins;
-    map
-      (fn: ./${fn})
-      (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
+  imports = [
+    ./cache.nix
+    ./grub.nix
+    ./kdeconnect.nix
+    ./kimai.nix
+    ./pia
+    ./sops.nix
+    ./suspend.nix
+    ./syncthing.nix
+    ./webserver.nix
+    ./wireguard.nix
+    ./xremap.nix
+  ];
 }
