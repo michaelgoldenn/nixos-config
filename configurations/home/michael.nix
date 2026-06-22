@@ -38,7 +38,7 @@ in
     helix.enable = true;
     gaming.enable = true;
     nixcord.enable = true;
-    vesktop.enable = false;
+    vesktop.enable = true;
     stoat.enable = true;
     spotify.enable = true;
     making_games.enable = true;
