@@ -51,7 +51,6 @@
     };
   };
   gui.enable = true;
-  suspend.enable = false;
   grub.enable = true;
   xremap.enable = true;
   vr.enable = true;
@@ -121,8 +120,7 @@
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
-    # Nvidia power management. Can cause sleep/suspend to not wake up.
-    # But disabling can lead to weird artifacts. For titania both happen so I just don't let it suspend
+    # Nvidia power management. Can cause sleep/suspend to not wake up. added a kernel param fix below
     powerManagement.enable = true;
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -135,6 +133,10 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
+  # fix suspend not working
+  boot.kernelParams = [
+    "NVreg_TemporaryFilePath=/var/tmp"
+  ];
 
   environment.systemPackages = with pkgs; [
     networkmanager-openvpn
