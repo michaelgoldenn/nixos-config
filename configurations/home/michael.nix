@@ -39,7 +39,7 @@ in
     gaming.enable = true;
     nixcord.enable = true;
     vesktop.enable = true;
-    stoat.enable = true;
+    stoat.enable = false;
     spotify.enable = true;
     making_games.enable = true;
     kdeconnect.enable = true;
