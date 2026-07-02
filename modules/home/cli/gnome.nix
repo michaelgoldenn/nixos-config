@@ -32,6 +32,9 @@
           # seconds until auto-suspend
           sleep-inactive-ac-timeout = "900";
         };
+        # disable the auto-lock which locks on screen off. Using a systemd script in the other gnome.nix
+        # which locks when suspending rather than when screen off
+        "org/gnome/desktop/screensaver".lock-enabled = false;
         "org/gnome/desktop/interface" = {
           show-battery-percentage = true;
           enable-hot-corners = false;

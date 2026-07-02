@@ -24,5 +24,16 @@
           lib.attrValues config.home-manager.users
         )
       ) [ gnome-console ];
+
+    # a systemd service that auto-locks the computer when suspending
+    environment.etc."systemd/system-sleep/gnome-lock.sh" = {
+      text = ''
+        #!/bin/sh
+        if [ "$1" = "pre" ]; then
+          loginctl lock-sessions
+        fi
+      '';
+      mode = "0755";
+    };
   };
 }
