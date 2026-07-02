@@ -133,10 +133,6 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
-  # fix suspend not working
-  boot.kernelParams = [
-    "NVreg_TemporaryFilePath=/var/tmp"
-  ];
 
   environment.systemPackages = with pkgs; [
     networkmanager-openvpn
@@ -148,4 +144,45 @@
   # it does a bunch of other things that can cause problems
   system.stateVersion = "24.05"; # Did you read the comment?
 
+  # a whole bunch of kernel stuff to fix suspend not working
+  boot.kernelParams = [
+    "NVreg_TemporaryFilePath=/var/tmp"
+  ];
+  systemd.services.systemd-suspend.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
+  # also for fixing suspend. The gnome-suspend and gnome-resume only need to be used when gnome is enabled,
+  # so at some point I should make it only enable when gnome is enabled.
+  systemd.services."gnome-suspend" = {
+    description = "Suspend gnome shell";
+    before = [
+      "systemd-suspend.service"
+      "systemd-hibernate.service"
+      "nvidia-suspend.service"
+      "nvidia-hibernate.service"
+    ];
+    wantedBy = [
+      "systemd-suspend.service"
+      "systemd-hibernate.service"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.procps}/bin/pkill -f -STOP ${pkgs.gnome-shell}/bin/gnome-shell";
+    };
+  };
+
+  systemd.services."gnome-resume" = {
+    description = "Resume gnome shell";
+    after = [
+      "systemd-suspend.service"
+      "systemd-hibernate.service"
+      "nvidia-resume.service"
+    ];
+    wantedBy = [
+      "systemd-suspend.service"
+      "systemd-hibernate.service"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.procps}/bin/pkill -f -CONT ${pkgs.gnome-shell}/bin/gnome-shell";
+    };
+  };
 }
