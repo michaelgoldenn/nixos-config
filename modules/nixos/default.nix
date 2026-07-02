@@ -26,7 +26,7 @@
 
   # remove this later
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-38.8.4"
+    "pnpm-10.29.2"
   ];
 
   # Allow SSH through the Cloudflare tunnel from any network
