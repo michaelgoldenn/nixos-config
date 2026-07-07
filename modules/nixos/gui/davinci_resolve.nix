@@ -6,6 +6,7 @@
   lib,
   pkgs,
   config,
+  flake,
   ...
 }:
 let
@@ -39,7 +40,11 @@ let
 
   davinci-resolve-studio-cracked =
     let
-      davinci-patched = pkgs.davinci-resolve-studio.davinci.overrideAttrs (old: {
+      pkgs-davinci = import flake.inputs.nixpkgs-davinci {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+      davinci-patched = pkgs-davinci.davinci-resolve-studio.davinci.overrideAttrs (old: {
         # script based on https://www.reddit.com/r/LinuxCrackSupport/comments/1nfqhld/davinci_resolve_studio_202_fix_linux_crack_guide/
         #
         # Additionally, it will install ffmpeg_encoder_plugin to enable H264/5 & AV1 exports:

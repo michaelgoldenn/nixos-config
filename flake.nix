@@ -52,6 +52,8 @@
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # pinning the nixpkgs version so Davinci resolve doesn't update and break anything
+    nixpkgs-davinci.url = "github:nixos/nixpkgs/4652ba995a945108fb891191c1e910b9a6ed9064";
 
   };
 
