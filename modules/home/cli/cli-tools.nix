@@ -25,6 +25,7 @@
       appimage-run # lets you run appimages
       ffmpeg
       hydra-check # lets you check if something's broken in hydra
+      trash-cli # use `trash-put *file*` to put a file in your trash. better than 'rm'
     ];
 
     programs = {
