@@ -58,6 +58,12 @@
           caffeine.extensionUuid
           space-bar.extensionUuid
         ];
+        # caffeine settings
+        "org/gnome/extensions/caffeine" = {
+          # auto-start caffeine when media is playing (won't sleep when listening to music)
+          enable-mpris = true;
+          show-notifications = false;
+        };
       };
     };
     home.packages = with pkgs.gnomeExtensions; [
