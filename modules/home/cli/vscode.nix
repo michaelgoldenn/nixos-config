@@ -68,7 +68,7 @@ in
               # python
               # ms-python.python # <- does not work, microsoft locks down their extensions to not work in codium >:(
               # C
-              ms-vscode.cpptools
+              # ms-vscode.cpptools # <- also doesn't work >:(
             ]
             ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
               # or can add new extensions here if easier
