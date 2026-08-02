@@ -52,7 +52,7 @@
           dontRoundMyTimestamps.enable = true;
           expressionCloner.enable = true;
           fakeNitro.enable = true;
-          favoriteGifSearch.enable = true;
+          # favoriteGifSearch.enable = true;
           fixCodeblockGap.enable = true;
           fixImagesQuality.enable = true;
           fixSpotifyEmbeds.enable = true;
