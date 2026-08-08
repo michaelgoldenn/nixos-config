@@ -39,7 +39,6 @@ let
       package = pkgs.dejavu_fonts;
       name = "DejaVu Sans";
     };
-
     # mono fonts
     dejavuMono = {
       package = pkgs.dejavu_fonts;
