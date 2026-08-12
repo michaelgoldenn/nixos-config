@@ -127,11 +127,10 @@
     powerManagement.finegrained = false;
     # Use the NVidia open source kernel module
     # Full list of supported GPUs: https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+ and currently alpha-quality/buggy
-    open = false;
+    open = true;
     nvidiaSettings = true;
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   environment.systemPackages = with pkgs; [
