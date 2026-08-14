@@ -35,12 +35,12 @@
         # cosmic.configuration = {
         #   gui.desktopEnvironment = "cosmic";
         # };
-        # hyprland.configuration = {
-        #   gui.desktopEnvironment = "hyprland";
-        # };
-        kde.configuration = {
-          gui.desktopEnvironment = "kde";
+        hyprland.configuration = {
+          gui.desktopEnvironment = "hyprland";
         };
+        # kde.configuration = {
+        #   gui.desktopEnvironment = "kde";
+        # };
       };
     })
 
@@ -48,7 +48,7 @@
     (lib.mkIf config.gui.enable {
       gnome.enable = config.gui.desktopEnvironment == "gnome";
       cosmic.enable = config.gui.desktopEnvironment == "cosmic";
-      # hyprland.enable = config.gui.desktopEnvironment == "hyprland";
+      hyprland.enable = config.gui.desktopEnvironment == "hyprland";
       kde.enable = config.gui.desktopEnvironment == "kde";
     })
   ];

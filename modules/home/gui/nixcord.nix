@@ -38,12 +38,12 @@
           biggerStreamPreview.enable = true;
           callTimer.enable = true;
           characterCounter.enable = true;
-          ClearURLs.enable = true;
+          clearUrls.enable = true;
           colorSighted.enable = true;
           copyEmojiMarkdown.enable = true;
           copyFileContents.enable = true;
           copyStickerLinks.enable = true;
-          CopyUserURLs.enable = true;
+          copyUserUrls.enable = true;
           crashHandler.enable = true;
           customIdle.enable = true;
           dearrow.enable = true;
@@ -75,7 +75,7 @@
           messageLatency.enable = true;
           messageLinkEmbeds.enable = true;
           messageLogger.enable = true;
-          MutualGroupDMs.enable = true;
+          mutualGroupDms.enable = true;
           noDevtoolsWarning.enable = true;
           noF1.enable = true;
           noMaskedUrlPaste.enable = true;
@@ -89,12 +89,12 @@
           noUnblockToJump.enable = true;
           # apparently it's only available in like equicord or something like that? might want to look into it
           # normalizeMessageLinks.enable = true;
-          OnePingPerDM.enable = true;
+          onePingPerDm.enable = true;
           openInApp.enable = true;
           pauseInvitesForever.enable = true;
           permissionsViewer.enable = true;
           pictureInPicture.enable = true;
-          PinDMs.enable = true;
+          pinDms.enable = true;
           plainFolderIcon.enable = true;
           quickMention.enable = true;
           quickReply.enable = true;
@@ -103,7 +103,7 @@
           replyTimestamp.enable = true;
           revealAllSpoilers.enable = true;
           reverseImageSearch.enable = true;
-          ReviewDB.enable = true;
+          reviewDb.enable = true;
           roleColorEverywhere.enable = true;
           sendTimestamps.enable = true;
           serverListIndicators.enable = true;
@@ -123,7 +123,7 @@
           unsuppressEmbeds.enable = true;
           userMessagesPronouns.enable = true;
           userVoiceShow.enable = true;
-          USRBG.enable = true;
+          usrbg.enable = true;
           validReply.enable = true;
           validUser.enable = true;
           viewIcons.enable = true;

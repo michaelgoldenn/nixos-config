@@ -35,6 +35,22 @@
       playerctl # media player control (play/pause/next from keybinds)
       matugen # material you color generation
       wmctrl # window control scripting
+      noctalia-shell
     ];
+
+    systemd.user.services.noctalia-shell = {
+      description = "Noctalia Shell (Quickshell)";
+
+      # Wait for the Wayland session to be fully up and running
+      after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+
+      serviceConfig = {
+        ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
+        Restart = "on-failure";
+        RestartSec = "5s";
+      };
+    };
   };
 }
