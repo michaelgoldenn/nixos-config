@@ -12,6 +12,7 @@
     home.packages = with pkgs; [
       mission-center
       proton-vpn
+      krita
     ];
   };
 }
