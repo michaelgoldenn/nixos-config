@@ -42,7 +42,7 @@ in
     stoat.enable = false;
     spotify.enable = true;
     making_games.enable = true;
-    kdeconnect.enable = true;
+    kdeconnect.enable = false;
     obsidian.enable = true;
     printing_3d.enable = true; # 3d printing things
     pentesting.enable = true;

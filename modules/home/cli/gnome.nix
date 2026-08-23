@@ -52,7 +52,7 @@
         "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
           all-windows-saverestore-window-positions.extensionUuid
           # fuzzy-app-search.extensionUuid
-          gsconnect.extensionUuid
+          # gsconnect.extensionUuid
           focused-window-d-bus.extensionUuid
           # color-picker.extensionUuid
           caffeine.extensionUuid

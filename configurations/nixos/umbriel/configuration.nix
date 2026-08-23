@@ -5,6 +5,19 @@
   lib,
   ...
 }:
+# This is just temporary, once https://github.com/NixOS/nixpkgs/pull/499521 gets merged you can remove this
+let
+  # Pin to the exact commit from PR #499521 (Svenum:update-msi-ec)
+  # so this doesn't silently change if the branch gets force-pushed later.
+  msi-ec-pr-src = pkgs.fetchzip {
+    url = "https://github.com/Svenum/nixpkgs/archive/e1dca387c47d6bb82fd563ee1ba89bb1e438c8f3.tar.gz";
+    sha256 = "sha256-833uNOLuNa/f5Jl4bVyvZc5h+Hf3XMhsvlvC8D1dlEg=";
+  };
+
+  msi-ec-new =
+    config.boot.kernelPackages.callPackage "${msi-ec-pr-src}/pkgs/os-specific/linux/msi-ec"
+      { };
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -145,6 +158,7 @@
     vulkan-validation-layers
     libxcb
     libva-utils
+    mcontrolcenter
   ];
 
   environment.sessionVariables = {
@@ -167,8 +181,19 @@
       intel-vaapi-driver
     ];
   };
-  # allows NVENC hardware encoding
-  boot.kernelModules = [ "nvidia_uvm" ];
+  boot.kernelModules = [
+    # allows NVENC hardware encoding
+    "nvidia_uvm"
+    # allows MControlCenter to work properly
+    "msi-ec"
+    "ec_sys"
+  ];
+  # stuff for MControlCenter
+  boot.extraModprobeConfig = ''
+    options ec_sys write_support=1
+  '';
+  boot.extraModulePackages = [ msi-ec-new ];
+
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {

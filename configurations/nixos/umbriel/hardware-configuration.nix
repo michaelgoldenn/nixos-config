@@ -22,7 +22,6 @@
     "sd_mod"
     "rtsx_usb_sdmmc"
   ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.msi-ec ];
   boot.initrd.kernelModules = [
     "nvidia"
     "msi-ec"
