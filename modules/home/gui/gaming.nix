@@ -19,7 +19,7 @@ in
       # millennium-steam
       steam-run
       r2modman
-      ftlman
+      # ftlman
       lutris
       wine
       winetricks
