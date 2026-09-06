@@ -27,3 +27,10 @@ typeHints.hideClosureInitialization = false
 [language-server.rust-analyzer.config]
 server.extraEnv = { "RA_MEMORY_LIMIT" = "4096" }  # MB
 check.command = "clippy"
+
+# lua (factorio)
+[language-server.lua-language-server]
+command = "lua-language-server"
+[language-server.lua-language-server.config.Lua.workspace]
+library = ["/etc/nixos/modules/home/cli/helix/factorio/"] # note: This should **NOT** be hardcoded. Instead it should be defined in helix.nix so you can auto-generate the path based on the machine
+checkThirdParty = false
