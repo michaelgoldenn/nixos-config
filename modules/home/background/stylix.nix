@@ -31,7 +31,7 @@ let
       base0F = "#f2cdcd"; # flamingo
     };
     catppuccin-latte = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
-    gruvbox-material-dark-medium = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+    gruvbox-light = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
   };
   fonts = {
     # non-mono fonts
