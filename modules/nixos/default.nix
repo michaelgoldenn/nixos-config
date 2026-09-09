@@ -1,6 +1,11 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, pkgs, ... }:
+{
+  flake,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     flake.inputs.self.nixosModules.common
@@ -23,6 +28,11 @@
     };
   };
   programs.nix-ld.enable = true; # enable nix ld for all PCs.
+
+  nix.settings.experimental-features = lib.mkForce [
+    "nix-command"
+    "flakes"
+  ];
 
   # remove this later
   nixpkgs.config.permittedInsecurePackages = [
