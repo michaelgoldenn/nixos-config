@@ -53,8 +53,9 @@ in
     general.enable = true;
 
     # styling
+    # theme.polarity and the wallpaper come from the registry entry in
+    # /modules/home/background/themes.nix. Switch live with `theme` / `theme set NAME`.
     theme.name = "catppuccin-mocha";
-    theme.polarity = "dark";
     theme.monoFont = "mapleMono";
 
     nixpkgs.config.allowUnfree = true; # need to set this everywhere I can to avoid the unfree warnings

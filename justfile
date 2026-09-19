@@ -28,6 +28,14 @@ dev:
 [group('Main')]
 run:
   nh os switch ./
+  # A rebuild resets the theme to `theme.name` in the flake, so re-apply whatever
+  # was last picked with `theme set`. Fails harmlessly if nothing was ever picked.
+  -theme restore
+
+# Switch theme + wallpaper live, no rebuild. Omit the name for a fuzzy picker.
+[group('Main')]
+theme name='':
+  theme {{ if name == '' { '' } else { 'set ' + name } }}
 
 # Open the sops file for adding or editing keys
 [group('dev')]
