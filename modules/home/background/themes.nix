@@ -57,7 +57,10 @@ let
     everforest = {
       polarity = "dark";
       scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
-      image = wall "greenbus.jpg" "sha256-abaiBjgh/wCvpcuChZpvI+RLBHogQNv8aLgAnRyUb+M=C";
+      image = pkgs.fetchurl {
+        url = "https://box.apeiros.xyz/public/everforest_walls/nature/fog_forest_1.png";
+        hash = "sha256-wQxWI0FNc37mvRO4zV123NXG50XOO6qKv7J8IKIxgmo=";
+      };
       swatch = [
         "#2d353b"
         "#d3c6aa"
