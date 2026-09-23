@@ -25,6 +25,8 @@ dev:
   nix develop
 
 # Activate the configuration
+alias r := run
+alias switch := run
 [group('Main')]
 run:
   nh os switch ./

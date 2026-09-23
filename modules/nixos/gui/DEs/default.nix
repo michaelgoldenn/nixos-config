@@ -38,9 +38,9 @@
         hyprland.configuration = {
           gui.desktopEnvironment = "hyprland";
         };
-        # kde.configuration = {
-        #   gui.desktopEnvironment = "kde";
-        # };
+        kde.configuration = {
+          gui.desktopEnvironment = "kde";
+        };
       };
     })
 
