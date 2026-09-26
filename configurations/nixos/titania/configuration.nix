@@ -75,6 +75,11 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  fileSystems."mnt/harddrive" = {
+    device = "dev/disk/by-uuid/88337ab3-c415-42cc-bd11-5e8d51c51fd6";
+    fsType = "ext4";
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # Configure keymap in X11
