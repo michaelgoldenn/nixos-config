@@ -28,7 +28,9 @@ in
       prismlauncher # minecraft
       vintagestory
       ludusavi # game backups
+
       qbittorrent
+      flake.inputs.risabh-packages.packages.${pkgs.system}.ab-download-manager
     ];
   };
 }

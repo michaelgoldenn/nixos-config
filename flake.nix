@@ -54,6 +54,9 @@
     };
     # pinning the nixpkgs version so Davinci resolve doesn't update and break anything
     nixpkgs-davinci.url = "github:nixos/nixpkgs/4652ba995a945108fb891191c1e910b9a6ed9064";
+    # https://github.com/Rishabh5321/custom-packages-flake
+    # defines a few packages that aren't in nixpkgs. Right now just using it for ab-download-manager
+    risabh-packages.url = "github:Rishabh5321/custom-packages-flake";
 
   };
 
