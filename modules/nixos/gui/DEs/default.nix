@@ -26,22 +26,25 @@
     map (fn: ./${fn}) (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
 
   config = lib.mkMerge [
-    # Only create specialisations when GUI is enabled
+    # Only create specialisations when GUI is enabled.
+    # The base config uses gui.desktopEnvironment; specialisations are only made for the others.
+    # Each one writes its name to /etc/specialisation, which `nh os switch` reads to
+    # re-activate the same specialisation instead of falling back to the base config.
     (lib.mkIf config.gui.enable {
-      specialisation = {
-        gnome.configuration = {
-          gui.desktopEnvironment = "gnome";
-        };
-        # cosmic.configuration = {
-        #   gui.desktopEnvironment = "cosmic";
-        # };
-        hyprland.configuration = {
-          gui.desktopEnvironment = "hyprland";
-        };
-        kde.configuration = {
-          gui.desktopEnvironment = "kde";
-        };
-      };
+      specialisation =
+        lib.genAttrs
+          (lib.remove config.gui.desktopEnvironment [
+            "gnome"
+            # "cosmic"
+            "hyprland"
+            "kde"
+          ])
+          (name: {
+            configuration = {
+              gui.desktopEnvironment = lib.mkForce name;
+              environment.etc."specialisation".text = name;
+            };
+          });
     })
 
     # Only enable desktop environments when GUI is enabled

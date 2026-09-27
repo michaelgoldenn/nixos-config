@@ -1,7 +1,22 @@
-{ config, pkgs, ... }:
+## GNOME user-level configuration.
+## GNOME itself is set up on the NixOS side in /modules/nixos/gui/DEs/gnome.nix.
+## This module only applies when the booted specialisation has GNOME enabled.
 {
-  # TODO: Make it so it only runs this when using gnome
-  config = {
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
+{
+  options.gnome.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = osConfig != null && (osConfig.gnome.enable or false);
+    defaultText = lib.literalExpression "osConfig.gnome.enable";
+    description = "Whether to apply the GNOME user configuration";
+  };
+
+  config = lib.mkIf config.gnome.enable {
     dconf = {
       enable = true;
       settings = {
