@@ -51,7 +51,7 @@
     };
   };
   gui.enable = true;
-  gui.desktopEnvironment = "kde";
+  gui.desktopEnvironment = "gnome";
   grub.enable = true;
   xremap.enable = true;
   vr.enable = true;

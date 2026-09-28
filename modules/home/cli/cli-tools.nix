@@ -23,6 +23,7 @@
       toybox
       peazip # 7z file extractor
       p7zip-rar
+      unrar
       appimage-run # lets you run appimages
       ffmpeg
       hydra-check # lets you check if something's broken in hydra
