@@ -23,17 +23,21 @@ let
 
     nativeBuildInputs = with pkgs; [
       cmake
-      ffmpeg
+      pkg-config
     ];
 
-    buildInputs = with pkgs; [ ffmpeg ];
+    buildInputs = with pkgs; [ ffmpeg.dev ];
+
+    env.NIX_CFLAGS_COMPILE = "-D__STDC_CONSTANT_MACROS";
+    cmakeFlags = [
+      "-DCMAKE_CXX_STANDARD=17"
+      "-DCMAKE_CXX_FLAGS=-D__STDC_CONSTANT_MACROS"
+    ];
 
     installPhase = ''
       runHook preInstall
-
       mkdir -p $out
       cp ffmpeg_encoder_plugin.dvcp $out/
-
       runHook postInstall
     '';
   });
