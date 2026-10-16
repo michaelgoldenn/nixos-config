@@ -15,6 +15,25 @@
       xwayland.enable = true;
     };
 
+    # Noctalia's greetd greeter for the login screen. Without a display manager set here,
+    # NixOS falls back to the default LightDM greeter.
+    services.displayManager.noctalia-greeter = {
+      enable = true;
+      settings = {
+        # The plain "Hyprland" session never starts graphical-session.target, so
+        # noctalia (and other session services) wouldn't start. Default to UWSM.
+        session.default = "Hyprland (uwsm-managed)";
+        keyboard.layout = config.services.xserver.xkb.layout;
+      };
+      # Lets noctalia push its wallpaper and colors to the greeter (shell.greeter_sync)
+      # without a password prompt every time the theme changes.
+      passwordlessSyncUsers = lib.attrNames config.home-manager.users;
+    };
+
+    # noctalia itself is configured in home-manager (/modules/home/gui/hyprland.nix) so stylix
+    # can theme it. It only needs the freedesktop sound theme from the system side.
+    xdg.sounds.enable = true;
+
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
@@ -35,22 +54,6 @@
       playerctl # media player control (play/pause/next from keybinds)
       matugen # material you color generation
       wmctrl # window control scripting
-      noctalia-shell
     ];
-
-    systemd.user.services.noctalia-shell = {
-      description = "Noctalia Shell (Quickshell)";
-
-      # Wait for the Wayland session to be fully up and running
-      after = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-
-      serviceConfig = {
-        ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
-        Restart = "on-failure";
-        RestartSec = "5s";
-      };
-    };
   };
 }

@@ -1,7 +1,9 @@
 ## Hyprland user-level configuration.
 ## The compositor itself, its portals and the system packages it needs are set up
 ## on the NixOS side in /modules/nixos/gui/DEs/hyprland. This module only writes
-## ~/.config/hypr/hyprland.conf, so it follows whichever specialisation is booted.
+## ~/.config/hypr/hyprland.conf and the noctalia (v5) shell config, so it follows whichever
+## specialisation is booted. noctalia is configured here rather than on the NixOS side so
+## the stylix noctalia target can theme it, and `theme set` swaps its palette live.
 {
   config,
   lib,
@@ -18,6 +20,29 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
+    programs.noctalia = {
+      enable = true;
+      # Started by graphical-session.target, which only the UWSM session reaches.
+      systemd.enable = true;
+      # Anything changed in noctalia's settings window lands in
+      # ~/.local/state/noctalia/settings.toml and wins over this (including stylix's colors).
+      settings = {
+        shell = {
+          avatar_path = "${config.home.homeDirectory}/.face";
+          # Otherwise apps launched from noctalia die whenever its service restarts.
+          launch_apps_as_systemd_services = true;
+          # The wizard writes its picks to settings.toml, which would override stylix.
+          setup_wizard_enabled = false;
+          # Push wallpaper and colors to noctalia-greeter whenever they change.
+          greeter_sync.auto_sync = true;
+        };
+        wallpaper.directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
+      };
+    };
+    # noctalia draws the wallpaper (stylix hands it the image), so hyprpaper would just be
+    # a second wallpaper underneath it.
+    stylix.targets.hyprland.hyprpaper.enable = false;
+
     wayland.windowManager.hyprland = {
       enable = true;
 
@@ -61,10 +86,26 @@
           };
         };
 
-        layerrule = [
-          "blur on, match:namespace noctalia-background-.*$"
-          "blur_popups on, match:namespace noctalia-background-.*$"
-          "ignore_alpha 0.5, match:namespace noctalia-background-.*$"
+        # Under UWSM, noctalia is started by its systemd user service. If the plain
+        # (non-UWSM) Hyprland session was picked, start it directly instead.
+        exec-once = [ "uwsm check is-active || noctalia" ];
+
+        # Namespaces from https://docs.noctalia.dev/noctalia/compositor-settings/hyprland/
+        # no_anim stops Hyprland's layer animations fighting noctalia's own.
+        layerrule =
+          let
+            noctalia = "match:namespace ^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
+          in
+          [
+            "blur on, ${noctalia}"
+            "blur_popups on, ${noctalia}"
+            "ignore_alpha 0.5, ${noctalia}"
+            "no_anim on, ${noctalia}"
+          ];
+
+        windowrule = [
+          "float on, match:class ^dev\\.noctalia\\.Noctalia$"
+          "size 1080 920, match:class ^dev\\.noctalia\\.Noctalia$"
         ];
 
         input = {
@@ -81,7 +122,7 @@
           "$mod, M, exit"
           "$mod, V, togglefloating"
           "$mod, F, fullscreen"
-          "$mod, D, exec, qs -c noctalia-shell ipc call launcher toggle"
+          "$mod, D, exec, noctalia msg panel-toggle launcher"
         ]
         ++ (builtins.concatLists (
           builtins.genList (
