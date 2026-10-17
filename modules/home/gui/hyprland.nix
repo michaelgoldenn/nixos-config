@@ -1,9 +1,8 @@
 ## Hyprland user-level configuration.
 ## The compositor itself, its portals and the system packages it needs are set up
 ## on the NixOS side in /modules/nixos/gui/DEs/hyprland. This module only writes
-## ~/.config/hypr/hyprland.conf and the noctalia (v5) shell config, so it follows whichever
-## specialisation is booted. noctalia is configured here rather than on the NixOS side so
-## the stylix noctalia target can theme it, and `theme set` swaps its palette live.
+## ~/.config/hypr/hyprland.conf, so it follows whichever specialisation is booted. The
+## noctalia (v5) shell is configured in ./noctalia.
 {
   config,
   lib,
@@ -89,95 +88,6 @@
       };
     in
     {
-      programs.noctalia = {
-        enable = true;
-        # Started by graphical-session.target, which only the UWSM session reaches.
-        systemd.enable = true;
-        # Anything changed in noctalia's settings window lands in
-        # ~/.local/state/noctalia/settings.toml and wins over this (including stylix's colors).
-        settings = {
-          shell = {
-            corner_radius_scale = style.cornerScale;
-            avatar_path = "${config.home.homeDirectory}/.face";
-            # Otherwise apps launched from noctalia die whenever its service restarts.
-            launch_apps_as_systemd_services = true;
-            # The wizard writes its picks to settings.toml, which would override stylix.
-            setup_wizard_enabled = false;
-            # Push wallpaper and colors to noctalia-greeter whenever they change.
-            greeter_sync.auto_sync = true;
-            window_switcher = {
-              # GNOME orders Alt+Tab by most recently used, so a quick Alt+Tab flips between
-              # the last two windows.
-              mru = true;
-              # Only cycle through windows on the current workspace.
-              current_workspace_only = true;
-            };
-          };
-          # Let the launcher find open windows by name too, not just apps.
-          panels.launcher_global_windows = true;
-          wallpaper.directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
-          # Default start lane plus small system gauges (no text values) after the workspaces.
-          # noctalia has no bar background key (it always uses the palette's surface), so a
-          # coloured bar is an inside outline as thick as the bar itself, i.e. a solid fill.
-          bar.default =
-            (lib.optionalAttrs (style.barColor != null) {
-              thickness = 36;
-              radius = 0;
-              border = "#${slot style.barColor}";
-              border_width = 36;
-              color = "#ffffff";
-              compositor_blur = false;
-            })
-            // {
-              start = [
-                "launcher"
-                "wallpaper"
-                "cpu"
-                "temp"
-                "ram"
-                "workspaces"
-              ];
-            };
-          widget =
-            let
-              gauge = stat: {
-                type = "sysmon";
-                inherit stat;
-                visualization = "gauge";
-                show_value = false;
-              };
-            in
-            {
-              cpu = gauge "cpu_usage";
-              temp = gauge "cpu_temp";
-              ram = gauge "ram_used";
-              clock.format = "{:%-I:%M %p}";
-              # Icon only, no SSID.
-              network.show_label = false;
-            };
-          # Same timings the GNOME setup used: screen off after 10 mins, suspend after 15.
-          # Only locks when suspending (lockscreen.lock_before_suspend defaults to true).
-          # Idle is held off by Wayland idle inhibitors: fullscreen windows (windowrule
-          # below) and audio playback (wayland-pipewire-idle-inhibit below).
-          idle = {
-            behavior_order = [
-              "screen-off"
-              "suspend"
-            ];
-            behavior.screen-off = {
-              action = "screen_off";
-              enabled = true;
-              timeout = 600;
-            };
-            behavior.suspend = {
-              action = "lock_and_suspend";
-              enabled = true;
-              timeout = 900;
-            };
-          };
-        };
-      };
-
       # Holds an idle inhibitor while anything is playing audio through PipeWire, so music
       # or videos keep the screen on and stop auto-suspend (GNOME used caffeine for this).
       systemd.user.services.wayland-pipewire-idle-inhibit = {
