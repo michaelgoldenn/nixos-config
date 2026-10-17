@@ -22,6 +22,8 @@
   config = lib.mkIf config.hyprland.enable (
     let
       inherit (config.wayland.windowManager.hyprland.settings) general;
+      style = config.theme.selected.style;
+      slot = name: config.lib.stylix.colors.${name};
       # GNOME-style maximize / half-screen snapping for floating windows. Hyprland's own
       # maximize (fullscreen 1) only allows one window per workspace, so this just moves
       # and resizes the window to fill the usable area instead. The pre-snap geometry is
@@ -95,6 +97,7 @@
         # ~/.local/state/noctalia/settings.toml and wins over this (including stylix's colors).
         settings = {
           shell = {
+            corner_radius_scale = style.cornerScale;
             avatar_path = "${config.home.homeDirectory}/.face";
             # Otherwise apps launched from noctalia die whenever its service restarts.
             launch_apps_as_systemd_services = true;
@@ -114,14 +117,27 @@
           panels.launcher_global_windows = true;
           wallpaper.directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
           # Default start lane plus small system gauges (no text values) after the workspaces.
-          bar.default.start = [
-            "launcher"
-            "wallpaper"
-            "cpu"
-            "temp"
-            "ram"
-            "workspaces"
-          ];
+          # noctalia has no bar background key (it always uses the palette's surface), so a
+          # coloured bar is an inside outline as thick as the bar itself, i.e. a solid fill.
+          bar.default =
+            (lib.optionalAttrs (style.barColor != null) {
+              thickness = 36;
+              radius = 0;
+              border = "#${slot style.barColor}";
+              border_width = 36;
+              color = "#ffffff";
+              compositor_blur = false;
+            })
+            // {
+              start = [
+                "launcher"
+                "wallpaper"
+                "cpu"
+                "temp"
+                "ram"
+                "workspaces"
+              ];
+            };
           widget =
             let
               gauge = stat: {
@@ -237,24 +253,32 @@
           ];
 
           general = {
-            gaps_in = 5;
-            gaps_out = 10;
-            border_size = 2;
+            gaps_in = style.gapsIn;
+            gaps_out = style.gapsOut;
+            border_size = style.borderSize;
             layout = "dwindle";
+          }
+          // lib.optionalAttrs (style.activeBorder != null) {
+            "col.active_border" = lib.mkForce "rgb(${slot style.activeBorder})";
+          }
+          // lib.optionalAttrs (style.inactiveBorder != null) {
+            "col.inactive_border" = lib.mkForce "rgb(${slot style.inactiveBorder})";
           };
 
+          animations.enabled = style.animations;
+
           decoration = {
-            rounding = 20;
+            rounding = style.rounding;
             rounding_power = 2;
 
             shadow = {
-              enabled = true;
+              enabled = style.shadow;
               range = 4;
               render_power = 3;
             };
 
             blur = {
-              enabled = true;
+              enabled = style.blur;
               size = 3;
               passes = 2;
               vibrancy = 0.1696;
@@ -303,6 +327,7 @@
             "$mod, V, togglefloating"
             "$mod, F, fullscreen"
             "$mod, D, exec, noctalia msg panel-toggle launcher"
+            "$mod, T, exec, theme pick"
 
             # Focus and move windows with the keyboard
             "$mod, H, movefocus, l"
