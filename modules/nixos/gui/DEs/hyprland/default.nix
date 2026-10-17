@@ -34,6 +34,22 @@
     # can theme it. It only needs the freedesktop sound theme from the system side.
     xdg.sounds.enable = true;
 
+    # Secret Service + polkit agent: GNOME provides these, Hyprland doesn't. Needed by the
+    # ProtonVPN app (stores its login in the keyring, asks polkit to manage NetworkManager).
+    services.gnome.gnome-keyring.enable = true;
+    security.pam.services.greetd.enableGnomeKeyring = true;
+    security.polkit.enable = true;
+    systemd.user.services.hyprpolkitagent = {
+      description = "Hyprland polkit authentication agent";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+        Restart = "on-failure";
+      };
+    };
+
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
@@ -54,6 +70,8 @@
       playerctl # media player control (play/pause/next from keybinds)
       matugen # material you color generation
       wmctrl # window control scripting
+      nautilus # gnome's file manager
+      nautilus-open-any-terminal
     ];
   };
 }
