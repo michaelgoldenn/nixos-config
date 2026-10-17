@@ -102,9 +102,13 @@
             setup_wizard_enabled = false;
             # Push wallpaper and colors to noctalia-greeter whenever they change.
             greeter_sync.auto_sync = true;
-            # GNOME orders Alt+Tab by most recently used, so a quick Alt+Tab flips between
-            # the last two windows.
-            window_switcher_mru = true;
+            window_switcher = {
+              # GNOME orders Alt+Tab by most recently used, so a quick Alt+Tab flips between
+              # the last two windows.
+              mru = true;
+              # Only cycle through windows on the current workspace.
+              current_workspace_only = true;
+            };
           };
           # Let the launcher find open windows by name too, not just apps.
           panels.launcher_global_windows = true;
@@ -176,6 +180,40 @@
         };
         Install.WantedBy = [ "graphical-session.target" ];
       };
+
+      # Hyprland only raises a floating window when it's clicked, so a window focused any
+      # other way (the Alt+Tab switcher, movefocus, focus falling back after a close) can
+      # stay buried under others. This raises whatever window gains focus, like GNOME.
+      systemd.user.services.hypr-raise-on-focus = {
+        Unit = {
+          Description = "Raise Hyprland windows when they gain focus";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+        Service = {
+          ExecStart = lib.getExe (
+            pkgs.writeShellApplication {
+              name = "hypr-raise-on-focus";
+              runtimeInputs = [
+                pkgs.socat
+                osConfig.programs.hyprland.package
+              ];
+              text = ''
+                socat -U - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" |
+                  while IFS= read -r line; do
+                    case $line in
+                    "activewindowv2>>"?*) hyprctl dispatch alterzorder "top,address:0x''${line#activewindowv2>>}" >/dev/null ;;
+                    esac
+                  done
+              '';
+            }
+          );
+          Restart = "always";
+          RestartSec = 2;
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
       # noctalia draws the wallpaper (stylix hands it the image), so hyprpaper would just be
       # a second wallpaper underneath it.
       stylix.targets.hyprland.hyprpaper.enable = false;
@@ -277,10 +315,11 @@
             "$mod, down, exec, ${lib.getExe hypr-snap} restore"
             "$mod, left, exec, ${lib.getExe hypr-snap} left"
             "$mod, right, exec, ${lib.getExe hypr-snap} right"
-            "$mod SHIFT, left, movewindow, l"
-            "$mod SHIFT, right, movewindow, r"
-            "$mod SHIFT, up, movewindow, u"
-            "$mod SHIFT, down, movewindow, d"
+            # Switch workspaces (up/down mirror left/right, like GNOME's vertical workspaces)
+            "ALT CTRL, left, workspace, e-1"
+            "ALT CTRL, right, workspace, e+1"
+            "ALT CTRL, up, workspace, e-1"
+            "ALT CTRL, down, workspace, e+1"
             # GNOME-style switcher overlay: keep holding Alt, Tab / Shift+Tab to pick,
             # release Alt to switch, Esc to cancel.
             "ALT, Tab, exec, noctalia msg window-switcher hold"
