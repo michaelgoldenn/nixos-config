@@ -162,10 +162,116 @@ let
     "browser.newtabpage.activity-stream.feeds.topsites" = false; # Firefox "shortcuts"
   };
 
+  # search engines for my own profiles
+  global_search = {
+    # should eventually make this an option instead of hardcoded
+    default = "ddg";
+
+    force = true;
+    engines = {
+      # hide engines I don't want
+      "amazondotcom-us".metaData.hidden = true;
+      "bing".metaData.hidden = true;
+      "ebay".metaData.hidden = true;
+      # custom definitions for search engines
+      google.definedAliases = [ "@g" ];
+      "ddg" = {
+        urls = [
+          {
+            template = "https://duckduckgo.com";
+            params = [
+              {
+                name = "q";
+                value = "{searchTerms}";
+              }
+            ];
+          }
+        ];
+        definedAliases = [ "@d" ];
+      };
+      "Github Search" = {
+        urls = [
+          {
+            template = "https://github.com/search";
+            params = [
+              {
+                name = "q";
+                value = "{searchTerms}";
+              }
+              {
+                name = "type";
+                value = "code";
+              }
+            ];
+          }
+        ];
+        definedAliases = [ "@gh" ];
+      };
+      "Github Nix" = {
+        urls = [
+          {
+            template = "https://github.com/search";
+            params = [
+              {
+                name = "q";
+                value = "lang:nix+{searchTerms}";
+              }
+              {
+                name = "type";
+                value = "code";
+              }
+            ];
+          }
+        ];
+        definedAliases = [ "@gn" ];
+      };
+      "Home Manager" = {
+        urls = [
+          {
+            template = "https://home-manager-options.extranix.com/";
+            params = [
+              {
+                name = "query";
+                value = "{searchTerms}+&release=master";
+              }
+            ];
+          }
+        ];
+        definedAliases = [ "@hm" ];
+      };
+      "Nix Search" = {
+        urls = [
+          {
+            template = "https://mynixos.com/search";
+            params = [
+              {
+                name = "q";
+                value = "{searchTerms}";
+              }
+            ];
+          }
+        ];
+        definedAliases = [ "@n" ];
+      };
+      "Nix Wiki" = {
+        urls = [
+          {
+            template = "https://wiki.nixos.org/w/";
+            params = [
+              {
+                name = "";
+                value = "index.php?search={searchTerms}";
+              }
+            ];
+          }
+        ];
+      };
+    };
+  };
+
   # sidebery configs. If you want to replace the current config with a new one, it is located in:
   # ~/.mozilla/firefox/<profile_name>/browser-extension-data/{3c078156-979c-498b-8990-85f7987dd929}/storage.js
   textfox_sidebery_config = builtins.fromJSON (builtins.readFile ./textfox-sidebery-settings.json);
-  shyfox_sidebery_config = builtins.fromJSON (builtins.readFile ./shyfox-sidebery-settings.json);
 in
 {
   # set firefox to be default for html
@@ -181,119 +287,64 @@ in
   };
   programs.firefox = {
     enable = true;
+    # autoconfig scripts (privileged JS run at startup, applies to every profile)
+    package = pkgs.firefox.override { extraPrefsFiles = [ "${./sidebar-hover-fix.js}" ]; };
     # configPath = "${config.xdg.configHome}/mozilla/firefox";
     configPath = ".mozilla/firefox";
     profiles = {
-      textfox = {
+      # minimal setup using firefox's native vertical tabs (no custom css)
+      main = {
         id = 0;
-        name = "textfox";
+        name = "main";
         isDefault = true;
         containersForce = true;
-        search = {
-          # should eventually make this an option instead of hardcoded
-          default = "ddg";
-
+        search = global_search;
+        extensions = {
           force = true;
-          engines = {
-            # hide engines I don't want
-            "amazondotcom-us".metaData.hidden = true;
-            "bing".metaData.hidden = true;
-            "ebay".metaData.hidden = true;
-            # custom definitions for search engines
-            google.definedAliases = [ "@g" ];
-            "ddg" = {
-              urls = [
-                {
-                  template = "https://duckduckgo.com";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              definedAliases = [ "@d" ];
-            };
-            "Github Search" = {
-              urls = [
-                {
-                  template = "https://github.com/search";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                    {
-                      name = "type";
-                      value = "code";
-                    }
-                  ];
-                }
-              ];
-              definedAliases = [ "@gh" ];
-            };
-            "Github Nix" = {
-              urls = [
-                {
-                  template = "https://github.com/search";
-                  params = [
-                    {
-                      name = "q";
-                      value = "lang:nix+{searchTerms}";
-                    }
-                    {
-                      name = "type";
-                      value = "code";
-                    }
-                  ];
-                }
-              ];
-              definedAliases = [ "@gn" ];
-            };
-            "Home Manager" = {
-              urls = [
-                {
-                  template = "https://home-manager-options.extranix.com/";
-                  params = [
-                    {
-                      name = "query";
-                      value = "{searchTerms}+&release=master";
-                    }
-                  ];
-                }
-              ];
-              definedAliases = [ "@hm" ];
-            };
-            "Nix Search" = {
-              urls = [
-                {
-                  template = "https://mynixos.com/search";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              definedAliases = [ "@n" ];
-            };
-            "Nix Wiki" = {
-              urls = [
-                {
-                  template = "https://wiki.nixos.org/w/";
-                  params = [
-                    {
-                      name = "";
-                      value = "index.php?search={searchTerms}";
-                    }
-                  ];
-                }
-              ];
-            };
-          };
+          packages = global_extensions ++ nice_extensions;
         };
+        settings = global_settings // {
+          # native vertical tabs, collapsed to icons and expanded on hover
+          "sidebar.revamp" = true;
+          "sidebar.verticalTabs" = true;
+          "sidebar.visibility" = "expand-on-hover";
+          "browser.uidensity" = 1; # compact toolbar
+          "browser.tabs.inTitlebar" = 0; # drop firefox's own window buttons (hyprland doesn't need them)
+          # snappier sidebar (defaults: 200ms hover delay + 400ms expand animation, 200ms toggle)
+          "sidebar.animation.expand-on-hover.delay-duration-ms" = 50;
+          "sidebar.animation.expand-on-hover.duration-ms" = 100;
+          "sidebar.animation.duration-ms" = 100;
+        };
+        # vertical tabs ignore uidensity and pad every row heavily, so tighten them here
+        userChrome = ''
+          @media -moz-pref("sidebar.verticalTabs") {
+            :root {
+              --tab-min-height: 22px !important;
+            }
+            #tabbrowser-tabs[orient="vertical"] {
+              --tab-margin-block: 0px !important; /* compact density sets 4px above/below */
+              --tab-padding-block-start: 1px !important; /* default 3px */
+              --tab-padding-block-end: 0px !important; /* default 2px */
+              grid-gap: 0 !important; /* extra gap between every row */
+
+              .tab-label {
+                font-size: 12px !important;
+              }
+              .tab-icon-image,
+              .tab-throbber,
+              .tab-icon-pending {
+                --icon-size: 14px !important;
+              }
+            }
+          }
+        '';
+      };
+      textfox = {
+        id = 1;
+        name = "textfox";
+        isDefault = false;
+        containersForce = true;
+        search = global_search;
         extensions = {
           packages = global_extensions ++ nice_extensions;
           force = true; # need to do this to set extension settings
@@ -304,60 +355,6 @@ in
         };
         settings = global_settings;
       };
-      shyfox = {
-        id = 1;
-        name = "shyfox";
-        isDefault = false;
-        containersForce = true;
-        search = {
-          force = true;
-        };
-        extensions = {
-          packages =
-            global_extensions
-            ++ nice_extensions
-            ++ [
-              # For now, sidebery can't be configured through central policies
-              # so you'll need to import this file into sidebery settings https://github.com/Naezr/ShyFox/blob/main/sidebery-settings.json
-              inputs.firefox-addons.packages."x86_64-linux".sidebery
-              inputs.firefox-addons.packages."x86_64-linux".userchrome-toggle-extended
-            ];
-          force = true; # need to do this to set extension settings
-          settings = {
-            # sidebery
-            "{3c078156-979c-498b-8990-85f7987dd929}".settings = shyfox_sidebery_config;
-          };
-        };
-        settings = global_settings // {
-          # shyfox specific extensions
-          "sidebar.revamp" = false;
-          "layout.css.has-selector.enabled" = true;
-          "browser.urlbar.suggest.calculator" = true;
-          "browser.urlbar.unitConversion.enabled" = true;
-          "browser.urlbar.trimHttps" = true;
-          "browser.urlbar.trimURLs" = true;
-          "widget.gtk.rounded-bottom-corners.enabled" = true;
-          "widget.gtk.ignore-bogus-leave-notify" = "1";
-        };
-      }
-      // (
-        let
-          theme = pkgs.callPackage ./shyfox-import.nix { };
-        in
-        {
-          userChrome = ''
-            @import "${theme}/lib/shyfox/userChrome.css";
-
-            /* Minor tweaks */
-            :root, #screenshots-component * {
-              --sdbr-wdt: 375px;
-            }
-          '';
-          userContent = ''
-            @import "${theme}/lib/shyfox/userContent.css";
-          '';
-        }
-      );
       normal = {
         id = 2;
         name = "normal";
