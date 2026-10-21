@@ -14,9 +14,4 @@
     config.nix.package
   ];
 
-  # remove this later
-  nixpkgs.config.permittedInsecurePackages = [
-    "pnpm-10.29.2"
-  ];
-
 }

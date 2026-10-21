@@ -86,8 +86,58 @@
           esac
         '';
       };
+      # Plain playerctl just picks the first MPRIS player it finds (often a paused browser
+      # tab), so the media keys go through this instead. It targets whichever player last
+      # changed between playing and paused, as recorded by the media-last-player service.
+      media-last-player-file = "\${XDG_RUNTIME_DIR:-/tmp}/media-last-player";
+      media-control = pkgs.writeShellApplication {
+        name = "media-control";
+        runtimeInputs = [ pkgs.playerctl ];
+        text = ''
+          player=$(cat "${media-last-player-file}" 2>/dev/null || true)
+          if [ -n "$player" ] && playerctl --player="$player" status >/dev/null 2>&1; then
+            exec playerctl --player="$player" "$@"
+          fi
+          exec playerctl "$@"
+        '';
+      };
     in
     {
+      # Records the player that most recently started or stopped playing, for media-control.
+      # A player only counts when its status flips; one that shows up already paused (like
+      # a newly opened browser tab) is ignored.
+      systemd.user.services.media-last-player = {
+        Unit = {
+          Description = "Track the most recently played/paused media player";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+        Service = {
+          ExecStart = lib.getExe (
+            pkgs.writeShellApplication {
+              name = "media-last-player";
+              runtimeInputs = [ pkgs.playerctl ];
+              text = ''
+                declare -A seen=()
+                playerctl --all-players --follow status --format '{{playerInstance}} {{status}}' |
+                  while read -r player status; do
+                    [ -n "$player" ] && [ -n "''${status:-}" ] || continue
+                    prev=''${seen[$player]:-}
+                    seen[$player]=$status
+                    [ "$prev" != "$status" ] || continue
+                    if [ -n "$prev" ] || [ "$status" = Playing ]; then
+                      echo "$player" >"${media-last-player-file}"
+                    fi
+                  done
+              '';
+            }
+          );
+          Restart = "always";
+          RestartSec = 2;
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
       # Holds an idle inhibitor while anything is playing audio through PipeWire, so music
       # or videos keep the screen on and stop auto-suspend (GNOME used caffeine for this).
       systemd.user.services.wayland-pipewire-idle-inhibit = {
@@ -110,6 +160,11 @@
       # Hyprland only raises a floating window when it's clicked, so a window focused any
       # other way (the Alt+Tab switcher, movefocus, focus falling back after a close) can
       # stay buried under others. This raises whatever window gains focus, like GNOME.
+      #
+      # Fullscreen windows need extra help: focusing a floating window while one is fullscreen
+      # marks it "allowed over fullscreen", and refocusing the fullscreen window never clears
+      # that, so it stays covered. Lowering those windows clears the flag; they're sent down
+      # most-recently-focused first, which keeps their stacking order among themselves.
       systemd.user.services.hypr-raise-on-focus = {
         Unit = {
           Description = "Raise Hyprland windows when they gain focus";
@@ -122,13 +177,29 @@
               name = "hypr-raise-on-focus";
               runtimeInputs = [
                 pkgs.socat
+                pkgs.jq
                 osConfig.programs.hyprland.package
               ];
               text = ''
+                raise() {
+                  local addr=$1 cmds
+                  cmds=$(hyprctl clients -j | jq -r --arg addr "$addr" '
+                    (.[] | select(.address == $addr)) as $w
+                    | if $w.fullscreen > 0 then
+                        [ .[] | select(.workspace.id == $w.workspace.id and .address != $addr
+                                       and .allowedOverFullscreen and (.pinned | not)) ]
+                        | sort_by(.focusHistoryID)
+                        | map("dispatch alterzorder bottom,address:\(.address)")
+                      else [] end
+                    | . + ["dispatch alterzorder top,address:\($addr)"]
+                    | join("; ")')
+                  [ -n "$cmds" ] && hyprctl --batch "$cmds" >/dev/null
+                }
+
                 socat -U - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" |
                   while IFS= read -r line; do
                     case $line in
-                    "activewindowv2>>"?*) hyprctl dispatch alterzorder "top,address:0x''${line#activewindowv2>>}" >/dev/null ;;
+                    "activewindowv2>>"?*) raise "0x''${line#activewindowv2>>}" || true ;;
                     esac
                   done
               '';
@@ -262,9 +333,9 @@
             "ALT SHIFT, Tab, exec, noctalia msg window-switcher hold"
 
             # Media controls
-            "CTRL, F9, exec, playerctl previous"
-            "CTRL, F10, exec, playerctl play-pause"
-            "CTRL, F11, exec, playerctl next"
+            "CTRL, F9, exec, ${lib.getExe media-control} previous"
+            "CTRL, F10, exec, ${lib.getExe media-control} play-pause"
+            "CTRL, F11, exec, ${lib.getExe media-control} next"
           ]
           ++ (builtins.concatLists (
             builtins.genList (
@@ -304,10 +375,10 @@
           bindl = [
             ", XF86AudioMute, exec, noctalia msg volume-mute"
             ", XF86AudioMicMute, exec, noctalia msg mic-mute"
-            ", XF86AudioPlay, exec, noctalia msg media toggle"
-            ", XF86AudioPause, exec, noctalia msg media toggle"
-            ", XF86AudioNext, exec, noctalia msg media next"
-            ", XF86AudioPrev, exec, noctalia msg media previous"
+            ", XF86AudioPlay, exec, ${lib.getExe media-control} play-pause"
+            ", XF86AudioPause, exec, ${lib.getExe media-control} play-pause"
+            ", XF86AudioNext, exec, ${lib.getExe media-control} next"
+            ", XF86AudioPrev, exec, ${lib.getExe media-control} previous"
             ", XF86KbdLightOnOff, exec, noctalia msg keyboard-backlight-toggle"
           ];
 
