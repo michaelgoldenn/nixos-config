@@ -19,6 +19,55 @@
         doCheck = !prev.stdenv.hostPlatform.isi686;
       };
     })
+    # remove this later, aw-core needs peewee 3.x but nixpkgs has 4.x as of Oct 2026
+    (_: prev: {
+      pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+        (_: pyprev: {
+          aw-core = pyprev.aw-core.override {
+            peewee = pyprev.peewee.overridePythonAttrs rec {
+              version = "3.19.0";
+              src = prev.fetchFromGitHub {
+                owner = "coleifer";
+                repo = "peewee";
+                tag = version;
+                hash = "sha256-EO8gS5fMZ1GgJV2YMjy15XQGZa72fZF7dgG7RZUE9dA=";
+              };
+            };
+          };
+          # remove this later, test matches an exact TypeError message that newer Cython rewords
+          pyopenjtalk-plus = pyprev.pyopenjtalk-plus.overridePythonAttrs (old: {
+            disabledTests = (old.disabledTests or [ ]) ++ [
+              "test_run_njd_from_mecab_invalid_input_should_not_break_next_call"
+            ];
+          });
+        })
+      ];
+      # remove this later, speechd's configure can't find python (it's only in buildInputs),
+      # so the python bindings calibre imports are silently skipped
+      calibre = prev.calibre.override {
+        speechd-minimal = prev.speechd-minimal.overrideAttrs (old: {
+          nativeBuildInputs = old.nativeBuildInputs ++ [ prev.python314 ];
+        });
+      };
+      # remove this later, unity build merges Qt 6.12's qmlcachegen output with muse code that
+      # has muse::extensions::Type in scope, making QQmlPrivate's `Type` ambiguous.
+      # only disabled for the affected target; other files rely on unity for missing includes
+      audacity = prev.audacity.overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          echo 'set_target_properties(muse_extensions_qml PROPERTIES UNITY_BUILD OFF)' \
+            >> muse/framework/extensions/qml/Muse/Extensions/CMakeLists.txt
+        '';
+      });
+      # "--suffix PATH : ..." is passed as a single arg, which makeBinaryWrapper rejects
+      aw-qt = prev.aw-qt.overridePythonAttrs {
+        makeWrapperArgs = [
+          "--suffix"
+          "PATH"
+          ":"
+          (lib.makeBinPath [ prev.xdg-utils ])
+        ];
+      };
+    })
   ];
   services.openssh = {
     enable = true;

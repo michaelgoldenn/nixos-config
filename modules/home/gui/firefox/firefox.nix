@@ -286,6 +286,8 @@ in
       "x-scheme-handler/unknown" = "firefox.desktop";
     };
   };
+  # other DEs (e.g. KDE) replace this symlink with a real file, which then blocks HM activation
+  xdg.configFile."mimeapps.list".force = true;
   programs.firefox = {
     enable = true;
     # autoconfig scripts (privileged JS run at startup, applies to every profile)
