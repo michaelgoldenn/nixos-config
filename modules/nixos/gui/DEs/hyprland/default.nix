@@ -50,6 +50,10 @@
       };
     };
 
+    # Virtual filesystem backends for Nautilus (network browsing, smb://, trash, MTP).
+    # GNOME enables this implicitly; Hyprland doesn't.
+    services.gvfs.enable = true;
+
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
