@@ -13,6 +13,7 @@
       mission-center
       proton-vpn
       krita
+      penpot-desktop
     ];
   };
 }
