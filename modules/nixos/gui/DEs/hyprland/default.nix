@@ -54,6 +54,13 @@
     # GNOME enables this implicitly; Hyprland doesn't.
     services.gvfs.enable = true;
 
+    # BlueZ daemon for noctalia's bluetooth widget. GNOME/KDE enable this implicitly;
+    # Hyprland doesn't.
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
