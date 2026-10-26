@@ -12,12 +12,12 @@ in
   ## Adding new host:
   # 1. Create Key: `mkdir ~/.config/sops/age` then `age-keygen -o ~/.config/sops/age/keys.txt`
   # 2. Add Key to system: `age-keygen -y ~/.config/sops/age/keys.txt` then put the output into `.sops.yaml`
-  # 3. Push that sucker to github, then on a machine that is already working, run `nix-shell -p sops --run "sops updatekeys secrets/secrets.yaml"`
+  # 3. Push that sucker to github, then on a machine that is already working, run `nix shell nixpkgs#sops -c sops updatekeys modules/secrets/secrets.yaml`
   # 4. Push from the other mahcine, pull from new machine, and `just run`
 
   ## Adding new secret:
   # `just sops`
-  # or `nix-shell -p sops --run "sops /etc/nixos/secrets/secrets.yaml"`
+  # or `nix shell nixpkgs#sops -c sops /etc/nixos/modules/secrets/secrets.yaml`
   # Then add the new key to the bottom of this file
   # Then just rebuild and you should be good
 
@@ -82,14 +82,6 @@ in
         group = "root";
       };
       "ai/openai" = {
-        mode = "0440";
-        owner = config.users.users.michael.name;
-      };
-      "pia/username" = {
-        mode = "0440";
-        owner = config.users.users.michael.name;
-      };
-      "pia/password" = {
         mode = "0440";
         owner = config.users.users.michael.name;
       };

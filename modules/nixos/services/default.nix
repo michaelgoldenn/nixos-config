@@ -4,7 +4,7 @@
     ./grub.nix
     ./kdeconnect.nix
     ./kimai.nix
-    ./pia
+    ./protonvpn.nix
     ./sops.nix
     ./suspend.nix
     ./syncthing.nix

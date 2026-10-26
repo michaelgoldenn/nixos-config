@@ -70,7 +70,11 @@ in
   grub.enable = true;
   xremap.enable = true;
 
-  networking.hostName = "umbriel";
+  # Enable networking
+  networking = {
+    networkmanager.enable = true;
+    hostName = "umbriel";
+  };
 
   # allows things like "homeassistant.local" to work
   services.avahi = {

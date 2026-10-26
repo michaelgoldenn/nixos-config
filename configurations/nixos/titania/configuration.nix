@@ -139,11 +139,6 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  environment.systemPackages = with pkgs; [
-    networkmanager-openvpn
-    openvpn
-  ];
-
   # DO NOT touch this unless you fully understand the implications.
   # It's not updating your system, do `nix flake update` for that.
   # it does a bunch of other things that can cause problems

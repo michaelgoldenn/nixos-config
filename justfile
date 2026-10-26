@@ -42,4 +42,4 @@ theme name='':
 # Open the sops file for adding or editing keys
 [group('dev')]
 sops:
-  nix-shell -p sops --run "sops /etc/nixos/modules/secrets/secrets.yaml"
+  nix shell nixpkgs#sops -c sops /etc/nixos/modules/secrets/secrets.yaml
