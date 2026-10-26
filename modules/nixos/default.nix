@@ -83,6 +83,29 @@
     "flakes"
   ];
 
+  # Keep rebuilds from exhausting RAM+swap and freezing the machine.
+  # 4 jobs x 3 cores = full use of a 12-thread CPU without 4x12 compilers at once.
+  nix.settings = {
+    max-jobs = 4;
+    cores = 3;
+  };
+  # Builds still use all CPU, but yield to the desktop when it needs it.
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
+
+  # Kill runaway processes on memory pressure before the kernel starts thrashing.
+  systemd.oomd = {
+    enableRootSlice = true;
+    enableSystemSlice = true; # nix-daemon builds run here
+    enableUserSlices = true;
+  };
+
+  # Compressed swap in RAM; used ahead of any disk swapfile (higher priority).
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+  };
+
   # remove this later
   nixpkgs.config.permittedInsecurePackages = [
     "pnpm-10.29.2"

@@ -14,7 +14,6 @@
 { config, lib, ... }:
 let
   storeSharingHosts = {
-    titania = "titania-1:Trp1EI8iU0FmQkkuIMOebfk/0ObQ+LhrlheeOfl1BLY=";
     umbriel = "umbriel-1:J6YhuNFVLCebZ8i4k+LtPTfuzE49TqQhT1dleGgsbbo=";
   };
 

@@ -409,7 +409,7 @@ capsule            = false
 # capsule_border   = "outline"      # uncomment for a border on all widgets
 # capsule_border_width = 1.0        # outline thickness in pixels (0-8); needs capsule_border
 
-start  = ["launcher", "wallpaper", "cpu", "temp", "ram", "workspaces"]
+start  = ["launcher", "wallpaper", "cpu", "temp", "ram", "gpu", "gpu_temp", "workspaces"]
 center = ["clock"]
 end    = ["media", "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
 
@@ -625,6 +625,20 @@ visualization = "gauge"
 [widget.date]
 format = "{:%a %d %b}"
 type = "clock"
+
+# GPU stats are only sampled while something on screen uses them, so without these the
+# control center's GPU graphs start empty every time they're opened.
+[widget.gpu]
+show_value = false
+stat = "gpu_usage"
+type = "sysmon"
+visualization = "gauge"
+
+[widget.gpu_temp]
+show_value = false
+stat = "gpu_temp"
+type = "sysmon"
+visualization = "gauge"
 
 [widget.input_volume]
 device = "input"
