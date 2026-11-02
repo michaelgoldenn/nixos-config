@@ -198,6 +198,18 @@ in
   '';
   boot.extraModulePackages = [ msi-ec-new ];
 
+  # The EC can hold the webcam off the USB bus, so make sure it's unblocked on boot
+  systemd.services.msi-webcam-unblock = {
+    description = "Unblock the MSI webcam through the EC";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "systemd-modules-load.service" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      echo on > /sys/devices/platform/msi-ec/webcam
+      echo off > /sys/devices/platform/msi-ec/webcam_block
+    '';
+  };
+
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
