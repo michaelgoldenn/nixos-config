@@ -1,7 +1,7 @@
 ## Hyprland user-level configuration.
 ## The compositor itself, its portals and the system packages it needs are set up
 ## on the NixOS side in /modules/nixos/gui/DEs/hyprland. This module only writes
-## ~/.config/hypr/hyprland.conf, so it follows whichever specialisation is booted. The
+## ~/.config/hypr/hyprland.lua, so it follows whichever specialisation is booted. The
 ## noctalia (v5) shell is configured in ./noctalia.
 {
   config,
@@ -20,9 +20,20 @@
 
   config = lib.mkIf config.hyprland.enable (
     let
-      inherit (config.wayland.windowManager.hyprland.settings) general;
       style = config.theme.selected.style;
       slot = name: config.lib.stylix.colors.${name};
+      lua = lib.generators.mkLuaInline;
+      mod = "SUPER";
+      terminal = "ghostty";
+      # hl.bind("<keys>", <dispatcher>, <opts>). `dispatcher` is a raw Lua expression.
+      bind = keys: dispatcher: opts: {
+        _args = [
+          keys
+          (lua dispatcher)
+        ]
+        ++ lib.optional (opts != { }) opts;
+      };
+      exec = cmd: "hl.dsp.exec_cmd(${lib.generators.toLua { } cmd})";
       # GNOME-style maximize / half-screen snapping for floating windows. Hyprland's own
       # maximize (fullscreen 1) only allows one window per workspace, so this just moves
       # and resizes the window to fill the usable area instead. The pre-snap geometry is
@@ -41,8 +52,10 @@
           mkdir -p "$state_dir"
           state="$state_dir/$addr"
 
+          # With the Lua config, `hyprctl dispatch` takes hl.dsp.* expressions.
+          win_sel="window = 'address:$addr'"
           place() {
-            hyprctl --batch "dispatch setfloating address:$addr; dispatch resizewindowpixel exact $3 $4,address:$addr; dispatch movewindowpixel exact $1 $2,address:$addr" >/dev/null
+            hyprctl --batch "dispatch hl.dsp.window.float({ action = 'enable', $win_sel }); dispatch hl.dsp.window.resize({ x = $3, y = $4, $win_sel }); dispatch hl.dsp.window.move({ x = $1, y = $2, $win_sel })" >/dev/null
           }
 
           if [ "$action" = restore ]; then
@@ -50,7 +63,7 @@
             read -r floating x y w h <"$state"
             rm "$state"
             place "$x" "$y" "$w" "$h"
-            [ "$floating" = true ] || hyprctl dispatch settiled "address:$addr" >/dev/null
+            [ "$floating" = true ] || hyprctl dispatch "hl.dsp.window.float({ action = 'disable', $win_sel })" >/dev/null
             exit 0
           fi
 
@@ -62,7 +75,7 @@
           # and the outer gap (plus border, which is drawn outside the window).
           read -r ax ay aw ah < <(hyprctl monitors -j | jq -r \
             --argjson id "$(jq '.monitor' <<<"$win")" \
-            --argjson pad ${toString (general.gaps_out + general.border_size)} '
+            --argjson pad ${toString (style.gapsOut + style.borderSize)} '
             .[] | select(.id == $id) | . as $m
             | (if $m.transform % 2 == 1 then [$m.height, $m.width] else [$m.width, $m.height] end) as [$pw, $ph]
             | [ $m.x + $m.reserved[0] + $pad,
@@ -72,7 +85,7 @@
             | @tsv')
 
           # Space between two side-by-side windows, matching the tiled look.
-          inner=${toString (2 * general.gaps_in + 2 * general.border_size)}
+          inner=${toString (2 * style.gapsIn + 2 * style.borderSize)}
           half=$(((aw - inner) / 2))
 
           case "$action" in
@@ -189,9 +202,9 @@
                         [ .[] | select(.workspace.id == $w.workspace.id and .address != $addr
                                        and .allowedOverFullscreen and (.pinned | not)) ]
                         | sort_by(.focusHistoryID)
-                        | map("dispatch alterzorder bottom,address:\(.address)")
+                        | map("dispatch hl.dsp.window.alter_zorder({ mode = \"bottom\", window = \"address:\(.address)\" })")
                       else [] end
-                    | . + ["dispatch alterzorder top,address:\($addr)"]
+                    | . + ["dispatch hl.dsp.window.alter_zorder({ mode = \"top\", window = \"address:\($addr)\" })"]
                     | join("; ")')
                   [ -n "$cmds" ] && hyprctl --batch "$cmds" >/dev/null
                 }
@@ -222,173 +235,279 @@
         portalPackage = null;
         systemd.enable = false;
 
+        # Hyprland 0.57+ reads hyprland.lua and ignores hyprland.conf. Each attribute in
+        # `settings` becomes an `hl.<name>(...)` call; lists make one call per element.
+        configType = "lua";
+
         settings = {
-          "$mod" = "SUPER";
-          "$terminal" = "ghostty";
-
-          monitor = [ ",preferred,auto,1" ];
-
-          env = [
-            "XCURSOR_SIZE,24"
-            "HYPRCURSOR_SIZE,24"
-          ];
-
-          general = {
-            gaps_in = style.gapsIn;
-            gaps_out = style.gapsOut;
-            border_size = style.borderSize;
-            layout = "dwindle";
-          }
-          // lib.optionalAttrs (style.activeBorder != null) {
-            "col.active_border" = lib.mkForce "rgb(${slot style.activeBorder})";
-          }
-          // lib.optionalAttrs (style.inactiveBorder != null) {
-            "col.inactive_border" = lib.mkForce "rgb(${slot style.inactiveBorder})";
+          monitor = {
+            output = "";
+            mode = "preferred";
+            position = "auto";
+            scale = 1;
           };
 
-          animations.enabled = style.animations;
+          env = [
+            {
+              _args = [
+                "XCURSOR_SIZE"
+                "24"
+              ];
+            }
+            {
+              _args = [
+                "HYPRCURSOR_SIZE"
+                "24"
+              ];
+            }
+          ];
 
-          decoration = {
-            rounding = style.rounding;
-            rounding_power = 2;
-
-            shadow = {
-              enabled = style.shadow;
-              range = 4;
-              render_power = 3;
+          config = {
+            general = {
+              gaps_in = style.gapsIn;
+              gaps_out = style.gapsOut;
+              border_size = style.borderSize;
+              layout = "dwindle";
+            }
+            # Same keys stylix sets, so these override its colors.
+            // lib.optionalAttrs (style.activeBorder != null) {
+              "col.active_border" = lib.mkForce "rgb(${slot style.activeBorder})";
+            }
+            // lib.optionalAttrs (style.inactiveBorder != null) {
+              "col.inactive_border" = lib.mkForce "rgb(${slot style.inactiveBorder})";
             };
 
-            blur = {
-              enabled = style.blur;
-              size = 3;
-              passes = 2;
-              vibrancy = 0.1696;
+            animations.enabled = style.animations;
+
+            decoration = {
+              rounding = style.rounding;
+              rounding_power = 2;
+
+              shadow = {
+                enabled = style.shadow;
+                range = 4;
+                render_power = 3;
+              };
+
+              blur = {
+                enabled = style.blur;
+                size = 3;
+                passes = 2;
+                vibrancy = 0.1696;
+              };
+            };
+
+            input = {
+              kb_layout = "us";
+              # 2 = hovering only sends scroll events; clicking is what moves keyboard focus.
+              follow_mouse = 2;
+              touchpad.natural_scroll = true;
             };
           };
 
           # Under UWSM, noctalia is started by its systemd user service. If the plain
           # (non-UWSM) Hyprland session was picked, start it directly instead.
-          exec-once = [ "uwsm check is-active || noctalia" ];
+          on = {
+            _args = [
+              "hyprland.start"
+              (lua ''
+                function()
+                  hl.exec_cmd("uwsm check is-active || noctalia")
+                end'')
+            ];
+          };
 
           # Namespaces from https://docs.noctalia.dev/noctalia/compositor-settings/hyprland/
           # no_anim stops Hyprland's layer animations fighting noctalia's own.
-          layerrule =
-            let
-              noctalia = "match:namespace ^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
-            in
-            [
-              "blur on, ${noctalia}"
-              "blur_popups on, ${noctalia}"
-              "ignore_alpha 0.5, ${noctalia}"
-              "no_anim on, ${noctalia}"
-            ];
-
-          windowrule = [
-            # Float everything so windows stack like a regular desktop; SUPER+V tiles one again.
-            "float on, match:class .*"
-            "float on, match:class ^dev\\.noctalia\\.Noctalia$"
-            "size 1080 920, match:class ^dev\\.noctalia\\.Noctalia$"
-            # Don't idle (screen off / suspend) while any window is fullscreen.
-            "idle_inhibit fullscreen, match:class .*"
-          ];
-
-          input = {
-            kb_layout = "us";
-            # 2 = hovering only sends scroll events; clicking is what moves keyboard focus.
-            follow_mouse = 2;
-            touchpad.natural_scroll = true;
+          layer_rule = {
+            match.namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
+            blur = true;
+            blur_popups = true;
+            ignore_alpha = 0.5;
+            no_anim = true;
           };
 
-          gesture = "3, horizontal, workspace";
+          window_rule = [
+            # Float everything so windows stack like a regular desktop; SUPER+SHIFT+V tiles one again.
+            {
+              match.class = ".*";
+              float = true;
+            }
+            {
+              match.class = "^dev\\.noctalia\\.Noctalia$";
+              float = true;
+              size = "1080 920";
+            }
+            # Don't idle (screen off / suspend) while any window is fullscreen.
+            {
+              match.class = ".*";
+              idle_inhibit = "fullscreen";
+            }
+          ];
+
+          gesture = {
+            fingers = 3;
+            direction = "horizontal";
+            action = "workspace";
+          };
 
           bind = [
-            "$mod, Return, exec, $terminal"
-            "$mod, C, killactive"
-            "$mod, M, exit"
-            "$mod, V, exec, noctalia msg panel-toggle clipboard"
-            "$mod SHIFT, V, togglefloating"
-            "$mod, F, fullscreen"
-            "$mod, D, exec, noctalia msg panel-toggle launcher"
-            "$mod, T, exec, theme pick"
+            (bind "${mod} + Return" (exec terminal) { })
+            (bind "${mod} + C" "hl.dsp.window.close()" { })
+            (bind "${mod} + M" "hl.dsp.exit()" { })
+            (bind "${mod} + V" (exec "noctalia msg panel-toggle clipboard") { })
+            (bind "${mod} + SHIFT + V" "hl.dsp.window.float({ action = \"toggle\" })" { })
+            (bind "${mod} + F" "hl.dsp.window.fullscreen()" { })
+            (bind "${mod} + D" (exec "noctalia msg panel-toggle launcher") { })
+            (bind "${mod} + T" (exec "theme pick") { })
 
             # Focus and move windows with the keyboard
-            "$mod, H, movefocus, l"
-            "$mod, J, movefocus, d"
-            "$mod, K, movefocus, u"
-            "$mod, L, movefocus, r"
+            (bind "${mod} + H" "hl.dsp.focus({ direction = \"left\" })" { })
+            (bind "${mod} + J" "hl.dsp.focus({ direction = \"down\" })" { })
+            (bind "${mod} + K" "hl.dsp.focus({ direction = \"up\" })" { })
+            (bind "${mod} + L" "hl.dsp.focus({ direction = \"right\" })" { })
             # GNOME-style snapping: maximize, left/right half, restore. Unlike Hyprland's
             # own maximize, any number of windows can be maximized at once.
-            "$mod, up, exec, ${lib.getExe hypr-snap} maximize"
-            "$mod, down, exec, ${lib.getExe hypr-snap} restore"
-            "$mod, left, exec, ${lib.getExe hypr-snap} left"
-            "$mod, right, exec, ${lib.getExe hypr-snap} right"
+            (bind "${mod} + up" (exec "${lib.getExe hypr-snap} maximize") { })
+            (bind "${mod} + down" (exec "${lib.getExe hypr-snap} restore") { })
+            (bind "${mod} + left" (exec "${lib.getExe hypr-snap} left") { })
+            (bind "${mod} + right" (exec "${lib.getExe hypr-snap} right") { })
             # Switch workspaces (up/down mirror left/right, like GNOME's vertical workspaces)
-            "ALT CTRL, left, workspace, e-1"
-            "ALT CTRL, right, workspace, e+1"
-            "ALT CTRL, up, workspace, e-1"
-            "ALT CTRL, down, workspace, e+1"
+            (bind "ALT + CTRL + left" "hl.dsp.focus({ workspace = \"e-1\" })" { })
+            (bind "ALT + CTRL + right" "hl.dsp.focus({ workspace = \"e+1\" })" { })
+            (bind "ALT + CTRL + up" "hl.dsp.focus({ workspace = \"e-1\" })" { })
+            (bind "ALT + CTRL + down" "hl.dsp.focus({ workspace = \"e+1\" })" { })
             # GNOME-style switcher overlay: keep holding Alt, Tab / Shift+Tab to pick,
             # release Alt to switch, Esc to cancel.
-            "ALT, Tab, exec, noctalia msg window-switcher hold"
-            "ALT SHIFT, Tab, exec, noctalia msg window-switcher hold"
+            (bind "ALT + Tab" (exec "noctalia msg window-switcher hold") { })
+            (bind "ALT + SHIFT + Tab" (exec "noctalia msg window-switcher hold") { })
 
             # Media controls
-            "CTRL, F9, exec, ${lib.getExe media-control} previous"
-            "CTRL, F10, exec, ${lib.getExe media-control} play-pause"
-            "CTRL, F11, exec, ${lib.getExe media-control} next"
+            (bind "CTRL + F9" (exec "${lib.getExe media-control} previous") { })
+            (bind "CTRL + F10" (exec "${lib.getExe media-control} play-pause") { })
+            (bind "CTRL + F11" (exec "${lib.getExe media-control} next") { })
           ]
           ++ (builtins.concatLists (
             builtins.genList (
               i:
               let
-                ws = i + 1;
+                ws = toString (i + 1);
               in
               [
-                "$mod, ${toString ws}, workspace, ${toString ws}"
-                "$mod SHIFT, ${toString ws}, movetoworkspace, ${toString ws}"
+                (bind "${mod} + ${ws}" "hl.dsp.focus({ workspace = ${ws} })" { })
+                (bind "${mod} + SHIFT + ${ws}" "hl.dsp.window.move({ workspace = ${ws} })" { })
               ]
             ) 9
-          ));
-
+          ))
           # Nudge and resize the active window with the keyboard, repeating while held.
-          binde = [
-            "$mod ALT, left, moveactive, -40 0"
-            "$mod ALT, right, moveactive, 40 0"
-            "$mod ALT, up, moveactive, 0 -40"
-            "$mod ALT, down, moveactive, 0 40"
-            "$mod CTRL, left, resizeactive, -40 0"
-            "$mod CTRL, right, resizeactive, 40 0"
-            "$mod CTRL, up, resizeactive, 0 -40"
-            "$mod CTRL, down, resizeactive, 0 40"
-          ];
-
+          ++ map (b: bind b.keys b.dsp { repeating = true; }) [
+            {
+              keys = "${mod} + ALT + left";
+              dsp = "hl.dsp.window.move({ x = -40, y = 0, relative = true })";
+            }
+            {
+              keys = "${mod} + ALT + right";
+              dsp = "hl.dsp.window.move({ x = 40, y = 0, relative = true })";
+            }
+            {
+              keys = "${mod} + ALT + up";
+              dsp = "hl.dsp.window.move({ x = 0, y = -40, relative = true })";
+            }
+            {
+              keys = "${mod} + ALT + down";
+              dsp = "hl.dsp.window.move({ x = 0, y = 40, relative = true })";
+            }
+            {
+              keys = "${mod} + CTRL + left";
+              dsp = "hl.dsp.window.resize({ x = -40, y = 0, relative = true })";
+            }
+            {
+              keys = "${mod} + CTRL + right";
+              dsp = "hl.dsp.window.resize({ x = 40, y = 0, relative = true })";
+            }
+            {
+              keys = "${mod} + CTRL + up";
+              dsp = "hl.dsp.window.resize({ x = 0, y = -40, relative = true })";
+            }
+            {
+              keys = "${mod} + CTRL + down";
+              dsp = "hl.dsp.window.resize({ x = 0, y = 40, relative = true })";
+            }
+          ]
           # Function keys (like brightness control, music control, etc).
-          # e = repeat while held, l = also works while the screen is locked.
-          bindel = [
-            ", XF86AudioRaiseVolume, exec, noctalia msg volume-up"
-            ", XF86AudioLowerVolume, exec, noctalia msg volume-down"
-            ", XF86MonBrightnessUp, exec, noctalia msg brightness-up"
-            ", XF86MonBrightnessDown, exec, noctalia msg brightness-down"
-            ", XF86KbdBrightnessUp, exec, noctalia msg keyboard-backlight-up"
-            ", XF86KbdBrightnessDown, exec, noctalia msg keyboard-backlight-down"
-          ];
-          bindl = [
-            ", XF86AudioMute, exec, noctalia msg volume-mute"
-            ", XF86AudioMicMute, exec, noctalia msg mic-mute"
-            ", XF86AudioPlay, exec, ${lib.getExe media-control} play-pause"
-            ", XF86AudioPause, exec, ${lib.getExe media-control} play-pause"
-            ", XF86AudioNext, exec, ${lib.getExe media-control} next"
-            ", XF86AudioPrev, exec, ${lib.getExe media-control} previous"
-            ", XF86KbdLightOnOff, exec, noctalia msg keyboard-backlight-toggle"
-          ];
+          # repeating = repeat while held, locked = also works while the screen is locked.
+          ++
+            map
+              (
+                b:
+                bind b.key (exec b.cmd) {
+                  repeating = true;
+                  locked = true;
+                }
+              )
+              [
+                {
+                  key = "XF86AudioRaiseVolume";
+                  cmd = "noctalia msg volume-up";
+                }
+                {
+                  key = "XF86AudioLowerVolume";
+                  cmd = "noctalia msg volume-down";
+                }
+                {
+                  key = "XF86MonBrightnessUp";
+                  cmd = "noctalia msg brightness-up";
+                }
+                {
+                  key = "XF86MonBrightnessDown";
+                  cmd = "noctalia msg brightness-down";
+                }
+                {
+                  key = "XF86KbdBrightnessUp";
+                  cmd = "noctalia msg keyboard-backlight-up";
+                }
+                {
+                  key = "XF86KbdBrightnessDown";
+                  cmd = "noctalia msg keyboard-backlight-down";
+                }
+              ]
+          ++ map (b: bind b.key (exec b.cmd) { locked = true; }) [
+            {
+              key = "XF86AudioMute";
+              cmd = "noctalia msg volume-mute";
+            }
+            {
+              key = "XF86AudioMicMute";
+              cmd = "noctalia msg mic-mute";
+            }
+            {
+              key = "XF86AudioPlay";
+              cmd = "${lib.getExe media-control} play-pause";
+            }
+            {
+              key = "XF86AudioPause";
+              cmd = "${lib.getExe media-control} play-pause";
+            }
+            {
+              key = "XF86AudioNext";
+              cmd = "${lib.getExe media-control} next";
+            }
+            {
+              key = "XF86AudioPrev";
+              cmd = "${lib.getExe media-control} previous";
+            }
+            {
+              key = "XF86KbdLightOnOff";
+              cmd = "noctalia msg keyboard-backlight-toggle";
+            }
+          ]
+          ++ [
+            # Tapping Super on its own opens the launcher, like GNOME's Activities search.
+            # Release binds on a modifier only fire if no other key was pressed with it.
+            (bind "SUPER + Super_L" (exec "noctalia msg panel-toggle launcher") { release = true; })
 
-          # Tapping Super on its own opens the launcher, like GNOME's Activities search.
-          # Release binds on a modifier only fire if no other key was pressed with it.
-          bindr = [ "SUPER, Super_L, exec, noctalia msg panel-toggle launcher" ];
-
-          bindm = [
-            "$mod, mouse:272, movewindow"
-            "$mod, mouse:273, resizewindow"
+            (bind "${mod} + mouse:272" "hl.dsp.window.drag()" { mouse = true; })
+            (bind "${mod} + mouse:273" "hl.dsp.window.resize()" { mouse = true; })
           ];
         };
       };

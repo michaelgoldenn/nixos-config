@@ -120,7 +120,7 @@ let
           die "activation of '$name' failed"
         fi
 
-        # Geometry (borders, gaps, rounding) lives in hyprland.conf; make sure it's re-read.
+        # Geometry (borders, gaps, rounding) lives in hyprland.lua; make sure it's re-read.
         if [ -n "''${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
           hyprctl reload >/dev/null 2>&1 || true
         fi
