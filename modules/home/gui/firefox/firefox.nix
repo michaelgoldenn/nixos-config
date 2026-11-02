@@ -25,6 +25,7 @@ let
     istilldontcareaboutcookies
     unpaywall
     clearurls
+    bypass-paywalls-clean # packaged by rycee, pulled from gitflic
     web-clipper-obsidian
 
     # --- The custom zone ---
@@ -95,14 +96,6 @@ let
     #   addonId = "{5d0b323e-2e88-4064-8242-7b89e4c372b7}";
     #   url = "https://addons.mozilla.org/firefox/downloads/file/4464742/terms_of_service_didnt_read-5.1.1.xpi";
     #   sha256 = "sha256-resAl04BF3VIv8Blvh0pwMfimS1mhM7SxVXKiNxF8kM=";
-    #   meta = { };
-    # })
-    # (buildFirefoxXpiAddon {
-    #   pname = "bypass-paywalls-clean";
-    #   version = "3.9.4.0";
-    #   addonId = "magnolia1234@bypass_paywalls_clean";
-    #   url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-4.3.4.7.xpi&inline=false&commit=3fd5f494ea96ad59902766e2dcf39195392452db";
-    #   sha256 = "sha256-Nnl7KJaRQ/TrMmkVpLY7dCPtTR+qLF9SCcLGElQg+u8=";
     #   meta = { };
     # })
   ];
@@ -392,12 +385,6 @@ in
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-      # ExtensionSettings = {
-      #   "magnolia1234@bypass_paywalls_clean" = {
-      #     installation_mode = "force_installed";
-      #     install_url = "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-3.9.4.0.xpi";
-      #   };
-      # };
     };
   };
   imports = [ inputs.textfox.homeManagerModules.default ];
