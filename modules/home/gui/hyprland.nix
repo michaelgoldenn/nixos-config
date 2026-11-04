@@ -354,6 +354,8 @@
           bind = [
             (bind "${mod} + Return" (exec terminal) { })
             (bind "${mod} + C" "hl.dsp.window.close()" { })
+            # Wayland apps (Firefox, GTK, etc.) don't handle Alt+F4 themselves; the compositor has to.
+            (bind "ALT + F4" "hl.dsp.window.close()" { })
             (bind "${mod} + M" "hl.dsp.exit()" { })
             (bind "${mod} + V" (exec "noctalia msg panel-toggle clipboard") { })
             (bind "${mod} + SHIFT + V" "hl.dsp.window.float({ action = \"toggle\" })" { })
@@ -478,6 +480,10 @@
             }
             {
               key = "XF86AudioMicMute";
+              cmd = "noctalia msg mic-mute";
+            }
+            {
+              key = "CTRL + SHIFT + ALT + M";
               cmd = "noctalia msg mic-mute";
             }
             {
