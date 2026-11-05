@@ -109,6 +109,7 @@
   # remove this later
   nixpkgs.config.permittedInsecurePackages = [
     "pnpm-10.29.2"
+    "electron-42.11.18" # penpot-desktop, until nixpkgs bumps it
   ];
 
   # Allow SSH through the Cloudflare tunnel from any network
