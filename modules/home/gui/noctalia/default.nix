@@ -28,6 +28,7 @@
             shell = {
               corner_radius_scale = style.cornerScale;
               avatar_path = "${config.home.homeDirectory}/.face";
+              screenshot.directory = "${config.home.homeDirectory}/Pictures/Screenshots";
             };
             wallpaper.directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
             # noctalia has no bar background key (it always uses the palette's surface), so a

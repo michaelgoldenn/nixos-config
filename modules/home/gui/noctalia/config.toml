@@ -47,6 +47,7 @@ shared_gl_context     = true         # startup-only; false isolates GPU contexts
 # avatar_path         = "~/Pictures/avatar.png"
 
 [shell.screenshot]
+filename_pattern = "Screenshot From %Y-%m-%d %H-%M-%S" # GNOME's naming; the extension is added
 skip_annotate_on_copy_save = false  # Ctrl+C / Ctrl+S in the region overlay skip the annotation editor
 close_on_copy = true                # close the annotation editor after Copy or Ctrl+C succeeds
 close_on_save = true                # close the annotation editor after Save or Ctrl+S succeeds

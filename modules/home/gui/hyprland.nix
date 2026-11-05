@@ -384,6 +384,13 @@
             (bind "ALT + Tab" (exec "noctalia msg window-switcher hold") { })
             (bind "ALT + SHIFT + Tab" (exec "noctalia msg window-switcher hold") { })
 
+            # Screenshots with GNOME's keys, taken by noctalia (it saves to ~/Pictures/Screenshots
+            # and copies to the clipboard). Ctrl+Print opens the annotation editor on a region.
+            (bind "Print" (exec "noctalia msg screenshot-region") { })
+            (bind "SHIFT + Print" (exec "noctalia msg screenshot-fullscreen all") { })
+            (bind "ALT + Print" (exec "noctalia msg screenshot-window") { })
+            (bind "CTRL + Print" (exec "noctalia msg screenshot-region --annotate") { })
+
             # Media controls
             (bind "CTRL + F9" (exec "${lib.getExe media-control} previous") { })
             (bind "CTRL + F10" (exec "${lib.getExe media-control} play-pause") { })
