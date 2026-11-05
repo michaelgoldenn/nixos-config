@@ -303,6 +303,14 @@
               follow_mouse = 2;
               touchpad.natural_scroll = true;
             };
+
+            # Mirror the log to stdout so it lands in the journal. The default log in
+            # /run/user/... is tmpfs and is gone by the time we can look at a crash.
+            # Read it with: journalctl --user -b -1 -u wayland-wm@hyprland.desktop
+            debug = {
+              disable_logs = false;
+              enable_stdout_logs = true;
+            };
           };
 
           # Under UWSM, noctalia is started by its systemd user service. If the plain
