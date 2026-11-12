@@ -19,6 +19,43 @@
         doCheck = !prev.stdenv.hostPlatform.isi686;
       };
     })
+    # remove this later, gnome-desktop 51 dropped RRScreen from GnomeDesktop-3.0 and lutris
+    # only catches GLib.Error, so it crashes at import instead of using its fallback (Nov 2026)
+    (_: prev: {
+      lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace lutris/util/display.py \
+            --replace-fail "except GLib.Error:" "except (GLib.Error, AttributeError):"
+        '';
+      });
+    })
+    # remove this later, omnix's onig_sys build can't find oniguruma via pkg-config as of Nov 2026
+    (_: prev: {
+      omnix = prev.omnix.overrideAttrs (old: {
+        nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.pkg-config ];
+        buildInputs = (old.buildInputs or [ ]) ++ [ prev.oniguruma ];
+      });
+    })
+    # remove this later, hatchling now depends on tomlkit but anki's offline uv wheel set lacks it as of Nov 2026
+    (_: prev: {
+      anki = prev.anki.overrideAttrs (old: {
+        # zstd-sys also can't find zstd via pkg-config anymore
+        nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.pkg-config ];
+        buildInputs = (old.buildInputs or [ ]) ++ [ prev.zstd ];
+        env = old.env // {
+          UV_FIND_LINKS = "${prev.symlinkJoin {
+            name = "uv-wheels-with-tomlkit";
+            paths = [
+              old.env.UV_FIND_LINKS
+              (prev.runCommand "tomlkit-wheel" { } ''
+                mkdir -p $out
+                ln -s ${prev.python3.pkgs.tomlkit.dist}/*.whl $out
+              '')
+            ];
+          }}";
+        };
+      });
+    })
     # remove this later, aw-core needs peewee 3.x but nixpkgs has 4.x as of Oct 2026
     (_: prev: {
       pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
