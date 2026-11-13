@@ -80,6 +80,15 @@ let
       meta = { };
     })
     (buildFirefoxXpiAddon {
+      # official AB Download Manager integration: hands downloads off to ABDM (app installed in gaming.nix)
+      pname = "ab-download-manager";
+      version = "1.5.2";
+      addonId = "firefox-integration@abdownloadmanager.com";
+      url = "https://addons.mozilla.org/firefox/downloads/file/5191541/ab_download_manager-1.5.2.xpi";
+      sha256 = "sha256-9D0dHPjYkNl8W/1SkAtnHV2hRh20Ewck422cmEvCUHg=";
+      meta = { };
+    })
+    (buildFirefoxXpiAddon {
       # autofills job-related stuff
       pname = "simplify-jobs";
       version = "2.2.14";
