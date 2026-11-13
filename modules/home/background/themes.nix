@@ -158,6 +158,20 @@ let
         "#d699b6"
       ];
     };
+
+    mocha = {
+      polarity = "dark";
+      scheme = "${pkgs.base16-schemes}/share/themes/mocha.yaml";
+      image = wall "lantern-light-room.png" "sha256-VNaNiir5aDywS5mq0afYd6Kfr1McezCxDGwfTyOYZe8=";
+      swatch = [
+        "#3b3228"
+        "#d0c8c6"
+        "#cb6077"
+        "#beb55b"
+        "#8ab3b5"
+        "#a89bb9"
+      ];
+    };
   };
 
   styleType = types.submodule {

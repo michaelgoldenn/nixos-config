@@ -58,6 +58,11 @@
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Personal niri fork (scrollable-tiling Wayland compositor), for GNOME-style overview tweaks
+    niri = {
+      url = "github:michaelgoldenn/gniri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # pinning the nixpkgs version so Davinci resolve doesn't update and break anything
     nixpkgs-davinci.url = "github:nixos/nixpkgs/4652ba995a945108fb891191c1e910b9a6ed9064";
     # https://github.com/Rishabh5321/custom-packages-flake

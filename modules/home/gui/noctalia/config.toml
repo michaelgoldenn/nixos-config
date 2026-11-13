@@ -105,13 +105,14 @@ prefix = "emo"
 
 [shell.launcher.providers.session]
 prefix = "session"
-global = false                          # set true to include session actions in unprefixed search
+global = true                           # session actions (reboot, lock, ...) in unprefixed search, like GNOME
 
 [shell.launcher.providers.wallpaper]
 prefix = "wall"
 
 [shell.launcher.providers.windows]
 prefix = "win"
+global = true                           # open windows show up in unprefixed search, so Enter can focus them
 
 [shell.mpris]
 blacklist = []                      # ignore MPRIS players by bus/identity/desktop entry token

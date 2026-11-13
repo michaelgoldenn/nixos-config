@@ -8,7 +8,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.hyprland.enable (
+  config = lib.mkIf config.waylandSession.enable (
     let
       style = config.theme.selected.style;
       slot = name: config.lib.stylix.colors.${name};
