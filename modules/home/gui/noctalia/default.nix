@@ -5,17 +5,66 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
+  options.noctalia.powerProfileLabels = lib.mkOption {
+    type = lib.types.attrsOf lib.types.str;
+    default = { };
+    example = {
+      power-saver = "Silent";
+    };
+    description = ''
+      English labels to show for power profiles (power-saver, balanced, performance) instead
+      of noctalia's defaults. noctalia only knows those three profile names, so this only
+      renames them.
+    '';
+  };
+
   config = lib.mkIf config.waylandSession.enable (
     let
       style = config.theme.selected.style;
       slot = name: config.lib.stylix.colors.${name};
+      labels = config.noctalia.powerProfileLabels;
+
+      # noctalia reads its assets (translations included) from next to its binary unless
+      # NOCTALIA_ASSETS_DIR points elsewhere, so relabelling means a patched copy of the
+      # assets and a wrapper setting that variable, rather than rebuilding noctalia.
+      relabelled =
+        let
+          base = pkgs.noctalia;
+          assets =
+            pkgs.runCommand "noctalia-assets-relabelled"
+              {
+                nativeBuildInputs = [ pkgs.jq ];
+                labels = builtins.toJSON labels;
+              }
+              ''
+                cp -rs ${base}/share/noctalia/assets $out
+                chmod u+w $out/translations
+                rm $out/translations/en.json
+                jq --argjson labels "$labels" '.power.profiles += $labels' \
+                  ${base}/share/noctalia/assets/translations/en.json > $out/translations/en.json
+              '';
+        in
+        pkgs.symlinkJoin {
+          name = "noctalia-${base.version}";
+          paths = [ base ];
+          nativeBuildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/noctalia --set NOCTALIA_ASSETS_DIR ${assets}
+          '';
+          inherit (base) version;
+          meta = base.meta // {
+            mainProgram = "noctalia";
+          };
+        };
     in
     {
       programs.noctalia = {
         enable = true;
+        package = lib.mkIf (labels != { }) relabelled;
         # Started by graphical-session.target, which only the UWSM session reaches.
         systemd.enable = true;
         # Anything changed in noctalia's settings window lands in

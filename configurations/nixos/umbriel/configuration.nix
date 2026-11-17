@@ -5,19 +5,6 @@
   lib,
   ...
 }:
-# This is just temporary, once https://github.com/NixOS/nixpkgs/pull/499521 gets merged you can remove this
-let
-  # Pin to the exact commit from PR #499521 (Svenum:update-msi-ec)
-  # so this doesn't silently change if the branch gets force-pushed later.
-  msi-ec-pr-src = pkgs.fetchzip {
-    url = "https://github.com/Svenum/nixpkgs/archive/e1dca387c47d6bb82fd563ee1ba89bb1e438c8f3.tar.gz";
-    sha256 = "sha256-833uNOLuNa/f5Jl4bVyvZc5h+Hf3XMhsvlvC8D1dlEg=";
-  };
-
-  msi-ec-new =
-    config.boot.kernelPackages.callPackage "${msi-ec-pr-src}/pkgs/os-specific/linux/msi-ec"
-      { };
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -103,6 +90,9 @@ in
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
+    # tlp-pd serves the power-profiles-daemon D-Bus API (org.freedesktop.UPower.PowerProfiles),
+    # so noctalia's power profile toggle drives TLP's performance/balanced/power-saver profiles.
+    pd.enable = true;
 
     settings = {
       ## 1 – Battery-charge
@@ -196,7 +186,38 @@ in
   boot.extraModprobeConfig = ''
     options ec_sys write_support=1
   '';
-  boot.extraModulePackages = [ msi-ec-new ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.msi-ec ];
+
+  # msi-ec has no platform_profile support, so TLP can't switch the EC's shift mode itself.
+  # Mirror TLP's active profile (whoever changed it: noctalia via tlp-pd, `tlpctl`, or TLP's
+  # own AC/battery auto-switch) onto the EC: power-saver -> eco (silent), balanced -> comfort,
+  # performance -> turbo. /run/tlp/last_pwr starts with 0 = performance, 1 = balanced, 2 = power-saver.
+  systemd.services.msi-shift-mode-sync = {
+    description = "Set the MSI EC shift mode from the active TLP profile";
+    wantedBy = [ "multi-user.target" ];
+    after = [
+      "tlp.service"
+      "systemd-modules-load.service"
+    ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      read -r profile _ < /run/tlp/last_pwr || exit 0
+      case "$profile" in
+        0) mode=turbo ;;
+        1) mode=comfort ;;
+        2) mode=eco ;;
+        *) exit 0 ;;
+      esac
+      echo "$mode" > /sys/devices/platform/msi-ec/shift_mode
+      echo "TLP profile $profile -> shift_mode $mode"
+    '';
+  };
+  systemd.paths.msi-shift-mode-sync = {
+    wantedBy = [ "multi-user.target" ];
+    pathConfig.PathModified = "/run/tlp/last_pwr";
+  };
+  # power-saver puts the EC in eco, which is the closest this GL65 has to MSI's "Silent".
+  home-manager.users.michael.noctalia.powerProfileLabels.power-saver = "Silent";
 
   # The EC can hold the webcam off the USB bus, so make sure it's unblocked on boot
   systemd.services.msi-webcam-unblock = {
