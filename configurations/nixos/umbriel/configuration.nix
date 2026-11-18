@@ -101,7 +101,28 @@
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
 
-      ## 2 – CPU: keep clocks low when on battery
+      ## 2 – CPU
+      # TLP profiles read different suffixes: performance -> _ON_AC, balanced -> _ON_BAT,
+      # power-saver -> _ON_SAV. Anything left unset for a profile is simply not written, so the
+      # previous profile's value sticks (e.g. balanced's 30% cap surviving a switch to performance).
+      # Set every knob for every profile.
+      CPU_SCALING_GOVERNOR_ON_AC = "powersave"; # intel_pstate's dynamic governor; EPP does the work
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_BOOST_ON_AC = 1;
+      CPU_HWP_DYN_BOOST_ON_AC = 1;
+
+      CPU_SCALING_GOVERNOR_ON_SAV = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_SAV = "power";
+      CPU_MIN_PERF_ON_SAV = 0;
+      CPU_MAX_PERF_ON_SAV = 30;
+      CPU_BOOST_ON_SAV = 0;
+      CPU_HWP_DYN_BOOST_ON_SAV = 0;
+
+      # balanced (also TLP's default profile on battery): keep clocks low
+      CPU_BOOST_ON_BAT = 1;
+      CPU_HWP_DYN_BOOST_ON_BAT = 0;
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power"; # intel_pstate / amd-pstate
       CPU_MIN_PERF_ON_BAT = 0; # %
