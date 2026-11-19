@@ -25,7 +25,7 @@ let
     istilldontcareaboutcookies
     unpaywall
     clearurls
-    bypass-paywalls-clean # packaged by rycee, pulled from gitflic
+    # bypass-paywalls-clean
     web-clipper-obsidian
 
     # --- The custom zone ---
