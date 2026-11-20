@@ -23,6 +23,7 @@ in
       };
       nushell = {
         enable = true;
+        loadSessionVariables = false;
         # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
         #configFile.source = ./config.nu;
         shellAliases = {

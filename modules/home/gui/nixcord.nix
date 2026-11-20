@@ -10,6 +10,8 @@
   config = lib.mkIf config.nixcord.enable {
     programs.nixcord = {
       enable = true; # also installs discord
+      # nixcord no longer enables a client mod by default; without this the plugins below do nothing
+      discord.vencord.enable = true;
       quickCss = "";
       config = {
         useQuickCss = true;
@@ -42,7 +44,6 @@
           colorSighted.enable = true;
           copyEmojiMarkdown.enable = true;
           copyFileContents.enable = true;
-          copyStickerLinks.enable = true;
           copyUserUrls.enable = true;
           crashHandler.enable = true;
           customIdle.enable = true;
@@ -50,7 +51,7 @@
           disableCallIdle.enable = false;
           disableDeepLinks.enable = true;
           dontRoundMyTimestamps.enable = true;
-          expressionCloner.enable = true;
+          expressionManager.enable = true;
           fakeNitro.enable = true;
           # favoriteGifSearch.enable = true;
           fixCodeblockGap.enable = true;
@@ -60,7 +61,6 @@
           forceOwnerCrown.enable = true;
           friendInvites.enable = true;
           fullSearchContext.enable = true;
-          fullUserInChatbox.enable = true;
           gameActivityToggle.enable = true;
           gifPaste.enable = true;
           hideMedia.enable = true;

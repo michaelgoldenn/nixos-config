@@ -15,7 +15,7 @@
   config = lib.mkIf config.spotify.enable {
     programs.spicetify =
       let
-        spicePkgs = flake.inputs.spicetify-nix.legacyPackages.${pkgs.system};
+        spicePkgs = flake.inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       in
       {
         enable = true;

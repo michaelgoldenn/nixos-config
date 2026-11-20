@@ -29,7 +29,7 @@ alias r := run
 alias switch := run
 [group('Main')]
 run:
-  nh os switch ./
+  nh os switch
   # A rebuild resets the theme to `theme.name` in the flake, so re-apply whatever
   # was last picked with `theme set`. Fails harmlessly if nothing was ever picked.
   -theme restore

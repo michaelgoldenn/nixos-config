@@ -31,7 +31,7 @@
               })
               {
                 # Ensure the new pkgs set uses your system's architecture and config
-                inherit (pkgs) system;
+                system = pkgs.stdenv.hostPlatform.system;
                 config.allowUnfree = true;
               };
         in

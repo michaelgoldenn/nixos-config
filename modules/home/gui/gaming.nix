@@ -8,7 +8,7 @@
   ...
 }:
 let
-  ftlman = flake.inputs.ftlman.packages.${pkgs.system}.default;
+  ftlman = flake.inputs.ftlman.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   options.gaming.enable = lib.mkEnableOption "gaming";
@@ -30,7 +30,7 @@ in
       ludusavi # game backups
 
       qbittorrent
-      flake.inputs.risabh-packages.packages.${pkgs.system}.ab-download-manager
+      flake.inputs.risabh-packages.packages.${pkgs.stdenv.hostPlatform.system}.ab-download-manager
     ];
   };
 }

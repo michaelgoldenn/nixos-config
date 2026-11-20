@@ -61,9 +61,9 @@ in
       services.avahi = {
         enable = lib.mkDefault true;
         nssmdns4 = lib.mkDefault true;
-        publish = {
-          enable = true;
-          addresses = true;
+        settings.publish = {
+          disable-publishing = false;
+          publish-addresses = true;
         };
       };
 
