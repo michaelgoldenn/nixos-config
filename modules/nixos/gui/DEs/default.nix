@@ -13,7 +13,6 @@
         "gnome"
         "kde"
         "cosmic"
-        "hyprland"
         "niri"
       ];
       default = "gnome";
@@ -37,7 +36,6 @@
           (lib.remove config.gui.desktopEnvironment [
             "gnome"
             # "cosmic"
-            "hyprland"
             "niri"
             "kde"
           ])
@@ -53,7 +51,6 @@
     (lib.mkIf config.gui.enable {
       gnome.enable = config.gui.desktopEnvironment == "gnome";
       cosmic.enable = config.gui.desktopEnvironment == "cosmic";
-      hyprland.enable = config.gui.desktopEnvironment == "hyprland";
       niri.enable = config.gui.desktopEnvironment == "niri";
       kde.enable = config.gui.desktopEnvironment == "kde";
     })

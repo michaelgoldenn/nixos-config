@@ -2,7 +2,7 @@
 ## The compositor itself is set up on the NixOS side in /modules/nixos/gui/DEs/niri.nix.
 ## This module only writes ~/.config/niri/config.kdl (niri reloads it on change, so theme
 ## switches apply live). The noctalia shell is configured in ./noctalia, and the services
-## shared with Hyprland (media keys, idle inhibit) in ./wayland-session.nix.
+## for compositor-only sessions (media keys, idle inhibit) in ./wayland-session.nix.
 ## Config reference: https://github.com/niri-wm/niri/wiki/Configuration:-Introduction
 {
   config,
@@ -60,7 +60,7 @@
         }
 
         layout {
-            // Hyprland's gaps_in is half the space between two windows; niri's is all of it.
+            // The theme's gapsIn is half the space between two windows; niri's is all of it.
             gaps ${toString (2 * style.gapsIn)}
             focus-ring {
                 off

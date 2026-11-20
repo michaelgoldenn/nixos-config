@@ -1,5 +1,5 @@
 ## niri compositor, built from the personal fork (flake input `niri`). The login screen,
-## keyring, polkit agent and other pieces it shares with Hyprland are in
+## keyring, polkit agent and other session pieces are in
 ## ./noctalia-session.nix; the user config (~/.config/niri/config.kdl) is written by
 ## /modules/home/gui/niri.nix.
 {

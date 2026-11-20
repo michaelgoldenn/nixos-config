@@ -120,11 +120,6 @@ let
           die "activation of '$name' failed"
         fi
 
-        # Geometry (borders, gaps, rounding) lives in hyprland.lua; make sure it's re-read.
-        if [ -n "''${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
-          hyprctl reload >/dev/null 2>&1 || true
-        fi
-
         notify-send -a theme -i "$(jq -r --arg n "$name" '.[$n].image' "$themesFile")" \
           "Theme" "$name" 2>/dev/null || true
         echo "theme: now using $name"

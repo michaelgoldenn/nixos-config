@@ -1,4 +1,4 @@
-## User services shared by the compositor-only sessions (Hyprland, niri). GNOME and KDE
+## User services for the compositor-only session (niri). GNOME and KDE
 ## cover these themselves.
 {
   config,
@@ -28,8 +28,8 @@ in
   options.waylandSession = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = config.hyprland.enable || config.niri.enable;
-      defaultText = lib.literalExpression "config.hyprland.enable || config.niri.enable";
+      default = config.niri.enable;
+      defaultText = lib.literalExpression "config.niri.enable";
       description = "Whether a compositor-only session (with the noctalia shell) is in use";
     };
     mediaControl = lib.mkOption {

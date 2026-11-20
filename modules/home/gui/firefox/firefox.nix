@@ -314,7 +314,7 @@ in
           "sidebar.verticalTabs" = true;
           "sidebar.visibility" = "expand-on-hover";
           "browser.uidensity" = 1; # compact toolbar
-          "browser.tabs.inTitlebar" = 0; # drop firefox's own window buttons (hyprland doesn't need them)
+          "browser.tabs.inTitlebar" = 0; # drop firefox's own window buttons (niri doesn't need them)
           # snappier sidebar (defaults: 200ms hover delay + 400ms expand animation, 200ms toggle)
           "sidebar.animation.expand-on-hover.delay-duration-ms" = 50;
           "sidebar.animation.expand-on-hover.duration-ms" = 100;

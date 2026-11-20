@@ -1,5 +1,5 @@
-## System pieces shared by the compositor-only sessions (Hyprland, niri) that use the
-## noctalia shell. GNOME and KDE ship all of this themselves; a bare compositor doesn't.
+## System pieces for the compositor-only session (niri) that uses the noctalia shell.
+## GNOME and KDE ship all of this themselves; a bare compositor doesn't.
 ## noctalia itself is configured in home-manager (/modules/home/gui/noctalia) so stylix
 ## can theme it.
 {
@@ -9,16 +9,15 @@
   ...
 }:
 {
-  config = lib.mkIf (config.hyprland.enable || config.niri.enable) {
+  config = lib.mkIf (config.niri.enable) {
     # Noctalia's greetd greeter for the login screen. Without a display manager set here,
     # NixOS falls back to the default LightDM greeter.
     services.displayManager.noctalia-greeter = {
       enable = true;
       settings = {
         # The session must start graphical-session.target, or noctalia (and other session
-        # services) won't start. For Hyprland that means the UWSM session; niri's own
-        # session (niri-session) already does it.
-        session.default = if config.niri.enable then "niri" else "Hyprland (uwsm-managed)";
+        # services) won't start; niri's own session (niri-session) already does it.
+        session.default = "niri";
         keyboard.layout = config.services.xserver.xkb.layout;
       };
       # Lets noctalia push its wallpaper and colors to the greeter (shell.greeter_sync)

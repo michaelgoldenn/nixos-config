@@ -209,7 +209,7 @@ let
       animations = mkOption {
         type = types.bool;
         default = true;
-        description = "Hyprland animations.";
+        description = "Window animations.";
       };
       cornerScale = mkOption {
         type = types.float;
