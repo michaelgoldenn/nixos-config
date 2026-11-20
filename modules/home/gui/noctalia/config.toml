@@ -20,7 +20,8 @@ date_format           = "%A, %x"    # default shell UI date format
 offline_mode          = false        # block all outgoing HTTP when true
 # panel_anchor_bar   = "main"        # bar panels attach to without a source bar; omit = first enabled bar
 telemetry_enabled     = true        # send an anonymous startup ping
-niri_overview_type_to_launch_enabled = false # opt in to type-to-launch from niri overview
+niri_overview_type_to_launch_enabled = true # typing in niri's overview (Super) opens the launcher, like GNOME
+niri_overview_close_on_launch_enabled = true # leave the overview once something is launched from it
 polkit_agent          = false
 password_style        = "default"    # default | random
 readline_shortcuts    = false        # readline-style shortcuts in every text field (Ctrl+A = line start)
@@ -74,7 +75,7 @@ clipboard_placement      = "floating" # attached | floating
 control_center_placement = "attached" # attached | floating
 wallpaper_placement      = "attached" # attached | floating
 session_placement        = "attached" # attached | floating
-launcher_position        = "center"   # auto | center | top_left | … (floating only)
+launcher_position        = "top_center" # auto | center | top_left | … (floating only)
 clipboard_position       = "center"   # auto | center | top_left | … (floating only)
 open_near_click_control_center = false # for attached/floating placement, follow the bar click instead of bar-center
 open_near_click_launcher       = false # for attached/floating placement, follow the bar click instead of bar-center
@@ -614,9 +615,21 @@ min_length = 80.0
 title_scroll = "none"
 type = "active_window"
 
+# The clock and the owl (control-center) button swap jobs: clicking the clock opens the
+# control center's Home tab, and the owl, now a calendar glyph, opens the calendar.
 [widget.clock]
 format = "{:%-I:%M %p}"
 type = "clock"
+
+[widget.clock.actions]
+left = "panel-toggle control-center"
+
+[widget.control-center]
+type = "control-center"
+glyph = "calendar"
+
+[widget.control-center.actions]
+left = "panel-toggle control-center calendar"
 
 [widget.cpu]
 show_value = false

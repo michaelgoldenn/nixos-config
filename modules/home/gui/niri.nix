@@ -140,6 +140,16 @@
               }''
         }
 
+        // The overview's type-to-launch catcher and the click shield noctalia puts up
+        // behind open panels (to close them on an outside click) are invisible full-screen
+        // surfaces; blurring behind them would blur the whole screen.
+        layer-rule {
+            match namespace="^noctalia-(overview-launcher|panel-click-shield)$"
+            background-effect {
+                blur false
+            }
+        }
+
         // Stationary wallpaper: noctalia's wallpaper layer sits in niri's backdrop
         // (needs noctalia's [backdrop] section disabled, which it is).
         layer-rule {
@@ -153,10 +163,12 @@
         }
 
         binds {
-            // Tapping Super on its own opens the launcher, like GNOME's Activities search.
-            // Release binds on a modifier only fire if no other key was pressed with it.
+            // Tapping Super on its own opens niri's overview, like GNOME's Activities: every
+            // window zoomed out to click or arrow-key to, and typing opens noctalia's launcher
+            // at the top (niri_overview_type_to_launch_enabled). Release binds on a modifier
+            // only fire if no other key was pressed with it.
             Mod {
-                release { spawn-sh "noctalia msg panel-toggle launcher"; }
+                release { toggle-overview; }
             }
 
             Mod+Return { spawn "${terminal}"; }
@@ -167,6 +179,8 @@
             Mod+Shift+V { toggle-window-floating; }
             Mod+F { fullscreen-window; }
             Mod+O repeat=false { toggle-overview; }
+            // Cheat sheet of every bind below.
+            Mod+Shift+Slash { show-hotkey-overlay; }
 
             // Focus with the keyboard. Columns scroll left/right; windows stack within a
             // column, and past the top/bottom window this moves between workspaces.
