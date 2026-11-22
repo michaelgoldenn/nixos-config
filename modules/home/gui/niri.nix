@@ -52,6 +52,19 @@
             }
         }
 
+        // Monitors, matched by port (the HP's EDID serial has trailing spaces, which
+        // makes matching by make/model/serial fragile). HP on the left, its top edge
+        // about 2 inches (190 px) below the Dell's.
+        output "HDMI-A-1" {
+            mode "1920x1080@60.000"
+            position x=0 y=190
+        }
+        output "DP-1" {
+            mode "1920x1080@60.000"
+            position x=1920 y=0
+            focus-at-startup
+        }
+
         // noctalia's screenshots go to ~/Pictures/Screenshots too; this is for niri's own.
         screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
