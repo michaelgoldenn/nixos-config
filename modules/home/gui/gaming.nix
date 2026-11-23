@@ -32,5 +32,9 @@ in
       qbittorrent
       flake.inputs.risabh-packages.packages.${pkgs.stdenv.hostPlatform.system}.ab-download-manager
     ];
+
+    # nexus mods "mod manager download" links -> patchwork
+    # (desktop file lives in ~/.local/share/applications, not managed by nix)
+    xdg.mimeApps.defaultApplications."x-scheme-handler/nxm" = "patchwork-gui-handler.desktop";
   };
 }
