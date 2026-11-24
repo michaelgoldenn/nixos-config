@@ -45,6 +45,9 @@
       };
     };
 
+    # Printer setup GUI (GNOME Settings' Printers page) plus its D-Bus helper.
+    programs.system-config-printer.enable = true;
+
     # Virtual filesystem backends for Nautilus (network browsing, smb://, trash, MTP).
     services.gvfs.enable = true;
 
